@@ -1,0 +1,63 @@
+# mb, 2013-01-18, 2013-01-19
+
+Options +Indexes -MultiViews
+IndexOptions FancyIndexing NameWidth=* IgnoreCase
+ReadmeName README.html
+
+RewriteEngine on
+RewriteBase /
+
+# ###
+# Provide special content for robots.txt
+# If the domain is NOT docs.typo3.org, we want to deliver content for
+# robots.txt that prohibits all. Though we have a [L] here, there is
+# nevertheless an internal redirect being done because this is all
+# defined in the .htaccess context.
+# ###
+RewriteCond %{HTTP_HOST}    !^docs\.typo3\.org [NC]
+RewriteRule ^robots\.txt$   /robots-for-srv123.txt [L]
+
+# ###
+# Task (A): Explicitly redirect everything to domain docs.typo3.org
+#
+# But: Do not do the redirect if we already have an (internal) redirect
+#      done due to the above rule for robots.txt
+#
+# Better:
+# But: Do not redirect if we are showing then contents of
+#      robots-for-srv123.txt
+# ###
+RewriteCond %{HTTP_HOST}  !^docs\.typo3\.org [NC]
+
+## I can't remember why I once needed this one:
+# RewriteCond %{HTTP_HOST}  !^$
+
+## This one does the job:
+# RewriteCond %{ENV:REDIRECT_STATUS} ^$
+
+## But this one is better and more precise:
+RewriteCond %{REQUEST_URI} !^/robots-for-srv123.txt [NC]
+
+RewriteRule ^(.*)         http://docs.typo3.org/$1 [L,R=301]
+
+
+# ###
+# /TYPO3/ has become /typo3cms/
+# ###
+RewriteRule  ^TYPO3/(.*)$  /typo3cms/$1  [R=301,L]
+
+# ###
+# .../Extensions/ has become /extensions/
+# ###
+
+### 
+# http://forge.typo3.org/issues/44868 mb, 2013-01-28
+# RewriteCond %{REQUEST_URI} ^/typo3cms/Extensions # does not help!
+# the following line handles the case "/typo3cms/Extensions.html"
+RewriteCond %{REQUEST_FILENAME} !-f
+#
+###
+RewriteRule  ^typo3cms/Extensions(.*)$ /typo3cms/extensions$1 [R=301,L]
+
+CheckSpelling On
+CheckCaseOnly On

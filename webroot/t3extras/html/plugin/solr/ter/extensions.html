@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Template for the search results view for EXT:solr</title>
+</head>
+<body>
+
+<!-- ###SOLR_SEARCH### begin -->
+
+	<div class="ter-ext-list-search">
+	<!-- ###SOLR_SEARCH_SORTING### begin -->
+		<span class="ter-ext-list-search-sorting cl">
+			<label for="ter-ext-list-search-sorting">###LLL:sorting_sortBy###: </label>
+			<select class="jsSubmit" id="ter-ext-list-search-sorting" name="###TX_SOLR.PREFIX###[sort]">
+				<!-- ###LOOP:SORT### begin -->
+				<!-- ###LOOP_CONTENT### -->
+				<option value="###SORT.url###" ###SORT.selected###>
+					###SORT.label###
+				</option>
+				<!-- ###LOOP_CONTENT### -->
+				<!-- ###LOOP:SORT### end -->
+			</select>
+		</span>
+	<!-- ###SOLR_SEARCH_SORTING### end -->
+
+	<!-- ###SOLR_SEARCH_FORM### begin -->
+	
+		###FORM.SUGGEST_URL###
+		<form id="tx-solr-search-form-pi-results" action="###FORM.ACTION###" method="get" accept-charset="###FORM.ACCEPT-CHARSET###">
+			<input type="hidden" name="id" value="###FORM.ACTION_ID###" />
+			<input type="hidden" name="###FORM.ACTION_LANGUAGE_PARAMETER###" value="###FORM.ACTION_LANGUAGE###" />
+
+			<input type="text" id="ter-ext-list-search-needle" class="tx-solr-q form-input" name="###TX_SOLR.QUERY_PARAMETER###" value="###FORM.Q###" />
+			<input type="submit" class="bu" value="###LLL:submit###" />
+	<!-- ###SOLR_SEARCH_FORM### end -->
+	
+	<!-- ###SOLR_SEARCH_FACETING### begin -->
+
+			###IF:###FACETING.search_has_results###|==|1|x###
+
+			<div id="ter-filter-toggle" class="ter-toggle
+
+				###IF:###FACETING.active###|==|1###
+				ter-toggle-showLess
+				###IF:###FACETING.active###|==|1###
+
+			">
+				<span>Filter</span>
+				<hr>
+			</div>
+
+			<div id="tx-solr-faceting" class="ter-filter"
+				###IF:###FACETING.active###|==|0###
+					style="display: none;"
+				###IF:###FACETING.active###|==|0###
+			>
+				<!-- ###AVAILABLE_FACETS### begin -->
+				<div id="tx-solr-facets-available" class="secondaryContentSection">
+					<!-- ###SINGLE_FACET### begin -->
+					<div class="facet facet-###FACET.name### facet-type-###FACET.type###">
+						<h5 class="facet-label csc-header">###FACET.label###</h5>
+							<!-- ###SINGLE_FACET_OPTION### begin -->
+							<!-- ###LOOP:FACET_LINKS### begin -->
+							<!-- ###LOOP_CONTENT### -->
+							<div class="facet-option">
+								<input type="checkbox" name="tx_solr[filter][]" class="facet-item" id="facet-###FACET_LINK.facetName###-option-###FACET_LINK.value###" value="###FACET_LINK.facetName###:###FACET_LINK.value###"
+								###IF:###FACET_LINK.selected###|==|1###
+								checked="checked"
+								###IF:###FACET_LINK.selected###|==|1###
+								 />
+								<label for="facet-###FACET_LINK.facetName###-option-###FACET_LINK.value###">###FACET_LINK.text###</label>
+							</div>
+							<!-- ###LOOP_CONTENT### -->
+							<!-- ###LOOP:FACET_LINKS### end -->
+							<!-- ###SINGLE_FACET_OPTION### end -->
+					</div>
+					<!-- ###SINGLE_FACET### end -->
+				</div>
+				<!-- ###AVAILABLE_FACETS### end -->
+				<div style="clear: both;"> </div>
+			</div>
+
+			###IF:###FACETING.search_has_results###|==|1|x###
+	<!-- ###SOLR_SEARCH_FACETING### end -->
+		</form>
+	</div>
+
+
+	<!-- ###SOLR_SEARCH_RESULTS### begin -->
+	<div class="ter-ext-list-count">
+		###RESULTS.count### extensions found
+	</div>
+
+		<!-- ###LOOP:RESULT_DOCUMENTS### begin -->
+		<!-- ###LOOP_CONTENT### -->
+		<div class="ter-ext-list-row cl">
+			<!--
+			Score: ###RESULT_DOCUMENT.SCORE###
+			Document ID:  ###RESULT_DOCUMENT.ID###
+			-->
+
+			<!-- Headline -->
+			<div class="ter-ext-list-row-head">
+				<img class="ter-ext-icon" alt="###RESULT_DOCUMENT.title###" src="###RESULT_DOCUMENT.extensionIcon_stringS###" height="16" width="16">
+				<a href="###RESULT_DOCUMENT.url###">###RESULT_DOCUMENT.title###</a>
+				<span class="ter-ext-list-row-key">###RESULT_DOCUMENT.extensionKey_stringS###</span>
+			</div>
+
+			<!-- Content area -->
+			<div class="ter-ext-list-row-regular cl">
+
+				<!-- Description -->
+				<div class="ter-ext-list-row-description">
+					<div class="ter-ext-list-meta">
+						by ###RESULT_DOCUMENT.author###
+					</div>
+					###RESULT_DOCUMENT.content###
+				</div>
+
+				<!-- General information -->
+				<div class="ter-ext-list-row-info ter-ext-info">
+					<table>
+						<tr>
+							<th>Version</th>
+							<td>###RESULT_DOCUMENT.extensionVersion_stringS### <span class="ter-ext-state ter-ext-state-###RESULT_DOCUMENT.extensionState_stringS###">###RESULT_DOCUMENT.extensionState_stringS###</span></td>
+						</tr>
+						<tr>
+							<th>Last Updated</th>
+							<td>###DATE:###RESULT_DOCUMENT.extensionLastUpload_intS######</td>
+						</tr>
+						<tr>
+							<th>Downloads</th>
+							<td>###RESULT_DOCUMENT.extensionDownloads_intS###</td>
+						</tr>
+						<tr>
+							<th>Manual</th>
+							<td>###RESULT_DOCUMENT.extensionDocumentationLink_stringS###</td>
+						</tr>
+					</table>
+				</div>
+
+			</div>
+
+			<div class="ter-ext-list-row-downloads">
+				<a class="ter-download-icon ter-download-icon-t3x" href="###RESULT_DOCUMENT.extensionDownloadT3xUrl_stringS###">Download T3X Package</a>
+				<a class="ter-download-icon ter-download-icon-zip" href="###RESULT_DOCUMENT.extensionDownloadZipUrl_stringS###">Download ZIP Archive</a>
+			</div>
+
+		</div>
+		<!-- ###LOOP_CONTENT### -->
+		<!-- ###LOOP:RESULT_DOCUMENTS### end -->
+
+		###RESULTS.PAGEBROWSER###
+
+	<!-- ###SOLR_SEARCH_RESULTS### end -->
+
+
+
+	<!-- ###SOLR_SEARCH_NO_RESULTS### begin -->
+	<div class="tx-solr-search-no-results">
+		<div class="typo3-message message-warning">
+			<div class="message-header">###NO_RESULTS.nothing_found###</div>
+			<div class="message-body">###NO_RESULTS.showing_results_suggestion###. ###NO_RESULTS.search_for_original###</div>
+		</div>
+
+		###NO_RESULTS.SUGGESTION_RESULTS###
+	</div>
+	<!-- ###SOLR_SEARCH_NO_RESULTS### end -->
+
+<!-- ###SOLR_SEARCH### end -->
+
+
+
+<!-- ###SOLR_SEARCH_UNAVAILABLE### begin -->
+	###LLL:searchUnavailable###
+<!-- ###SOLR_SEARCH_UNAVAILABLE### end -->
+
+<!-- ###SOLR_SEARCH_ERROR### begin -->
+	###LLL:searchFailed###
+<!-- ###SOLR_SEARCH_ERROR### end -->
+
+</body>
+</html>

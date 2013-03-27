@@ -1,0 +1,8 @@
+{namespace cal=Tx_CzSimpleCal_ViewHelpers}
+BEGIN:VEVENT
+UID:{event.hash}
+DTSTART<cal:format.dateTime format="{f:if(condition: event.isAlldayEvent, then:';VALUE=DATE:%Y%m%d', else:':%Y%m%dT%H%M00')}" timestamp="{event.start}" />
+<f:if condition="{event.end} > {event.start}">DTEND<cal:format.dateTime format="{f:if(condition: event.isAlldayEvent, then:';VALUE=DATE:%Y%m%d', else:':%Y%m%dT%H%M00')}" timestamp="{event.end}" /></f:if>
+SUMMARY:<f:if condition="{event.teaser}" then="{event.teaser}" else="{event.title}" />
+LOCATION:<cal:ics.oneLine><f:if condition="{event.location.name}"><f:render partial="location.html" arguments="{address: event.location, settings: settings}" /></f:if></cal:ics.oneLine>
+END:VEVENT

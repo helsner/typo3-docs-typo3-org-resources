@@ -1,0 +1,71 @@
+
+/* Ajaxlogin
+------------------------------ */
+.tx-ajaxlogin-widget { width: 226px; }
+
+#ajaxlogin { background: url(../i/ajax-preloader.gif) center center no-repeat; padding-top: 6px; }
+.tx-ajaxlogin-widget { background-color: #fff; }
+
+#ajaxlogin .ajaxlogin-userimage { float: left; width: 60px; height: 78px; border: 1px solid #d1d1d1; margin-right: 15px; overflow: hidden; }
+#ajaxlogin .ajaxlogin-statusbox { margin-left: 75px; width: 149px; }
+#ajaxlogin .ajaxlogin-user      { color: #000000;}
+#ajaxlogin .ajaxlogin-logout a  { color: white; text-decoration: none; }
+
+#ajaxlogin .tx-ajaxlogin-widget .typo3-message {}
+
+.tx-ajaxlogin-widget .typo3-message { border: 0; background: none; padding: 0; background-image: none; min-height: 0; margin-bottom: 10px; }
+.tx-ajaxlogin-widget .typo3-message:before { background-image: none; }
+.tx-ajaxlogin-widget .typo3-message-ok,
+.tx-ajaxlogin-widget .typo3-message-notice { color: black; }
+
+.ajaxlogin-logout .dark-grey a { color: white; }
+.h-bar-nav .close { width: 100%; text-align: right; margin-bottom: 12px; }
+.h-bar-nav a.ajaxlogin-close { position: absolute; background: url(../i/closebutton.gif) left top no-repeat; font-size: 8px; color: gray; text-decoration: none; text-transform: uppercase; top: 10px; right: 10px; width: 14px; height: 14px; text-indent: 193px; }
+
+.h-bar-nav .loading a { color: rgb(200, 200, 200); }
+.h-bar-nav .loading .i-arr-down-or { background: none; }
+
+#ajaxlogin .b-form-inputs {
+	margin-left: 65px;
+}
+#ajaxlogin .b-form-inputs input[type="text"],
+#ajaxlogin .b-form-inputs input[type="password"],
+#ajaxlogin .b-form-inputs textarea {
+	width: 155px;
+	padding: 2px;
+}
+
+#ajaxlogin .b-form-row label {
+	width: 60px;
+}
+
+#ajaxlogin .b-form-row.wide label { width: 100%; }
+#ajaxlogin .b-form-row.wide input { width: 220px; }
+#ajaxlogin .b-form-row.wide .b-form-inputs { margin-left: 0px; }
+
+
+#ajaxlogin button[type="submit"] {
+	float: right;
+}
+#ajaxlogin .login-action-links {
+	float: left;
+}
+#ajaxlogin .login-action-links a {
+	margin-left: 5px;
+}
+#ajaxlogin .login-action-links a:first-child {
+	margin-right: 5px;
+	margin-left: 0;
+}
+#tx-ajaxlogin-notice {
+	color: #e80000;
+	margin-bottom: 12px;
+}
+
+#ajaxlogin .ajaxlogin-userstatus {
+	line-height: 12px;
+}
+
+#ajaxlogin .ajaxlogin-logout {
+	margin: 7px 0 0 0;
+}

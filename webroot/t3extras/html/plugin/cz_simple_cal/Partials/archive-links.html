@@ -1,0 +1,12 @@
+{namespace cal=Tx_CzSimpleCal_ViewHelpers}
+{namespace t3o=Tx_T3orgTemplate_ViewHelpers}
+
+<f:if condition="{data}">
+	<ul class="tabs lite-tabs js-off">
+	<f:for each="{data}" as="dat" iteration="iterator" reverse="1">
+		<f:if condition="{dat.count} > 0">
+			<li class="{f:if(condition:'{t3o:condition.archiveCurrent(now:dat.date)}', then:'act', else:'')}"><f:link.action controller="EventIndex" action="fullarchive" pluginName="pi1" arguments="{getDate:'{cal:format.dateTime(timestamp:dat.date)}'}"><cal:format.dateTime timestamp="{dat.date}" format="%Y" /></f:link.action></li>
+		</f:if>
+	</f:for>
+	</ul>
+</f:if>

@@ -1,0 +1,50 @@
+{namespace cal=Tx_CzSimpleCal_ViewHelpers}
+{namespace feed=Tx_T3orgFeedparser_ViewHelpers}
+<f:if condition="{events}">
+	<f:alias map="{event: events.0}">
+		<div class="b-event-item b-next-event-item vevent" id="{event.hash}">
+			<div class="b-event-item-pic">
+				<f:render section="linkEvent-image" arguments="{event:event}" />
+			</div><!-- b-event-item-pic -->
+			<div class="b-event-item-date b-event-item-date-big dtstart" title="{cal:format.dateTime(format: '{f:if(condition: event.isAlldayEvent, then:\'%Y-%m-%d\', else:\'%Y-%m-%dT%H:%M\')}', timestamp: event.start)}">
+				<span class="d"><cal:format.dateTime format="%d" timestamp="{event.start}"/></span> <span class="m"><cal:format.dateTime format="%B" timestamp="{event.start}"/></span> <span class="y"><cal:format.dateTime format="%Y" timestamp="{event.start}"/></span>
+			</div><!-- b-event-item-date -->
+			<f:if condition="{event.twitterHashtagsArray.0}">
+				<feed:widget.remote.json templatePathAndName="EXT:t3org_template/html/plugin/t3org_feedparser/Partials/Twitter/tweetForCalendar.html" feedUrl="http://search.twitter.com/search.json?q={f:escape(value:event.twitterHashtagsArray.0, type:'url')}&rpp=5" arguments="{hashtag:event.twitterHashtagsArray.0}">
+					<div id="forge-ticker" rel="{remoteUri}"><div class="b-twitter"><ul class="slides"><li class="slide"><span class="ico i-twitter-grey"></span><div class="b-twitter-message"><div class="ajax-preloader"></div></div><div class="b-twitter-author"></div></li></ul></div></div>
+				</feed:widget.remote.json>
+			</f:if>
+			<div class="b-event-item-text">
+				<h4 class="summary"><f:render partial="link-event.html" arguments="{event:event,text:event.title,settings:settings}" /></h4>
+				<f:if condition="{event.location.name}">
+					<p class="b-event-item-place location"><f:render partial="location.html" arguments="{address: event.location, settings: settings}" /></p>
+				</f:if>
+				<p><f:render partial="link-event.html" arguments="{event:event,text:'Details', class:'bu bu-mini'}" /></p>
+			</div><!-- b-event-item-text -->
+		</div>
+	</f:alias>
+</f:if>
+
+
+<f:section name="linkEvent-image">
+	<f:if condition="{event.showPageInstead}">
+		<f:then>
+			<f:if condition="{event.description}">
+				<f:then>
+					<cal:link.action controller="Event" action="show" arguments="{event: event.event}" class="url"><f:render section="image" arguments="{event:event}" /></cal:link.action>
+				</f:then>
+				<f:else>
+					<f:link.external uri="{event.showPageInstead}" target="_blank"><f:render section="image" arguments="{event:event}" /></f:link.external>
+				</f:else>
+			</f:if>
+		</f:then>
+		<f:else>
+			<cal:link.action controller="Event" action="show" arguments="{event: event.event}" class="url"><f:render section="image" arguments="{event:event}" /></cal:link.action>
+		</f:else>
+	</f:if>
+</f:section>
+
+<f:section name="image"><f:image src="{event.images.0.filePath}" width="461c" height="140c" alt="{f:if(condition:event.teaser, then:event.teaser, else:event.title)}" /></f:section>
+
+
+			

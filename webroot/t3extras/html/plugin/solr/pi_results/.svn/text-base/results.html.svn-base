@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Template for the search results view for EXT:solr</title>
+</head>
+<body>
+
+<!-- ###SOLR_SEARCH### begin -->
+<!-- ### aside ### -->
+<div class="a" id="aside">
+	<!-- ###SOLR_SEARCH_FACETING### begin -->
+	<div class="b-filter">
+		<!-- ###USED_FACETS### begin -->
+		<div id="tx-solr-facets-in-use">
+			<div class="b-filter-head">
+				<h4>Active filters</h4>
+			</div>
+
+			<div class="b-filter-body">
+				<ul class="b-filter-list active-filter-list">
+					<!-- ###LOOP:FACETS_IN_USE### begin -->
+					<!-- ###LOOP_CONTENT### -->
+					<li>
+						<a href="###REMOVE_FACET.url###">###REMOVE_FACET.text###</a>
+					</li>
+					<!-- ###LOOP_CONTENT### -->
+
+					<!-- ###IF:###LOOP_ELEMENT_COUNT###|>|1### begin -->
+					<li>
+						<a href="###REMOVE_ALL_FACETS.url###">###REMOVE_ALL_FACETS.text###</a>
+					</li>
+					<!-- ###IF:###LOOP_ELEMENT_COUNT###|>|1### end -->
+
+					<!-- ###LOOP:FACETS_IN_USE### end -->
+				</ul>
+			</div>
+		</div>
+		<!-- ###USED_FACETS### end -->
+
+		<!-- ###AVAILABLE_FACETS### begin -->
+		<div id="tx-solr-facets-available">
+<!--
+			<h4>###LLL:faceting_narrowSearch###</h4>
+-->
+			<!-- ###SINGLE_FACET### begin -->
+			<div class="b-filter-head">
+				<h4>###FACET.label###</h4>
+			</div>
+			<div class="b-filter-body">
+				<ul class="b-filter-list">
+					<!-- ###SINGLE_FACET_OPTION### begin -->
+					<!-- ###LOOP:FACET_LINKS### begin -->
+					<!-- ###LOOP_CONTENT### -->
+
+						<!-- ###IF:###FACET_LINK.selected###|==|1### -->
+						<li>
+							<a href="###FACET_LINK.URL###" class="active-filter">###FACET_LINK.TEXT###</a>
+						</li>
+						<!-- ###IF:###FACET_LINK.selected###|==|1### -->
+
+						<!-- ###IF:###FACET_LINK.selected###|==|0### -->
+						<li class="###FACET_LINK.HIDDEN###">
+							<a href="###FACET_LINK.URL###" >###FACET_LINK.TEXT### <span>(###FACET_LINK.COUNT###)</span></a>
+						</li>
+						<!-- ###IF:###FACET_LINK.selected###|==|0### -->
+
+					<!-- ###LOOP_CONTENT### -->
+					<!-- ###LOOP:FACET_LINKS### end -->
+					<!-- ###SINGLE_FACET_OPTION### end -->
+					###FACET.showAllLink###
+				</ul>
+			</div>
+			<!-- ###SINGLE_FACET### end -->
+		</div>
+		<!-- ###AVAILABLE_FACETS### end -->
+	</div><!-- b-filter -->
+	<!-- ###SOLR_SEARCH_FACETING### end -->
+
+
+	###TS:lib.navigation.sub.20###
+
+
+	<div class="aside-shade-head"></div><div class="aside-shade-cont"></div><div class="aside-shade-foot"></div>
+
+</div>
+<!-- ^^^ aside ^^^ -->
+
+
+
+<!-- ### section ### -->
+<div class="s d" id="section">
+
+
+	<!-- ###SOLR_SEARCH_FORM### begin -->
+
+	###FORM.SUGGEST_URL###
+
+	<form id="tx-solr-search-form-pi-results" action="###FORM.ACTION###" method="get" accept-charset="###FORM.ACCEPT-CHARSET###">
+		<input type="hidden" name="id" value="###FORM.ACTION_ID###" />
+		<input type="hidden" name="###FORM.ACTION_LANGUAGE_PARAMETER###" value="###FORM.ACTION_LANGUAGE###" />
+
+		<div class="b-form-inputs" style="margin: 0px;">
+			<input type="text" class="tx-solr-q form-input" name="###SOLR.PREFIX###[q]" value="###FORM.Q###" style="width: 400px;" />
+			<button class="bu bu-confirm" style="vertical-align: top; height: 24px;"><b>###LLL:submit###</b></button>
+		</div>
+	</form>
+
+	<!-- ###SOLR_SEARCH_FORM### end -->
+
+
+	<!-- ###SOLR_SEARCH_ERRORS### begin -->
+
+	<div class="tx-solr-search-form-errors">
+		###LLL:error_errors###
+		<!-- ###LOOP:ERRORS### begin -->
+		<ul class="tx-solr-search-form-error-list">
+		<!-- ###LOOP_CONTENT### -->
+			<li>
+			###ERROR.MESSAGE###
+			</li>
+		<!-- ###LOOP_CONTENT### -->
+		</ul>
+		<!-- ###LOOP:ERRORS### end -->
+	</div>
+
+	<!-- ###SOLR_SEARCH_ERRORS### end -->
+
+
+
+	<!-- ###SOLR_SEARCH_RESULTS### begin -->
+
+	<div class="b-search-result-info">
+		<p>###RESULTS.SEARCHED_FOR### ###RESULTS.FOUND### ###RESULTS.RANGE###</p>
+	</div><!-- b-search-result-info -->
+
+	<div class="cl">
+
+		<div class="s-sidebar"> </div>
+
+		<div class="s-body">
+
+			<!-- ###RESULTS_PER_PAGE_SWITCH### beginn -->
+			<form action="###FORM.ACTION###" method="post" class="sort-search">
+				<label for="results">Results per page:</label>
+				<select onchange="this.form.submit()" name="###SOLR.PREFIX###[resultsPerPage]" id="results">
+					<!-- ###LOOP:OPTIONS### begin -->
+					<!-- ###LOOP_CONTENT### -->
+					<option value="###OPTION.VALUE###" ###OPTION.SELECTED###>###OPTION.VALUE###</option>
+					<!-- ###LOOP_CONTENT### -->
+					<!-- ###LOOP:OPTIONS### end -->
+				</select>
+			</form>
+			<!-- ###RESULTS_PER_PAGE_SWITCH### end -->
+			<!-- .sort-search -->
+
+			<h1>Search Results</h1>
+
+			<ul class="tabs lite-tabs search-result">
+
+
+
+			<!-- ###FACET:type### begin -->
+
+				<li
+
+					<!-- ###IF:###FACET.active###|==|0### begin -->
+					class="act"
+					<!-- ###IF:###FACET.active###|==|0### end -->
+
+				>
+				###LINK:All||&tx_solr[q]=###RESULTS.QUERY_RAW######
+				</li>
+
+			<!-- ###SINGLE_FACET### begin -->
+				<!-- ###SINGLE_FACET_OPTION### begin -->
+				<!-- ###LOOP:FACET_LINKS### begin -->
+				<!-- ###LOOP_CONTENT### -->
+				<li
+
+					<!-- ###IF:###FACET_LINK.SELECTED###|==|1### begin -->
+					class="act"
+					<!-- ###IF:###FACET_LINK.SELECTED###|==|1### end -->
+
+				>
+					<a href="###FACET_LINK.URL###">###FACET_LINK.TEXT###</a>
+				</li>
+				<!-- ###LOOP_CONTENT### -->
+				<!-- ###LOOP:FACET_LINKS### end -->
+				<!-- ###SINGLE_FACET_OPTION### end -->
+			<!-- ###SINGLE_FACET### end -->
+			<!-- ###FACET:type### end -->
+			</ul>
+
+
+			<div class="tab-panes lite-tab-panes-black b-search">
+				<!-- ###LOOP:RESULT_DOCUMENTS### begin -->
+				<!-- ###LOOP_CONTENT### -->
+
+				<!-- ###RESULT_DOCUMENT.ID### -->
+
+				<h2><a href="###RESULT_DOCUMENT.URL###">###RESULT_DOCUMENT.TITLE###</a></h2>
+				<div class="g">
+					<div class="g-5">
+						<p class="search-info">
+
+							<!-- ###IF:###RESULT_DOCUMENT.TYPE###|==|tt_news### begin -->
+							###RESULT_DOCUMENT.CREATED###
+							<span class="sep">|</span>
+							###RESULT_DOCUMENT.AUTHOR###
+							<!-- ###IF:###RESULT_DOCUMENT.TYPE###|==|tt_news### end -->
+
+							<!-- ###IF:###RESULT_DOCUMENT.TYPE###|==|tx_ter_extensions### begin -->
+							EXT:###RESULT_DOCUMENT.extensionKey_stringS###
+							<span class="sep">|</span>
+							version: ###RESULT_DOCUMENT.extensionVersion_stringS###
+							<!-- ###IF:###RESULT_DOCUMENT.TYPE###|==|tx_ter_extensions### end -->
+
+							&nbsp;
+						</p>
+					</div><!-- .g-5 -->
+					<div class="g-5">
+						###RELEVANCE_BAR:###RESULT_DOCUMENT.SCORE######
+						<p class="search-info">###LLL:relevance###: ###RELEVANCE:###RESULT_DOCUMENT.SCORE######%</p>
+					</div><!-- .g-5 -->
+				</div><!-- .g -->
+				<p>###RESULT_DOCUMENT.CONTENT###</p>
+
+				<!-- ###IF:###RESULT_DOCUMENT.TYPE###|==|tx_solr_file### begin -->
+				<p>
+					###LLL:file_mimetype###: ###RESULT_DOCUMENT.fileMimeType###<br />
+					###LLL:file_referenced###: ###LINK:###RESULT_DOCUMENT.fileReferenceTitle###|###RESULT_DOCUMENT.fileReferenceUrl######
+				</p>
+				<!-- ###IF:###RESULT_DOCUMENT.TYPE###|==|tx_solr_file### end -->
+
+				###RESULT_DOCUMENT.SCORE_ANALYSIS###
+
+				<!-- ###LOOP_CONTENT### -->
+				<!-- ###LOOP:RESULT_DOCUMENTS### end -->
+
+				###RESULTS.PAGEBROWSER###
+
+			</div><!-- tab-panes lite-tab-panes -->
+
+		</div>
+
+	</div>
+
+	<!-- ###SOLR_SEARCH_RESULTS### end -->
+
+
+
+	<!-- ###SOLR_SEARCH_NO_RESULTS### begin -->
+	###NO_RESULTS.NOTHING_FOUND###
+	###NO_RESULTS.SUGGESTION###
+	<!-- ###SOLR_SEARCH_NO_RESULTS### end -->
+</div>
+<!-- ^^^ section ^^^ -->
+
+
+
+
+
+
+
+
+<!-- ###SOLR_SEARCH### end -->
+
+
+
+<!-- ###SOLR_SEARCH_UNAVAILABLE### begin -->
+	###LLL:searchUnavailable###
+<!-- ###SOLR_SEARCH_UNAVAILABLE### end -->
+
+<!-- ###SOLR_SEARCH_ERROR### begin -->
+	###LLL:searchFailed###
+<!-- ###SOLR_SEARCH_ERROR### end -->
+
+</body>
+</html>

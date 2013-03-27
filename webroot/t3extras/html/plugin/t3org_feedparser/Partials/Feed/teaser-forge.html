@@ -1,0 +1,25 @@
+{namespace feed=Tx_T3orgFeedparser_ViewHelpers}
+<f:if condition="{error}">
+	<f:then>
+		<!-- some error occured: {error} -->
+	</f:then>
+	<f:else>
+		<div class="slider ticker-slider">
+			<div class="slider-content">
+				<ul class="slider-nav">
+					<f:for each="{feed.entry}" as="entry" iteration="it">
+						<li>{it.index}</li>
+					</f:for>
+				</ul>
+				<ul class="slides">
+					<f:for each="{feed.entry}" as="entry">
+						<li class="slide">
+							<p><span class="ticker-slider-info">{entry.author.name} <feed:format.timeToAgoString><feed:escape>{entry.updated}</feed:escape></feed:format.timeToAgoString> in Forge:</span><br />
+							<a href="{feed:escape(value:entry.link.attribute-href)}" target="_blank"><f:format.crop maxCharacters="80" respectWordBoundaries="1" respectHtml="0"><feed:escape>{entry.title}</feed:escape></f:format.crop></a></p>
+						</li>
+					</f:for>
+				</ul>
+			</div>
+		</div>
+	</f:else>
+</f:if>

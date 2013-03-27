@@ -1,0 +1,6 @@
+{namespace t3o=Tx_T3orgTemplate_ViewHelpers}
+<t3o:form.errors for="{field}" as="error" iteration="iterator">
+	<f:if condition="{iterator.isFirst}">
+		<div class="b-form-error-message">{error.message}</div>
+	</f:if>
+</t3o:form.errors>

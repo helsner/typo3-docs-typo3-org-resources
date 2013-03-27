@@ -1,0 +1,576 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>page landing</title>
+
+	<link rel="stylesheet" href="../css/reset.css" media="all" />
+	<link rel="stylesheet" href="../css/grid.css" media="all" />
+	<link rel="stylesheet" href="../css/main.css" media="all" />
+	<link rel="stylesheet" href="../css/dip.css" media="all" />
+	<link rel="stylesheet" href="../css/print.css" media="all" />
+	<!--[if IE]><link rel="stylesheet" href="../css/ie.css" media="all" /><![endif]-->
+	<!--[if IE 7]><link rel="stylesheet" href="../css/ie7.css" media="all" /><![endif]-->
+	<!--[if IE 8]><link rel="stylesheet" href="../css/ie8.css" media="all" /><![endif]-->
+
+	<script src="../js/css_browser_selector.js"></script>
+	<script src="../js/jquery-1.5.1.min.js"></script>
+	<script src="../js/jquery.easing.js"></script>
+	<script src="../js/jquery.tools.js"></script>
+	<script src="../js/cufon.js"></script>
+	<script src="../fonts/share.js"></script>
+	<script src="../js/main.js"></script>
+	<script src="../js/dip.js"></script>
+
+</head>
+
+<body class="js-off">
+	
+	<div class="p" id="page"><!-- ### Page ### 208-->
+		
+		<!-- ### content ### -->
+		<div class="c" id="content">
+			
+			<!-- ### aside ### -->
+			<div class="a" id="aside">
+				<ul class="nav-aside">
+					<li class="cur"><a href="#">Document Library</a>
+						<ul>
+							<li><a href="#"><span>Tutorials</span></a></li>
+							<li class="cur"><a href="#"><span>Learning TYPO3</span></a></li>
+							<li><a href="#"><span>Installation</span></a></li>
+							<li><a href="#"><span>Core Documentation</span></a></li>
+							<li><a href="#"><span>Extension Manuals</span></a></li>
+						</ul>
+					</li>
+					<li><a href="#"><span>Wiki</span></a></li>
+					<li><a href="#"><span>API</span></a></li>
+					<li><a href="#"><span>TYPO3 Book</span></a></li>
+					<li><a href="#"><span>Videos</span></a></li>
+					<li><a href="#"><span>Report bugs</span></a></li>
+					<li><a href="#"><span>Other resources</span></a></li>
+					<li><a href="#"><span>t3n Magazine</span></a></li>
+					<li><a href="#"><span>Mailing Lists</span></a></li>
+				</ul>
+				
+				<div class="d">
+					<h4>Platinum Sponsors</h4>
+					<div class="sponsors">
+						<img src="../i/sponsor-aoe.jpg" width="152" height="58" alt="pic">
+						<img src="../i/sponsor-cs2.jpg" width="152" height="59" alt="pic">
+					</div><!-- .sponsors -->
+				</div><!-- .d -->
+				<div class="aside-shade-head"></div><div class="aside-shade-cont"></div><div class="aside-shade-foot"></div>
+			</div>
+			<!-- ^^^ aside ^^^ -->
+		
+			<section>
+			<!-- ### section ### -->
+			<div class="s d" id="section">
+				<div class="b-keyvisual">
+					<a href="#"><img src="../tmp/keyvisual.jpg" width="711" height="287" alt="pic" /></a>
+				</div><!-- b-keyvisual -->
+				
+				<ul class="breadcrumbs">
+					<li><a href="#">Home</a></li>
+					<li><a href="#">Document Library</a></li>
+					<li>Learning TYPO3</li>
+				</ul>
+				
+				<h1>Lorem Ipsum Dolor sit Amet</h1>
+				
+				<p><strong>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</strong></p>
+				
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+				
+				<div class="g">
+					<div class="g-5">
+						<div class="gc">
+							<h3>Praesent hendrerit tempus risus</h3>
+							
+							<ul class="arrow-list">
+								<li><a href="#">Lorem ipsum dolor</a></li>
+								<li><a href="#">Sit amet consectetur aelit</a></li>
+								<li><a href="#">Sed do eiusmod tedunt</a></li>
+								<li><a href="#">Lorem ipsum dolor</a></li>
+								<li><a href="#">Sit amet consecteting elit</a></li>
+								<li><a href="#">Sed do eiusmod temididunt</a></li>
+							</ul>	
+						</div><!-- gc -->
+					</div><!-- g-5 -->
+					<div class="g-5">
+						<div class="gc">
+							<div class="b-evaluation">
+								<h3>Evaluation Center</h3>
+								<p>Choosing a CMS is a daunting task. These are the main sections dedicated to helping you assess TYPO3.</p>
+								<div class="g">
+									<div class="g-5">
+										<div class="gc">
+											<ul class="linked-check-list">
+												<li><a class="visited" href="#"><strong>Highlights</strong></a></li>
+												<li><a href="#"><strong>License</strong></a></li>
+												<li><a href="#"><strong>Case Studies</strong></a></li>
+											</ul>	
+										</div><!-- gc -->
+									</div><!-- g-5 -->
+									<div class="g-5">
+										<div class="gc">
+											<ul class="linked-check-list">
+												<li><a class="visited" href="#"><strong>Screenshots</strong></a></li>
+												<li><a class="visited" href="#"><strong>References</strong></a></li>
+												<li><a class="visited" href="#"><strong>Press reviews</strong></a></li>
+											</ul>	
+										</div><!-- gc -->
+									</div><!-- g-5 -->
+								</div><!-- g -->
+							</div><!-- b-evaluation -->
+						</div><!-- gc -->
+					</div><!-- g-5 -->
+				</div><!-- g -->
+				
+				<hr />
+				
+				<div class="g">
+					<div class="g-6">
+						<div class="gc">
+							<div class="g-5">
+								<div class="gc">
+									<img src="http://dummyimage.com/222x150/eee/ccc.gif" width="222" height="150" alt="pic" />
+									<h2>Aenean mis natoquatibus</h2>
+									<p>Lorem ipsum dolor sit amet, conseicing elit, sed do et enim ad minim veni <a href="#">nostrud exercitation</a> ullamco laboris nisi ut aliquip exn reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla n voluptate velit essenulla pariatur.</p>
+									<p><a class="bu" href="#">More benefits</a></p>
+								</div><!-- gc -->
+							</div><!-- g-5 -->
+							<div class="g-5">
+								<div class="gc">
+									<img src="http://dummyimage.com/222x150/eee/ccc.gif" width="222" height="150" alt="pic" />
+									<h2>Donec quam felis</h2>
+									<p>Lorem ipsum dolor sit amet, conseicing elit, sed do et enim ad minim veni <a href="#">nostrud exercitation</a> ullamco laboris nisi ut aliquip exn reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla n voluptate velit essenulla pariatur.</p>
+									<p><a class="bu" href="#">More benefits</a></p>
+								</div><!-- gc -->
+							</div><!-- g-5 -->
+						</div><!-- gc -->
+					</div><!-- g-6 -->
+					<div class="g-3">
+						<div class="gc">
+							<img src="http://dummyimage.com/222x150/eee/ccc.gif" width="222" height="150" alt="pic" />
+							<h2>Aenean commodo ligula</h2>
+							<p>Lorem ipsum dolor sit amet, conseicing elit, sed do et enim ad minim veni <a href="#">nostrud exercitation</a> ullamco laboris nisi ut aliquip exn reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla n voluptate velit essenulla pariatur.</p>
+							<p><a class="bu" href="#">More benefits</a></p>
+						</div><!-- gc -->
+					</div><!-- g-3 -->
+				</div><!-- g -->
+				
+				<hr />
+
+		
+				<h2>Lorem ipsum Dolor</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam accumsan aliquet quam in placerat. Phasellus ornare dui sed nisl blandit vestibulum. Aliquam id tellus a tellus ornare ultrices. Vestibulum eu libero purus, quis fringilla dui. Donec at euismod lectus. Suspendisse mattis, ligula eleifend gravida tempus, metus sapien faucibus est, ut aliquet sapien urna eget nunc. Quisque vel velit ut arcu mollis porta. Maecenas ut tortor a dolor faucibus pretium. Vivamus vestibulum nibh sed leo accumsan blandit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus pulvinar pulvinar posuere. Sed orci sem, auctor ultricies tincidunt ut, lobortis eget nisi. Nullam quis turpis ut quam pellentesque dictum euismod et turpis. Phasellus pharetra sollicitudin ipsum, ut lacinia mauris aliquet ut. Suspendisse tincidunt pretium tellus, euismod eleifend velit sodales ac. Morbi sed tellus massa. Nulla faucibus libero felis. Donec vel nibh ultricies magna pellentesque convallis ac in nibh.</p>
+				
+				<div class="h-accordion"> 
+					<ul class="h-a-block"> 
+						<li class="h-a-item">
+							<div class="h-a-body">
+								<h3>References</h3>
+								<div class="b-wi">
+									<div class="b-wi-pic">
+										<div>
+											<img src="http://dummyimage.com/186x96/000/FFF.gif" width="186" height="96" alt="pic" />
+										</div>
+									</div><!-- .b-wi-pic -->
+									<div class="b-wi-text">
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud</p>
+									</div><!-- .b-wi-text -->
+								</div><!-- .b-wi -->
+								<p><a class="bu" href="#">More references</a></p>
+							</div><!-- .h-a-body -->
+						</li><!-- .h-a-item -->
+						<li class="h-a-item">
+							<div class="h-a-body">
+								<h3>Screenshots</h3>
+								<div class="b-wi">
+									<div class="b-wi-pic">
+										<div>
+											<img src="http://dummyimage.com/186x96/000/FFF.gif" width="186" height="96" alt="pic" />
+										</div>
+									</div><!-- .b-wi-pic -->
+									<div class="b-wi-text">
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud</p>
+									</div><!-- .b-wi-text -->
+								</div><!-- .b-wi -->
+								<p><a class="bu" href="#">More screens</a></p>
+							</div><!-- .h-a-body -->
+						</li><!-- .h-a-item -->
+						<li class="h-a-item">
+							<div class="h-a-body">
+								<h3>Features</h3>
+								<ul class="feature-list">
+									<li><img class="feature-list-pic" src="../tmp/RTEmagicC_featureslider1.png.png" width="25" height="25" alt="pic" />Easy templating</li>
+									<li><img class="feature-list-pic" src="../tmp/RTEmagicC_featureslider2.png.png" width="25" height="25" alt="pic" />True WYSIWYG editing</li>
+									<li><img class="feature-list-pic" src="../tmp/RTEmagicC_featureslider3.png.png" width="25" height="25" alt="pic" />Flexible designs</li>
+									<li><img class="feature-list-pic" src="../tmp/RTEmagicC_featureslider4.png.png" width="25" height="25" alt="pic" />Multilingual</li>
+									<li><img class="feature-list-pic" src="../tmp/RTEmagicC_featureslider5.png.png" width="25" height="25" alt="pic" />Multi-site management</li>
+									<li><img class="feature-list-pic" src="../tmp/RTEmagicC_featureslider6.png.png" width="25" height="25" alt="pic" />Integrated search</li>
+								</ul>
+								<p><a class="bu" href="#">More features</a></p>
+							</div><!-- .h-a-body -->
+						</li><!-- .h-a-item -->
+					</ul> 
+				</div> 
+				
+				<hr />
+				
+				<div class="g">
+					<div class="g-5">
+						<div class="gc">
+							<div class="g-5">
+								<div class="gc">
+									<h3>This is an H3 Header</h3>
+				
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+								</div><!-- gc -->
+							</div><!-- g-5 -->
+							<div class="g-5">
+								<div class="gc">
+									<h3>This is an H3 Header</h3>
+				
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+								</div><!-- gc -->
+							</div><!-- g-5 -->	
+						</div><!-- gc -->
+					</div><!-- g-5 -->
+					<div class="g-5">
+						<div class="gc">
+							<div class="g-5">
+								<div class="gc">
+									<h3>This is an H3 Header</h3>
+				
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+								</div><!-- gc -->
+							</div><!-- g-5 -->
+							<div class="g-5">
+								<div class="gc">
+									<h3>This is an H3 Header</h3>
+				
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+								</div><!-- gc -->
+							</div><!-- g-5 -->	
+						</div><!-- gc -->
+					</div><!-- g-5 -->
+				</div><!-- g -->
+				
+				<br />
+				<br />
+				
+				
+				<h1>Sitemap</h1>
+				
+				<div class="g">
+					<div class="g-6">
+						<div class="gc">
+							<div class="g-5">
+								<div class="gc">
+									<h2>About</h2>
+									<h3>About</h3>
+									<ul class="arrow-list">
+										<li><a href="#">Highlights</a></li>
+										<li><a href="#">Features</a></li>
+										<li><a href="#">Screenshots</a></li>
+										<li><a href="#">System requirements</a></li>
+										<li><a href="#">Licenses</a></li>
+										<li><a href="#">TYPO3 Association</a></li>
+									</ul>
+									<h3>Roadmap</h3>
+									<ul class="arrow-list">
+										<li><a href="#">Berlin Manifesto</a></li>
+									</ul>
+									<h3>The Brand</h3>
+									<ul class="arrow-list">
+										<li><a href="#">About T3Brand</a></li>
+										<li>
+											<a href="#">Style Guide</a>
+											<ul>
+												<li><a href="#">Style Guide</a></li>
+												<li><a href="#">The TYPO3 Logo</a></li>
+												<li><a href="#">The TYPO3 Colors</a></li>
+												<li><a href="#">The TYPO3 Font</a></li>
+												<li><a href="#">The TYPO3 Spelling</a></li>
+												<li><a href="#">The TYPO3 Subbrands</a></li>
+												<li><a href="#">The TYPO3 Photography</a></li>
+												<li><a href="#">Guidelines</a></li>
+												<li><a href="#">The TYPO3 Layout Rules</a></li>
+												<li><a href="#">Downloads</a></li>
+											</ul>
+										</li>
+										<li><a href="#">Examples</a></li>
+									</ul>
+								</div><!-- gc -->
+							</div><!-- g-5 -->
+							<div class="g-5">
+								<div class="gc">
+									<h2>Contribute</h2>
+									<h3>Donate</h3>
+									<ul class="arrow-list">
+										<li><a href="#">Online Donation</a></li>
+										<li><a href="#">Donor List</a></li>
+										<li><a href="#">Association Membership</a></li>
+										<li><a href="#">The TYPO3 Fundraiser</a></li>
+									</ul>
+									<h3>Particicipate</h3>
+									<ul class="arrow-list">
+										<li><a href="#">Certification</a></li>
+										<li><a href="#">Content Rendering</a></li>
+									</ul>
+								</div><!-- gc -->
+							</div><!-- g-5 -->
+						</div><!-- gc -->
+					</div><!-- g-6 -->
+					<div class="g-3">
+						<div class="gc">
+							
+						</div><!-- gc -->
+					</div><!-- g-3 -->
+				</div><!-- g -->
+				
+			</div>
+			<!-- ^^^ section ^^^ -->
+			</section>
+		</div>
+		<!-- ^^^ content ^^^ -->
+		
+		<header>
+		<!-- ### header ### -->
+		<div class="h" id="header">
+			<a href="#" id="logo"><img src="../i/typo3-logo.png" width="118" height="34" alt="Typo3 Logo" /></a>
+			<div class="h-bar">
+				<ul class="h-bar-nav">
+					<li>
+						<a href="#">
+							<span class="b-drop-h">
+								TYPO3.org<span class="i-arr-down-or ico"></span>
+								<!-- shadow elements -->
+								<span class="b-drop-h-l"></span><span class="b-drop-h-r"></span>	
+							</span>
+						</a>
+						<div class="b-drop-body b-drop-r">
+							<ul class="b-drop-nav">
+								<li><a href="#">TYPO3.com</a></li>
+								<li><a href="#">TYPO3 Association</a></li>
+								<li><a href="#">Certification</a></li>
+								<li class="cur"><a href="#">FLOW3</a></li>
+								<li><a href="#">Bugtracker</a></li>
+								<li><a href="#">Forge (Development Platform)</a></li>
+								<li><a href="#">News Resource</a></li>
+								<li><a href="#">Buzz (TYPO3 Blogs)</a></li>
+								<li><a href="#">TYPO3 Wiki</a></li>
+								<li><a href="#">Mailing lists</a></li>
+								<li><a href="#">TYPO3 Snippets</a></li>
+							</ul>
+							<!-- shadow elements -->
+							<div class="b-drop-body-l"><div></div><div class="b-drop-r-tl"></div></div>
+							<div class="b-drop-body-b"><div></div></div>
+							<div class="b-drop-body-r"></div>
+						</div><!-- b-drop-body -->
+					</li>
+					<li>
+						<a href="#">
+							<span class="b-drop-h">
+								Login<span class="i-arr-down-or ico"></span>
+								<!-- shadow elements -->
+								<span class="b-drop-h-l"></span><span class="b-drop-h-r"></span>
+							</span>
+						</a>
+						<div class="b-drop-body">
+							<p class="f-row"><label>Username:</label> <input class="i-text-mini" type="text" /></p>
+							<p class="f-row"><label>Password:</label> <input class="i-text-mini" type="password" /></p>
+							<p class="f-row"><label>Jump to:</label> <select class="i-select-mini"><option>TYPO3.org</option></select></p>
+							<p class="f-action"><button class="bu bu-mini">Submit</button></p>
+							<p class="f-links"><a href="#">Forgot password?</a><span class="f-row-spacer">|</span><a href="#">Sign Up</a></p>
+							<!-- shadow elements -->
+							<div class="b-drop-body-l"><div></div></div>
+							<div class="b-drop-body-b"><div></div></div>
+							<div class="b-drop-body-r"><div></div></div>
+						</div><!-- b-drop-body -->
+					</li>
+				</ul>
+				<div class="quick-search">
+					<div class="smart-search">
+						<a href="#" class="selector"><span class="ico i-typo"></span></a>
+						<ul>
+							<li class="current"><a href="#"><span class="ico i-typo"></span>Website Search</a></li>
+							<li><a href="#"><span class="ico i-ext"></span>Extensions Search</a></li>
+							<li><a href="#"><span class="ico i-case"></span>Case Studies Search</a></li>
+						</ul>
+					</div>
+					<form action="#" method="post">
+						<label for="form-element-21" class="text s-input">
+							<span>Website Search</span>
+							<input type="text" name="form-element-21" value="" id="form-element-21" />
+						</label>
+						<button><span class="ico i-search"></span></button>
+					</form>
+					
+				</div><!-- quick-search -->
+			</div><!-- h-bar -->
+			<ul class="nav"> 
+				<li><a href="#">Home</a>
+					<div class="nav-sub">
+						<div class="col">
+							<h4>Lorem ipsum</h4>
+							<ul>
+								<li><a href="#">About</a></li>
+								<li><a href="#">News</a></li>
+								<li><a href="#">Community</a></li>
+								<li><a href="#">Development</a></li>
+								<li><a href="#">Extensions</a></li>
+								<li><a href="#">Documentation</a></li>
+							</ul>
+							<h4>Lorem ipsum</h4>
+							<ul>
+								<li><a href="#">Extensions</a></li>
+								<li><a href="#">Documentation</a></li>
+							</ul>
+						</div>
+						<div class="col">
+							<h4>Lorem ipsum</h4>
+							<ul>
+								<li><a href="#">About</a></li>
+								<li><a href="#">News</a></li>
+								<li><a href="#">Documentation</a></li>
+							</ul>
+							<h4>Lorem ipsum</h4>
+							<ul>
+								<li><a href="#">Extensions</a></li>
+								<li><a href="#">Documentation</a></li>
+								<li><a href="#">Community</a></li>
+								<li><a href="#">Development</a></li>
+								<li><a href="#">Extensions</a></li>
+							</ul>
+						</div>
+					</div>
+				</li>
+				<li><a href="#">About</a></li>
+				<li><a href="#">News</a></li>
+				<li><a href="#">Community</a>
+					<div class="nav-sub">
+						<div class="col">
+							<h4>Lorem ipsum</h4>
+							<ul>
+								<li><a href="#">About</a></li>
+								<li><a href="#">News</a></li>
+								<li><a href="#">Community</a></li>
+								<li><a href="#">Development</a></li>
+								<li><a href="#">Extensions</a></li>
+								<li><a href="#">Documentation</a></li>
+							</ul>
+							<h4>Lorem ipsum</h4>
+							<ul>
+								<li><a href="#">Extensions</a></li>
+								<li><a href="#">Documentation</a></li>
+							</ul>
+						</div>
+						<div class="col">
+							<h4>Lorem ipsum</h4>
+							<ul>
+								<li><a href="#">About</a></li>
+								<li><a href="#">News</a></li>
+								<li><a href="#">Documentation</a></li>
+							</ul>
+							<h4>Lorem ipsum</h4>
+							<ul>
+								<li><a href="#">Extensions</a></li>
+								<li><a href="#">Documentation</a></li>
+								<li><a href="#">Community</a></li>
+								<li><a href="#">Development</a></li>
+								<li><a href="#">Extensions</a></li>
+							</ul>
+						</div>
+					</div>
+				</li>
+				<li><a href="#">Development</a></li>
+				<li><a href="#">Extensions</a></li>
+				<li><a href="#">Documentation</a></li>
+				<li class="f-r"><a href="#"><span class="ico i-arr-down"></span>Download</a></li>
+				<li class="f-r"><a href="#"><span class="ico i-video"></span>View demo</a></li>
+			</ul>
+		</div>
+		<!-- ^^^ header ^^^ -->
+		</header>
+		
+	</div><!-- ^^^ Page ^^^ -->
+	
+	<footer>
+	<!-- ### footer ### -->
+	<div class="f" id="footer">
+		<div class="f-body">
+			<p>&copy; 2005-2010 TYPO3 Association. All rights reserved.</p>
+			<div class="g gf">
+				<div class="g-5">
+					<div class="gc">
+							
+						<div class="g">
+							<div class="g-5">
+								<div class="gc">
+									<div class="g-5">
+										<div class="gc">
+											<ul>
+												<li><a href="#">About</a></li>
+												<li><a href="#">News</a></li>
+												<li><a href="#">Community</a></li>
+											</ul>
+										</div><!-- gc -->
+									</div><!-- g-5 -->
+									<div class="g-5">
+										<div class="gc">
+											<ul>
+												<li><a href="#">Teams</a></li>
+												<li><a href="#">Development</a></li>
+												<li><a href="#">Extensions</a></li>
+											</ul>
+										</div><!-- gc -->
+									</div><!-- g-5 -->
+								</div><!-- gc -->
+							</div><!-- g-5 -->
+							<div class="g-5">
+								<div class="gc">
+									<div class="g-5">
+										<div class="gc">
+											<ul>
+												<li><a href="#">Documentation</a></li>
+												<li><a href="#">Download</a></li>
+												<li><a href="#">Donate</a></li>
+											</ul>
+										</div><!-- gc -->
+									</div><!-- g-5 -->
+									<div class="g-5">
+										<div class="gc">
+											<ul>
+												<li><a href="#">Contact</a></li>
+												<li><a href="#">Sitemap</a></li>
+												<li><a href="#">Legal information</a></li>
+											</ul>
+										</div><!-- gc -->
+									</div><!-- g-5 -->
+								</div><!-- gc -->
+							</div><!-- g-5 -->
+						</div><!-- g -->
+							
+					</div><!-- gc -->
+				</div><!-- g-5 -->
+				<div class="g-5">
+					<div class="gc">
+						<p>
+							Sponsors:<br />
+							<a href="#"><img src="../i/sponsor-punkt.de.png" width="126" height="31" alt="punk.de" /></a>
+							<a href="#"><img src="../i/sponsor-t3n.png" width="117" height="31" alt="punk.de" /></a>
+							<a href="#"><img src="../i/sponsor-sourceforge.png" width="162" height="31" alt="punk.de" /></a>
+						</p>
+					</div><!-- gc -->
+				</div><!-- g-5 -->
+			</div><!-- g -->
+		</div><!-- f-body -->
+	</div>
+	<!-- ^^^ footer ^^^ -->
+	</footer>
+</body>
+</html>

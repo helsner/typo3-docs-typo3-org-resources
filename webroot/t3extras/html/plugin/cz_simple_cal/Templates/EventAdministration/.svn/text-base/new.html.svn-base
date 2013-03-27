@@ -1,0 +1,2 @@
+<f:render partial="Form/messages.html" />
+<f:render partial="Form/event.html" arguments="{event: newEvent, objectName: 'newEvent', action: 'create'}" />

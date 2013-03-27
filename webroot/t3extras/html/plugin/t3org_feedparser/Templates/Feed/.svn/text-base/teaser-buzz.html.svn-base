@@ -1,0 +1,22 @@
+{namespace feed=Tx_T3orgFeedparser_ViewHelpers}
+<!-- variables in the template: 
+	- error (string): set if an error occured (feed should be empty then)
+	- feed (object): an object representation of the feed 
+-->
+<f:if condition="{error}">
+	<f:then><!-- It seems buzz.typo3.org is down. --></f:then>
+	<f:else>
+		<f:alias map="{item:feed.entry}">
+			<article>
+				<div class="b-news-item">
+					<h5><a href="{feed:escape(value:item.link.attribute-href)}" target="_blank" title="{feed:escape(value:item.title)}"><feed:escape>{item.title}</feed:escape></a></h5>
+					<p class="b-news-item-date">
+						<f:if condition="{item.created}">Posted on <feed:format.reformatDate format="{settings.dateFormat}"><feed:escape>{item.created}</feed:escape></feed:format.reformatDate></f:if>
+						<f:if condition="{item.author.name}">by <feed:format.stripTags>{item.author.name}</feed:format.stripTags></f:if></p>
+					<p class="b-news-item-subheader"><a href="{feed:escape(value:item.link.attribute-href)}" target="_blank" title="{feed:escape(value:item.title)}"><feed:format.stripTags><feed:escape type="decode">{item.content}</feed:escape></feed:format.stripTags><span class="i-next ico"></span></a></p>
+				</div>
+			</article>
+			<f:link.external class="bu bu-mini" uri="buzz.typo3.org" target="_blank">More Blog Posts</f:link.external>
+		</f:alias>
+	</f:else>
+</f:if>

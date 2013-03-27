@@ -1,0 +1,82 @@
+{namespace cal=Tx_CzSimpleCal_ViewHelpers}
+{namespace t3o=Tx_T3orgTemplate_ViewHelpers}
+{namespace feed=Tx_T3orgFeedparser_ViewHelpers}
+{namespace flickr=Tx_T3orgFlickrfeed_ViewHelpers}
+<cal:useMicroformat format="hcalendar" />
+
+<div class="vevent">
+	
+<h1>{event.title}<f:if condition="{event.teaser}"> &ndash; {event.teaser}</f:if></h1>
+<f:if condition="{event.images.0}">
+	<f:image width="711c" height="220c" alt="{event.images.0.alternateText}" src="{event.images.0.filePath}" class="b-keyvisual" />
+</f:if>
+
+<div class="g">
+	<div class="g-6"><div class="gc">
+		<f:if condition="{event.description}">
+			<f:format.html>{event.description}</f:format.html>
+		</f:if>
+
+		<f:if condition="{event.location.name}">
+			<h2>Location</h2>
+			<p><f:render partial="location.html" arguments="{address:event.location}" /></p>
+		</f:if>
+		
+		<h2>Date and Time</h2>
+		<p><f:if condition="{event.isAllDayEvent}">
+			<f:then>
+				<cal:format.dateTime format="%B&nbsp;%d,&nbsp;%Y" timestamp="{event.dateTimeObjectStart}"/>
+				<f:if condition="{event.isOneDayEvent}">
+					<f:then></f:then>
+					<f:else>-<br /> <cal:format.dateTime format="%B&nbsp;%d,&nbsp;%Y" timestamp="{event.dateTimeObjectEnd}"/></f:else>
+				</f:if>
+			</f:then>
+			<f:else>
+				<cal:format.dateTime format="%B&nbsp;%d,&nbsp;%Y, %H:%M" timestamp="{event.dateTimeObjectStart}"/>
+				<f:if condition="{event.isOneDayEvent}">
+					<f:then>
+						<f:if condition="{event.hasEndTime}">
+							- <cal:format.dateTime format="%H:%M" timestamp="{event.dateTimeObjectEnd}"/>
+						</f:if>
+					</f:then>
+					<f:else>
+						-<br /> <cal:format.dateTime format="%B&nbsp;%d,&nbsp;%Y" timestamp="{event.dateTimeObjectEnd}"/><f:if condition="{event.hasEndTime}">, <cal:format.dateTime format="%H:%M" timestamp="{event.dateTimeObjectEnd}"/></f:if>
+					</f:else>
+				</f:if>
+			</f:else>
+		</f:if></p>
+		
+		
+		
+		
+		<f:if condition="{event.showPageInstead}">
+			<h2>Official Website</h2>
+			<p><f:link.external uri="{event.showPageInstead}" target="_blank"><cal:format.hostName uri="{event.showPageInstead}" /></f:link.external></p>
+		</f:if>
+		
+		<f:if condition="{cal:format.dateTime(timestamp:event.dateTimeObjectEnd,format:'%s')} > {cal:format.dateTime(format:'%s')}">
+			<h2>Import event to your calendar</h2>
+			<p><cal:link.action action="show" controller="Event" arguments="{event:event}" format="ics" pageType="150" class="bu">Download calendar file</cal:link.action></p>
+		</f:if>
+		
+	</div></div>
+	<div class="g-3">
+		<f:if condition="{event.twitterHashtagsArray.0}">
+			<h4>Tweets</h4>
+			<feed:widget.remote.json templatePathAndName="EXT:t3org_template/html/plugin/t3org_feedparser/Partials/Twitter/tweetForCalendar-nojs.html" feedUrl="http://search.twitter.com/search.json?q={f:escape(value:event.twitterHashtagsArray.0, type:'url')}&rpp=5" arguments="{hashtag:event.twitterHashtagsArray.0}">
+				<div id="twitter-ticker" data-uri="{remoteUri}"><div class="ajax-preloader"></div></div>
+			</feed:widget.remote.json>
+		</f:if>
+	</div>
+</div>
+
+
+<f:if condition="{event.flickrTagsArray.0}">
+	<flickr:widget.images type="tag" apiKey="{settings.custom.flickrApiKey}" tags="{event.flickrTagsArray}" options="{per_page:'6',max_taken_date:'{cal:format.dateTime(timestamp:event.end, get:\'+1 month\', format:\'%s\')}'}" templatePathAndName="EXT:t3org_template/html/plugin/t3org_flickrfeed/Templates/Images/List.html" />
+</f:if>
+
+<div class="b-news-foot"></div>
+<p><f:link.page pageUid="{settings.EventIndex.actions.fulllist.defaultPid}" class="bu dark-grey"><f:translate key="msg.backToList" /></f:link.page></p>
+
+
+</div>

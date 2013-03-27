@@ -1,0 +1,24 @@
+
+
+#ter-filter-toggle {
+	margin-top: 8px;
+	margin-bottom: 0px;
+}
+
+#tx-solr-faceting .facet {
+	padding-top: 8px;
+	clear: both;
+}
+
+#tx-solr-faceting .facet label {
+	padding-left: 3px;
+}
+
+#tx-solr-faceting .facet-state label {
+	text-transform: capitalize;
+}
+
+#tx-solr-faceting .facet-option {
+	width: 33%;
+	float: left;
+}

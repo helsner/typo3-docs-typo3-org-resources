@@ -1,0 +1,44 @@
+{namespace t3o=Tx_T3orgTemplate_ViewHelpers}
+{namespace fed=Tx_Fed_ViewHelpers}
+<t3o:flashMessages as="message" iteration="iterator">
+	<fed:switch value="{message.severity}">
+		<fed:case case="0" break="1">
+			<div class="b-message congratulations">
+				<p><b><f:if condition="{message.title}" then="{message.title}" else="Thank you!" /></b></p>
+				<f:if condition="{message.message}">
+					<p>{message.message}</p>
+				</f:if>
+			</div>
+		</fed:case>
+		
+		<fed:case case="1" break="1">
+			<div class="b-message warning">
+				<p><b><f:if condition="{message.title}" then="{message.title}" else="Warning!" /></b></p>
+				<f:if condition="{message.message}">
+					<p>{message.message}</p>
+				</f:if>
+			</div>
+		</fed:case>
+		
+		<fed:case case="2" break="1">
+			<div class="b-message error">
+				<p><b><f:if condition="{message.title}" then="{message.title}" else="Error notification" /></b></p>
+				<f:if condition="{message.message}">
+					<p>{message.message}</p>
+				</f:if>
+			</div>
+		</fed:case>
+		
+		
+		<fed:case case="default" break="1">
+			<div class="b-message">
+				<f:if condition="{message.title}">
+					<p><b>{message.title}</b></p>
+				</f:if>
+				<f:if condition="{message.message}">
+					<p>{message.message}</p>
+				</f:if>
+			</div>
+		</fed:case>
+	</fed:switch>
+</t3o:flashMessages>

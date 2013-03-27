@@ -1,0 +1,20 @@
+<div id="vimeo-archive" class="s-sidebar">
+	<aside>
+		<div class="accordion">
+			<f:for each="{years}" as="months" key="year" iteration="iteration">
+				<h5 class="a-h {f:if(condition:iteration.isFirst,then:'open',else:'closed')}"><span>{year}</span></h5>
+				<div class="a-body">
+					<div class="a-content">
+						<ul class="b-archive-nav">
+							<f:for each="{months}" as="count" key="month">
+								<li>
+									<f:link.action controller="Video" action="archive" arguments="{year: year, month: month}"><span><f:translate key="month.{month}" /></span></f:link.action> ({count})
+								</li>
+							</f:for>
+						</ul>
+					</div>
+				</div>
+			</f:for>
+		</div>
+	</aside>
+</div>

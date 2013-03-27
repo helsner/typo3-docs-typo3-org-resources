@@ -1,0 +1,35 @@
+{namespace cal=Tx_CzSimpleCal_ViewHelpers}
+{namespace t3o=Tx_T3orgTemplate_ViewHelpers}
+<tr>
+	<td>
+		<f:if condition="{event.showPageInstead}">
+			<f:then>
+				<f:if condition="{event.description}">
+					<f:then>
+						<h5><cal:link.action controller="Event" action="show" arguments="{event: event.event}" class="url">{event.title}</cal:link.action></h5>
+					</f:then>
+					<f:else>
+						<h5><f:link.external uri="{event.showPageInstead}" target="_blank">{event.title}</f:link.external></h5>
+					</f:else>
+				</f:if>
+			</f:then>
+			<f:else>
+				<h5><cal:link.action controller="Event" action="show" arguments="{event: event.event}" class="url">{event.title}</cal:link.action></h5>
+			</f:else>
+		</f:if>
+		
+		<f:if condition="{event.showPageInstead}">
+			<f:link.external uri="{event.showPageInstead}" target="_blank" class="s-external-link"><cal:format.hostName uri="{event.showPageInstead}" /></f:link.external>
+		</f:if>
+	</td>
+	<td>
+		<f:render partial="location-city.html" arguments="{address:event.location}" />
+	</td>
+	<td>
+		<cal:format.dateTime format="%d.%m.%Y" timestamp="{event.dateTimeObjectStart}"/>
+		<f:if condition="{event.isOneDayEvent}">
+			<f:then></f:then>
+			<f:else>&ndash;<br /> <cal:format.dateTime format="%d.%m.%Y" timestamp="{event.dateTimeObjectEnd}"/></f:else>
+		</f:if>
+	</td>
+</tr>

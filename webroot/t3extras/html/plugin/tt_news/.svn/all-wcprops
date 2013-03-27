@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/!svn/ver/1920/extensions/projects/t3org/t3org_template/trunk/html/plugin/tt_news
+END
+tt_news-topnews.html
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/!svn/ver/622/extensions/projects/t3org/t3org_template/trunk/html/plugin/tt_news/tt_news-topnews.html
+END
+tt_news.html
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/!svn/ver/1632/extensions/projects/t3org/t3org_template/trunk/html/plugin/tt_news/tt_news.html
+END
+tt_news_files.html
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/!svn/ver/368/extensions/projects/t3org/t3org_template/trunk/html/plugin/tt_news/tt_news_files.html
+END
+tt_news-articles.html
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/!svn/ver/712/extensions/projects/t3org/t3org_template/trunk/html/plugin/tt_news/tt_news-articles.html
+END
+tt_news-securitybulletins.html
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/!svn/ver/1920/extensions/projects/t3org/t3org_template/trunk/html/plugin/tt_news/tt_news-securitybulletins.html
+END
+tt_news_rss.html
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/!svn/ver/1248/extensions/projects/t3org/t3org_template/trunk/html/plugin/tt_news/tt_news_rss.html
+END

@@ -1,0 +1,13 @@
+.tx-donation-pi-donorlist .contenttable thead th {
+	background: url(../i/s-buttons.png) repeat-x scroll 0 0 transparent;
+	padding: 5px 0 6px 15px !important;
+	border: 1px solid #E87C0C;
+}
+
+.tx-donation-pi-donorlist .contenttable thead a {
+	text-decoration: none;
+}
+
+.tx-donation-pi-donorlist .contenttable tbody tr:nth-child(even) {
+	background-color: #F3F3F3;
+}

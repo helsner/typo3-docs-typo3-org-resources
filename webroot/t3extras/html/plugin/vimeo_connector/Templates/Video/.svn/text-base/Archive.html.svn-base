@@ -1,0 +1,24 @@
+{namespace t3o=Tx_T3orgTemplate_ViewHelpers}
+
+<div class="gc" id="vimeo">
+	
+	<div class="s-sidebar">
+		<f:if condition="{years}">
+			<f:render partial="ArchiveListing" arguments="{years: years}" />
+		</f:if>
+	</div>
+	
+	<div class="s-body">
+		<h1>Video Archive &ndash; <f:translate key="month.{month}" /> {year}</h1>
+		
+		<f:if condition="{videos}">
+			<f:then>
+				<t3o:widget.paginate objects="{videos}" as="paginatedvideos">
+					<f:render partial="VideoListing" arguments="{videos: paginatedvideos}" />
+				</t3o:widget.paginate>
+			</f:then>
+			<f:else><p><f:translate key="message.noVideo" /></p></f:else>
+		</f:if>
+	</div>
+	
+</div>

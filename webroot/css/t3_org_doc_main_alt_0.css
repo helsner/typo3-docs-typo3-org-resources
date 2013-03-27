@@ -1,0 +1,10 @@
+/* mb, 2012-11-28, 2012-11-28 */
+
+/* alternate styles 0 */
+
+.doc .alt-stylesheet-0 {
+    border: 1px dotted #bbb;
+}
+.doc .alt-stylesheet-1 {
+    border: 1px none #bbb;
+}

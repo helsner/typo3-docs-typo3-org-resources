@@ -1,0 +1,77 @@
+<!-- ###NEWSNIPPET### -->
+<h1>###HEADER###</h1>
+<!-- ###PREVIEW### -->
+<h2>###LL_PREVIEW###</h2>
+###PREVIEWCODE###
+<!-- ###PREVIEW### -->
+###MESSAGE###
+<form method="post" class="snippet-new b-form">
+	###HIDDEN###
+	<!-- ###USERINFO### -->
+	<div class="b-form-row">
+		<label for="snippet-poster">###LL_NAME###:</label>
+		<div class="b-form-inputs">
+			<input type="text" name="tx_pastecode_pi2[poster]" value="###POSTER###" id="snippet-poster" />
+		</div>
+	</div>
+	<!-- ###USERINFO### -->
+	<div class="b-form-row">
+		<label for="snippet-title">###LL_TITLE###:</label>
+		<div class="b-form-inputs">
+			<input type="text" name="tx_pastecode_pi2[title]" value="###TITLE###" id="snippet-title" />
+		</div>
+	</div>
+	<div class="b-form-row">
+		<label for="snippet-description">###LL_DESCRIPTION###:</label>
+		<div class="b-form-inputs">
+			<textarea name="tx_pastecode_pi2[description]" id="snippet-description">###DESCRIPTION###</textarea>
+		</div>
+	</div>
+	<div class="b-form-row">
+		<label for="snippet-tags">###LL_TAGS###:</label>
+		<div class="b-form-inputs">
+			<input type="text" name="tx_pastecode_pi2[tags]" value="###TAGS###" id="snippet-tags" />
+			<div class="snippet-selecttags">
+				<select id="snippet-selectedtags">###SELTAGS###</select>
+				<script type="text/javascript">
+				function addTag(p_string) {
+					t_tag_separator = ",";
+					t_tag_string = document.getElementById("snippet-tags");
+					t_tag_select = document.getElementById("snippet-selectedtags");
+					if(t_tag_string.value != "") {
+						t_tag_string.value = t_tag_string.value + t_tag_separator + p_string;
+					} else {
+						t_tag_string.value = t_tag_string.value + p_string;
+					}
+					t_tag_select.selectedIndex = 0;
+				}
+				</script>
+			</div>
+		</div>
+	</div>
+	<div class="b-form-row">
+		<label for="snippet-language">###LL_LANGUAGE###:</label>
+		<div class="b-form-inputs">
+			<select name="tx_pastecode_pi2[language]" id="snippet-language">###LANGOPTIONS###</select>
+		</div>
+	</div>
+	<div class="b-form-row">
+		<label for="snippet-code">###LL_CODE###:</label>
+		<div class="b-form-inputs">
+			<textarea name="tx_pastecode_pi2[snippet]" id="snippet-code">###SNIPPET###</textarea>
+		</div>
+	</div>
+	<!--###CAPTCHA### start -->
+	<div class="b-form-row">
+		<label for="snippet-aptcha">###LL_CAPTCHA###</label>
+		###CAPTCHAPICTURE###<br />
+		<input type="text" id="snippet-captcha" name="tx_pastecode_pi2[captchaResponse]" value="" />
+	</div>
+	<!--###CAPTCHA### end -->
+	<div class="b-form-inputs">
+		<a href="###OVERVIEW_URL###" class="bu dark-grey">###LL_BACK###</a>
+		<input type="submit" name="tx_pastecode_pi2[preview]" value="###LL_PREVIEW###" class="bu" />
+		<input type="submit" name="tx_pastecode_pi2[save]" value="###LL_SAVE###" class="bu" />
+	</div>
+</form>
+<!-- ###NEWSNIPPET### -->

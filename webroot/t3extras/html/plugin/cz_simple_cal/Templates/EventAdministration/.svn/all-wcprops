@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/!svn/ver/1566/extensions/projects/t3org/t3org_template/trunk/html/plugin/cz_simple_cal/Templates/EventAdministration
+END
+delete.html
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/!svn/ver/1566/extensions/projects/t3org/t3org_template/trunk/html/plugin/cz_simple_cal/Templates/EventAdministration/delete.html
+END
+update.html
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/!svn/ver/1566/extensions/projects/t3org/t3org_template/trunk/html/plugin/cz_simple_cal/Templates/EventAdministration/update.html
+END
+create.html
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/!svn/ver/1566/extensions/projects/t3org/t3org_template/trunk/html/plugin/cz_simple_cal/Templates/EventAdministration/create.html
+END
+edit.html
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/!svn/ver/1566/extensions/projects/t3org/t3org_template/trunk/html/plugin/cz_simple_cal/Templates/EventAdministration/edit.html
+END
+new.html
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/!svn/ver/1566/extensions/projects/t3org/t3org_template/trunk/html/plugin/cz_simple_cal/Templates/EventAdministration/new.html
+END
+list.html
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/!svn/ver/1566/extensions/projects/t3org/t3org_template/trunk/html/plugin/cz_simple_cal/Templates/EventAdministration/list.html
+END

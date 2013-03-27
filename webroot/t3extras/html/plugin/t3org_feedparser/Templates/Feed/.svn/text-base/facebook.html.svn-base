@@ -1,0 +1,23 @@
+{namespace feed=Tx_T3orgFeedparser_ViewHelpers}
+{namespace fed=Tx_Fed_ViewHelpers}
+<div id="facebookfeed">
+	<f:if condition="{error}">
+		<f:else>
+			<div class="feedcontainer">
+                <f:for each="{feed.channel.item}" as="item" key="key" iteration="iteration">
+                    <f:if condition="{iteration.index} < 5">
+                        <div class="message">
+                            <div><a href="{feed:escape(value:item.link)}" title="{feed:escape(value:item.title)}" target="_blank">{feed:escape(value:item.title)}</a></div>
+                            <div class="date">
+                                Posted on <f:format.date format="d M, Y">{feed.channel.item.pubDate}</f:format.date>
+                            </div>
+                        </div>
+                    </f:if>
+                </f:for>
+			</div>
+        </f:else>
+        <f:then>
+			<!-- {error} -->
+		</f:then>
+	</f:if>
+</div>

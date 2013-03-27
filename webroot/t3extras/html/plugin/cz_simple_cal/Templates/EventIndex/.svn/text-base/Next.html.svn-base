@@ -1,0 +1,36 @@
+{namespace cal=Tx_CzSimpleCal_ViewHelpers}
+<cal:useMicroformat format="hcalendar" />
+<div class="d">
+	<f:if condition="{events}">
+		<f:then>
+			<f:for each="{events}" as="event" iteration="fooIterator">
+				<div class="b-event-item vcalendar-next vevent">
+				<f:if condition="{f:if(condition: fooIterator.isFirst, then: '1')}">
+					<f:then>
+						<div class="b-event-item-date b-event-item-date-big dtstart" title="{cal:format.dateTime(format: '{f:if(condition: event.isAlldayEvent, then:\'%Y-%m-%d\', else:\'%Y-%m-%dT%H:%M\')}', timestamp: event.start)}">
+							<span class="d"><cal:format.dateTime format="%d" timestamp="{event.start}"/></span>
+							<span class="m"><cal:format.dateTime format="%b" timestamp="{event.start}"/></span>
+							<span class="y"><cal:format.dateTime format="%Y" timestamp="{event.start}"/></span>
+						</div>
+						
+						<div class="b-event-item-text">
+							<h5 class="summary"><f:render partial="link-event.html" arguments="{event:event,text:event.title}" /></h5>
+							<f:if condition="{event.location.name}">
+								<p class="b-event-item-place location"><f:render partial="location.html" arguments="{address: event.location, settings: settings}" /></p>
+							</f:if>
+							<f:if condition="{event.teaser}"><f:then><p>{event.teaser}</p></f:then></f:if>
+							<p><f:render partial="link-event.html" arguments="{event:event,text:'Details',class:'bu bu-mini'}" /></p>
+						</div>
+					</f:then>
+					<f:else>
+						<f:render partial="EventIndex/event-for-list.html" arguments="{event:event, settings:settings}" />
+					</f:else>
+				</f:if>
+				</div>
+			</f:for>
+		</f:then>
+		<f:else>
+			<p><f:translate key="msg.noEvents" /></p>
+		</f:else>
+	</f:if>
+</div>

@@ -1,0 +1,39 @@
+{namespace cal=Tx_CzSimpleCal_ViewHelpers}
+<!-- This view is deprecated -->
+<cal:useMicroformat format="hcalendar" />
+<f:if condition="{events}">
+	<cal:event.group events="{events}" by="month" as="months"> 
+		<f:for each="{months}" as="month">
+			<h5><cal:format.dateTime timestamp="{month.key}" format="%B %Y" /></h5>
+			<f:for each="{month.events}" as="event">
+				<div class="vevent" id="{event.hash}">
+					<h5 class="summary"><f:render section="linkEvent" arguments="{event:event,text:event.title}" /></h5>
+					<f:if condition="{event.location.name}">
+						<div class="location"><f:render partial="location-city.html" arguments="{address: event.location, settings: settings}" /></div>
+					</f:if>
+					<div class="dtstart" title="{cal:format.dateTime(format: '{f:if(condition: event.isAlldayEvent, then:\'%Y-%m-%d\', else:\'%Y-%m-%dT%H:%M\')}', timestamp: event.start)}">
+						<cal:format.dateTime format="{settings.custom.dateFormat}" timestamp="{event.start}"/>
+					</div>
+				</div>
+			</f:for>
+		</f:for>
+	</cal:event.group>
+</f:if>
+
+<f:section name="linkEvent">
+	<f:if condition="{event.showPageInstead}">
+		<f:then>
+			<f:if condition="{event.description}">
+				<f:then>
+					<cal:link.action action="show" arguments="{event: event}" class="url">{text}</cal:link.action>
+				</f:then>
+				<f:else>
+					<f:link.external uri="{event.showPageInstead}" target="_blank">{text}</f:link.external>
+				</f:else>
+			</f:if>
+		</f:then>
+		<f:else>
+			<cal:link.action action="show" arguments="{event: event}" class="url">{text}</cal:link.action>
+		</f:else>
+	</f:if>
+</f:section>

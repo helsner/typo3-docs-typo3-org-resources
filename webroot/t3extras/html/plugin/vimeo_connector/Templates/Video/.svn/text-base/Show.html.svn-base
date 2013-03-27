@@ -1,0 +1,24 @@
+<div class="gc" id="vimeo">
+	
+	<div class="s-sidebar">
+		<f:render partial="RelatedListing" arguments="{videos: video.related}" />
+		&nbsp;
+	</div>
+	<div class="s-body">
+		<div class="b-news-head">
+			<h1>{video.title}</h1>
+			<p class="b-news-head-date">Date: <f:format.date format="F d, Y">{video.dateTaken}</f:format.date></p>
+			<p><f:if condition="{video.categories}">
+				<f:then>
+				Category: <f:for each="{video.categories}" as="category" iteration="iterator">
+					<f:link.action controller="Category" action="show" arguments="{category: category}">{category.title}</f:link.action>
+				</f:for>
+				</f:then>
+				<f:else>&nbsp;</f:else>
+			</f:if></p>
+		</div>
+		
+		<div class="vimeo-player"><f:render partial="VimeoPlayer" arguments="{video: video}" /></div>
+		<p><f:format.nl2br>{video.description}</f:format.nl2br></p>
+	</div>
+</div>

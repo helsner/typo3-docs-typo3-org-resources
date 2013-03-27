@@ -1,0 +1,21 @@
+<ul class="vimeo-listing b-news-list3">
+	<f:for each="{videos}" as="video">
+		<li class="vimeo-listitem cl">
+			<div class="vimeo-list-thumb">
+				<f:if condition="{video.thumbnail}">
+					<f:link.action controller="Video" action="show" arguments="{video: video}">
+						<f:image src="{settings.storageFolder}/{video.thumbnail}" width="152c" height="115c" alt="{video.title} thumbnail" />
+						<div class="vimeo-thumb-play"></div>
+					</f:link.action>
+				</f:if>
+			</div>
+			<div class="vimeo-list-content">
+				<div class="b-news-head">
+					<h4><f:link.action controller="Video" action="show" arguments="{video: video}">{video.title}</f:link.action></h4>
+					<div class="b-news-facts"><span class="category-label"></span><span class="b-news-head-date"><f:format.date format="F d, Y">{video.dateTaken}</f:format.date></span></div>
+				</div>
+				<p><f:format.nl2br>{video.description}</f:format.nl2br></p>
+			</div>
+		</li>
+	</f:for>
+</ul>

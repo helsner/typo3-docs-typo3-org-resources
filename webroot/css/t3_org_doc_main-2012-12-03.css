@@ -1,0 +1,559 @@
+/* mb, 2012-11-25, 2012-12-01 */
+
+/* override standard settings of typo3.org */
+
+.pDISABLED {
+    width: inherit;
+    min-width: 981px;
+}
+.highlight .p {
+	padding-top: 0;
+    min-width: inherit;
+    width: inherit;
+}
+.highlight .s {
+	padding: 0;
+}
+.smart-search {
+	display: none;
+}
+
+@font-face {
+    font-family: 'Share';
+    src: url('/fonts/share-bold-webfont.eot');
+    src: url('/fonts/share-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/share-bold-webfont.woff') format('woff'),
+         url('/fonts/share-bold-webfont.ttf') format('truetype'),
+         url('/fonts/share-bold-webfont.svg#Share-BoldRegular') format('svg');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Share';
+    src: url('/fonts/share-italic-webfont.eot');
+    src: url('/fonts/share-italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/share-italic-webfont.woff') format('woff'),
+         url('/fonts/share-italic-webfont.ttf') format('truetype'),
+         url('/fonts/share-italic-webfont.svg#Share-ItalicRegular') format('svg');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Share';
+    src: url('/fonts/share-regular-webfont.eot');
+    src: url('/fonts/share-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/share-regular-webfont.woff') format('woff'),
+         url('/fonts/share-regular-webfont.ttf') format('truetype'),
+         url('/fonts/share-regular-webfont.svg#Share-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+/* WV pschumann begin */
+.doc #aside {
+	/*background-image: url(http://www.typo3.org/typo3conf/ext/t3org_template/css/../i/aside-shade.png);
+	background-repeat: no-repeat;
+	background-position: right 0;*/
+}
+
+.doc #aside h3 {
+	background-color: #efefef;
+	padding: 3px 8px 4px 10px;
+	background-image: url(http://typo3.org/typo3conf/ext/t3org_template/css/../i/nav-aside.png);
+	background-position: right bottom;
+	background-repeat: no-repeat;
+	margin-bottom: 20px;
+}
+
+.doc #aside h3 a {
+	font-size: 12px;
+}
+
+/*.doc #aside #nav-aside li {
+/*	padding-top: 0;
+/*}
+/*
+/*.doc #aside #nav-aside li a {
+/*	color: #555555;
+/*	font-weight: normal;
+/*	padding: 3px 8px 4px 30px;
+/*	background-image: url(http://typo3.org/typo3conf/ext/t3org_template/css/../i/i-arrows.png);
+/*	background-repeat: no-repeat;
+/*	background-position: -942px -431px;
+/*}
+/*
+/*.doc #aside #nav-aside li a:hover {
+/*	text-decoration: none;
+/*	background-position: -902px -471px;
+/*}
+/*
+/*.doc #aside #nav-aside .cur a {
+/*	font-weight: bold;
+/*	color: #000000;
+/*	background-position: -902px -471px;
+/*}
+/*
+/*.doc #aside .toc {
+/*	height: 25px;
+/*}
+/*
+/*.doc #aside .toc > p {
+/*	background-color: #efefef;
+/*	padding: 3px 8px 4px 10px;
+/*	font-weight: bold;
+/*	background-image: url(http://typo3.org/typo3conf/ext/t3org_template/css/../i/nav-aside.png);
+/*	background-position: right bottom;
+/*	background-repeat: no-repeat;
+/*}
+/*
+/*.doc #aside .toc ul {
+/*	display: block;
+/*}
+/*
+/*.doc #aside .toc li {
+/*	padding-left: 0;
+/*	padding-top: 0;
+/*}
+/*
+/*.doc #aside .toc li li > a {
+/*	padding-left: 50px;
+/*	background-position: -922px -431px;
+/*}
+/*
+/*.doc #aside .toc li li > a:hover {
+/*	background-position: -882px -471px;
+/*}
+/*
+/*.doc #aside .toc li li li > a {
+/*	padding-left: 70px;
+/*	background-position: -902px -431px;
+/*}
+/*
+/*.doc #aside .toc li li li > a:hover {
+/*	background-position: -862px -471px;
+/*}
+/*
+/*.doc #aside .toc li li li li > a {
+/*	padding-left: 90px;
+/*	background-position: -882px -431px;
+/*}
+/*
+/*.doc #aside .toc li li li li > a:hover {
+/*	background-position: -842px -471px;
+/*}
+/*
+/*.doc #aside .toc a {
+/*	display: block;
+/*	padding: 3px 8px 4px 30px;
+/*	background-image: url(http://typo3.org/typo3conf/ext/t3org_template/css/../i/i-arrows.png);
+/*	background-repeat: no-repeat;
+/*	background-position: -942px -431px;
+/*	border-bottom: 1px solid #d5d5d5;
+/*}
+/*
+/*.doc #aside .toc a:hover {
+/*	background-color: #efefef;
+/*	background-position: -902px -471px;
+/*}
+/*
+*/
+.doc .hnav-related {
+	margin: 0 0 17px 0;
+	margin: 0 0 0 0;
+	background: transparent;
+}
+
+.doc .alt-stylesheet-0 {
+    border: 1px dotted #bbb;
+}
+
+.doc .hnav-related-container {
+	margin: 0 0 17px 0;
+}
+
+.doc .hnav-related li {
+	color: #b9b9b9;
+	padding: 0 6px 0 10px;
+	font-size: 11px;
+}
+
+.doc .hnav-related li:first-child {
+	padding-left: 0;
+}
+
+.doc .hnav-related a {
+	background: transparent;
+	color: #f58006;
+	text-decoration: normal;
+}
+
+.doc .hnav-related-2 {
+	color: #888;
+	font-size: 11px;
+	padding-right: 6px;
+}
+.doc .hnav-related-2 a {
+	background: transparent;
+	color: #aaa;
+	text-decoration: none;
+}
+.doc .hnav-related-2 a.whitewashed {
+	color: #fff;
+}
+.doc .hnav-related-2 a.whitewashed:hover {
+	color: #888;
+    text-decoration: underline;
+}
+.doc .d h1, .doc h1 {
+	color: #FF8700;
+	margin: 0 0 20px 0;
+	font-size: 24px;
+	font-weight: normal;
+	font-family: Share;
+}
+
+.doc .d h1 a, .doc h1 a {
+	text-decoration: none;
+}
+
+.doc .d h2, .doc h2 {
+	color: #000000;
+	margin-bottom: 6px;
+}
+
+.doc .d h2 a, .doc h2 a {
+	text-decoration: none;
+	color: #000000;
+}
+
+.doc .d table {
+	border: 1px solid #cccccc;
+}
+
+.doc .d table th {
+	width: 240px;
+}
+
+.doc .d table th, .doc .d table td {
+	background: #ffffff;
+}
+
+.doc .d table th p, .doc .d table td p {
+	margin-bottom: 0;
+}
+
+.doc .d h3, .doc h3 {
+	margin-bottom: 6px;
+}
+
+.doc .d h3, .doc h3,
+.doc .d h3 a, .doc h3 a {
+	color: #8c8c8c;
+	font-size: 18px;
+	text-decoration: none;
+}
+
+.doc .d h4, .doc h4 {
+	margin-bottom: 7px;
+}
+
+.doc .d h4, .doc h4,
+.doc .d h4 a, .doc h4 a {
+	font-size: 16px;
+	text-decoration: none;
+	color: #000000;
+}
+
+.doc .d h5, .doc h5,
+.doc .d h5 a, .doc h5 a {
+	color: #000000;
+	text-decoration: none;
+}
+
+.doc .footnote td.label {
+	width: 130px;
+}
+
+.doc #enumerated-lists > ol {
+	margin-left: 15px;
+}
+
+.doc .admonition {
+	border: 1px solid #cccccc;
+	margin-bottom: 15px;
+}
+
+.doc .admonition-title {
+	background-color: #efefef;
+	border-bottom: 1px solid #cccccc;
+	padding: 2px 10px!important;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+.doc .admonition > * {
+	padding-left: 20px;
+	padding-left: 20px;
+	padding-right: 10px;
+	margin-bottom: 5px;
+}
+
+.doc .admonition.tip .admonition-title,
+.doc .admonition.hint .admonition-title {
+	background-color: #bada55;
+	border-bottom-color: #bada55;
+	color: #ffffff;
+}
+
+.doc .admonition.tip,
+.doc .admonition.hint {
+	border-color: #bada55;
+}
+
+.doc .admonition.error .admonition-title,
+.doc .admonition.warning .admonition-title,
+.doc .admonition.danger .admonition-title {
+	background-color: #ff4200;
+	border-bottom-color: #ff4200;
+	color: #ffffff;
+}
+
+.doc .admonition.error,
+.doc .admonition.warning,
+.doc .admonition.danger {
+	border-color: #ff4200;
+}
+
+.doc .admonition.attention .admonition-title,
+.doc .admonition.caution .admonition-title {
+	background-color: #ffba00;
+	border-bottom-color: #ffba00;
+	color: #ffffff;
+}
+
+.doc .admonition.attention,
+.doc .admonition.caution {
+	border-color: #ffba00;
+}
+
+.doc .admonition.important .admonition-title {
+	background-color: #ff8700;
+	border-bottom-color: #ff8700;
+	color: #ffffff;
+}
+
+.doc .admonition.important {
+	border-color: #ff8700;
+}
+
+.doc .admonition.admonition-and-by-the-way .admonition-title,
+.doc .admonition.note .admonition-title {
+	background-color: #e9e9e9;
+}
+
+.doc .topic-title,
+.doc .sidebar-title {
+	font-family: Share;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.doc .sidebar {
+	float: right;
+	width: 250px;
+
+}
+
+.doc .rubric {
+	font-family: Share;
+	font-size:  14px;
+	font-weight: bold;
+}
+
+/* WV pschumann end */
+
+
+a.headerlink {
+	visibility: hidden;
+	margin-left: 12px;
+	padding: 0 4px;
+	color: #aa4400;
+	text-decoration: none;
+}
+
+a.headerlink:hover {
+	color: white !important;
+	background-color: #c0c0c0;
+}
+
+h1:hover > a.headerlink,
+h2:hover > a.headerlink,
+h3:hover > a.headerlink,
+h4:hover > a.headerlink,
+h5:hover > a.headerlink,
+h6:hover > a.headerlink,
+dt:hover > a.headerlink {
+	visibility: visible;
+}
+
+div.toctree li.current {
+	background-color: black;
+}
+
+#aside h3 {
+	background-color: transparent;
+	font-weight: bold;
+	padding: 3px 8px 4px 10px;
+	padding: 2px 0px 14px 0px;
+}
+
+#aside h3 a {
+	display: block;
+	text-decoration: none;
+	color: #000000;
+	font-weight: bold;
+}
+
+#aside h3 a:hover {
+	text-decoration: underline;
+}
+
+#aside div.toc {
+	height: 18px;
+	overflow: hidden;
+}
+
+#aside div.toc:hover {
+	overflow: visible;
+}
+
+#aside .toc li {
+	display: block;
+	padding: 3px 8px 4px 30px;
+	padding: 2px 0px 0px 12px;
+}
+
+#p-on-this-page {
+	background-color: #e8e8e8;
+}
+
+/*#aside a {
+/*	color: #555;
+/*	font-weight: normal;
+/*	text-decoration: none;
+/*}
+/*
+/*#aside a:hover {
+/*	text-decoration: underline;
+/*}
+*/
+
+.hnav-related {
+	text-align: right;
+	background-color: #e8e8e8;
+}
+
+.hnav-related-2 {
+	text-align: right;
+}
+
+.hnav-related a {
+	text-decoration: none;
+	color: #686868;
+	background-color: #d8d8d8;
+}
+
+hnav-related a:hover {
+	text-decoration: underline;
+}
+.hnav-related-2 a:hover {
+	color: #888;
+	text-decoration: underline;
+}
+
+.hnav-related ul li {
+	display: inline;
+	background-image: none;
+}
+
+
+/*.doc #aside #nav-aside a {
+/*    font-weight: normal;
+/*}
+*/
+
+.doc table.docutils {
+  /*  table-layout:fixed !important */
+}
+
+.doc pre {
+    overflow: auto;
+    white-space: pre;
+}
+.doc table pre {
+    white-space: pre-wrap;
+}
+/* .doc div.s.d {
+       overflow: visible;
+   }
+   #page {
+       overflow: visible;
+   }
+   #content {
+       overflow: visible;
+   } 
+*/
+/* http://css-tricks.com/numbering-in-style/ */
+
+.doc .d ol li {
+	margin-left: 20px;
+	padding-left: 0;
+}
+
+.doc .d h2, .doc h2 {
+	margin-top: 40px;
+}
+
+.doc div.figure {
+	margin-bottom: 17px;
+}
+
+/*.doc  #aside #nav-aside li a {
+/*	padding: 3px 10px 4px 25px;
+/*	padding: 3px 8px 4px 26px;
+/*}
+*/
+
+.doc .hnav-related-container ul {
+	margin-bottom: 10px;
+}
+
+.doc .s.d {
+	min-width: 384px;
+}
+
+.doc .admonition-todo .admonition-title {
+	background: url(../images/bg-admonition-todo.png) transparent;
+}
+
+.mark-black		{background-color: #000000; color:#FFFFFF;}
+.mark-silver	{background-color: #C0C0C0; color:#000000;}
+.mark-gray		{background-color: #808080; color:#FFFFFF;}
+.mark-white		{background-color: #FFFFFF; color:#000000;}
+.mark-maroon	{background-color: #800000; color:#FFFFFF;}
+.mark-red		{background-color: #FF0000; color:#FFFFFF;}
+.mark-purple	{background-color: #800080; color:#FFFFFF;}
+.mark-fuchsia	{background-color: #FF00FF; color:#000000;}
+.mark-green		{background-color: #008000; color:#FFFFFF;}
+.mark-lime		{background-color: #00FF00; color:#FFFFFF;}
+.mark-olive		{background-color: #808000; color:#FFFFFF;}
+.mark-yellow	{background-color: #FFFF00; color:#000000;}
+.mark-navy		{background-color: #000080; color:#FFFFFF;}
+.mark-blue		{background-color: #0000FF; color:#FFFFFF;}
+.mark-teal		{background-color: #008080; color:#FFFFFF;}
+.mark-aqua		{background-color: #00FFFF; color:#000000;}
+

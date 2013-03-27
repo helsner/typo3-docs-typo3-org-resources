@@ -1,0 +1,16 @@
+# mb, 2013-01-19, 2013-01-19
+
+CheckSpelling Off
+##
+# http://www.unseenrevolution.com/solution-firefox-font-face-cross-domain-problem/
+##
+<FilesMatch "\.(ttf|ttc|otf|eot|woff|font.css)$">
+  <IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+  </IfModule>
+</FilesMatch>
+
+AddType application/vnd.ms-fontobject .eot
+AddType font/ttf .ttf
+AddType font/otf .otf
+AddType application/x-font-woff woff

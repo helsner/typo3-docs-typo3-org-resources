@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/!svn/ver/1966/extensions/projects/t3org/t3org_template/trunk/Classes/ViewHelpers
+END
+FileExistsViewHelper.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/!svn/ver/1703/extensions/projects/t3org/t3org_template/trunk/Classes/ViewHelpers/FileExistsViewHelper.php
+END
+ImageViewHelper.php
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/!svn/ver/1663/extensions/projects/t3org/t3org_template/trunk/Classes/ViewHelpers/ImageViewHelper.php
+END
+FormatTimeRelativeViewHelper.php
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/!svn/ver/1543/extensions/projects/t3org/t3org_template/trunk/Classes/ViewHelpers/FormatTimeRelativeViewHelper.php
+END
+FlashMessagesViewHelper.php
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/!svn/ver/1566/extensions/projects/t3org/t3org_template/trunk/Classes/ViewHelpers/FlashMessagesViewHelper.php
+END
+CountAdditionalEventsViewHelper.php
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/!svn/ver/1543/extensions/projects/t3org/t3org_template/trunk/Classes/ViewHelpers/CountAdditionalEventsViewHelper.php
+END
+FormatHostViewHelper.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/!svn/ver/1473/extensions/projects/t3org/t3org_template/trunk/Classes/ViewHelpers/FormatHostViewHelper.php
+END
+ColumnViewHelper.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/!svn/ver/1966/extensions/projects/t3org/t3org_template/trunk/Classes/ViewHelpers/ColumnViewHelper.php
+END

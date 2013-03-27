@@ -1,0 +1,28 @@
+{namespace cal=Tx_CzSimpleCal_ViewHelpers}
+<f:render partial="Form/messages.html" />
+<p class="align-right"><f:link.action action="new" class="bu bu-mini">Add Event</f:link.action></p>
+
+<f:if condition="{events}">
+	<h4>Your submitted events</h4>
+	<table>
+		<thead>
+			<tr>
+				<th>Title</th>
+				<th>Date</th>
+				<th>Edit</th>
+				<th>Delete</th>
+			</tr>
+		</thead>
+		<tbody>
+		<f:for each="{events}" as="event">
+			<tr>
+				<td><f:link.action pageUid="{settings.showPid}" controller="Event" action="show" pluginName="Pi1" arguments="{event:event}">{event.title}</f:link.action></td>
+				<td><cal:format.dateTime format="%B&nbsp;%d,&nbsp;%Y" timestamp="{event.dateTimeObjectStart}"/></td>
+				<td><f:link.action action="edit" arguments="{event:event}">edit</f:link.action></td>
+				<td><f:link.action action="delete" arguments="{event:event}">delete</f:link.action></td>
+			</tr>
+		</f:for>	
+		</tbody>
+	</table>
+	<p class="align-right"><f:link.action action="new" class="bu bu-mini">Add Event</f:link.action></p>
+</f:if>

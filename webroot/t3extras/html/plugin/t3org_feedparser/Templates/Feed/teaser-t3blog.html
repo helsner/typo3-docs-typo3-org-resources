@@ -1,0 +1,39 @@
+{namespace feed=Tx_T3orgFeedparser_ViewHelpers}
+<div id="references">
+	<f:if condition="{error}">
+		<f:else>
+			<h5>{feed.channel.item.title}</h5>
+			<div class="scrollable">
+				<div class="items">
+					<f:for each="{feed.channel.item}" as="item" key="key" iteration="iteration">
+						<div><a href="{feed:escape(value:item.link)}" title="{feed:escape(value:item.title)}" target="_blank"><img src="{item.enclosure.attribute-url}" alt="{feed:escape(value:item.description)}" width="223" height="115"></a></div>
+					</f:for>
+				</div>
+			</div>
+			<div class="prev" title="previous"><f:translate key="previous" /></div>
+			<div class="next" title="next"><f:translate key="next" /></div>
+		</f:else>
+		<f:then>
+			<!-- {error} -->
+			<h5>Get connected with TYPO3</h5>
+			<div class="scrollable">
+				<div class="items">
+					<div><f:link.page pageUid="30" title="Get connected with TYPO3"><img src="typo3conf/ext/t3org_template/i/t3blog-fallback/sears-connect.jpeg" alt=" Sears Connect Founded in 1995 Searsconnect is a Canadian phone company that offers very competitive rates on wireless and long distance services. Its products include GMS network coverage, calling ca" width="223" height="115" /></f:link.page></div>
+					<div><f:link.page pageUid="30" title="Promote peace with TYPO3 in Bangkok"><img src="typo3conf/ext/t3org_template/i/t3blog-fallback/unesco-bangkok.jpeg" alt=" UNESCO Bangkok UNESCO Bangkok is the Asia-Pacific Regional Bureau for Education and Cluster Office for Thailand, Myanmar, Lao PDR, and Singapore. Its mission is to promote peace and further human dev" width="223" height="115" /></f:link.page></div>
+					<div><f:link.page pageUid="30" title="Soccer Boots with TYPO3"><img src="typo3conf/ext/t3org_template/i/t3blog-fallback/pele-sports-soccer-boots.jpeg" alt=" Pele Sports Soccer Boots Pele Sports was founded in 2009 and is headquartered in Germany. The brand offers high quality football boots which are the result of a close cooperation between sporting goo" width="223" height="115" /></f:link.page></div>
+					<div><f:link.page pageUid="30" title="Furniture made with TYPO3"><img src="typo3conf/ext/t3org_template/i/t3blog-fallback/swedwood.jpeg" alt=" Swedwood - an IKEA company The Swedwood Group is an industrial group within the IKEA Group. Its main purpose is to ensure production capacity for IKEA. In order to achieve this the Swedwood Group ope" width="223" height="115" /></f:link.page></div>
+					<div><f:link.page pageUid="30" title="Protect human rights with TYPO3"><img src="typo3conf/ext/t3org_template/i/t3blog-fallback/ amnesty-international-spain.jpeg" alt=" Amnesty International Spain www.es.amnesty.org is the website of the Spanish section of the non-governmental organization Amnesty International. Its goal is to protect human rights and demand justice" width="223" height="115" /></f:link.page></div>
+				</div>
+			</div>
+			<div class="prev" title="previous">previous</div>
+			<div class="next" title="next">next</div>
+		</f:then>
+	</f:if>
+</div>
+
+
+
+
+
+
+

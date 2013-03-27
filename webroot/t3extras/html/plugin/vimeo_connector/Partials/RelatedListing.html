@@ -1,0 +1,16 @@
+<f:if condition="{videos}">
+	<h4>Related Videos</h4>
+	<ul class="vimeo-related-box">
+		<f:for each="{videos}" as="video">
+			<li class="vimeo-related">
+				<f:link.action class="vimeo-related-thumb" controller="Video" action="show" arguments="{video: video}">
+					<f:image src="{settings.storageFolder}/{video.thumbnail}" width="132c" height="97c" alt="{video.title} thumbnail" />
+					<div class="vimeo-thumb-play"></div>
+				</f:link.action>
+				<div class="vimeo-related-title">
+					<span><f:link.action controller="Video" action="show" arguments="{video: video}">{video.title}</f:link.action><span>
+				</div>
+			</li>
+		</f:for>
+	</ul>
+</f:if>

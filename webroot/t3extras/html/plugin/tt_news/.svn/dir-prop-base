@@ -1,0 +1,9 @@
+K 10
+svn:ignore
+V 80
+.tt_news.html.swp
+.rss_2.tmpl.swp
+.tt_news_rss.html.swp
+.tt_news_files.html.swp
+
+END

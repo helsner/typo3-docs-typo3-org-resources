@@ -1,0 +1,25 @@
+{namespace cal=Tx_CzSimpleCal_ViewHelpers}
+<f:if condition="{error}">
+	<f:then>
+	</f:then>
+	<f:else>
+		<f:if condition="{result.totalResultsReturned}">
+			<div class="b-flickr">
+				<div class="b-flickr-head">
+					<h4>Photostream</h4>
+					<f:if condition="{tags}">
+						<p><a class="bu bu-mini" href="http://www.flickr.com/search/?q={f:escape(value:'{cal:array.join(items:tags, by:\' OR \')}', type:'url')}&s=rec" target="_blank">More</a></p>
+					</f:if>
+				</div><!-- b-flickr-head -->
+				<div id="flickr-slider" class="b-flickr-body">
+					<ul class="slides">
+						<f:for each="{result}" as="image">
+							<li><a href="{f:if(condition:image.Large, then:image.Large.uri, else:image.Medium.uri)}" rel="shadowbox[flickr-stream{f:if(condition:tags.0,then:'-{tags.0}')}];" title="&quot;{image.title}&quot; by {image.ownername}"><img src="{image.Square.uri}" width="{image.Square.width}" height="{image.Square.height}" title="&quot;{image.title}&quot; by {image.ownername}" alt="{image.title}" /></a></li>
+						</f:for>
+					</ul>
+					<div class="flickr-overlay"></div>
+				</div><!-- b-flickr-body -->
+			</div><!-- b-flickr -->
+		</f:if>
+	</f:else>
+</f:if>

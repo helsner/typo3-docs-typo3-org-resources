@@ -1,0 +1,16 @@
+{namespace cal=Tx_CzSimpleCal_ViewHelpers}
+{namespace t3o=Tx_T3orgTemplate_ViewHelpers}
+<table class="specialist-list">
+	<thead>
+		<tr>
+			<th>Event name</th>
+			<th>Location</th>
+			<th>Date</th>
+		</tr>
+	</thead>
+	<tbody>
+	<f:for each="{events}" as="event">
+		<f:render partial="EventIndex/event-for-fulllist.html" arguments="{event:event, settings:settings}" />
+	</f:for>
+	</tbody>
+</table>

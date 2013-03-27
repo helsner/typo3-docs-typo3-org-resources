@@ -1,0 +1,33 @@
+{namespace cal=Tx_CzSimpleCal_ViewHelpers}
+<div class="b-event-item vcalendar-next vevent">
+
+	<div class="b-event-item-date dtstart" title="{cal:format.dateTime(format: '{f:if(condition: event.isAlldayEvent, then:\'%Y-%m-%d\', else:\'%Y-%m-%dT%H:%M\')}', timestamp: event.start)}">
+		<span class="m"><cal:format.dateTime format="%d.%m" timestamp="{event.start}"/></span>
+		<span class="y"><cal:format.dateTime format="%Y" timestamp="{event.start}"/></span>
+	</div>
+	
+	<div class="b-event-item-text">
+		<h5 class="summary"><f:render section="linkEvent" arguments="{event:event,text:'{f:if(condition:event.teaser, then:event.teaser, else:event.title)}'}" /></h5>
+		<f:if condition="{event.location.name}">
+			<p class="b-event-item-place location"><f:render partial="location-city.html" arguments="{address: event.location, settings: settings}" /></p>
+		</f:if>
+	</div>
+</div>
+
+<f:section name="linkEvent">
+	<f:if condition="{event.showPageInstead}">
+		<f:then>
+			<f:if condition="{event.description}">
+				<f:then>
+					<cal:link.action controller="Event" action="show" arguments="{event: event.event}" class="url">{text}</cal:link.action>
+				</f:then>
+				<f:else>
+					<f:link.external uri="{event.showPageInstead}" target="_blank">{text}</f:link.external>
+				</f:else>
+			</f:if>
+		</f:then>
+		<f:else>
+			<cal:link.action controller="Event" action="show" arguments="{event: event.event}" class="url">{text}</cal:link.action>
+		</f:else>
+	</f:if>
+</f:section>

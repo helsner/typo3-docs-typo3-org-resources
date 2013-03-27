@@ -1,0 +1,26 @@
+{namespace cal=Tx_CzSimpleCal_ViewHelpers}
+{namespace t3o=Tx_T3orgTemplate_ViewHelpers}
+
+<cal:widget.eventIndex.count templateFilePath="EXT:t3org_template/html/plugin/cz_simple_cal/Partials/archive-links.html" groupBy="year" startDate="-10years | Jan 01" endDate="now" />
+<div class="tab-panes">
+<div class="tab-content lite-tab-panes-black">
+<t3o:widget.paginate objects="{events}" as="paginatedevents">
+<table class="specialist-list">
+	<thead>
+		<tr>
+			<th>Event name</th>
+			<th>Location</th>
+			<th>Date</th>
+		</tr>
+	</thead>
+	<tbody>
+	<f:for each="{events}" as="event">
+		<f:if condition="{event.start} < {cal:format.dateTime(format:'%s')}">
+			<f:render partial="EventIndex/event-for-fulllist.html" arguments="{event:event, settings:settings}" />
+		</f:if>
+	</f:for>
+	</tbody>
+</table>
+</t3o:widget.paginate>
+</div>
+</div>

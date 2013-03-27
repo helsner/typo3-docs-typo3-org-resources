@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/!svn/ver/1801/extensions/projects/t3org/t3org_template/trunk/html/plugin/cz_simple_cal/Templates/EventIndex
+END
+Fulllist.html
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/!svn/ver/1801/extensions/projects/t3org/t3org_template/trunk/html/plugin/cz_simple_cal/Templates/EventIndex/Fulllist.html
+END
+Next.html
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/!svn/ver/1543/extensions/projects/t3org/t3org_template/trunk/html/plugin/cz_simple_cal/Templates/EventIndex/Next.html
+END
+Show.html
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/!svn/ver/1593/extensions/projects/t3org/t3org_template/trunk/html/plugin/cz_simple_cal/Templates/EventIndex/Show.html
+END
+Archive.html
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/!svn/ver/1676/extensions/projects/t3org/t3org_template/trunk/html/plugin/cz_simple_cal/Templates/EventIndex/Archive.html
+END
+Upcoming.html
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/!svn/ver/1543/extensions/projects/t3org/t3org_template/trunk/html/plugin/cz_simple_cal/Templates/EventIndex/Upcoming.html
+END
+Fullarchive.html
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/!svn/ver/1801/extensions/projects/t3org/t3org_template/trunk/html/plugin/cz_simple_cal/Templates/EventIndex/Fullarchive.html
+END
+List.ics
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/!svn/ver/452/extensions/projects/t3org/t3org_template/trunk/html/plugin/cz_simple_cal/Templates/EventIndex/List.ics
+END
+Month.html
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/!svn/ver/1263/extensions/projects/t3org/t3org_template/trunk/html/plugin/cz_simple_cal/Templates/EventIndex/Month.html
+END
+List.html
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/!svn/ver/1676/extensions/projects/t3org/t3org_template/trunk/html/plugin/cz_simple_cal/Templates/EventIndex/List.html
+END

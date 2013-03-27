@@ -1,0 +1,24 @@
+{namespace feed=Tx_T3orgFeedparser_ViewHelpers}
+{namespace t3o=Tx_T3orgTemplate_ViewHelpers}
+<f:if condition="{feed.error}">
+	<f:then><!-- {feed.error} --></f:then>
+	<f:else>
+		<div id="communityfeed">
+			<div class="feedcontainer">
+			<f:if condition="{feed.results}">
+				<f:then>
+					<f:for each="{feed.results}" as="result">
+						<div class="message">
+                            <div><a href="http://twitter.com/{f:escape(value:result.from_user, type:'url')}/statuses/{f:escape(value:result.id, type:'url')}" target="blank">{result.text}</a></div>
+                            <div class="date">
+                                Posted by <f:link.external target="_blank" uri="http://twitter.com/{f:escape(value:result.from_user, type:'url')}">{result.from_user}</f:link.external> <t3o:formatTimeRelative timestamp="{result.created_at}" />
+                            </div>
+                        </div>
+					</f:for>
+				</f:then>
+				<f:else><p>Be the first one to tweet about <a href="http://twitter.com/home?status={f:escape(type:'url', value:'{hashtag} rocks!')}" target="_blank">{hashtag}</a>!</p></f:else>
+			</f:if>
+		</div>
+	</f:else>
+</f:if>
+

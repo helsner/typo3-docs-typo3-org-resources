@@ -1,0 +1,49 @@
+Legend
+
+Main structure elements :
+			Most common elements on page are shortened.
+			
+.p - page
+.c - content
+.a - aside 
+.s - section
+.h - header
+.f - footer
+
+Default content elements:
+			This is wrapper for all contents what needs to be 
+			styled as default. f.e. you want to use default 
+			paragraph and heading in footer or header. Wrap 
+			it with .d and you're saved!
+			
+.d - default
+
+Content elements:
+			Shortened most most used content elements
+			
+.bu - button
+
+Helpers:
+			If there is any particular place where common
+			property  must be added and/or to avoid inline
+			styles - helpers come in to rescue.
+
+.f-l - float left
+.f-r - float right
+
+.a-l - align left
+.a-r - align right
+.a-c - align center
+.a-j - align justify
+
+.n-m - no margin
+.n-p - no padding
+.n-b - no background
+
+Blocks:
+			We need to get rid of this prefix :)
+			
+.b-** - block prefix
+.b-wi - block with image
+
+

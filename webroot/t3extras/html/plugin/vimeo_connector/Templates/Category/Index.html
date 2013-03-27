@@ -1,0 +1,19 @@
+{namespace t3o=Tx_T3orgTemplate_ViewHelpers}
+<div class="g">
+	<div class="s-sidebar">
+		<f:render partial="ArchiveListing" arguments="{years: years}" />
+	</div>
+	<div class="s-body">
+		<div class="g">
+			<t3o:column items="{categories}" as="theCategories">
+				<div class="g-5">
+					<ul class="arrow-list">
+					<f:for each="{theCategories}" as="category">
+						<li><f:link.action controller="Category" action="show" arguments="{category: category}">{category.title}</f:link.action></li>
+					</f:for>
+					</ul>
+				</div>
+			</t3o:column>
+		</div>
+	</div>
+</div>

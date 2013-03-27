@@ -1,0 +1,68 @@
+/* Event item
+--------------------------------------- */
+.b-event-item			{ overflow: hidden; margin: 0 0 9px 0; position: relative; }
+.b-event-item h5		{ font-weight: bold; }
+.b-event-item-place		{ font-size: 11px; color: #8c8c8c; line-height: 13px; }
+.b-event-item p			{ margin: 0 0 3px 0; }
+.b-event-item-text		{ overflow: hidden; }
+.b-event-item-date		{ float: left; border: 1px solid #e4e4e4; width: 78px; text-align: center; margin: 0 17px 2px 0; color: #707070; padding: 2px 0 0 0; background: #f3f3f3 url(../i/b-event-item-date.png) repeat-x 0 -15px; }
+.b-event-item-date-big	{ padding: 9px 0 0 0; background-position: 0 0; }
+.b-event-item .y		{ display: block; background: #dadada; margin: 0 -1px -1px -1px; height: 17px; line-height: 17px; color: #000; font-size: 10px; }
+.b-event-item-date-big .y
+						{ height: 22px; line-height: 22px; font-size: 11px; }
+.b-event-item .m		{ display: block; font-size: 12px; margin: 0 0 1px 0; }
+.b-event-item-date-big .m
+						{ font-size: 13px; margin: 0 0 3px 0; }
+.b-event-item .d		{ display: block; font-size: 25px; }
+.b-event-item .bu-mini { margin: 10px 0 3px; }
+
+.b-next-event-item		{  }
+.b-next-event-item h4	{ margin: 2px 0 5px 0; }
+.b-next-event-item .b-event-item-pic	{ margin: 0 0 10px 0; }
+.b-next-event-item .b-event-item-pic img{ display: block; }
+.b-next-event-item .b-event-item-place	{ margin: 0 0 8px 0; }
+.b-next-event-item .b-event-item-text	{ width: 127px; }
+.b-next-event-item .b-twitter			{ float: right; }
+
+.b-events-cal			{ font-size: 11px; }
+
+.b-event-show {
+	border:#dbdbdb solid 1px;
+	overflow:hidden;
+}
+.b-event-list {
+	border:#dbdbdb solid;
+	border-width:0 1px 1px;
+	overflow:hidden;
+}
+.vcalendar-event {
+	padding:20px;
+}
+
+div.calendar-archive {
+	overflow:hidden;
+}
+.b-archive-year {
+	float:left;
+	width:119px;
+	min-height:156px;
+	padding:17px;
+}
+div.b-archive-year {
+	background:url('../i/b-calendar-archive.png') right center no-repeat;
+}
+ul.b-archive-year-column {
+	margin:0;
+}
+ul.b-archive-year-column li {
+	background:none;
+	padding:0;
+}
+
+a.get-ics {
+	display:inline-block;
+	line-height:17px;
+	padding-left:24px;W
+	margin-left:12px;
+	background:url('../i/calendar-ics.png') center left no-repeat;
+}

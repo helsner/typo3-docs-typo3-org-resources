@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	
+<!-- ###TEMPLATE_LATEST### begin
+	This is the template for the latest news, typically displayed on a frontpage
+-->		
+			<!-- ###CONTENT### begin
+				This is the part of the template substituted with the list of news:
+			-->
+				<!-- ###NEWS### begin
+					Template for a single item
+				-->
+					<article>
+						<div class="b-news-item">
+							<h5><!--###LINK_ITEM###-->###NEWS_TITLE###<!--###LINK_ITEM###--></h5>
+							<p class="b-news-item-date">###NEWS_DATE###</p>
+							<p class="b-news-item-subheader"><!--###LINK_ITEM###-->###NEWS_SUBHEADER###<span class="i-next ico"></span><!--###LINK_ITEM###--></p>
+						</div>
+					</article>
+				<!-- ###NEWS### end-->
+			<!-- ###CONTENT###  end -->
+<!-- ###TEMPLATE_LATEST### end -->
+
+<!-- ###TEMPLATE_LIST3### begin -->
+<div class="b-news-list3">
+<!-- ###CONTENT### begin -->
+<!-- ###NEWS### -->
+	<article>
+		<div class="b cl">
+			###NEWS_IMAGE###
+			<div class="news-container">
+				<div class="b-news-head">
+				<h4><!--###LINK_ITEM###-->###NEWS_TITLE###<!--###LINK_ITEM###--></h4>
+				<div class="b-news-facts"><span class="category-label">###TEXT_CAT###</span> ###CATWRAP_B### ###NEWS_CATEGORY### ###CATWRAP_E###<span class="b-news-head-date">###NEWS_DATE###</span></div>
+				</div>
+				<p class="b-wi-text">
+					###NEWS_SUBHEADER###
+				</p>                                                                                                                                                                         
+				<span class="bu bu-mini"><!--###LINK_ITEM###-->Details<!--###LINK_ITEM###--></span>
+			</div>
+		</div>
+	</article>
+
+	<!-- ###NEWS### -->
+	<!-- ###NEWS_1### -->
+	<article>
+		<div class="b cl">
+			###NEWS_IMAGE###
+			<div class="news-container">
+				<div class="b-news-head">
+				<h4><!--###LINK_ITEM###-->###NEWS_TITLE###<!--###LINK_ITEM###--></h4>
+				<div class="b-news-facts"><span class="category-label">###TEXT_CAT###</span> ###CATWRAP_B### ###NEWS_CATEGORY### ###CATWRAP_E###<span class="b-news-head-date">###NEWS_DATE###</span></div>
+				</div>
+				<p class="b-wi-text">
+					###NEWS_SUBHEADER###
+				</p>                                                                                                                                                                         
+				<span class="bu bu-mini"><!--###LINK_ITEM###-->Details<!--###LINK_ITEM###--></span>
+			</div>
+		</div>
+	</article>
+	<!-- ###NEWS_1### -->
+	<!-- ###NEWS_2### -->
+	<article>
+		<div class="b cl">
+			###NEWS_IMAGE###
+			<div class="news-container">
+				<div class="b-news-head">
+				<h4><!--###LINK_ITEM###-->###NEWS_TITLE###<!--###LINK_ITEM###--></h4>
+				<div class="b-news-facts"><span class="category-label">###TEXT_CAT###</span> ###CATWRAP_B### ###NEWS_CATEGORY### ###CATWRAP_E###<span class="b-news-head-date">###NEWS_DATE###</span></div>
+				</div>
+				<p class="b-wi-text">
+					###NEWS_SUBHEADER###
+				</p>                                                                                                                                                                         
+				<span class="bu bu-mini"><!--###LINK_ITEM###-->Details<!--###LINK_ITEM###--></span>
+			</div>
+		</div>
+	</article>
+<!-- ###NEWS_2### -->
+<!-- ###CONTENT### end -->
+</div>
+<!-- ###TEMPLATE_LIST3### end -->
+
+<!-- ###TEMPLATE_LIST2### begin -->
+<div class="b-news-list2">
+	<!-- ###CONTENT### begin -->
+	<!-- ###NEWS### -->
+	<div class="g-5 cl">
+		<div class="news-container">
+			<article>
+				<div class="b-news-head">
+					<h4><!--###LINK_ITEM###-->###NEWS_TITLE###<!--###LINK_ITEM###--></h4>
+					<div class="b-news-facts"><span class="category-label">###TEXT_CAT###</span> ###CATWRAP_B### ###NEWS_CATEGORY### ###CATWRAP_E###<!--<span class="b-news-head-date">###NEWS_DATE###</span>--></div>
+				</div>
+				<div class="b cl">
+					###NEWS_IMAGE###
+					<p class="b-wi-text">
+						###NEWS_SUBHEADER###
+					</p>
+				</div>
+				<span class="bu bu-mini"><!--###LINK_ITEM###-->Details<!--###LINK_ITEM###--></span>
+			</article>
+		</div>
+	</div>
+
+	<!-- ###NEWS### -->
+	<!-- ###NEWS_1### -->
+	<div class="g-5">
+		<article>
+			<div class="b-news-head">
+				<h4><!--###LINK_ITEM###-->###NEWS_TITLE###<!--###LINK_ITEM###--></h4>
+				<div class="b-news-facts"><span class="category-label">###TEXT_CAT###</span> ###CATWRAP_B### ###NEWS_CATEGORY### ###CATWRAP_E###<!--<span class="b-news-head-date">###NEWS_DATE###</span>--></div>
+			</div>
+			<div class="b cl">
+				###NEWS_IMAGE###
+				<p class="b-wi-text">
+					###NEWS_SUBHEADER###
+				</p>
+			</div>
+			<span class="bu bu-mini"><!--###LINK_ITEM###-->Details<!--###LINK_ITEM###--></span>
+		</article>
+	</div>
+	<!-- ###NEWS_1### -->
+	<!-- ###CONTENT### end -->
+</div>
+<!-- ###TEMPLATE_LIST2### end -->
+
+<!-- ###TEMPLATE_LIST### begin
+	This is the template for the latest news, typically displayed on a frontpage
+-->		
+			<!-- ###CONTENT### begin
+				This is the part of the template substituted with the list of news:
+			-->
+				<!-- ###NEWS### begin
+					Template for a single item
+				-->
+					<article>
+						<div class="b-news-item">
+							<h5><!--###LINK_ITEM###-->###NEWS_TITLE###<!--###LINK_ITEM###--></h5>
+							<p class="b-news-item-date">###NEWS_DATE###</p>
+							<p class="b-news-item-subheader"><!--###LINK_ITEM###-->###NEWS_SUBHEADER###<span class="i-next ico"></span><!--###LINK_ITEM###--></p>
+						</div>
+					</article>
+				<!-- ###NEWS### end-->
+			<!-- ###CONTENT###  end -->
+			<!--###LINK_ARCHIVE###-->###GOTOARCHIVE###<!--###LINK_ARCHIVE###-->
+<!-- ###TEMPLATE_LIST### end -->
+
+
+
+<!-- ###TEMPLATE_SINGLE### begin
+	This subpart is used to display single news items
+-->
+	<article>
+		<div class="b-news-head">
+			<h1>###NEWS_TITLE###</h1>
+			<p class="b-news-head-date">###NEWS_DATE###</p>
+			<p>###TEXT_CAT### ###CATWRAP_B### ###NEWS_CATEGORY### ###CATWRAP_E###</p>
+		</div>
+		<div class="b-wi b-wi-r">
+			<div class="b-wi-text">
+				<div class="b-wi-pic">###NEWS_IMAGE###</div>
+				###NEWS_SUBHEADER###
+				###NEWS_CONTENT###
+			</div>
+		</div>
+		<footer>
+			<aside>
+				<div class="b-news-foot">
+					###NEWS_AUTHOR###
+				</div>
+				<div class="b">
+					###TEXT_FILES###
+					###FILE_LINK###
+				</div>
+				<div class="g">
+					<div class="g-5">
+						<div class="gc">
+							<h4>###TEXT_LINKS###</h4>
+							<nav>
+								<ul class="arrow-list">###NEWS_LINKS###</ul>
+							</nav>
+						</div>
+					</div>
+					<div class="g-5">
+						<div class="gc">
+							<h4>###TEXT_RELATED###</h4>
+							<nav>
+								<ul class="arrow-list">###NEWS_RELATED###</ul>
+							</nav>
+						</div>
+					</div>
+				</div>
+                <div class="backtolist">
+                    <a href="javascript:history.back()" class="bu dark-grey">Back</a>
+                </div>
+			</aside>
+		</footer>
+	</article>
+<!-- ###TEMPLATE_SINGLE### end -->
+
+
+
+<!-- ###TEMPLATE_ARCHIVE### begin
+	Subpart for the news archive menu
+ -->
+	<section>
+		<div class="accordion">
+		<!-- ###CONTENT### begin -->
+			<h5 class="a-h open"><span>###ARCHIVE_YEAR###</span></h5>
+			<div class="a-body">
+				<div class="a-content">
+					<nav>
+						<ul class="b-archive-nav">
+							<!-- ###MENUITEM### begin -->
+								<li ###ARCHIVE_ACTIVE###><!--###LINK_ITEM###-->###ARCHIVE_TITLE###<!--###LINK_ITEM###--> (###ARCHIVE_COUNT###)</li>
+							<!-- ###MENUITEM### end-->
+						</ul>
+					</nav>
+				</div>
+			</div>
+		<!-- ###CONTENT###  end -->
+		</div>
+	</section>
+<!-- ###TEMPLATE_ARCHIVE### end -->
+
+</body>
+</html>
+

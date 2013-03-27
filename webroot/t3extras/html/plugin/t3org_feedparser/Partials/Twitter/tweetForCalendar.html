@@ -1,0 +1,32 @@
+{namespace feed=Tx_T3orgFeedparser_ViewHelpers}
+<f:if condition="{feed.error}">
+	<f:then><!-- {feed.error} --></f:then>
+	<f:else>
+		<div class="b-twitter">
+			<f:if condition="{feed.results}">
+				<f:then>
+					<ul class="slider-nav">
+						<f:for each="{feed.results}" as="result" iteration="it">
+							<li>{it.index}</li>
+						</f:for>
+					</ul>
+					<ul class="slides">
+						<f:for each="{feed.results}" as="result">
+							<li class="slide">
+								<span class="ico i-twitter-grey"></span>
+								<div class="b-twitter-message">
+									<feed:format.twitter.tweet>{result.text}</feed:format.twitter.tweet>
+								</div><!-- b-twitter-message -->
+								<div class="b-twitter-author">
+									<f:link.external target="_blank" uri="http://twitter.com/{f:escape(value:result.from_user, type:'url')}">{result.from_user}</f:link.external>
+								</div><!-- b-twitter-author -->
+							</li>
+						</f:for>
+					</ul><!-- .slides -->
+				</f:then>
+				<f:else><ul class="slides"><li class="slide"><span class="ico i-twitter-grey"></span><div class="b-twitter-message">Be the first one to tweet about <a href="http://twitter.com/home?status={f:escape(type:'url', value:'{hashtag} rocks!')}" target="_blank">{hashtag}</a>!</div><div class="b-twitter-author">&nbsp;</div></li></ul></f:else>
+			</f:if>
+		</div><!-- b-twitter -->
+	</f:else>
+</f:if>
+

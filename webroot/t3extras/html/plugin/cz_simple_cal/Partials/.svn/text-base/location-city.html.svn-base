@@ -1,0 +1,9 @@
+{namespace cal=Tx_CzSimpleCal_ViewHelpers}
+<cal:array.join by=", " removeEmpty="1">
+	<f:if condition="{address.city}" >
+		<cal:array.joinItem><f:if condition="{address.zip}">{address.zip}</f:if>{address.city}</cal:array.joinItem>
+	</f:if>
+	<f:if condition="{address.country}">
+		<cal:array.joinItem><cal:format.countryName isoCode="{address.country}" /></cal:array.joinItem>
+	</f:if>
+</cal:array.join>

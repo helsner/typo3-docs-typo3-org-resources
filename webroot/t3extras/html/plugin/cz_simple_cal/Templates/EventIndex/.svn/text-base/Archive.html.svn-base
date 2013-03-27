@@ -1,0 +1,31 @@
+{namespace cal=Tx_CzSimpleCal_ViewHelpers}
+<div class="d">
+	<div class="b-event-list">
+		<f:if condition="{events}">
+			<div class="b-event-item vevent">
+				<cal:event.group events="{events}" by="year" as="years">
+					<f:for each="{years}" as="year">
+						<div class="b-archive-year">
+							<h6><strong><cal:format.dateTime timestamp="{year.info}" format="%Y" /></strong></h6>
+							<div class="b-archive-year-items">
+								<ul class="b-archive-year-column">
+									<f:for each="{year.events}" as="event">
+										<li class="vevent" id="{event.hash}">
+											<f:render partial="link-event.html" arguments="{event:event,text:event.title}" />
+										</li>
+									</f:for>
+									<li><cal:link.action class="more" action="fullarchive" arguments="{getDate:'{cal:format.dateTime(timestamp:year.info)}'}">all events from <cal:format.dateTime timestamp="{year.info}" format="%Y" /></cal:link.action></li>
+								</ul>
+							</div>
+						</div>
+					</f:for>
+				</cal:event.group>
+			</div>
+		</f:if>
+		<div class="b-3-columns-foot align-right">
+			<f:link.page class="bu bu-mini" pageUid="{settings.EventIndex.actions.fullarchive.defaultPid}" ><b>All recent events</b></f:link.page>
+			<f:link.action class="bu bu-mini" pageUid="{settings.custom.submissionPid}" controller="eventAdministration" action="new" pluginName="Pi2">Submit new event</f:link.action>
+		</div><!-- b-3-columns-foot -->
+	</div>
+</div>
+

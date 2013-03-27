@@ -1,0 +1,383 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+		"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<title>Template for pi1</title>
+</head>
+<body>
+
+
+#FORM
+<!-- ###LISTVIEW### start -->
+<div class="tab-panes lite-tab-panes">
+	<div>
+		<!--<div class="b-form">
+			<form action="###ACTION###" method="get">
+				<input type="hidden" name="tx_terfe_pi1[view]" value="search"/>
+				<input type="hidden" name="no_cache" value="1"/>
+				<div class="b-form-row">
+					<div class="b-form-inputs">
+						<input type="text" name="tx_terfe_pi1[sword]" size="20"/>
+					</div>
+				</div>
+				<div class="b-form-row">
+					<div class="b-form-inputs">
+						<button class="bu">###SEARCHBUTTONTEXT###</button>
+					</div>
+				</div>
+			</form>
+		</div>-->
+		<form class="quick-search extensions">
+			<div class="quick-search-input">
+				<input type="hidden" name="tx_terfe_pi1[view]" value="search"/>
+				<input type="hidden" name="no_cache" value="1"/>
+				<input type="text" name="tx_terfe_pi1[sword]" value="Extension search" onfocus="this.value = (this.value == 'Extension search') ? '' : this.value;" onblur="this.value = (this.value == '') ? 'Extension search' : this.value;" >
+			</div>
+			<button class="quick-search-submit"><span class="ico i-arr-right"></span></button>
+		</form>
+		<p>###SEARCHMESSAGE###</p>
+		<ul class="extensions">
+			###SEARCHRESULTS###
+		</ul>
+	</div>
+</div>
+<!-- ###LISTVIEW### end -->
+
+
+
+<!-- ###EXTENSIONRECORD### start -->
+<li>
+	<dl class="ext-header">
+		<dt>Icon</dt>
+		<dd class="ext-icon">###ICON###</dd>
+		<dt>###TITLE###</dt>
+		<dd class="ext-name">###DETAILLINK###</dd>
+		<dt>###EXTENSIONKEY_LABEL###'</dt>
+		<dd>(###EXTENSIONKEY###)</dd>
+		<dt>###EXTENSIONSTATE_LABEL###</dt>
+		<dd class="###EXTENSIONSTATE_CLS### state">
+			<span>###EXTENSIONSTATE###</span></dd>
+	</dl>
+	<dl class="ext-info">
+		<dt class="hidden">Extension Details</dt>
+		<dd class="left">
+			<dl class="first">
+				<dt>###AUTHORNAME_LABEL###</dt>
+				<dd>###AUTHORNAME###</dd>
+			</dl>
+			<dl>
+				<dt>###CATEGORY_LABEL###</dt>
+				<dd>###CATEGORY###</dd>
+			</dl>
+			<dl>
+				<dt>###VERSION_LABEL###</dt>
+				<dd>###VERSION###</dd>
+			</dl>
+			<dl>
+				<dt>###DOC_LABEL###</dt>
+				<dd>###DOC_LINK###</dd>
+			</dl>
+			<dl>
+				<dt>###DOWNLOADCOUNT_LABEL###</dt>
+				<dd>###DOWNLOADCOUNT###</dd>
+			</dl>
+			<dl>
+				<dt>###RATING_LABEL###</dt>
+				<dd>###RATING###</dd>
+			</dl>
+
+		</dd>
+		<dd class="right">
+			<dl>
+				<dt>###LASTUPLOAD_LABEL###</dt>
+				<dd class="updated">###LASTUPLOAD###</dd>
+			</dl>
+			<dl class="changelog">
+				<dt>###UPLOADCOMMENT_LABEL###</dt>
+				<dd class="changelog">###UPLOADCOMMENT###</dd>
+			</dl>
+		</dd>
+		<dd class="bottom">
+			<dl class="description">
+				<dt>###DESCRIPTION_LABEL###</dt>
+				<dd>###DESCRIPTION###</dd>
+			</dl>
+		</dd>
+	</dl>
+</li>
+<!-- ###EXTENSIONRECORD### end -->
+
+
+
+<!-- ###CATEGORYVIEW### start-->
+<div class="tab-panes lite-tab-panes">
+	<div>
+		<form class="quick-search extensions">
+			<div class="quick-search-input">
+				<input type="hidden" name="tx_terfe_pi1[view]" value="search"/>
+				<input type="hidden" name="no_cache" value="1"/>
+				<input type="text" name="tx_terfe_pi1[sword]" value="Extension search" onfocus="this.value = (this.value == 'Extension search') ? '' : this.value;" onblur="this.value = (this.value == '') ? 'Extension search' : this.value;" >
+			</div>
+			<button class="quick-search-submit"><span class="ico i-arr-right"></span></button>
+		</form>
+		<p>###HEADER###</p>
+		<ul class="extensions">
+			###EXTENSIONLIST###
+		</ul>
+	</div>
+</div>
+<!-- ###CATEGORYVIEW### end -->
+
+
+
+<!-- ###POPULARVIEW### start-->
+<div class="tab-panes lite-tab-panes">
+	<div>
+		<form class="quick-search extensions">
+			<div class="quick-search-input">
+				<input type="hidden" name="tx_terfe_pi1[view]" value="search"/>
+				<input type="hidden" name="no_cache" value="1"/>
+				<input type="text" name="tx_terfe_pi1[sword]" value="Extension search" onfocus="this.value = (this.value == 'Extension search') ? '' : this.value;" onblur="this.value = (this.value == '') ? 'Extension search' : this.value;" >
+			</div>
+			<button class="quick-search-submit"><span class="ico i-arr-right"></span></button>
+		</form>
+		<p>###HEADER###</p>
+		<ul class="extensions">
+			###EXTENSIONLIST###
+		</ul>
+	</div>
+</div>
+<!-- ###POPULARVIEW### end -->
+
+
+
+<!-- ###LISTVIEW### start -->
+<form action="###ACTION###" method="post">
+	<input type="hidden" name="tx_terfe_pi1[view]" value="search" />
+	<input type="hidden" name="no_cache" value="1" />
+	<input type="text" name="tx_terfe_pi1[sword]" size="20" />
+	<input type="submit" value="###SEARCHBUTTONTEXT###" />
+</form>
+###SEARCHRESULTS###
+<!-- ###LISTVIEW### end -->
+
+
+
+<!-- ###SEARCHRESULTSROWS### start -->
+<div class="tab-panes lite-tab-panes">
+	<div>
+		<ul class="extensions">
+			###RESULTS###
+		</ul>
+	</div>
+</div>
+<!-- ###SEARCHRESULTSROWS### end -->
+
+
+
+<!-- ###COMPACTLISTVIEW### start -->
+<div class="tab-panes lite-tab-panes">
+	<div>
+		<form class="quick-search extensions">
+			<div class="quick-search-input">
+				<input type="hidden" name="tx_terfe_pi1[view]" value="search"/>
+				<input type="hidden" name="no_cache" value="1"/>
+				<input type="text" name="tx_terfe_pi1[sword]" value="Extension search" onfocus="this.value = (this.value == 'Extension search') ? '' : this.value;" onblur="this.value = (this.value == '') ? 'Extension search' : this.value;" >
+			</div>
+			<button class="quick-search-submit"><span class="ico i-arr-right"></span></button>
+		</form>
+		<p>###HEADER###</p>
+		<p class="terfe-charmenu">###CHARMENU###</p>
+		<p>###INTRODUCTION###</p>
+		<table class="ext-compactlist"><tr>
+			<th>###TITLE_HEAD###</th>
+			<th>###KEY_HEAD###</th>
+			<th>###DOC_HEAD###</th>
+			<th>###STATE_HEAD###</th>
+			<th>###RATING_HEAD###</th>
+			<th>###LASTUPDATE_HEAD###</th>
+		</tr>
+			###RESULTS###
+		</table>
+	</div>
+</div>
+<!-- ###COMPACTLISTVIEW### end -->
+
+
+
+<!-- ###SINGLEVIEW### start -->
+<div class="tab-panes lite-tab-panes">
+	<div>
+		<!--<h3>###TITLE###'</h3>-->
+		<p>###TOPMENU###</p>
+		<p>###SUBCONTENT###</p>
+	</div>
+</div>
+<!-- ###SINGLEVIEW### end -->
+
+
+
+<!-- ###TOPMENUROW### start -->
+<span ###CLS###>###LINK###</span>
+<!-- ###TOPMENUROW### end -->
+
+
+
+<!-- ###SUBCONTENTROW### start -->
+<ul class="extensions">
+###RECORD###
+###ADD###
+</ul>
+<!-- ###SUBCONTENTROW### end -->
+
+
+
+<!-- ###EXTENSIONDETAILS### start -->
+<li>
+	<dl class="ext-info">
+		<dt class="hidden">Extension Details</dt>
+		<dd class="left">
+			<dl class="deps">
+				<dt>###DEP_LABEL###</dt>
+				<dd>###DEP###</dd>
+			</dl>
+			<dl class="deps">
+				<dt>###REVDEP_LABEL###</dt>
+				<dd>###REVDEP###</dd>
+			</dl>
+		</dd>
+		<dd class="right">
+			<dl class="deps">
+				<dt>###HISTORY_LABEL###</dt>
+				<dd>###HISTORY###</dd>
+			</dl>
+		</dd>
+		<dd class="bottom">
+			<dl class="description">
+				<dt>###DOWNLOAD_LABEL###</dt>
+				<dd><a href="###DOWNLOADURL###">###DOWNLOAD###</a></dd>
+			</dl>
+		</dd>
+	</dl>
+</li>
+<li class="files">
+###FILES###
+</li>
+<!-- ###EXTENSIONDETAILS### end -->
+
+
+
+<!-- ###UPLOADHISTORY### start -->
+<ul>
+<!-- ###ROW### -->
+	<li>###ITEM###</li>
+<!-- ###ROW### -->
+</ul>
+<!-- ###UPLOADHISTORY### end -->
+
+
+
+<!-- ###SHORTEXTENSIONRECORD### start -->
+<tr ###ROWCLASS###>
+	<td>###LINK###</td>
+	<td>###KEY###</td>
+	<td>###DOCLINK###</td>
+	<td class="###CLS_STATE###">###STATE###</td>
+	<td>###REATING###</td>
+	<td>###LASTUPLOAD###</td>
+</tr>
+<!-- ###SHORTEXTENSIONRECORD### end -->
+
+
+
+<!-- ###TOPMAINMENU### start -->
+<h1>TER</h1>
+<div class="terfe-tabnav">
+	<!-- Uese Marker ###OLDMENU### for old markup -->
+	<ul class="tabs lite-tabs">
+		<li###ACTIVE_CLS_NEW###>###NEW###</li>
+		<li###ACTIVE_CLS_POPULAR###>###POPULAR###</li>
+		<li###ACTIVE_CLS_FULLLIST###>###FULLLIST###</li>
+		<!--<li###ACTIVE_CLS_SEARCH###>###SEARCH###</li>-->
+	</ul>
+</div>
+<!-- ###TOPMAINMENU### end -->
+
+
+
+<!-- ###FEEDBACK_SENDED### start -->
+<h3>###HEADER###</h3>
+<p>###MESSAGE###</p>
+<!-- ###FEEDBACK_SENDED### end -->
+
+
+
+<!-- ###FEEDBACKFORM### start -->
+<h3>###HEADER###</h3>
+<p>###MESSAGE###</p>
+<p>###INTRODUCTION###</p>
+<div class="b-form">
+	<form action="###ACTION###" method="POST" class="terfe-feedback">			
+		<div class="b-form-row">
+			<label>###YOURNAME_LABEL###:</label>
+			<div class="b-form-inputs">
+				<input type="text" name="###PREFIX###[DATA][sender_name]" />
+			</div>
+		</div>
+		<div class="b-form-row">
+			<label>###YOUREMAIL_LABEL###:</label>
+			<div class="b-form-inputs">
+				<input type="text" name="###PREFIX###[DATA][sender_email]" />
+			</div>
+		</div>
+		<div class="b-form-row">
+			<label>###YOURCOMMENT_LABEL###:</label>
+			<div class="b-form-inputs">
+				<textarea rows="5" name="###PREFIX###[DATA][comment]" style="width: 400px;">###DEFAULT_MESSAGE###</textarea>
+			</div>
+		</div>
+		<div class="b-form-row">
+			<div class="b-form-inputs">
+				<button class="bu">###SUBMIT###</button>
+			</div>
+		</div>
+	</form>	
+</div>
+<!-- ###FEEDBACKFORM### end -->
+
+
+
+<!-- ###FEEDBACKFORM_LOGGEDIN### start -->
+<h3>###HEADER###</h3>
+<p>###MESSAGE###</p>
+<p>###INTRODUCTION###</p>
+<div class="b-form">
+	<form action="###ACTION###" method="POST" class="terfe-feedback">			
+		<div class="b-form-row">
+			<label>###YOURNAME_LABEL###:</label>
+			<div class="b-form-inputs">
+				<input type="text" name="###PREFIX###[DATA][sender_name]" value="###YOURNAME###" />
+			</div>
+		</div>
+		<div class="b-form-row">
+			<label>###YOUREMAIL_LABEL###:</label>
+			<div class="b-form-inputs">
+				<input type="text" name="###PREFIX###[DATA][sender_email]" value="###YOUREMAIL###" />
+			</div>
+		</div>
+		<div class="b-form-row">
+			<label>###YOURCOMMENT_LABEL###:</label>
+			<div class="b-form-inputs">
+				<textarea rows="5" name="###PREFIX###[DATA][comment]" style="width: 400px;">###DEFAULT_MESSAGE###</textarea>
+			</div>
+		</div>
+		<div class="b-form-row">
+			<div class="b-form-inputs">
+				<button class="bu">###SUBMIT###</button>
+			</div>
+		</div>
+	</form>	
+</div>
+<!-- ###FEEDBACKFORM_LOGGEDIN### end -->
+</body>
+</html>

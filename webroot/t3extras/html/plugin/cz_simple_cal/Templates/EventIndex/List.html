@@ -1,0 +1,37 @@
+{namespace cal=Tx_CzSimpleCal_ViewHelpers}
+{namespace t3o=Tx_T3orgTemplate_ViewHelpers}
+<cal:useMicroformat format="hcalendar" />
+<div class="d">
+	<div class="b-event-list">
+		<div class="b-event-item vevent vcalendar-event">
+			<f:if condition="{events}">
+				<f:then>
+					<table class="event-list">
+						<thead></thead>
+						<tbody>
+							<f:for each="{events}" as="event">
+								<tr>
+									<td><f:render partial="link-event.html" arguments="{event:event, text:event.title}" /></td>
+									<td class="b-event-list-place"><f:render partial="location-city.html" arguments="{address:event.location}"/></td>
+									<td class="b-event-list-place"><cal:format.timespanToWords start="{event.dateTimeObjectStart}" end="{event.dateTimeObjectEnd}" /></td>
+								</tr>
+							</f:for>
+						</tbody>
+					</table>
+					<f:alias map="{count:'{t3o:countAdditionalEvents(settings:actionSettings,subtract:\'{f:count(subject:events)}\')}'}">
+						<f:if condition="{count}">
+							<p class="b-event-list-place">and {count} more</p>
+						</f:if>
+					</f:alias>
+				</f:then>
+				<f:else>
+					<p><f:translate key="msg.noEvents" /></p>
+				</f:else>
+			</f:if>
+		</div>
+		<div class="b-3-columns-foot align-right">
+			<f:link.page class="bu bu-mini" pageUid="{settings.EventIndex.actions.fulllist.defaultPid}" ><b>All Events</b></f:link.page>
+			<f:link.action class="bu bu-mini" pageUid="{settings.custom.submissionPid}" controller="eventAdministration" action="new" pluginName="Pi2">Submit new event</f:link.action>
+		</div><!-- b-3-columns-foot -->
+	</div>
+</div>

@@ -1,0 +1,547 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>page search</title>
+
+	<link rel="stylesheet" href="../css/reset.css" media="all" />
+	<link rel="stylesheet" href="../css/grid.css" media="all" />
+	<link rel="stylesheet" href="../css/main.css" media="all" />
+	<link rel="stylesheet" href="../css/dip.css" media="all" />
+	<link rel="stylesheet" href="../css/dip.css" media="all" />
+	<link rel="stylesheet" href="../css/print.css" media="print" />
+	<!--[if IE]><link rel="stylesheet" href="../css/ie.css" media="all" /><![endif]-->
+	<!--[if IE 7]><link rel="stylesheet" href="../css/ie7.css" media="all" /><![endif]-->
+	<!--[if IE 8]><link rel="stylesheet" href="../css/ie8.css" media="all" /><![endif]-->
+
+	<script src="../js/css_browser_selector.js"></script>
+	<script src="../js/jquery-1.5.1.min.js"></script>
+	<script src="../js/jquery.tools.js"></script>
+	<script src="../js/cufon.js"></script>
+	<script src="../fonts/share.js"></script>
+	<script src="../js/main.js"></script>
+	<script src="../js/dip.js"></script>	
+</head>
+
+<body class="js-off">
+	
+	<div class="p" id="page"><!-- ### Page ### 208-->
+		
+		<!-- ### content ### -->
+		<div class="c" id="content">
+			
+			<!-- ### aside ### -->
+			<div class="a" id="aside">
+				
+				
+				<div class="b-filter">
+					<div class="b-filter-head">
+						<h4>Active filters</h4>
+					</div>
+					<div class="b-filter-body">
+						<ul class="b-filter-list active-filter-list">
+							<li><a href="#">typo3.english <span>(1557)</span></a></li>
+							<li><a href="#">typo3.dev <span>(615)</span></a></li>
+							<li><a href="#">typo3.teams.core <span>(411)</span></a></li>
+						</ul>
+					</div>
+					<div class="b-filter-head">
+						<h4>Newsgroup</h4>
+					</div>
+					<div class="b-filter-body">
+						<ul class="b-filter-list">
+							<li><a href="#">typo3.english <span>(1557)</span></a></li>
+							<li><a href="#">typo3.dev <span>(615)</span></a></li>
+							<li class="cur"><a href="#">typo3.teams.core <span>(411)</span></a></li>
+							<li><a href="#">typo3.projects <span>(68)</span></a></li>
+							<li><a href="#">typo3.projects.solr <span>(11)</span></a></li>
+							<li><a href="#">typo3.projects.v4 <span>(1)</span></a></li>
+						</ul>
+					</div>
+					<div class="b-filter-head">
+						<h4>TYPO3 Sites</h4>
+					</div>
+					<div class="b-filter-body">
+						<ul class="b-filter-list">
+							<li><a href="#">Bugtracker <span>(992)</span></a></li>
+							<li><a href="#">Forge <span>(634)</span></a></li>
+							<li class="cur"><a href="#">TYPO3.org <span>(522)</span></a></li>
+							<li><a href="#">News <span>(468)</span></a></li>
+							<li><a href="#">Buzz <span>(346)</span></a></li>
+							<li><a href="#">Wiki <span>(336)</span></a></li>
+							<li><a href="#">TYPO3 Association <span>(309)</span></a></li>
+							<li><a href="#">Certification <span>(289)</span></a></li>
+							<li><a href="#">TYPO3 Snippets <span>(241)</span></a></li>
+						</ul>
+					</div>
+				</div><!-- b-filter -->
+				
+				<div class="d">
+					<h4>Platinum Sponsors</h4>
+					<div class="sponsors">
+						<a href="#"><img src="../i/sponsor-aoe.jpg" width="150" height="57" alt="pic" /></a>
+						<a href="#"><img src="../i/sponsor-cs2.jpg" width="150" height="57" alt="pic" /></a>
+					</div><!-- .sponsors -->
+				</div><!-- .d -->
+				<div class="aside-shade-head"></div><div class="aside-shade-cont"></div><div class="aside-shade-foot"></div>
+			</div>
+			<!-- ^^^ aside ^^^ -->
+		
+			<!-- ### section ### -->
+			<div class="s d" id="section">
+				
+				<div class="b-search-result-info">
+					<p>Searched for <strong>"Keyword"</strong>. Found 253 results in 20 milliseconds.</p>
+				</div><!-- b-search-result-info -->
+				
+				<div class="cl">
+					
+					<div class="s-sidebar">
+						<p><img src="../tmp/product-1.jpg" width="165" height="120" alt="pic" /></p>
+						<h3>Simple Container</h3>
+						<p>Lorem ipsum dolor Sit amet consectetur aelit. Sed do eiusmod tedunt. Cecteting elit Sed do eiusmmididunt </p>
+						<p><a class="bu" href="#">More information</a></p>
+							
+						<h3>Simple Accordion</h3>
+						<div class="accordion custom">
+							<h5 class="a-h open"><span>Lorem ipsum</span></h5>
+							<div class="a-body">
+								<div class="a-content">
+									<p>Lorem ipsum dolor sit ametconsetetur sadipscing elitr sed diam nonumy eirmod tempor. Lorem ipsum dolor sit</p>
+									<p><a href="#" class="bu bu-mini">Details</a></p>
+								</div><!-- .a-content -->
+							</div><!-- .a-body -->
+							<h5 class="a-h"><span>Dolor sit Amet</span></h5>
+							<div class="a-body">
+								<div class="a-content">
+									<p>Lorem ipsum dolor sit ametconsetetur sadipscing elitr sed diam nonumy eirmod tempor. Lorem ipsum dolor sit</p>
+									<p><a href="#" class="bu bu-mini">Details</a></p>
+								</div><!-- .a-content -->
+							</div><!-- .a-body -->
+							<h5 class="a-h"><span>Adipisicing elit</span></h5>
+							<div class="a-body">
+								<div class="a-content">
+									<p>Lorem ipsum dolor sit ametconsetetur sadipscing elitr sed diam nonumy eirmod tempor. Lorem ipsum dolor sit</p>
+									<p><a href="#" class="bu bu-mini">Details</a></p>
+								</div><!-- .a-content -->
+							</div><!-- .a-body -->
+						</div><!-- .accordion -->
+						
+						<div class="b-banner">
+							<div class="b-banner-pic">
+								<img src="../tmp/worm.jpg" width="152" height="157" alt="pic" />
+							</div><!-- b-banner-pic -->
+							<div class="b-banner-body">
+								<p>Just in case you are a bookworm, we recommend you to buy the official TYPO3 book!</p>
+								<p><a class="bu bu-mini" href="#">Buy now!</a></p>
+							</div><!-- b-banner-body -->
+						</div>
+					</div><!-- .s-sidebar -->
+					
+					<div class="s-body">
+						<form action="" method="post" class="sort-search">
+							<label for="sort-by">Sort by:</label>
+							<select id="sort-by">
+								<option value="0">Relevancy</option>
+							</select>
+							<label for="results">Results per page:</label>
+							<select id="results">
+								<option value="10">10</option>
+							</select>
+						</form><!-- .sort-search -->
+						
+						<h1>Search Results</h1>
+						
+						<ul class="tabs lite-tabs">
+							<li class="act"><a href="#">TYPO3.org</a></li>
+							<li><a href="#">News</a></li>
+							<li><a href="#">Extensions</a></li>
+							<li><a href="#">Documentation</a></li>
+							<li><a href="#">Other sites</a></li>
+						</ul>
+						
+						<div class="tab-panes lite-tab-panes-black">
+							
+							
+							<h2>Lorem Ipsum Dolor sit Amet</h2>
+							<div class="g">
+								<div class="g-5">
+									<p class="search-info">Date: 31.01.11 at 15:16 <span class="sep">|</span>Jigal van Hemer</p>
+								</div><!-- .g-5 -->
+								<div class="g-5">
+									<span class="relevance">
+										<span style="width: 68%"></span>
+									</span>
+									<p class="search-info">Relevance: 68%</p>
+								</div><!-- .g-5 -->
+							</div><!-- .g -->
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque dui ligula, aliquam ac dapibus id, viverra vitae tellus. Cras dictum rutrum felis, a malesuada tortor hendrerit ac. Duis posuere sapien eu magna molestie vel hendrerit dui iaculis. Morbi quis risus dolor. Phasellus volutpat dapibus lorem, eu dictum ligula <strong>commodo</strong> quis. Donec sit amet laoreet eros.</p>
+						
+							<h2>Lorem Ipsum Dolor sit Amet</h2>
+							<div class="g">
+								<div class="g-5">
+									<p class="search-info">Date: 31.01.11 at 15:16 <span class="sep">|</span>Jigal van Hemer</p>
+								</div><!-- .g-5 -->
+								<div class="g-5">
+									<span class="relevance">
+										<span style="width: 20%"></span>
+									</span>
+									<p class="search-info">Relevance: 20%</p>
+								</div><!-- .g-5 -->
+							</div><!-- .g -->
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque dui ligula, aliquam ac dapibus id, viverra vitae tellus. Cras dictum rutrum felis, a malesuada tortor hendrerit ac. Duis posuere sapien eu magna molestie vel hendrerit dui iaculis. Morbi quis risus dolor. Phasellus volutpat dapibus lorem, eu dictum ligula <strong>commodo</strong> quis. Donec sit amet laoreet eros.</p>
+						
+							<h2>Lorem Ipsum Dolor sit Amet</h2>
+							<div class="g">
+								<div class="g-5">
+									<p class="search-info">Date: 31.01.11 at 15:16 <span class="sep">|</span>Jigal van Hemer</p>
+								</div><!-- .g-5 -->
+								<div class="g-5">
+									<span class="relevance">
+										<span style="width: 68%"></span>
+									</span>
+									<p class="search-info">Relevance: 68%</p>
+								</div><!-- .g-5 -->
+							</div><!-- .g -->
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque dui ligula, aliquam ac dapibus id, viverra vitae tellus. Cras dictum rutrum felis, a malesuada tortor hendrerit ac. Duis posuere sapien eu magna molestie vel hendrerit dui iaculis. Morbi quis risus dolor. Phasellus volutpat dapibus lorem, eu dictum ligula <strong>commodo</strong> quis. Donec sit amet laoreet eros.</p>
+						
+							<h2>Lorem Ipsum Dolor sit Amet</h2>
+							<div class="g">
+								<div class="g-5">
+									<p class="search-info">Date: 31.01.11 at 15:16 <span class="sep">|</span>Jigal van Hemer</p>
+								</div><!-- .g-5 -->
+								<div class="g-5">
+									<span class="relevance">
+										<span style="width: 68%"></span>
+									</span>
+									<p class="search-info">Relevance: 68%</p>
+								</div><!-- .g-5 -->
+							</div><!-- .g -->
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque dui ligula, aliquam ac dapibus id, viverra vitae tellus. Cras dictum rutrum felis, a malesuada tortor hendrerit ac. Duis posuere sapien eu magna molestie vel hendrerit dui iaculis. Morbi quis risus dolor. Phasellus volutpat dapibus lorem, eu dictum ligula <strong>commodo</strong> quis. Donec sit amet laoreet eros.</p>
+						
+							<h2>Lorem Ipsum Dolor sit Amet</h2>
+							<div class="g">
+								<div class="g-5">
+									<p class="search-info">Date: 31.01.11 at 15:16 <span class="sep">|</span>Jigal van Hemer</p>
+								</div><!-- .g-5 -->
+								<div class="g-5">
+									<span class="relevance">
+										<span style="width: 68%"></span>
+									</span>
+									<p class="search-info">Relevance: 68%</p>
+								</div><!-- .g-5 -->
+							</div><!-- .g -->
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque dui ligula, aliquam ac dapibus id, viverra vitae tellus. Cras dictum rutrum felis, a malesuada tortor hendrerit ac. Duis posuere sapien eu magna molestie vel hendrerit dui iaculis. Morbi quis risus dolor. Phasellus volutpat dapibus lorem, eu dictum ligula <strong>commodo</strong> quis. Donec sit amet laoreet eros.</p>
+						
+							<h2>Lorem Ipsum Dolor sit Amet</h2>
+							<div class="g">
+								<div class="g-5">
+									<p class="search-info">Date: 31.01.11 at 15:16 <span class="sep">|</span>Jigal van Hemer</p>
+								</div><!-- .g-5 -->
+								<div class="g-5">
+									<span class="relevance">
+										<span style="width: 68%"></span>
+									</span>
+									<p class="search-info">Relevance: 68%</p>
+								</div><!-- .g-5 -->
+							</div><!-- .g -->
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque dui ligula, aliquam ac dapibus id, viverra vitae tellus. Cras dictum rutrum felis, a malesuada tortor hendrerit ac. Duis posuere sapien eu magna molestie vel hendrerit dui iaculis. Morbi quis risus dolor. Phasellus volutpat dapibus lorem, eu dictum ligula <strong>commodo</strong> quis. Donec sit amet laoreet eros.</p>
+						
+							<h2>Lorem Ipsum Dolor sit Amet</h2>
+							<div class="g">
+								<div class="g-5">
+									<p class="search-info">Date: 31.01.11 at 15:16 <span class="sep">|</span>Jigal van Hemer</p>
+								</div><!-- .g-5 -->
+								<div class="g-5">
+									<span class="relevance">
+										<span style="width: 68%"></span>
+									</span>
+									<p class="search-info">Relevance: 68%</p>
+								</div><!-- .g-5 -->
+							</div><!-- .g -->
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque dui ligula, aliquam ac dapibus id, viverra vitae tellus. Cras dictum rutrum felis, a malesuada tortor hendrerit ac. Duis posuere sapien eu magna molestie vel hendrerit dui iaculis. Morbi quis risus dolor. Phasellus volutpat dapibus lorem, eu dictum ligula <strong>commodo</strong> quis. Donec sit amet laoreet eros.</p>
+						
+							<h2>Lorem Ipsum Dolor sit Amet</h2>
+							<div class="g">
+								<div class="g-5">
+									<p class="search-info">Date: 31.01.11 at 15:16 <span class="sep">|</span>Jigal van Hemer</p>
+								</div><!-- .g-5 -->
+								<div class="g-5">
+									<span class="relevance">
+										<span style="width: 68%"></span>
+									</span>
+									<p class="search-info">Relevance: 68%</p>
+								</div><!-- .g-5 -->
+							</div><!-- .g -->
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque dui ligula, aliquam ac dapibus id, viverra vitae tellus. Cras dictum rutrum felis, a malesuada tortor hendrerit ac. Duis posuere sapien eu magna molestie vel hendrerit dui iaculis. Morbi quis risus dolor. Phasellus volutpat dapibus lorem, eu dictum ligula <strong>commodo</strong> quis. Donec sit amet laoreet eros.</p>
+						
+							<h2>Lorem Ipsum Dolor sit Amet</h2>
+							<div class="g">
+								<div class="g-5">
+									<p class="search-info">Date: 31.01.11 at 15:16 <span class="sep">|</span>Jigal van Hemer</p>
+								</div><!-- .g-5 -->
+								<div class="g-5">
+									<span class="relevance">
+										<span style="width: 68%"></span>
+									</span>
+									<p class="search-info">Relevance: 68%</p>
+								</div><!-- .g-5 -->
+							</div><!-- .g -->
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque dui ligula, aliquam ac dapibus id, viverra vitae tellus. Cras dictum rutrum felis, a malesuada tortor hendrerit ac. Duis posuere sapien eu magna molestie vel hendrerit dui iaculis. Morbi quis risus dolor. Phasellus volutpat dapibus lorem, eu dictum ligula <strong>commodo</strong> quis. Donec sit amet laoreet eros.</p>
+						
+						
+							<ul class="b-pager">
+								<li class="act">1</li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#">4</a></li>
+							</ul>
+						
+						
+						</div><!-- tab-panes lite-tab-panes -->				
+						
+					</div><!-- .s-body -->
+
+				</div><!-- .cl -->
+				
+			</div>
+			<!-- ^^^ section ^^^ -->
+	
+		</div>
+		<!-- ^^^ content ^^^ -->
+		
+		
+		<!-- ### header ### -->
+		<div class="h" id="header">
+			<a href="#" id="logo"><img src="../i/typo3-logo.png" width="118" height="34" alt="Typo3 Logo" /></a>
+			<div class="h-bar">
+				<ul class="h-bar-nav">
+					<li>
+						<a href="#">
+							<span class="b-drop-h">
+								TYPO3.org<span class="i-arr-down-or ico"></span>
+								<!-- shadow elements -->
+								<span class="b-drop-h-l"></span><span class="b-drop-h-r"></span>	
+							</span>
+						</a>
+						<div class="b-drop-body b-drop-r">
+							<ul class="b-drop-nav">
+								<li><a href="#">TYPO3.com</a></li>
+								<li><a href="#">TYPO3 Association</a></li>
+								<li><a href="#">Certification</a></li>
+								<li class="cur"><a href="#">FLOW3</a></li>
+								<li><a href="#">Bugtracker</a></li>
+								<li><a href="#">Forge (Development Platform)</a></li>
+								<li><a href="#">News Resource</a></li>
+								<li><a href="#">Buzz (TYPO3 Blogs)</a></li>
+								<li><a href="#">TYPO3 Wiki</a></li>
+								<li><a href="#">Mailing lists</a></li>
+								<li><a href="#">TYPO3 Snippets</a></li>
+							</ul>
+							<!-- shadow elements -->
+							<div class="b-drop-body-l"><div></div><div class="b-drop-r-tl"></div></div>
+							<div class="b-drop-body-b"><div></div></div>
+							<div class="b-drop-body-r"></div>
+						</div><!-- b-drop-body -->
+					</li>
+					<li>
+						<a href="#">
+							<span class="b-drop-h">
+								Login<span class="i-arr-down-or ico"></span>
+								<!-- shadow elements -->
+								<span class="b-drop-h-l"></span><span class="b-drop-h-r"></span>
+							</span>
+						</a>
+						<div class="b-drop-body">
+							<p class="f-row"><label>Username:</label> <input class="i-text-mini" type="text" /></p>
+							<p class="f-row"><label>Password:</label> <input class="i-text-mini" type="password" /></p>
+							<p class="f-row"><label>Jump to:</label> <select class="i-select-mini"><option>TYPO3.org</option></select></p>
+							<p class="f-action"><button class="bu bu-mini">Submit</button></p>
+							<p class="f-links"><a href="#">Forgot password?</a><span class="f-row-spacer">|</span><a href="#">Sign Up</a></p>
+							<!-- shadow elements -->
+							<div class="b-drop-body-l"><div></div></div>
+							<div class="b-drop-body-b"><div></div></div>
+							<div class="b-drop-body-r"><div></div></div>
+						</div><!-- b-drop-body -->
+					</li>
+				</ul>
+				<div class="quick-search">
+					<div class="smart-search">
+						<a href="#" class="selector"><span class="ico i-typo"></span></a>
+						<ul>
+							<li class="current"><a href="#"><span class="ico i-typo"></span>Website Search</a></li>
+							<li><a href="#"><span class="ico i-ext"></span>Extensions Search</a></li>
+							<li><a href="#"><span class="ico i-case"></span>Case Studies Search</a></li>
+						</ul>
+					</div>
+					<form action="#" method="post">
+						<label for="form-element-21" class="text s-input">
+							<span>Website Search</span>
+							<input type="text" name="form-element-21" value="" id="form-element-21" />
+						</label>
+						<button><span class="ico i-search"></span></button>
+					</form>
+					
+				</div><!-- quick-search -->
+			</div><!-- h-bar -->
+			<ul class="nav"> 
+				<li><a href="#">Home</a>
+					<div class="nav-sub">
+						<div class="col">
+							<h4>Lorem ipsum</h4>
+							<ul>
+								<li><a href="#">About</a></li>
+								<li><a href="#">News</a></li>
+								<li><a href="#">Community</a></li>
+								<li><a href="#">Development</a></li>
+								<li><a href="#">Extensions</a></li>
+								<li><a href="#">Documentation</a></li>
+							</ul>
+							<h4>Lorem ipsum</h4>
+							<ul>
+								<li><a href="#">Extensions</a></li>
+								<li><a href="#">Documentation</a></li>
+							</ul>
+						</div>
+						<div class="col">
+							<h4>Lorem ipsum</h4>
+							<ul>
+								<li><a href="#">About</a></li>
+								<li><a href="#">News</a></li>
+								<li><a href="#">Documentation</a></li>
+							</ul>
+							<h4>Lorem ipsum</h4>
+							<ul>
+								<li><a href="#">Extensions</a></li>
+								<li><a href="#">Documentation</a></li>
+								<li><a href="#">Community</a></li>
+								<li><a href="#">Development</a></li>
+								<li><a href="#">Extensions</a></li>
+							</ul>
+						</div>
+					</div>
+				</li>
+				<li><a href="#">About</a></li>
+				<li><a href="#">News</a></li>
+				<li><a href="#">Community</a>
+					<div class="nav-sub">
+						<div class="col">
+							<h4>Lorem ipsum</h4>
+							<ul>
+								<li><a href="#">About</a></li>
+								<li><a href="#">News</a></li>
+								<li><a href="#">Community</a></li>
+								<li><a href="#">Development</a></li>
+								<li><a href="#">Extensions</a></li>
+								<li><a href="#">Documentation</a></li>
+							</ul>
+							<h4>Lorem ipsum</h4>
+							<ul>
+								<li><a href="#">Extensions</a></li>
+								<li><a href="#">Documentation</a></li>
+							</ul>
+						</div>
+						<div class="col">
+							<h4>Lorem ipsum</h4>
+							<ul>
+								<li><a href="#">About</a></li>
+								<li><a href="#">News</a></li>
+								<li><a href="#">Documentation</a></li>
+							</ul>
+							<h4>Lorem ipsum</h4>
+							<ul>
+								<li><a href="#">Extensions</a></li>
+								<li><a href="#">Documentation</a></li>
+								<li><a href="#">Community</a></li>
+								<li><a href="#">Development</a></li>
+								<li><a href="#">Extensions</a></li>
+							</ul>
+						</div>
+					</div>
+				</li>
+				<li><a href="#">Development</a></li>
+				<li><a href="#">Extensions</a></li>
+				<li><a href="#">Documentation</a></li>
+				<li class="f-r"><a href="#"><span class="ico i-arr-down"></span>Download</a></li>
+				<li class="f-r"><a href="#"><span class="ico i-video"></span>View demo</a></li>
+			</ul>
+		</div>
+		<!-- ^^^ header ^^^ -->
+		
+		
+	</div><!-- ^^^ Page ^^^ -->
+	
+	<!-- ### footer ### -->
+	<div class="f" id="footer">
+		<div class="f-body">
+			<p>&copy; 2005-2010 TYPO3 Association. All rights reserved.</p>
+			<div class="g gf">
+				<div class="g-5">
+					<div class="gc">
+							
+						<div class="g">
+							<div class="g-5">
+								<div class="gc">
+									<div class="g-5">
+										<div class="gc">
+											<ul>
+												<li><a href="#">About</a></li>
+												<li><a href="#">News</a></li>
+												<li><a href="#">Community</a></li>
+											</ul>
+										</div><!-- gc -->
+									</div><!-- g-5 -->
+									<div class="g-5">
+										<div class="gc">
+											<ul>
+												<li><a href="#">Teams</a></li>
+												<li><a href="#">Development</a></li>
+												<li><a href="#">Extensions</a></li>
+											</ul>
+										</div><!-- gc -->
+									</div><!-- g-5 -->
+								</div><!-- gc -->
+							</div><!-- g-5 -->
+							<div class="g-5">
+								<div class="gc">
+									<div class="g-5">
+										<div class="gc">
+											<ul>
+												<li><a href="#">Documentation</a></li>
+												<li><a href="#">Download</a></li>
+												<li><a href="#">Donate</a></li>
+											</ul>
+										</div><!-- gc -->
+									</div><!-- g-5 -->
+									<div class="g-5">
+										<div class="gc">
+											<ul>
+												<li><a href="#">Contact</a></li>
+												<li><a href="#">Sitemap</a></li>
+												<li><a href="#">Legal information</a></li>
+											</ul>
+										</div><!-- gc -->
+									</div><!-- g-5 -->
+								</div><!-- gc -->
+							</div><!-- g-5 -->
+						</div><!-- g -->
+							
+					</div><!-- gc -->
+				</div><!-- g-5 -->
+				<div class="g-5">
+					<div class="gc">
+						<p>
+							Sponsors:<br />
+							<a href="#"><img src="../i/sponsor-punkt.de.png" width="126" height="31" alt="punk.de" /></a>
+							<a href="#"><img src="../i/sponsor-t3n.png" width="117" height="31" alt="punk.de" /></a>
+							<a href="#"><img src="../i/sponsor-sourceforge.png" width="162" height="31" alt="punk.de" /></a>
+						</p>
+					</div><!-- gc -->
+				</div><!-- g-5 -->
+			</div><!-- g -->
+		</div><!-- f-body -->
+	</div>
+	<!-- ^^^ footer ^^^ -->
+	
+</body>
+</html>

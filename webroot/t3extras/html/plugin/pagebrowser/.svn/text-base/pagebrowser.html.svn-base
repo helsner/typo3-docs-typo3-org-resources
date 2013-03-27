@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Page browser template</title>
+<!-- ###HEADER_ADDITIONS### begin -->
+
+<!-- ###HEADER_ADDITIONS### end -->
+</head>
+<body>
+
+<h1>Page browser</h1>
+<!-- ###PAGE_BROWSER### begin -->
+<!--TYPO3SEARCH_end-->
+<ul class="b-pager">
+	<!-- ###ACTIVE_FIRST### begin -->
+	<li class="pager-first"><a href="###FIRST_LINK###">###TEXT_FIRST###</a></li>
+	<!-- ###ACTIVE_FIRST### end -->
+
+	<!-- ###INACTIVE_FIRST### begin --><!-- ###INACTIVE_FIRST### end -->
+
+	<!-- ###ACTIVE_PREV### begin -->
+	<li class="pager-prev"><a href="###PREV_LINK###">###TEXT_PREV###</a></li>
+	<!-- ###ACTIVE_PREV### end -->
+
+	<!-- ###INACTIVE_PREV### begin --><!-- ###INACTIVE_PREV### end -->
+
+	<!-- ###PAGES### begin -->
+
+		<!--  ###LESS_PAGES### begin -->
+		<li class="hellip">&hellip;</li>
+		<!--  ###LESS_PAGES### end -->
+		<!-- ###PAGE### begin -->
+		<li><a href="###LINK###">###NUMBER_DISPLAY###</a></li>
+		<!-- ###PAGE### end -->
+		<!-- ###CURRENT### begin -->
+		<li class="act">###NUMBER_DISPLAY###</li>
+		<!-- ###CURRENT### end -->
+		<!--  ###MORE_PAGES### begin -->
+		<li class="hellip">&hellip;</li>
+		<!--  ###MORE_PAGES### end -->
+
+	<!-- ###PAGES### end -->
+
+	<!-- ###ACTIVE_NEXT### begin -->
+	<li class="pager-next"><a href="###NEXT_LINK###">###TEXT_NEXT###</a></li>
+	<!-- ###ACTIVE_NEXT### end -->
+
+	<!-- ###INACTIVE_NEXT### begin --><!-- ###INACTIVE_NEXT### end -->
+
+	<!-- ###ACTIVE_LAST### begin -->
+	<li class="pager-last"><a href="###LAST_LINK###">###TEXT_LAST###</a></li>
+	<!-- ###ACTIVE_LAST### end -->
+
+	<!-- ###INACTIVE_LAST### begin --><!-- ###INACTIVE_LAST### end -->
+
+</ul>
+<!--TYPO3SEARCH_begin-->
+<!-- ###PAGE_BROWSER### end -->
+
+</body>
+</html>

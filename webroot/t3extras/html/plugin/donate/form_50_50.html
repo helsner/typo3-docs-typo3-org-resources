@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Template for the form plugin</title>
+</head>
+<body>
+
+<!-- ###SELECT_ACCOUNT### begin -->
+
+<div class="b-tabs">
+<ul  class="tabs lite-tabs">
+	<li class="act">
+            <a href="###URL_CANCEL####donate###ACCOUNT1.UID###" > Donate through ###ACCOUNT1.NAME###</a>
+	</li>
+	<li>
+            <a href="###URL_CANCEL####donate###ACCOUNT2.UID###"> Donate through ###ACCOUNT2.NAME###</a>
+	</li>
+</ul>
+<div class="tab-panes">
+    <div class="tab-content lite-tab-panes-black" id="donate###ACCOUNT1.UID###">
+		<div class="leftCol">###ACCOUNT1.DESCRIPTION###</div>
+
+        <div class="rightCol">###ACCOUNT1_LOGO###</div>
+           	
+       	<div class="bucket-container">
+           	
+           	<div id="section" class="d">
+				<div class="g"><!-- g-75 -->
+					<div class="g-5">
+						<div class="gc">
+									
+							<form class="paypal" action="###PAYPAL.ACTION###" method="post">
+                                		
+                               	###PAYPAL_LOGO###
+                                			
+                                <p>Please put in the amount you would like to donate as a one-time donation or to setup it as monthly donation subscription for the TYPO3 project</p>
+								<div class="paypal-checkboxes">					
+									<div class="b-form-row">
+				    					<label>Monthly Donation</label>
+				    					<div class="b-form-inputs">
+				    						<input type="radio" name="donationtype" value="subscription" checked="yes" />
+				     					</div>
+									</div>
+								</div>
+                                        
+                               	<div class="donate-amount b-form-row">
+                                    <label>Amount</label>
+				    				<div class="b-form-inputs">
+				    					<input type="text"  name="a3" value="" title="Please put in the amount you would like to donate" class="txt_inp" maxlength="5" size="2" />
+				     					&#8364;
+				     				</div>
+								</div>
+					
+								<div class="donate-amount b-form-row">
+				    				<div class="b-form-inputs">
+                                       	<input type="submit" value="Donate" class="sbmt_inp bu" />
+				    				</div>
+                                </div>
+                                        	
+								<div class="additional">
+			        				<input type="hidden" name="p3" value="1" />
+									<input type="hidden" name="t3" value="M" />
+                                    <input type="hidden" name="src" value="1" />
+                                	<input type="hidden" name="sra" value="1" />
+								</div>
+					
+								<input type="hidden" name="currency_code" value="EUR" />
+                                <input type="hidden" name="cmd"           value="_xclick-subscriptions" />
+                                <input type="hidden" name="business"      value="###ACCOUNT1.EMAIL_PAYPAL###" />
+                                <input type="hidden" name="item_name"     value="###PAYPAL.ITEM_NAME_SUBSCRIPTION###" />
+                                <input type="hidden" name="page_style"    value="Donations" />
+                                <input type="hidden" name="no_shipping"   value="1" />
+                                <input type="hidden" name="no_note"       value="0" />
+                                <input type="hidden" name="return"        value="###URL_THANKS###" />
+                                <input type="hidden" name="cancel_return" value="###URL_CANCEL###" />
+                                <input type="hidden" name="notify_url"    value="###URL_NOTIFY###" />
+                                <input type="hidden" name="tax"           value="0" />
+                                <input type="hidden" name="lc"            value="US" />
+                                <input type="hidden" name="bn"            value="PP-SubscriptionsBF" />
+                            	<input type="hidden" name="custom"        value="###ACCOUNT1.UID######PAYPAL2.CUSTOM###"  />
+                                    
+                           	</form>
+									
+						</div>
+					</div>
+					<div class="g-5">
+						<div class="gc">
+								
+							<form class="bankwire" action="###BANKWIRE_ACTION###" method="post">
+                               	###BANKWIRE_LOGO###
+                                     
+            	    	        <p>Please put in the amount you would like to donate as a one-time donation for the TYPO3 project</p>
+                	            <br />
+								<div class="donate-amount b-form-row">
+                                   	<label>Amount</label>
+					   				<div class="b-form-inputs">
+					   					<input type="text"  name="tx_donation[amount]" value="" title="Please put in the amount you would like to donate" class="txt_inp" maxlength="5" size="2" />
+					   					&#8364;
+					   				</div>
+								</div>
+					
+								<div class="donate-amount b-form-row">
+					   				<div class="b-form-inputs">
+                                   		<input type="submit" value="Donate" class="sbmt_inp bu" />
+					   				</div>
+                                </div>
+
+                                <input type="hidden"  name="tx_donation[cmd]"     value="bankwireform" />
+            	                <input type="hidden"  name="tx_donation[account]" value="###ACCOUNT1.UID###" />
+        	                </form>
+								
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+    <div class="tab-content lite-tab-panes-black" id="donate###ACCOUNT2.UID###" >
+    
+    	<div class="leftCol">###ACCOUNT2.DESCRIPTION###</div>
+
+        <div class="rightCol">###ACCOUNT2_LOGO###</div>
+
+        <div class="bucket-container">
+        	
+        	<div id="section" class="d">
+				<div class="g"><!-- g-75 -->
+					<div class="g-5">
+						<div class="gc">
+        	
+        					<form class="paypal" action="###PAYPAL.ACTION###" method="post">
+                                    
+                            	 ###PAYPAL_LOGO###
+                                    
+                                 <p>Please put in the amount you would like to donate as a one-time donation or to setup it as monthly donation subscription for the TYPO3 project</p>
+								<div class="paypal-checkboxes">
+									<div class="b-form-row">
+					    				<label>Monthly Donation</label>
+					    				<div class="b-form-inputs">
+					    					<input type="radio" name="donationtype" value="subscription" checked="yes" />
+					     				</div>
+									</div>
+					    		</div>
+                                        
+                               	<div class="donate-amount b-form-row">
+                                	<label>Amount</label>
+					    			<div class="b-form-inputs">
+					    				<input type="text"  name="amount" value="" title="Please put in the amount you would like to donate" class="txt_inp" maxlength="5" size="2" />
+					     				&#8364;
+					     			</div>
+								</div>
+					
+								<div class="donate-amount b-form-row">
+					    			<div class="b-form-inputs">
+                                 		<input type="submit" value="Donate" class="sbmt_inp bu" />
+					    			</div>
+                       			</div>
+
+								<div class="additional">
+				        			<input type="hidden" name="p3" value="1" />
+                                    <input type="hidden" name="t3" value="M" />
+                                    <input type="hidden" name="src" value="1" />
+                                    <input type="hidden" name="sra" value="1" />
+								</div>
+
+                          		<input type="hidden" name="currency_code" value="EUR" />
+                                <input type="hidden" name="cmd"           value="_xclick-subscriptions" />
+                                <input type="hidden" name="business"      value="###ACCOUNT2.EMAIL_PAYPAL###"  />
+                                <input type="hidden" name="item_name"     value="###PAYPAL.ITEM_NAME_SUBSCRIPTION###" />
+                                <input type="hidden" name="page_style"    value="Donations" />
+                                <input type="hidden" name="no_shipping"   value="1" />
+                                <input type="hidden" name="no_note"       value="0" />
+                                <input type="hidden" name="return"        value="###URL_THANKS###" />
+                                <input type="hidden" name="cancel_return" value="###URL_CANCEL###" />
+                                <input type="hidden" name="notify_url"    value="###URL_NOTIFY###" />
+                                <input type="hidden" name="tax"           value="0" />
+                                <input type="hidden" name="lc"            value="US" />
+                                <input type="hidden" name="bn"            value="PP-SubscriptionsBF" />
+                                <input type="hidden" name="custom"        value="###ACCOUNT2.UID######PAYPAL2.CUSTOM###"  />
+					
+                          	</form>
+        	
+        				</div>
+					</div>
+					<div class="g-5">
+						<div class="gc">
+							
+							<form class="bankwire" action="###BANKWIRE_ACTION###" method="post">
+                            	###BANKWIRE_LOGO###
+                            
+                                <p>Please put in the amount you would like to donate as a one-time donation for the TYPO3 project</p>
+                                <br />
+                                
+                                <div class="donate-amount b-form-row">
+                                	<label>Amount</label>
+					    			<div class="b-form-inputs">
+					    				<input type="text"  name="tx_donation[amount]" value="" title="Please put in the amount you would like to donate" class="txt_inp" maxlength="5" size="2" />
+					     				&#8364;
+					     			</div>
+								</div>
+					
+								<div class="donate-amount b-form-row">
+					    			<div class="b-form-inputs">
+                                		<input type="submit" value="Donate" class="sbmt_inp bu" />
+					    			</div>
+                           		</div>
+                       
+                                <input type="hidden"  name="tx_donation[cmd]"     value="bankwireform" />
+                                <input type="hidden"  name="tx_donation[account]" value="###ACCOUNT2.UID###" />
+                       		</form>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+        	
+        	
+  
+	</div>       
+    </div>
+ </div>
+</div> 
+
+<!-- ###SELECT_ACCOUNT### end -->
+
+<hr />
+
+<!-- ###CONTACT_DATA_FORM_PP### begin -->
+
+<form action="###FORM_ACTION###" method="post" id="contact-data-form" accept-charset="UTF-8">
+
+	<fieldset>
+		<legend>###LLL:legend.donation###</legend>
+
+		<ol>
+			<li>
+				<label for="tx_donation_pi_form_currency">###LLL:currency### *</label>
+				<select id="tx_donation_pi_form_currency" name="currency_code">
+					<option value="EUR">Euro</option>
+					<option value="USD">US Dollar</option>
+				</select>
+			</li>
+			<li>
+				<label for="">###LLL:amount### *</label>
+				<input type="text" name="###PAYPAL.AMOUNT_FIELD###" id="tx_donation_pi_form_amount" value="###PAYPAL.AMOUNT###" />
+			</li>
+		</ol>
+
+	</fieldset>
+
+	<fieldset class="submit">
+		<input type="hidden" name="cmd"           value="###PAYPAL.COMMAND###" />
+		<input type="hidden" name="business"      value="###ACCOUNT.EMAIL_PAYPAL###" />
+		<input type="hidden" name="item_name"     value="###PAYPAL.ITEM_NAME###" />
+		<input type="hidden" name="page_style"    value="Donations" />
+		<input type="hidden" name="no_shipping"   value="1" />
+		<input type="hidden" name="no_note"       value="0" />
+		<input type="hidden" name="return"        value="###URL_THANKS###" />
+		<input type="hidden" name="cancel_return" value="###URL_CANCEL###" />
+		<input type="hidden" name="notify_url"    value="###URL_NOTIFY###" />
+		<input type="hidden" name="tax"           value="0" />
+		<input type="hidden" name="lc"            value="US" />
+		<input type="hidden" name="bn"            value="###PAYPAL.BN###" />
+		<input type="hidden" name="custom"        value="###PAYPAL.CUSTOM###" />
+
+		<!-- ###PAYPAL_SUBSCRIPTION_DATA### begin -->
+		<input type="hidden" name="p3"  value="1" />
+		<input type="hidden" name="t3"  value="M" />
+		<input type="hidden" name="src" value="1" />
+		<input type="hidden" name="sra" value="1" />
+		<!-- ###PAYPAL_SUBSCRIPTION_DATA### end -->
+
+		<input type="submit" value="###LLL:submit.paypal###" />
+	</fieldset>
+
+</form>
+
+<!-- ###CONTACT_DATA_FORM_PP### end -->
+
+<hr />
+
+<!-- ###CONTACT_DATA_FORM_BWIRE### begin -->
+
+<form action="###FORM_ACTION###" class="b-form" method="post" id="contact-data-form" accept-charset="UTF-8">
+
+	<fieldset>
+		<h2>###LLL:legend.donation###</h2>
+
+		<ol>
+			<li class="b-form-row">
+				<label for="tx_donation_pi_form_currency">###LLL:currency### *</label>
+				<div class="b-form-inputs">
+				<select id="tx_donation_pi_form_currency" name="tx_donation[currency_code]">
+					<option value="EUR">Euro</option>
+					<option value="USD">US Dollar</option>
+				</select>
+				</div>
+			</li>
+			<li class="csc-mailform-field b-form-row">
+				<label for="">###LLL:amount### *</label>
+				<div class="b-form-inputs">
+				    <input type="text" name="tx_donation[amount]" id="tx_donation_pi_form_amount" value="###AMOUNT###" />
+				</div>
+			</li>
+		</ol>
+
+	</fieldset>
+
+	<fieldset>
+		<h2>###LLL:legend.contactDetails###</h2>
+
+		<ol>
+			<li class="csc-mailform-field b-form-row">
+				<label for="tx_donation_pi_form_name">###LLL:name###</label>
+				<div class="b-form-inputs">
+				<input type="text" name="tx_donation[name]" id="tx_donation_pi_form_name" value="###USER.NAME###" />
+				</div>
+			</li>
+			<li class="csc-mailform-field b-form-row">
+				<label for="tx_donation_pi_form_company">###LLL:company###</label>
+				<div class="b-form-inputs">
+				<input type="text" name="tx_donation[company]" id="tx_donation_pi_form_company" value="" />
+				</div>
+			</li>
+			<li class="csc-mailform-field b-form-row">
+				<label for="tx_donation_pi_form_addressStreet">###LLL:addressStreet###</label>
+				<div class="b-form-inputs">
+				    <input type="text" name="tx_donation[addressStreet]" id="tx_donation_pi_form_addressStreet" value="" />
+				</div>
+			</li>
+			<li class="csc-mailform-field b-form-row">
+				<label for="tx_donation_pi_form_addressCity">###LLL:addressCity###</label>
+				<div class="b-form-inputs">
+				<input type="text" name="tx_donation[addressCity]" id="tx_donation_pi_form_addressCity" value="" />
+				</div>
+			</li>
+			<li class="csc-mailform-field b-form-row">
+				<label for="tx_donation_pi_form_addressZip">###LLL:addressZip###</label>
+				<div class="b-form-inputs">
+				<input type="text" name="tx_donation[addressZip]" id="tx_donation_pi_form_addressZip" value="" />
+				</div>
+			</li>
+			<li class="csc-mailform-field b-form-row">
+				<label for="tx_donation_pi_form_addressState">###LLL:addressState###</label>
+				<div class="b-form-inputs">
+				<input type="text" name="tx_donation[addressState]" id="tx_donation_pi_form_addressState" value="" />
+				</div>
+			</li>
+			<li class="csc-mailform-field b-form-row">
+				<label for="tx_donation_pi_form_addressCountry">###LLL:addressCountry###</label>
+				<div class="b-form-inputs">
+				<input type="text" name="tx_donation[addressCountry]" id="tx_donation_pi_form_addressCountry" value="" />
+				</div>
+			</li>
+			<li class="csc-mailform-field b-form-row">
+				<label for="tx_donation_pi_form_email">###LLL:email###</label>
+				<div class="b-form-inputs">
+				<input type="text" name="tx_donation[email]" id="tx_donation_pi_form_email" value="###USER.EMAIL###" />
+				</div>
+			</li>
+			<li class="csc-mailform-field b-form-row">
+				<label for="tx_donation_pi_form_url">###LLL:url###</label>
+				<div class="b-form-inputs">
+				<input type="text" name="tx_donation[url]" id="tx_donation_pi_form_url" value="###USER.URL###" />
+				</div>
+			</li>
+			<li class="csc-mailform-field b-form-row">
+				<label for="tx_donation_pi_form_comment">###LLL:comment###</label>
+				<div class="b-form-inputs">
+				<textarea wrap="off" rows="6" id="tx_donation_pi_form_comment" name="tx_donation[comment]"></textarea>
+				</div>
+			</li>
+		</ol>
+
+	</fieldset>
+
+	<fieldset class="submit csc-mailform-field">
+		<input type="hidden" name="tx_donation[account]" value="###ACCOUNT.UID###" />
+		<input type="hidden" name="tx_donation[user]"    value="###USER.UID###" />
+		<input type="hidden" name="tx_donation[cmd]"     value="bankaccountdetails" />
+	<div class="b-form-row">
+		<div class="b-form-inputs">	
+		    <input type="submit" class="csc-mailform-submit bu" value="###LLL:submit.bankwire###" />
+		</div>
+	</div>
+	</fieldset>
+
+</form>
+
+<!-- ###CONTACT_DATA_FORM_BWIRE### end -->
+
+<hr />
+
+<!-- ###BANK_ACCOUNT_DETAILS### begin -->
+
+<p class="instructions">
+###LLL:bankwire.instructions###
+</p>
+
+<p class="account-details">
+###NL2BR:###ACCOUNT.BANK_ACCOUNT######
+</p>
+
+<!-- ###BANK_ACCOUNT_DETAILS### end -->
+
+</body>
+</html>

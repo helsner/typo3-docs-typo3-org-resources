@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>page confirmation</title>
+
+	<link rel="stylesheet" href="../css/reset.css" media="all" />
+	<link rel="stylesheet" href="../css/grid.css" media="all" />
+	<link rel="stylesheet" href="../css/main.css" media="all" />
+	<link rel="stylesheet" href="../css/dip.css" media="all" />
+	<link rel="stylesheet" href="../css/print.css" media="print" />
+	<!--[if IE]><link rel="stylesheet" href="../css/ie.css" media="all" /><![endif]-->
+	<!--[if IE 7]><link rel="stylesheet" href="../css/ie7.css" media="all" /><![endif]-->
+	<!--[if IE 8]><link rel="stylesheet" href="../css/ie8.css" media="all" /><![endif]-->
+
+	<script src="../js/css_browser_selector.js"></script>
+	<script src="../js/jquery-1.5.1.min.js"></script>
+	<script src="../js/jquery.fancybox-1.3.4.pack.js"></script>
+	<script src="../js/jquery.tools.js"></script>
+	<script src="../js/cufon.js"></script>
+	<script src="../fonts/share.js"></script>
+	<script src="../js/main.js"></script>
+	<script src="../js/dip.js"></script>
+
+	
+</head>
+
+<body class="js-off">
+
+	<div class="p" id="page"><!-- ### Page ### 208-->
+		
+		<!-- ### content ### -->
+		<div class="c" id="content">
+			
+			<!-- ### aside ### -->
+			<div class="a" id="aside">
+				<ul class="nav-aside">
+					<li class="cur"><a href="#">Document Library</a>
+						<ul>
+							<li><a href="#"><span>Tutorials</span></a></li>
+							<li class="cur"><a href="#"><span>Learning TYPO3</span></a></li>
+							<li><a href="#"><span>Installation</span></a></li>
+							<li><a href="#"><span>Core Documentation</span></a></li>
+							<li><a href="#"><span>Extension Manuals</span></a></li>
+						</ul>
+					</li>
+					<li><a href="#"><span>Wiki</span></a></li>
+					<li><a href="#"><span>API</span></a></li>
+					<li><a href="#"><span>TYPO3 Book</span></a></li>
+					<li><a href="#"><span>Videos</span></a></li>
+					<li><a href="#"><span>Report bugs</span></a></li>
+					<li><a href="#"><span>Other resources</span></a></li>
+					<li><a href="#"><span>t3n Magazine</span></a></li>
+					<li><a href="#"><span>Mailing Lists</span></a></li>
+				</ul>
+				<div class="aside-shade-head"></div><div class="aside-shade-cont"></div><div class="aside-shade-foot"></div>
+			</div>
+			<!-- ^^^ aside ^^^ -->
+		
+			<!-- ### section ### -->
+			<div class="s d" id="section">
+				
+			</div>
+			<!-- ^^^ section ^^^ -->
+
+		</div>
+		<!-- ^^^ content ^^^ -->
+		
+	</div><!-- ^^^ Page ^^^ -->
+
+	<div class="hidden-dialogs">
+		
+		<div id="confirmation-data">
+			<div class="d b-dialog">
+				<h2>Confirmation</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+				<p>Are you sure you want to deactivate th project: <strong>Projectname<strong> ?</p>
+				<p class="a-c"><a class="bu bu-confirm" href="#">Yes</a><a class="bu bu-secondary" href="#">No</a></p>
+			</div>
+		</div><!-- .confirmation-data -->
+		
+	</div><!-- .hidden-dialogs -->
+<script>
+$(document).ready(function(){
+		if(typeof $.fn.fancybox == 'function') {
+				
+			$('#confirmation-data').fancybox({
+				showCloseButton: false,
+				content: $('#confirmation-data').html()
+			});
+
+			$('#confirmation-data').trigger('click');
+
+		}
+});
+</script>
+</body>
+</html>

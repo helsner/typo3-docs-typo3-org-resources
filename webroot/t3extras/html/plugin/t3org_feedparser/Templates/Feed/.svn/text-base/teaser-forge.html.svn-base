@@ -1,0 +1,4 @@
+{namespace feed=Tx_T3orgFeedparser_ViewHelpers}
+<feed:widget.remote.xml templatePathAndName="EXT:t3org_template/html/plugin/t3org_feedparser/Partials/Feed/teaser-forge.html" feedUrl="{feedUrl}" cacheTime="{cacheTime}">
+	<div id="forge-ticker" rel="{remoteUri}"><div class="ajax-preloader"></div></div>
+</feed:widget.remote.xml>

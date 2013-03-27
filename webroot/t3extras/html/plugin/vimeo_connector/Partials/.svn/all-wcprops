@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/!svn/ver/1643/extensions/projects/t3org/t3org_template/trunk/html/plugin/vimeo_connector/Partials
+END
+VimeoPlayer.html
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/!svn/ver/1643/extensions/projects/t3org/t3org_template/trunk/html/plugin/vimeo_connector/Partials/VimeoPlayer.html
+END
+Pagebrowser.html
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/!svn/ver/1626/extensions/projects/t3org/t3org_template/trunk/html/plugin/vimeo_connector/Partials/Pagebrowser.html
+END
+VideoListing.html
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/!svn/ver/1638/extensions/projects/t3org/t3org_template/trunk/html/plugin/vimeo_connector/Partials/VideoListing.html
+END
+RelatedListing.html
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/!svn/ver/1638/extensions/projects/t3org/t3org_template/trunk/html/plugin/vimeo_connector/Partials/RelatedListing.html
+END
+ArchiveListing.html
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/!svn/ver/1634/extensions/projects/t3org/t3org_template/trunk/html/plugin/vimeo_connector/Partials/ArchiveListing.html
+END

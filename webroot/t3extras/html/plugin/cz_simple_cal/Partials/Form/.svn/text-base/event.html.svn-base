@@ -1,0 +1,97 @@
+{namespace t3o=Tx_T3orgTemplate_ViewHelpers}
+
+<f:form action="{action}" controller="EventCreation" objectName="{objectName}" object="{event}" method="post">
+<div class="b-form">	
+	<f:form.errors as="error">
+		<div class="b-form-error-message">{error.message}</div>
+	</f:form.errors>
+	
+	<div class="b-form-row {f:if(condition:'{t3o:form.hasErrors(for:\'title\')}', then:'b-form-error')}">
+		<label for="tx-czsimplecal-event-title">Title*</label>
+		<div class="b-form-inputs">
+			<f:form.textfield property="title" id="tx-czsimplecal-event-title" required="required"><input type="text" id="tx-czsimplecal-event-title" /></f:form.textfield>
+			<f:render partial="Form/errors.html" arguments="{field:'title'}" />
+		</div>
+	</div>
+	
+	<div class="b-form-row b-form-multirow {f:if(condition:'{t3o:form.hasErrors(for:\'startDay\')}', then:'b-form-error')} {f:if(condition:'{t3o:form.hasErrors(for:\'startTime\')}', then:'b-form-error')}">
+		<label for="tx-czsimplecal-event-startday">Start Date* and Time</label>
+		<div class="b-form-inputs">
+			<f:form.textfield property="startDay" id="tx-czsimplecal-event-startday" placeholder="yyyy-mm-dd" required="required"><input type="text" id="tx-czsimplecal-event-startday" /></f:form.textfield>
+			<label for="tx-czsimplecal-event-starttime" title="starttime">at</label>
+			<f:form.textfield property="startTime" id="tx-czsimplecal-event-starttime" placeholder="hh:mm"><input type="text" id="tx-czsimplecal-event-starttime" /></f:form.textfield>
+			<f:render partial="Form/errors.html" arguments="{field:'startDay'}" />
+			<f:render partial="Form/errors.html" arguments="{field:'startTime'}" />
+		</div>
+	</div>
+	
+	<div class="b-form-row b-form-multirow {f:if(condition:'{t3o:form.hasErrors(for:\'endDay\')}', then:'b-form-error')} {f:if(condition:'{t3o:form.hasErrors(for:\'endTime\')}', then:'b-form-error')}">
+		<label for="tx-czsimplecal-event-endday">End Date and Time</label>
+		<div class="b-form-inputs">
+			<f:form.textfield property="endDay" id="tx-czsimplecal-event-endday" placeholder="yyyy-mm-dd"><input type="text" id="tx-czsimplecal-event-endday" /></f:form.textfield>
+			<label for="tx-czsimplecal-event-endtime" title="endtime">at</label>
+			<f:form.textfield property="endTime" id="tx-czsimplecal-event-endtime" placeholder="hh:mm"><input type="text" id="tx-czsimplecal-event-endtime" /></f:form.textfield>
+			<f:render partial="Form/errors.html" arguments="{field:'endDay'}" />
+			<f:render partial="Form/errors.html" arguments="{field:'endTime'}" />
+		</div>
+	</div>
+	
+	<div class="b-form-row {f:if(condition:'{t3o:form.hasErrors(for:\'description\')}', then:'b-form-error')}">
+		<label for="tx-czsimplecal-event-description">Description</label>
+		<div class="b-form-inputs">
+			<f:form.textarea property="description" id="tx-czsimplecal-event-description" rows="5" cols="40" additionalAttributes="{placeholder:'Describe the event shortly (no markup supported)'}"><input type="text" id="tx-czsimplecal-event-description" /></f:form.textarea>
+			<f:render partial="Form/errors.html" arguments="{field:'description'}" />
+		</div>
+	</div>
+	
+	<div class="b-form-row {f:if(condition:'{t3o:form.hasErrors(for:\'locationName\')}', then:'b-form-error')}">
+		<label for="tx-czsimplecal-event-locationName">Event location</label>
+		<div class="b-form-inputs">
+			<f:form.textfield property="locationName" id="tx-czsimplecal-event-locationName" placeholder="Place"><input type="text" id="tx-czsimplecal-event-locationName" /></f:form.textfield>
+			<f:render partial="Form/errors.html" arguments="{field:'locationName'}" />
+		</div>
+	</div>
+	
+	<div class="b-form-row b-form-multirow {f:if(condition:'{t3o:form.hasErrors(for:\'locationAddress\')}', then:'b-form-error')} {f:if(condition:'{t3o:form.hasErrors(for:\'locationCity\')}', then:'b-form-error')}">
+		<label for="tx-czsimplecal-event-locationAddress">Location address</label>
+		<div class="b-form-inputs">
+			<f:form.textfield property="locationAddress" id="tx-czsimplecal-event-locationAddress" placeholder="Street Address"><input type="text" id="tx-czsimplecal-event-locationAddress" /></f:form.textfield>
+			<label for="tx-czsimplecal-event-locationCity">Location city</label>
+			<f:form.textfield property="locationCity" id="tx-czsimplecal-event-locationCity" placeholder="City"><input type="text" id="tx-czsimplecal-event-locationcity" /></f:form.textfield>
+			<f:render partial="Form/errors.html" arguments="{field:'locationAddress'}" />
+			<f:render partial="Form/errors.html" arguments="{field:'locationCity'}" />
+		</div>
+	</div>
+	
+	<div class="b-form-row {f:if(condition:'{t3o:form.hasErrors(for:\'showPageInstead\')}', then:'b-form-error')}">
+		<label for="tx-czsimplecal-event-showpageinstead">External website</label>
+		<div class="b-form-inputs">
+			<f:form.textfield property="showPageInstead" id="tx-czsimplecal-event-showPageInstead"><input type="text" id="tx-czsimplecal-event-showPageInstead" /></f:form.textfield>
+			<f:render partial="Form/errors.html" arguments="{field:'showPageInstead'}" />
+		</div>
+	</div>
+	
+	<div class="b-form-row {f:if(condition:'{t3o:form.hasErrors(for:\'twitterHashtags\')}', then:'b-form-error')}">
+		<label for="tx-czsimplecal-event-twitterhashtags">Twitter Hashtags</label>
+		<div class="b-form-inputs">
+			<f:form.textfield property="twitterHashtags" id="tx-czsimplecal-event-twitterhashtags" placeholder="Comma seperated tag list"><input type="text" id="tx-czsimplecal-event-twitterhashtags" /></f:form.textfield>
+			<f:render partial="Form/errors.html" arguments="{field:'twitterHashtags'}" />
+		</div>
+	</div>
+	
+	<div class="b-form-row {f:if(condition:'{t3o:form.hasErrors(for:\'flickrTags\')}', then:'b-form-error')}">
+		<label for="tx-czsimplecal-event-flickrtags">Flickr-Tags</label>
+		<div class="b-form-inputs">
+			<f:form.textfield property="flickrTags" id="tx-czsimplecal-event-flickrtags" placeholder="Comma seperated tag list"><input type="text" id="tx-czsimplecal-event-flickrtags" /></f:form.textfield>
+			<f:render partial="Form/errors.html" arguments="{field:'flickrTags'}" />
+		</div>
+	</div>
+	
+	<div class="b-form-row">
+		<div class="b-form-inputs">
+			<f:form.submit class="bu" value="Submit" />
+			<f:link.action action="list" class="bu dark-grey">Cancel</f:link.action>
+		</div>
+	</div>
+</div>
+</f:form>

@@ -1,0 +1,26 @@
+{namespace t3o=Tx_T3orgTemplate_ViewHelpers}
+<f:if condition="{error}">
+    <f:then>
+        <!-- {error} -->
+    </f:then>
+    <f:else>
+        <div id="randomUserProfiles">
+            <ul>
+                <f:for each="{feed}" as="user">
+                    <t3o:fileExists file="uploads/tx_t3ouserimage/{user.img_hash}-big.jpg">
+                    <li>
+                        <t3o:image src="uploads/tx_t3ouserimage/{user.img_hash}-big.jpg" width="41c" height="47c"
+                                 alt="{user.login}"/>
+                        <div class="hover">
+                            <h6>{user.firstname} {user.lastname}</h6>
+                            <p>({user.login})</p>
+                            <a class="bu small" href="http://forge.typo3.org/users/{user.id}" target="_blank">Profile</a>
+                        </div>
+                    </li>
+                    </t3o:fileExists>
+                </f:for>
+            </ul>
+            <div class="cl"></div>
+        </div>
+    </f:else>
+</f:if>

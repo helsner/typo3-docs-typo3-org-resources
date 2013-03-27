@@ -1,0 +1,5 @@
+{namespace cal=Tx_CzSimpleCal_ViewHelpers}BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//hacksw/handcal//NONSGML v1.0//EN
+<f:render partial="EventIndex/event-for-list.ics" arguments="{event:event}" />
+END:VCALENDAR

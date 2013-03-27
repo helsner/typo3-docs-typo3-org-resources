@@ -1,0 +1,69 @@
+/* Include collapse / expand of table */
+
+div.table-row dl {
+	margin: 0;
+}
+
+div.table-row {
+ 	padding: 5px 0 5px 20px;
+ 	margin: 0;
+ 	margin-bottom: 2px;
+ 	border: 0.5em none #c0c0c0;
+ 	border-bottom: 1px solid #99a4a3;
+ 	border-left: 2px solid #f2f2f2;
+ 	background-color: #f2f2f2;
+ 	clear: both;
+ 	background-image: url(../images/bullet_arrow_right.png);
+ 	background-repeat: no-repeat;
+ 	background-position: 1px 10px;
+}
+
+.table-row-expand {
+ 	border-left: 2px solid orange !important;
+ 	background-image: url(../images/bullet_arrow_down.png) !important;
+}
+
+/* TS Reference box */
+dl.docutils dt {
+	display: none;
+}
+
+dl.docutils dd {
+	margin: 0;
+}
+
+/* Property */
+dl.docutils dd:nth-child(2){
+	font-size: 120%;
+	font-weight: bold;
+	color: orange;
+	float: left;
+	width: 200px;
+	cursor: pointer;
+}
+
+/* Data type */
+dl.docutils dd:nth-child(4){
+	font-size: 92%;
+	padding-top: 2px;
+	color: #666;
+	cursor: pointer;
+}
+
+/* Description */
+dl.docutils dd:nth-child(6){
+
+}
+
+/* Default value */
+dl.docutils dd:nth-child(8){
+	display: none;
+}
+
+dl.docutils dd:nth-child(n+6){
+	clear: both;
+}
+
+.first {
+	margin: 0 !important;
+}

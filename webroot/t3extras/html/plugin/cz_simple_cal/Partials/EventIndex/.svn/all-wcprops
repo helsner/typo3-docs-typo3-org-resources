@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/!svn/ver/1801/extensions/projects/t3org/t3org_template/trunk/html/plugin/cz_simple_cal/Partials/EventIndex
+END
+event-for-list.html
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/!svn/ver/1525/extensions/projects/t3org/t3org_template/trunk/html/plugin/cz_simple_cal/Partials/EventIndex/event-for-list.html
+END
+event-for-fulllist.html
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/!svn/ver/1801/extensions/projects/t3org/t3org_template/trunk/html/plugin/cz_simple_cal/Partials/EventIndex/event-for-fulllist.html
+END
+event-for-list.ics
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/!svn/ver/1263/extensions/projects/t3org/t3org_template/trunk/html/plugin/cz_simple_cal/Partials/EventIndex/event-for-list.ics
+END

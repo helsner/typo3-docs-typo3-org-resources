@@ -1,0 +1,16 @@
+<html>
+	<body>
+		<div class="s d" id="section">
+			<div class="g"><!-- g-75 -->
+				<div class="g-75">
+					<div class="gc">
+					</div><!-- gc -->
+				</div><!-- g-25 -->
+				<div class="g-25">
+					<div class="gc">
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

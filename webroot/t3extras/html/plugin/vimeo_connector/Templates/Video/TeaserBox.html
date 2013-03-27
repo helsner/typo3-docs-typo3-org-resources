@@ -1,0 +1,33 @@
+<div class="b-tabs" id="vimeoteaser">
+    <ul class="tabs orange-tabs">
+		<f:for each="{types}" as="type" iteration="iteration">
+			<li class="{f:if(condition:iteration.isFirst,then:'act',else:'')}"><f:link.action controller="Category" action="index">{type.type.title}</f:link.action></li>
+		</f:for>
+	</ul>
+
+	<div class="tab-panes">
+		<f:for each="{types}" as="type" iteration="iteration">
+			<div class="csc-default show-tab">
+				<div class="tab-content without-box">
+					<div class="vimeo-teaser-box scrollable">
+						<div class="items">
+						<f:for each="{type.videos}" as="video">
+							<div class="vimeo-teaser-item">
+								<f:link.action controller="Video" action="show" arguments="{video: video}">
+									<div class="vimeo-teaser-playbutton">
+										<f:image src="{settings.storageFolder}/{video.thumbnail}" width="220c" height="157c" alt="{video.title} thumbnail" />
+									</div>
+								</f:link.action>
+								<h5>{video.title}</h5>
+							</div>
+						</f:for>
+						</div>
+					</div>
+					<f:link.action class="bu bu-mini" controller="Category" action="index">Show all videos</f:link.action>
+					<div class="prev" title="previous">previous</div>
+					<div class="next" title="next">next</div>
+				</div>
+			</div>
+		</f:for>
+	</div>
+</div>
