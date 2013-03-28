@@ -7,9 +7,9 @@
 
 .. _start:
 
-================================
-The docs-typo3-org resources
-================================
+===============================
+The resources of docs-typo3-org 
+===============================
 
 :Author:          Martin Bless
 :Buildinfo:       `Make folder <_make>`_, `last Sphinx warnings <_make/warnings.txt>`_, 
