@@ -1,0 +1,13 @@
+# Settings.yml
+---
+conf.py:
+  ##==========================================
+  ## define configuration data for conf.py as
+  ## "parameter: value" pairs here:
+  ##------------------------------------------
+  todo_include_todos: False
+  copyright: 2013 to now
+  project: The docs-typo3-org resources
+  version: 0.0
+  release: 0.0.0
+...
