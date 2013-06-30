@@ -1,4 +1,4 @@
-/* mb, 2012-11-25, 2013-01-29 */
+/* mb, 2012-11-25, 2013-06-30 */
 
 /* override standard settings of typo3.org */
 
@@ -822,3 +822,97 @@ hnav-related a:hover {
   font-size: 11px;
 }
 
+
+
+
+/* Versionswitcher, mb, 2013-05-03 */
+    #hnav-versions {
+        float: right;
+    }
+
+    #vchoice-trigger {
+        float: right;
+        position: relative;
+    }
+    #vchoice-choices {
+        z-index: 100;
+        clear: both;
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        display: none;
+    }
+    #vchoice-choices table {
+        width: auto;
+        border: 1px solid #e87c0c;
+        float: right;
+        margin: 0px;
+        white-space: nowrap;
+    }
+    #vchoice-choices .row-odd td {
+        background-color: #f3f3f3;
+    }
+    #vchoice-choices th,
+    #vchoice-choices td {
+        border: 1px solid #e87c0c;
+        border: 1px solid #ccc;
+        background-color: #fff;
+        padding: 3px 6px;
+        vertical-align: top;
+        text-align: center;
+        color: #333;
+        font-weight: bold;
+    }
+    #vchoice-choices th {
+        background-color: #666;
+        font-weight: bold;
+        color: #fff;
+    }
+    #vchoice-choices td a {
+        color: #888;
+    }
+    #vchoice-choices td.rollover:hover {
+        background-color: #d0d0d0;
+        color: #000;
+        cursor: pointer;
+    }
+    #vchoice-choices td.rollover:hover a {
+        color: #000;
+        text-decoration: underline;
+    }
+
+    #ajax-preloader-img {
+        /* display: none; */
+    }
+    .hnav-div-layout {
+        float: right;
+        margin-right: 16px;
+    }
+
+.doc .highlighted {
+	/* doctools.js inserts <span class="highlighted"> */
+	background-color: #FBE54E;
+}
+.doc #searchbox {
+	padding-left: 10px;
+	margin-bottom: 20px;
+}
+.doc #searchbox .input-text {
+	width: 146px;
+}
+.doc p.highlight-link {
+	margin-top: 15px;
+	background-color: transparent;
+}
+.doc .highlight-link a {
+	text-decoration: none;
+	color: #666666;
+}
+.doc .highlight-link a:hover {
+	text-decoration: underline;
+}
+.doc #search-page-input-text {
+	width: 70%;
+	min-width: 100px;
+	max-width: 350px;
+}
