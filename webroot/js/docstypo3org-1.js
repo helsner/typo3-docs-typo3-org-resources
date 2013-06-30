@@ -2,8 +2,11 @@
  * mb, 2012-12-26, 2013-02-14
  * docstypo3org-1.js
  * utf-8, äöü
+ *
+ * Contains the main navigation and the link for the TYPO3 logo in the upper left corner.
  */
 
+// HTML code for the main navigation
 $(document).ready(function () { 
 	var ulnav = ''
 		+ '<ul class="nav" id="ul-nav">'
@@ -31,10 +34,11 @@ $(document).ready(function () {
 		+ '				<ul>'
 		+ '					<li><a href="/typo3cms/ExtbaseFluidBook/">Extbase and Fluid</a></li>'
 		+ '				</ul>'
-		+ '				<h4><a href="/typo3cms/examples.html">  Examples      </a></h4>'
-		+ '				<h4><a href="/typo3cms/extensions/">    Extensions    </a></h4>'
-		+ '				<h4><a href="/typo3cms/Guides.html">    Guides        </a></h4>'
-		+ '				<h4><a href="/typo3cms/Tutorials.html"> Tutorials     </a></h4>'
+		+ '				<h4><a href="/typo3cms/examples.html">    Examples     </a></h4>'
+		+ '				<h4><a href="/typo3cms/extensions/">      Extensions   </a></h4>'
+		+ '				<h4><a href="/typo3cms/Guides.html">      Guides       </a></h4>'
+		+ '				<h4><a href="/typo3cms/Tutorials.html">   Tutorials    </a></h4>'
+		+ '				<h4><a href="/typo3cms/CheatSheets.html"> Cheat Sheets </a></h4>'
 		+ '			</div>'
 		+ '		</div>'
 		+ '	</li>'
@@ -63,5 +67,8 @@ $(document).ready(function () {
 		+ '	</li>'
 		+ '</ul>'
 	;
+	// Insert the main navigation
 	$('#ul-nav').replaceWith(ulnav);
+	// Link the logo to docs.typo3.org
+	$('#logo').attr('href', 'http://docs.typo3.org/');
 }) ;
