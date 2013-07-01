@@ -1,5 +1,5 @@
 /*
- * mb, 2012-12-26, 2013-02-14
+ * mb, 2012-12-26, 2013-07-01
  * docstypo3org-1.js
  * utf-8, äöü
  *
@@ -59,9 +59,9 @@ $(document).ready(function () {
 		+ '			<div class="col">'
 		+ '				<h4><a href="/neos/TYPO3NeosDocumentation/">TYPO3 Neos</a></h4>'
 		+ '				<ul>'
-		+ '					<li><a href="/neos/TYPO3NeosDocumentation/GettingStarted/">            Getting Started            </a></li>'
-		+ '					<li><a href="/neos/TYPO3NeosDocumentation/Features/">                  Features                   </a></li>'
-		+ '					<li><a href="/neos/TYPO3NeosDocumentation/Development/UserInterface/"> User Interface Development </a></li>'
+		+ '					<li><a href="/neos/TYPO3NeosDocumentation/GettingStarted/">   Getting Started   </a></li>'
+		+ '					<li><a href="/neos/TYPO3NeosDocumentation/IntegratorGuide/">  Integrator Guide  </a></li>'
+		+ '					<li><a href="/neos/TYPO3NeosDocumentation/DeveloperGuide/">   Developer Guide   </a></li>'
 		+ '			</div>'
 		+ '		</div>'
 		+ '	</li>'
