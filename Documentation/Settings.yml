@@ -6,8 +6,8 @@ conf.py:
   ## "parameter: value" pairs here:
   ##------------------------------------------
   todo_include_todos: False
-  copyright: 2013 to now
+  copyright: since 2013
   project: The docs-typo3-org resources
-  version: 0.0
-  release: 0.0.0
+  version: 0.1
+  release: 0.1.0
 ...
