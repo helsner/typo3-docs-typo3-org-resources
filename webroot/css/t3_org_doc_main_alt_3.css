@@ -2,3 +2,42 @@
 
 /* alternate styles 1 */
 
+/* activate wide and adaptive layout */
+@import "http://docs.typo3.org/css/t3_org_doc_main_alt_1.css";
+
+.doc  .d h1
+{
+	font-size: 38px;
+	line-height: 1.1;
+	background-color: #d8d8d8;
+	font-family: Arial;
+	font-weight: bold;
+	color: black;
+	margin: 48px 0 24px;
+}
+.doc  .headerlink {
+	visibility: hidden;
+}
+
+html .doc .body
+{
+	font-size: 24px;
+	line-height: 32px;
+}
+html .doc .body pre
+{
+	font-size: 22px;
+	line-height: 28px;
+}
+.doc .body ul {
+	padding-left: 24px;
+}
+.doc .body li {
+	background: none;
+	list-style: disc outside none;
+	padding-left: 24px;
+	margin-bottom: 18px;
+}
+.doc .body dd {
+	margin-bottom: 20px;
+}
