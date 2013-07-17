@@ -96,13 +96,16 @@ $kp['FLOW3/Packages/TYPO3.FLOW3']                             ['master'] = '.git
 $kp['FLOW3/Packages/TYPO3.TYPO3']                             ['master'] = '.git.make';
 $kp['TYPO3v4/Extensions/news']                                ['master'] = '.git.make';
 
+$kp['Packages/TYPO3.CMS']                                     ['master'] = 'http://docs.typo3.org/~mbless/git.typo3.org/TYPO3v4/Extensions/TYPO3.CMS.ALL-SYSEXT.master.make/request_rebuild.php';
 
 $requestUrl = '';
 if ($data and ($data['repositoryUrl'] == 'git://git.typo3.org/')) {
     $project = $data['project'];
     $branch = $data['branch'];
     $suffix = $kp[$project][$branch];
-    if (strlen($suffix)) {
+    if (substr($suffix, 0, 7) === 'http://') {
+        $requestUrl = $suffix;
+    } elseif (strlen($suffix)) {
         $requestUrl .= 'http://docs.typo3.org/~mbless/git.typo3.org/';   // Documentation/TYPO3/Reference/
         $requestUrl .= $project . $suffix;
         $requestUrl .= '/request_rebuild.php';
