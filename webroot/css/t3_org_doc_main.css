@@ -535,6 +535,12 @@ hnav-related a:hover {
 	margin-left: 20px;
 	padding-left: 0;
 }
+.doc .d ol ul li {
+	list-style: none;
+}
+.doc .d li li {
+	padding-left: 20px;
+}
 
 .doc div.figure {
 	margin-bottom: 17px;
