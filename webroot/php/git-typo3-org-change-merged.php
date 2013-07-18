@@ -92,11 +92,16 @@ $kp['Documentation/TYPO3/Tutorial/GettingStarted.nl_NL']      ['master'] = '.git
 $kp['Documentation/TYPO3/Tutorial/Templating']                ['master'] = '.git.make';
 $kp['Documentation/TYPO3/Tutorial/Templating.nl_NL']          ['master'] = '.git.make';
 $kp['Documentation/TYPO3/Tutorial/Typoscript45Minutes']       ['master'] = '.git.make';
-$kp['FLOW3/Packages/TYPO3.FLOW3']                             ['master'] = '.git.make';
-$kp['FLOW3/Packages/TYPO3.TYPO3']                             ['master'] = '.git.make';
 $kp['TYPO3v4/Extensions/news']                                ['master'] = '.git.make';
 
-$kp['Packages/TYPO3.CMS']                                     ['master'] = 'http://docs.typo3.org/~mbless/git.typo3.org/TYPO3v4/Extensions/TYPO3.CMS.ALL-SYSEXT.master.make/request_rebuild.php';
+$kp['Packages/TYPO3.CMS']       ['master']    = 'http://docs.typo3.org/~mbless/git.typo3.org/TYPO3v4/Extensions/TYPO3.CMS.ALL-SYSEXT.master.make/request_rebuild.php';
+
+$kp['Packages/TYPO3.Flow']      ['master']    = 'http://docs.typo3.org/~mbless/git.typo3.org/Packages/TYPO3.Flow.git.make/request_rebuild.php';
+$kp['Packages/TYPO3.Flow']      ['FLOW3-1.0'] = 'http://docs.typo3.org/~mbless/git.typo3.org/Packages/TYPO3.Flow.git.make_1.0/request_rebuild.php';
+$kp['Packages/TYPO3.Flow']      ['FLOW3-1.1'] = 'http://docs.typo3.org/~mbless/git.typo3.org/Packages/TYPO3.Flow.git.make_1.1/request_rebuild.php';
+$kp['Packages/TYPO3.Flow']      ['2.0']       = 'http://docs.typo3.org/~mbless/git.typo3.org/Packages/TYPO3.Flow.git.make_2.0/request_rebuild.php';
+
+$kp['Packages/TYPO3.Neos']      ['master']    = 'http://docs.typo3.org/~mbless/git.typo3.org/Packages/TYPO3.Neos.git.make/request_rebuild.php';
 
 $requestUrl = '';
 if ($data and ($data['repositoryUrl'] == 'git://git.typo3.org/')) {
