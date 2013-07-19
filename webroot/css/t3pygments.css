@@ -1,0 +1,51 @@
+/* coding: ascii */
+
+/* http://forge.typo3.org/issues/50012 */
+
+div.highlight pre {
+	background-color: #f7f7f7;
+	color: #000;
+}
+span.c1, span.sd, span.c {
+	border-bottom-style: none;
+	border-left-style: none;
+	border-right-style: none;
+	border-top-style: none;
+	color: #bababa;
+}
+span.mi {
+	color: #db2c00;
+}
+span.nb {
+	color: #340bd6;
+}
+span.nc {
+	color: #c20fc2;
+}
+span.no {
+	color: #2271d1;
+}
+span.o {
+	color: #f58006;
+	font-weight: normal;
+}
+span.p {
+	background-color: #f7f7f7;
+	color: #db2c00;
+}
+span.s {
+	color: #587ea8;
+	font-style: normal;
+}
+span.ss {
+	color: #db2c00;
+}
+span.nf {
+	color: #2bcc22;
+}
+span.nv {
+	color: #2271d1;
+}
+span.m {
+	color: #db2c00;
+}
