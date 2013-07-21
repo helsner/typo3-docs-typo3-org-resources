@@ -9,6 +9,11 @@
 CSS
 =================================
 
+.. _css-files:
+
+Files
+=====
+
 Most of the css files of pages at http://docs.typo3.org are exactly 
 those being used on http://typo3.org. The following css files are 
 specific for documentation pages::
@@ -21,7 +26,49 @@ specific for documentation pages::
     <link rel="alternate stylesheet" href="http://docs.typo3.org/css/t3_org_doc_main_alt_2.css" type="text/css" title="Style 2" />
     <link rel="alternate stylesheet" href="http://docs.typo3.org/css/t3_org_doc_main_alt_3.css" type="text/css" title="Style 3" />
 
+    
+.. _the-doc-namespace:
 
+The Namespace ``.doc``
+======================    
+    
+.. important::
+
+   All rules should have ``.doc`` as ancestor!
+
+   All documentation specific rules should be a descendant__ of ``.doc``.
+   This means that they should only match elements that are contained 
+   within a ``.doc`` container. The reason for this is that we want to
+   keep all documentation specific rules separate from other rules being
+   used on `typo3.org <http://typo3.org>`_. Example:
+
+   .. code-block:: css
+
+      .doc .d h1 a,
+      .doc h1 a {
+          text-decoration: none;
+      }
+
+   __ http://www.w3.org/TR/CSS2/selector.html#descendant-selectors
+   
+.. note::
+   
+   All documentation specific HTML is placed inside a ``.doc``
+   container. Common example:
+
+   .. code-block:: html   
+
+      <body>
+         <div class="p doc" id="page">
+
+            ... documentation page html ...
+
+         </div>
+      </body>
+
+
+.. _the-css-folder:
+      
 The ./css folder
 ================
 
