@@ -23,3 +23,5 @@
 .TemporaryItems
 .webprj
 nbproject
+
+*.pyc

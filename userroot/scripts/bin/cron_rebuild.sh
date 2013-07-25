@@ -9,6 +9,7 @@
 # 2: Invalid Git directory for the project
 # 3: Non-existing project directory
 # 4: No documentation found
+# 5: Included file resides outside T3DODIR
 # ------------------------------------------------------
 
 # Retrieve current directory (as absolute path)
@@ -148,6 +149,12 @@ if [ -r "REBUILD_REQUESTED" ]; then
         rm -I "$MAKE_DIRECTORY/REBUILD_REQUESTED"
         exit 0
     fi
+
+
+    # check include files
+    /home/mbless/scripts/bin/check_include_files.py --verbose "$T3DOCDIR" >"$MAKE_DIRECTORY"/included-files-check.log.txt
+   
+    
 
     cd $MAKE_DIRECTORY
     rm -rf $BUILDDIR
