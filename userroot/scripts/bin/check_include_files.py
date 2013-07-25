@@ -4,19 +4,35 @@
 """\
 Check include files in a ReST documentation project.
 
-This script will verify that all ReST source files reside within or
-below a given ``startdir``. This also holds for files that are included
-via a ``.. include::`` directive and proceeds recursively. Files
-included by a ``.. literalinclude::`` are checked as well except hat
-the contents is not checked and no recursion will happen. Processing
-will stop with the first non matching file. Exitcode 0 signals success,
-exitcode 1 means "illegal path found" and exitcode 2 signals a
-commandline or general error.
-(check_include_files.py, mb, 2013-07-23, 2013-07-25)
+This script verifies that all ReST source files reside within or
+below a given ``startdir``. Files that match the pattern "*.rst"
+are considered to be source files. The ReST sources are scanned
+for ``.. include::`` and ``.. literalinclude::`` directives
+and checking continues with included files. The contents of
+"literally included" files is not searched for further includes.
+Docutils special "<...>" syntax is considered illegal.
+
+Processing stops at the first illegal file.
+
+Since this script only scans the ReST sources on a textual basis
+for patterns that look like include directives it may find "false hits".
+This will happen for example when an include directive is part of a
+codeblock. In the case of "false hits" this script will still try
+to follow those include files. Most probably such a file does not
+exist. This is not treated as an error by this script.
+
+Exitcodes::
+
+  0 = success
+  1 = some error occurred
+  2 = wrong parameters
+  3 = illegal includes detected
+
+(check_include_files.py, mb, 2013-07-23, 2013-07-26)
 
 """
 
-__version__ = '0.1.0'
+__version__ = '0.2.0'
 __history__ = ""
 __copyright__ = """\
 
@@ -49,8 +65,10 @@ ospe = os.path.exists
 
 checkedfiles = []
 checkedincludefiles = []
+illegalfiles = []
 forbiddenfiles = []
 forbiddenfilesparents = []
+notreadablefiles = []
 
 # PATHPARTS = splitpath(startdir)
 # N_PARTS = len(PATHPARTS)
@@ -104,15 +122,30 @@ def processRstFile(filepath, parents=None, recurse=1):
         else:
             checkedfiles.append(restfile)
             ok = True
-    if recurse and ospe(restfile):
-        f1 = file(restfile)
-        strdata = f1.read()
-        f1.close()
+    if ok and recurse:
+        strdata = None
+        if ospe(restfile):
+            f1 = file(restfile)
+            strdata = f1.read()
+            f1.close()
+        elif ospe(restfile.decode('utf-8', 'replace')):
+            f1 = file(restfile.decode('utf-8', 'replace'))
+            strdata = f1.read()
+            f1.close()
+        else:
+            if not restfile in notreadablefiles:
+                notreadablefiles.append(restfile)
 
-        if 1 and 'look for ``.. include::`` directives':
+        if 1 and ok and strdata and 'look for ``.. include::`` directives':
             # '\n .. include:: abc.txt \n\n  .. include:: abc.txt'
             filenames = re.findall('^\s*\.\.\s+include::\s*(\S+)\s*$', strdata, flags=+re.MULTILINE)
             for filename in filenames:
+                if filename[0] == '<':
+                    parents.append(restfile)
+                    forbiddenfiles.append(filename)
+                    forbiddenfilesparents.append(parents)
+                    ok = False
+                    return ok, parents
                 if os.path.isabs(filename):
                     restfile2 = filename
                 else:
@@ -124,10 +157,18 @@ def processRstFile(filepath, parents=None, recurse=1):
                     ok, parents = processRstFile(restfile2, parents, recurse=1)
                     if not ok:
                         break
-        if 1 and 'look for ``.. literalinclude::`` directives':
+                    else:
+                        parents.pop()
+        if 1 and ok and strdata and 'look for ``.. literalinclude::`` directives':
             # '\n .. literalinclude:: code.js \n\n  .. literalinclude:: code.php'
             filenames = re.findall('^\s*\.\.\s+literalinclude::\s*(\S+)\s*$', strdata, flags=+re.MULTILINE)
             for filename in filenames:
+                if filename[0] == '<':
+                    parents.append(restfile)
+                    forbiddenfiles.append(filename)
+                    forbiddenfilesparents.append(parents)
+                    ok = False
+                    return ok, parents
                 if os.path.isabs(filename):
                     restfile2 = filename
                 else:
@@ -139,6 +180,8 @@ def processRstFile(filepath, parents=None, recurse=1):
                     ok, parents = processRstFile(restfile2, parents, recurse=0)
                     if not ok:
                         break
+                    else:
+                        parents.pop()
 
     return ok, parents
 
@@ -170,8 +213,8 @@ def removestartdir(fname):
 def printresult():
     print
 
-    print 'checked files:'
-    print '=============='
+    print 'observed files:'
+    print '==============='
     if checkedfiles:
         for f in checkedfiles:
             print removestartdir(f)
@@ -179,10 +222,19 @@ def printresult():
         print 'None.'
     print
 
-    print 'checked include files:'
-    print '======================'
+    print 'observed include files:'
+    print '======================='
     if checkedincludefiles:
         for f in checkedincludefiles:
+            print removestartdir(f)
+    else:
+        print 'None.'
+    print
+
+    print 'include files that could not be read (= no error):'
+    print '=================================================='
+    if notreadablefiles:
+        for f in notreadablefiles:
             print removestartdir(f)
     else:
         print 'None.'
@@ -247,6 +299,8 @@ class Namespace(object):
             setattr(self, name, kwargs[name])
 
 if __name__ == "__main__":
+    # sys.argv = sys.argv[:1] + [r'D:\kannweg\TO_BE_DELETED_HACKS_XAVIER\Documentation', '-v']
+
     argparse_available = False
     try:
         import argparse
@@ -276,7 +330,6 @@ if __name__ == "__main__":
         print "argument is not a directory (exitcode=2)\n"
         sys.exit(2)
 
-    # args.startdir = r'D:\Repositories\git.typo3.org\Documentation\TYPO3\Reference\CodingGuidelines.git\Documentation'
     startdir = normalizepath(args.startdir)
     PATHPARTS = splitpath(startdir)
     N_PARTS = len(PATHPARTS)
