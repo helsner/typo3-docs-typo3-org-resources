@@ -342,5 +342,5 @@ if __name__ == "__main__":
         sys.exit(0)
     else:
         if args.verbose:
-            print "exitcode=1"
-        sys.exit(1)
+            print "exitcode=3"
+        sys.exit(3)
