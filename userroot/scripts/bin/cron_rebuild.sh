@@ -23,6 +23,20 @@ fi
 
 . cron_rebuild.conf
 
+# ------------------------------------------------------
+#
+# The cron job sends an email. Include a bit of information
+# at the top so we know what project is being build.
+#
+# ------------------------------------------------------
+
+echo "=================================================="
+echo "Project   : $PROJECT"
+echo "Version   : $VERSION"
+echo "GitDir    : $GITDIR"
+echo "Repository: $GITURL"
+
+
 # Replace all slashes to dashes for a temporary build directory name
 ORIG_BUILDDIR=$BUILDDIR
 BUILDDIR=/tmp/${BUILDDIR//\//-}
@@ -39,19 +53,26 @@ export T3DOCDIR
 #
 # ------------------------------------------------------
 function packagedocumentation() {
+    local PACKAGEDIR
+    if [ "${PACKAGE_LANGUAGE}" == "default" ]; then
+        PACKAGEDIR=$ORIG_BUILDDIR/../packages
+    else
+        PACKAGEDIR=$ORIG_BUILDDIR/../../packages
+    fi
     local ARCHIVE=${PROJECT}-${VERSION}-${PACKAGE_LANGUAGE}.zip
+
     rm -rf /tmp/$PACKAGE_KEY /tmp/$ARCHIVE
     mkdir -p /tmp/$PACKAGE_KEY/$PACKAGE_LANGUAGE/html
     cp -r $BUILDDIR/* /tmp/$PACKAGE_KEY/$PACKAGE_LANGUAGE/html
     pushd /tmp >/dev/null
     zip -r -9 $ARCHIVE $PACKAGE_KEY
-    mkdir -p $ORIG_BUILDDIR/../packages
-    mv $ARCHIVE $ORIG_BUILDDIR/../packages/
+    mkdir -p $PACKAGEDIR
+    mv $ARCHIVE $PACKAGEDIR/
     rm -rf /tmp/$PACKAGE_KEY
     popd >/dev/null
 
     # Create documentation pack index
-    pushd $ORIG_BUILDDIR/../packages/ >/dev/null
+    pushd $PACKAGEDIR >/dev/null
     rm -f packages.xml
     touch packages.xml
 
@@ -133,7 +154,7 @@ if [ -r "REBUILD_REQUESTED" ]; then
     fi
 
     # Check for valid documentation
-    if [ ! -r "$T3DOCDIR/Index.rst" ]; then
+    if [ ! -r "$T3DOCDIR/Index.rst" ] && [ ! -r "$T3DOCDIR/README.rst" ]; then
         if [ -r "./README.rst" ]; then
             export T3DOCDIR=$GITDIR
         else
