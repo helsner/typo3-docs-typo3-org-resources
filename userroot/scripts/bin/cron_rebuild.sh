@@ -23,20 +23,6 @@ fi
 
 . cron_rebuild.conf
 
-# ------------------------------------------------------
-#
-# The cron job sends an email. Include a bit of information
-# at the top so we know what project is being build.
-#
-# ------------------------------------------------------
-
-echo "=================================================="
-echo "Project   : $PROJECT"
-echo "Version   : $VERSION"
-echo "GitDir    : $GITDIR"
-echo "Repository: $GITURL"
-
-
 # Replace all slashes to dashes for a temporary build directory name
 ORIG_BUILDDIR=$BUILDDIR
 BUILDDIR=/tmp/${BUILDDIR//\//-}
@@ -44,6 +30,22 @@ BUILDDIR=/tmp/${BUILDDIR//\//-}
 # Export variables to be used by Makefile later on
 export BUILDDIR
 export T3DOCDIR
+
+# ------------------------------------------------------
+#
+# The cron job sends an email. Include a bit of information
+# at the top so we know what project is being build.
+#
+# ------------------------------------------------------
+function projectinfo2stdout() {
+
+    echo "=================================================="
+    echo "Project   : $PROJECT"
+    echo "Version   : $VERSION"
+    echo "GitDir    : $GITDIR"
+    echo "Repository: $GITURL"
+
+}
 
 # ------------------------------------------------------
 #
@@ -135,6 +137,9 @@ function rebuildneeded() {
 }
 
 if [ -r "REBUILD_REQUESTED" ]; then
+
+    projectinfo2stdout
+
     if [ -n "$GITURL" ]; then
         if [ ! -r "$GITDIR" ]; then
             git clone $GITURL $GITDIR
