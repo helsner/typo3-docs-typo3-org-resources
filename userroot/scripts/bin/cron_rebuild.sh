@@ -47,6 +47,53 @@ function projectinfo2stdout() {
 
 }
 
+
+# ------------------------------------------------------
+#
+# This function takes care of compiling the project
+# as PDF, removing any intermediate LaTeX files.
+#
+# ------------------------------------------------------
+function compilepdf() {
+    local EXITCODE
+    local PDFFILE
+
+    egrep "^'preamble': '\\\\\\\\usepackage{typo3}'," $MAKE_DIRECTORY/conf.py >/dev/null
+    if [ $? -ne 0 ]; then
+        echo "PDF rendering is not configured, skipping."
+        return
+    fi
+
+    make -e latexpdf
+    EXITCODE=$?
+
+    # Idea: search for any PDF instead?
+    PDFFILE=$BUILDDIR/latex/$PROJECT.pdf
+
+    if [ $EXITCODE -ne 0 ]; then
+        # Store log into warnings.txt, may be useful to investigate
+        cat $BUILDDIR/latex/*.log >> $MAKE_DIRECTORY/warnings.txt
+        echo "Could not compile as PDF, skipping."
+    elif [ ! -f "$PDFFILE" ]; then
+        EXITCODE=1
+        echo "Could not find output PDF, skipping."
+    else
+        # Move PDF to a directory "_pdf" (instead of "latex")
+        mkdir $BUILDDIR/_pdf
+        mv $PDFFILE $BUILDDIR/_pdf
+        if [ "$(basename $PDFFILE)" != "manual.pdf" ]; then
+            pushd $BUILDDIR/_pdf >/dev/null
+            ln -s $(basename $PDFFILE) manual.pdf
+            popd >/dev/null
+        fi
+    fi
+
+    # Remove LaTeX intermediate files
+    rm -rf $BUILDDIR/latex
+
+    return $EXITCODE
+}
+
 # ------------------------------------------------------
 #
 # This function takes care of packaging the
@@ -66,6 +113,16 @@ function packagedocumentation() {
     rm -rf /tmp/$PACKAGE_KEY /tmp/$ARCHIVE
     mkdir -p /tmp/$PACKAGE_KEY/$PACKAGE_LANGUAGE/html
     cp -r $BUILDDIR/* /tmp/$PACKAGE_KEY/$PACKAGE_LANGUAGE/html
+
+    # Move PDF if needed
+    if [ -d "$BUILDDIR/_pdf" ]; then
+        mkdir -p /tmp/$PACKAGE_KEY/$PACKAGE_LANGUAGE/pdf
+        pushd /tmp/$PACKAGE_KEY/$PACKAGE_LANGUAGE > /dev/null
+        find html/_pdf/ -type f -name \*.pdf -exec mv {} pdf/ \;
+        rm -rf html/_pdf/
+        popd >/dev/null
+    fi
+
     pushd /tmp >/dev/null
     zip -r -9 $ARCHIVE $PACKAGE_KEY
     mkdir -p $PACKAGEDIR
@@ -195,6 +252,9 @@ if [ -r "REBUILD_REQUESTED" ]; then
     rm -rf $BUILDDIR
     #make -e clean
     make -e html
+
+    # Prepare PDF using LaTeX
+    compilepdf
 
     # Package the documentation
     packagedocumentation
