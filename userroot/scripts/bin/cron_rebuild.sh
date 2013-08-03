@@ -64,15 +64,18 @@ function compilepdf() {
         return
     fi
 
-    make -e latexpdf
+    make -e latex
+    # Fix generated Makefile for batch processing
+    sed -i"" 's/pdflatex /pdflatex -interaction=nonstopmode -halt-on-error /' $BUILDDIR/latex/Makefile
+    make -C $BUILDDIR/latex all-pdf
     EXITCODE=$?
 
     # Idea: search for any PDF instead?
     PDFFILE=$BUILDDIR/latex/$PROJECT.pdf
 
     if [ $EXITCODE -ne 0 ]; then
-        # Store log into warnings.txt, may be useful to investigate
-        cat $BUILDDIR/latex/*.log >> $MAKE_DIRECTORY/warnings.txt
+        # Store log into pdflatex.txt, may be useful to investigate
+        cat $BUILDDIR/latex/*.log >> $MAKE_DIRECTORY/pdflatex.txt
         echo "Could not compile as PDF, skipping."
     elif [ ! -f "$PDFFILE" ]; then
         EXITCODE=1
