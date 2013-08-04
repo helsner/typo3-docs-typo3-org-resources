@@ -314,7 +314,7 @@ if [ -r "REBUILD_REQUESTED" ]; then
 
     # Recreate "stable" link if needed
     STABLE_VERSION=$(find $ORIG_BUILDDIR/.. -maxdepth 1 -type d -exec basename {} \; \
-        | grep -E "\d*\." | sort -rV | head -n1)
+        | grep -E "^[0-9]+\." | sort -rV | head -n1)
     if [ ! -r "$ORIG_BUILDDIR/../$STABLE_VERSION/objects.inv" ]; then
         # Highest version is not a Sphinx project => bad output thus skip!
         STABLE_VERSION=""
