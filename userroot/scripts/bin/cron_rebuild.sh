@@ -73,9 +73,9 @@ function compilepdf() {
 
     PDFFILE=$BUILDDIR/latex/$PROJECT.pdf
     if [ "$PACKAGE_LANGUAGE" == "default" ]; then
-        TARGETPDF=$PROJECT-$VERSION.pdf
+        TARGETPDF=manual.$PROJECT-$VERSION.pdf
     else
-        TARGETPDF=$PROJECT-$VERSION.${PACKAGE_LANGUAGE}.pdf
+        TARGETPDF=manual.$PROJECT-$VERSION.${PACKAGE_LANGUAGE}.pdf
     fi
 
     if [ $EXITCODE -ne 0 ]; then
