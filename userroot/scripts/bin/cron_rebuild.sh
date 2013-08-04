@@ -38,15 +38,35 @@ export T3DOCDIR
 #
 # ------------------------------------------------------
 function projectinfo2stdout() {
-
     echo "=================================================="
     echo "Project   : $PROJECT"
     echo "Version   : $VERSION"
     echo "GitDir    : $GITDIR"
     echo "Repository: $GITURL"
-
 }
 
+# ------------------------------------------------------
+#
+# Lazily move files using hard-linking to other versions
+# of the same files whenever possible.
+#
+# ------------------------------------------------------
+function lazy_mv() {
+    local FROM_DIR="$1"
+    local TO_DIR="$2"
+
+    # Reuse same assets as much as possible
+    if [ -d "$FROM_DIR/singlehtml" ]; then
+        # _static and _images are 100% identical
+        for d in _static _images; do
+            rm $FROM_DIR/singlehtml/$d/*
+            cp -al $FROM_DIR/$d/* $FROM_DIR/singlehtml/$d/
+        done
+    fi
+
+    # Finally move directory to its final place
+    mv $FROM_DIR $TO_DIR
+}
 
 # ------------------------------------------------------
 #
@@ -289,7 +309,7 @@ if [ -r "REBUILD_REQUESTED" ]; then
 
     # Switch rendered documentation in public_html
     rm -rf $ORIG_BUILDDIR
-    mv $BUILDDIR $ORIG_BUILDDIR
+    lazy_mv $BUILDDIR $ORIG_BUILDDIR
     chgrp -R www-default $ORIG_BUILDDIR
 
     # Recreate "stable" link if needed
