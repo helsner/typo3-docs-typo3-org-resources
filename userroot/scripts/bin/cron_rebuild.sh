@@ -57,6 +57,7 @@ function projectinfo2stdout() {
 function compilepdf() {
     local EXITCODE
     local PDFFILE
+    local TARGETPDF
 
     egrep "^'preamble': '\\\\\\\\usepackage{typo3}'," $MAKE_DIRECTORY/conf.py >/dev/null
     if [ $? -ne 0 ]; then
@@ -70,8 +71,12 @@ function compilepdf() {
     make -C $BUILDDIR/latex all-pdf
     EXITCODE=$?
 
-    # Idea: search for any PDF instead?
     PDFFILE=$BUILDDIR/latex/$PROJECT.pdf
+    if [ "$PACKAGE_LANGUAGE" == "default" ]; then
+        TARGETPDF=$PROJECT-$VERSION.pdf
+    else
+        TARGETPDF=$PROJECT-$VERSION.${PACKAGE_LANGUAGE}.pdf
+    fi
 
     if [ $EXITCODE -ne 0 ]; then
         # Store log into pdflatex.txt, may be useful to investigate
@@ -83,12 +88,17 @@ function compilepdf() {
     else
         # Move PDF to a directory "_pdf" (instead of "latex")
         mkdir $BUILDDIR/_pdf
-        mv $PDFFILE $BUILDDIR/_pdf
-        if [ "$(basename $PDFFILE)" != "manual.pdf" ]; then
-            pushd $BUILDDIR/_pdf >/dev/null
-            ln -s $(basename $PDFFILE) manual.pdf
-            popd >/dev/null
-        fi
+        mv $PDFFILE $BUILDDIR/_pdf/$TARGETPDF
+
+        # Create a .htaccess that redirects everything to the real PDF
+        # Remove "/home/mbless/public_html" at the beginning
+        TARGETDIR=$(echo $ORIG_BUILDDIR | cut -b25-)/_pdf
+
+        pushd $BUILDDIR/_pdf >/dev/null
+        echo "RewriteEngine On"                                    >  .htaccess
+        echo "RewriteCond %{REQUEST_FILENAME} !-f"                 >> .htaccess
+        echo "RewriteRule ^(.*)\$ $TARGETDIR/$TARGETPDF [L,R=301]" >> .htaccess
+        popd >/dev/null
     fi
 
     # Remove LaTeX intermediate files
