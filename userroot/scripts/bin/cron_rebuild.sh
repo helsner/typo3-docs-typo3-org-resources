@@ -55,21 +55,11 @@ function lazy_mv() {
     local FROM_DIR="$1"
     local TO_DIR="$2"
 
-    # Reuse same assets as much as possible
-    # Note: this would already be covered by fdupes below
-    if [ -d "$FROM_DIR/singlehtml" ]; then
-        # _static and _images are 100% identical
-        for d in _static _images; do
-            rm $FROM_DIR/singlehtml/$d/*
-            cp -al $FROM_DIR/$d/* $FROM_DIR/singlehtml/$d/
-        done
-    fi
-
-    # Finally move directory to its final place
+    # Move directory to its final place
     rm -rf $TO_DIR
     mv $FROM_DIR $TO_DIR
 
-    # Find duplicates one level higher and replace with hard-links
+    # Find duplicates one level higher and replace them with hard-links
     fdupes -rL $TO_DIR/..
 }
 
