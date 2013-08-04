@@ -56,6 +56,7 @@ function lazy_mv() {
     local TO_DIR="$2"
 
     # Reuse same assets as much as possible
+    # Note: this would already be covered by fdupes below
     if [ -d "$FROM_DIR/singlehtml" ]; then
         # _static and _images are 100% identical
         for d in _static _images; do
@@ -65,7 +66,11 @@ function lazy_mv() {
     fi
 
     # Finally move directory to its final place
+    rm -rf $TO_DIR
     mv $FROM_DIR $TO_DIR
+
+    # Find duplicates one level higher and replace with hard-links
+    fdupes -rL $TO_DIR/..
 }
 
 # ------------------------------------------------------
@@ -308,7 +313,6 @@ if [ -r "REBUILD_REQUESTED" ]; then
     popd >/dev/null
 
     # Switch rendered documentation in public_html
-    rm -rf $ORIG_BUILDDIR
     lazy_mv $BUILDDIR $ORIG_BUILDDIR
     chgrp -R www-default $ORIG_BUILDDIR
 
