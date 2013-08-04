@@ -281,11 +281,13 @@ if [ -r "REBUILD_REQUESTED" ]; then
     #make -e clean
     make -e html
 
-    # Prepare PDF using LaTeX
-    compilepdf
+    if [ "$PACKAGE_ZIP" == "1" ]; then
+        # Prepare PDF using LaTeX
+        compilepdf
 
-    # Package the documentation
-    packagedocumentation
+        # Package the documentation
+        packagedocumentation
+    fi
 
     # Create other versions of the documentation
     # make -e gettext
