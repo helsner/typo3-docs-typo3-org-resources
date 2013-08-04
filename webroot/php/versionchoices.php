@@ -24,7 +24,7 @@ class VersionMatcher {
     var $resolveSymlink = array(
         '/typo3cms/drafts/'     => '/TYPO3/drafts/',
         '/typo3cms/extensions/' => '/TYPO3/extensions/',
-        '/typo3cms/'            => '/TYPO3/',
+        '/TYPO3/'               => '/typo3cms/',
     );
     var $cont               = true;    // continue?
     var $url                = '';      // 'http://docs.typo3.org/typo3cms/TyposcriptReference/4.7/Setup/Page/Index.html?id=3#abc'
@@ -59,14 +59,14 @@ class VersionMatcher {
     }
 
     function unparse_url($parsed_url) {
-        $scheme   = isset($parsed_url['scheme']) ? $parsed_url['scheme'] . '://' : '';
-        $host     = isset($parsed_url['host']) ? $parsed_url['host'] : '';
-        $port     = isset($parsed_url['port']) ? ':' . $parsed_url['port'] : '';
-        $user     = isset($parsed_url['user']) ? $parsed_url['user'] : '';
-        $pass     = isset($parsed_url['pass']) ? ':' . $parsed_url['pass']  : '';
+        $scheme   = isset($parsed_url['scheme'  ]) ?       $parsed_url['scheme'] . '://' : '';
+        $host     = isset($parsed_url['host'    ]) ?       $parsed_url['host']     : '';
+        $port     = isset($parsed_url['port'    ]) ? ':' . $parsed_url['port']     : '';
+        $user     = isset($parsed_url['user'    ]) ?       $parsed_url['user']     : '';
+        $pass     = isset($parsed_url['pass'    ]) ? ':' . $parsed_url['pass']     : '';
         $pass     = ($user || $pass) ? "$pass@" : '';
-        $path     = isset($parsed_url['path']) ? $parsed_url['path'] : '';
-        $query    = isset($parsed_url['query']) ? '?' . $parsed_url['query'] : '';
+        $path     = isset($parsed_url['path'    ]) ?       $parsed_url['path']     : '';
+        $query    = isset($parsed_url['query'   ]) ? '?' . $parsed_url['query']    : '';
         $fragment = isset($parsed_url['fragment']) ? '#' . $parsed_url['fragment'] : '';
         return "$scheme$user$pass$host$port$path$query$fragment";
     }
@@ -79,7 +79,7 @@ class VersionMatcher {
             }
         }
         if (!$isValid) { // numbered versions (like 1.2.3...)
-            $pattern = '~\d+(\.\d+)*~is';
+            $pattern = '~\d+\.\d+(\.\d+)*~is';
             $subpattern = array();
             $result = preg_match($pattern, $filename, $subpattern);
             if ($result and ($subpattern[0] === $filename)) {
@@ -255,9 +255,9 @@ class VersionMatcher {
         while (false !== ($filename = readdir($directory))) {
             if (1
                 and $filename !== '.'
-                    and $filename !== '..'
-                        and is_dir($absPathToManual . '/' . $filename)
-                            and $this->isValidVersionFolderName($filename)
+                and $filename !== '..'
+                and is_dir($absPathToManual . '/' . $filename)
+                and $this->isValidVersionFolderName($filename)
             ) {
                 $versionFolder = $filename;
                 $baseFound = false;
@@ -303,7 +303,6 @@ class VersionMatcher {
             }
         }
     }
-
 
 
     function dump_and_die($arg) {
