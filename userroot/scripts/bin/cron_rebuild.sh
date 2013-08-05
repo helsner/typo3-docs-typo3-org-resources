@@ -60,7 +60,7 @@ function lazy_mv() {
     mv $FROM_DIR $TO_DIR
 
     # Find duplicates one level higher and replace them with hard-links
-    fdupes -rL $TO_DIR/..
+    fdupes -rLq $TO_DIR/..
 }
 
 # ------------------------------------------------------
@@ -152,7 +152,7 @@ function packagedocumentation() {
     fi
 
     pushd /tmp >/dev/null
-    zip -r -9 $ARCHIVE $PACKAGE_KEY
+    zip -r -9 -q $ARCHIVE $PACKAGE_KEY
     mkdir -p $PACKAGEDIR
     mv $ARCHIVE $PACKAGEDIR/
     rm -rf /tmp/$PACKAGE_KEY
@@ -263,7 +263,7 @@ if [ -r "REBUILD_REQUESTED" ]; then
 
 
     # check include files
-    /home/mbless/scripts/bin/check_include_files.py --verbose "$T3DOCDIR" >"$MAKE_DIRECTORY"/included-files-check.log.txt
+    /home/mbless/scripts/bin/check_include_files.py "$T3DOCDIR" >"$MAKE_DIRECTORY"/included-files-check.log.txt
 
     if [ $? -ne 0 ]; then
         echo "Problem with include files"
