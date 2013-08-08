@@ -23,13 +23,8 @@ fi
 
 . cron_rebuild.conf
 
-# Replace all slashes to dashes for a temporary build directory name
-ORIG_BUILDDIR=$BUILDDIR
-BUILDDIR=/tmp/${BUILDDIR//\//-}
-
-# Export variables to be used by Makefile later on
-export BUILDDIR
-export T3DOCDIR
+# Supported locales: http://sphinx-doc.org/latest/config.html#intl-options
+SPHINX_LOCALES="bn ca cs da de es et eu fa fi fr hr hu it ja ko lt lv nb_NO ne nl pl pt_BR ru sk sl sv tr uk_UA zh_CN zh_TW"
 
 # ------------------------------------------------------
 #
@@ -74,7 +69,7 @@ function compilepdf() {
     local PDFFILE
     local TARGETPDF
 
-    egrep "^'preamble': '\\\\\\\\usepackage{typo3}'," $MAKE_DIRECTORY/conf.py >/dev/null
+    grep -A3 latex_elements $MAKE_DIRECTORY/10+20+30_conf_py.yml | egrep "^    preamble: \\\\usepackage{typo3}" >/dev/null
     if [ $? -ne 0 ]; then
         echo "PDF rendering is not configured, skipping."
         return
@@ -221,60 +216,45 @@ function rebuildneeded() {
     fi
 }
 
-if [ -r "REBUILD_REQUESTED" ]; then
+function renderdocumentation() {
+    BASE_DIR="$1"
+    T3DOCDIR="$2"
+    IS_TRANSLATION=$3
 
-    projectinfo2stdout
+    echo
+    echo "======================================================"
+    echo "Now rendering language $PACKAGE_LANGUAGE"
+    echo "======================================================"
+    echo
 
-    if [ -n "$GITURL" ]; then
-        if [ ! -r "$GITDIR" ]; then
-            git clone $GITURL $GITDIR
-        fi
-        cd $GITDIR
-        if [ ! -d ".git" ]; then
-            echo "Cannot proceed, not a Git directory: $GITDIR" 2>&1
-            exit 2
-        fi
-        git fetch
-        git checkout $GITBRANCH
-        git pull
-        git status
-    elif [ ! -r "$GITDIR" ]; then
-        echo "No Git URL provided and non-existing directory: $GITDIR" 2>&1
-        exit 3
-    fi
-
-    # Check for valid documentation
-    if [ ! -r "$T3DOCDIR/Index.rst" ] && [ ! -r "$T3DOCDIR/README.rst" ]; then
-        if [ -r "./README.rst" ]; then
-            export T3DOCDIR=$GITDIR
-        else
-            echo "No documentation found: $GITDIR" 2>&1
-            exit 4
-        fi
-    fi
-
-    rebuildneeded
-    if [ $? -eq 0 ]; then
-        echo "Documentation did not change: rebuild is not needed"
-        # Remove request
-        rm -I "$MAKE_DIRECTORY/REBUILD_REQUESTED"
-        exit 0
-    fi
-
-
-    # check include files
-    /home/mbless/scripts/bin/check_include_files.py "$T3DOCDIR" >"$MAKE_DIRECTORY"/included-files-check.log.txt
-
-    if [ $? -ne 0 ]; then
-        echo "Problem with include files"
-        # Remove request
-        rm -I "$MAKE_DIRECTORY/REBUILD_REQUESTED"
-        exit 5
+    if [ "$PACKAGE_LANGUAGE" != "default" ]; then
+        # We want localized static labels with Sphinx
+        # and LaTeX
+        export LANGUAGE=$PACKAGE_LANGUAGE
     fi
 
     # cron: add to stdout which goes via mail to Martin
-    cat "$MAKE_DIRECTORY"/included-files-check.log.txt
+    #cat "$MAKE_DIRECTORY"/included-files-check.log.txt
 
+    BACKUP_BUILDDIR=$BUILDDIR
+
+    if [ $IS_TRANSLATION -eq 1 ]; then
+        local LAST_SEGMENT=$(basename $BUILDDIR)
+        BUILDDIR=$BUILDDIR/../$PACKAGE_LANGUAGE/$LAST_SEGMENT
+
+        # Override Settings.yml (conf.py is hardcoded to ./Documentation/Settings.yml)
+        if [ -r "$T3DOCDIR/Settings.yml" ]; then
+            cp $T3DOCDIR/Settings.yml $BASE_DIR/
+        fi
+    fi
+
+    # Replace all slashes to dashes for a temporary build directory name
+    ORIG_BUILDDIR=$BUILDDIR
+    BUILDDIR=/tmp/${BUILDDIR//[\/.]/-}
+
+    # Export variables to be used by Makefile later on
+    export BUILDDIR
+    export T3DOCDIR
 
     cd $MAKE_DIRECTORY
     rm -rf $BUILDDIR
@@ -326,6 +306,95 @@ if [ -r "REBUILD_REQUESTED" ]; then
             ln -s $STABLE_VERSION stable
             popd >/dev/null
         fi
+    fi
+
+    BUILDDIR=$BACKUP_BUILDDIR
+}
+
+if [ -r "REBUILD_REQUESTED" ]; then
+
+    projectinfo2stdout
+
+    if [ -n "$GITURL" ]; then
+        if [ ! -r "$GITDIR" ]; then
+            git clone $GITURL $GITDIR
+        fi
+        cd $GITDIR
+        if [ ! -d ".git" ]; then
+            echo "Cannot proceed, not a Git directory: $GITDIR" 2>&1
+            exit 2
+        fi
+        git fetch
+        git checkout $GITBRANCH
+        git pull
+        # Discard any change
+        git reset --hard origin/$GITBRANCH
+        git status
+    elif [ ! -r "$GITDIR" ]; then
+        echo "No Git URL provided and non-existing directory: $GITDIR" 2>&1
+        exit 3
+    fi
+
+    # Check for valid documentation
+    if [ ! -r "$T3DOCDIR/Index.rst" ] && [ ! -r "$T3DOCDIR/README.rst" ]; then
+        if [ -r "./README.rst" ]; then
+            T3DOCDIR=$GITDIR
+        else
+            echo "No documentation found: $GITDIR" 2>&1
+            exit 4
+        fi
+    fi
+
+    rebuildneeded
+    if [ $? -eq 0 ]; then
+        echo "Documentation did not change: rebuild is not needed"
+        # Remove request
+        rm -I "$MAKE_DIRECTORY/REBUILD_REQUESTED"
+        exit 0
+    fi
+
+    # check include files
+    /home/mbless/scripts/bin/check_include_files.py --verbose "$T3DOCDIR" > "${MAKE_DIRECTORY}/included-files-check.log.txt"
+    if [ $? -ne 0 ]; then
+        echo "Problem with include files"
+        # Remove request
+        rm -I "$MAKE_DIRECTORY/REBUILD_REQUESTED"
+        exit 5
+    fi
+
+    if [ -n "$GITURL" ]; then
+        if [ -r "$GITDIR" ]; then
+            pushd $T3DOCDIR >/dev/null
+
+            # Temporarily remove localization directories from Sphinx to prevent warnings with unreferenced files and duplicate labels
+            find . -regex ".*/Localization\.[a-zA-Z_]*" -exec rm -rf {} \;
+
+            popd >/dev/null
+        fi
+    fi
+
+    BACKUP_T3DOCDIR=$T3DOCDIR
+    renderdocumentation $T3DOCDIR $T3DOCDIR 0
+
+    if [ -n "$GITURL" ]; then
+        if [ -r "$GITDIR" ]; then
+            pushd $T3DOCDIR >/dev/null
+
+            # Fetch back localization directories
+            git reset --hard origin/$GITBRANCH
+
+            popd >/dev/null
+        fi
+    fi
+
+    if [ "$PACKAGE_LANGUAGE" == "default" ]; then
+        for L in $SPHINX_LOCALES; do
+            T3DOCDIR=$BACKUP_T3DOCDIR
+            PACKAGE_LANGUAGE=$L
+            if [ -r "$T3DOCDIR/Localization.$L/Index.rst" ]; then
+                renderdocumentation $T3DOCDIR $T3DOCDIR/Localization.$L 1
+            fi
+        done
     fi
 
     # Remove request

@@ -9,7 +9,14 @@ T3DOCDIR      = /dev/null
 # Internal variables.
 PAPEROPT_a4     = -D latex_paper_size=a4
 PAPEROPT_letter = -D latex_paper_size=letter
+
+ifdef LANGUAGE
+ALLSPHINXOPTS   = -D language=$(LANGUAGE) -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) $(T3DOCDIR)
+SPHINXOPTS      = -c . -a -E -w warnings-$(LANGUAGE).txt
+else
 ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) $(T3DOCDIR)
+endif
+
 # the i18n builder cannot share the environment and doctrees with the others
 I18NSPHINXOPTS  = $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) $(T3DOCDIR)
 
