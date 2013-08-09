@@ -23,8 +23,39 @@ fi
 
 . cron_rebuild.conf
 
-# Supported locales: http://sphinx-doc.org/latest/config.html#intl-options
-SPHINX_LOCALES="bn ca cs da de es et eu fa fi fr hr hu it ja ko lt lv nb_NO ne nl pl pt_BR ru sk sl sv tr uk_UA zh_CN zh_TW"
+# The list of supported languages by Sphinx is available
+# on http://sphinx-doc.org/latest/config.html#intl-options
+#
+# BEWARE: 1) of space at the end of the string
+#         2) "en" is not included because we map it to "default" instead
+SPHINX_LANGUAGES="bn ca cs da de es et eu fa fi fr hr hu it ja ko lt lv nb_NO ne nl pl pt_BR ru sk sl sv tr uk_UA zh_CN zh_TW "
+
+# ------------------------------------------------------
+#
+# Returns the "language" supported by Sphinx from a
+# given user's locale (e.g., "fr_FR" will return "fr").
+#
+# The list of supported languages by Sphinx is available
+# on http://sphinx-doc.org/latest/config.html#intl-options
+# ------------------------------------------------------
+function findsphinxlanguage() {
+    local USERLOCALE="$1"
+
+    echo "$SPHINX_LANGUAGES" | grep "$USERLOCALE " >/dev/null
+    if [ $? -eq 0 ]; then
+        # User's locale exists as this in Sphinx
+        echo -n $USERLOCALE
+    else
+        # Try with the 2-letter language code only
+        local USERLANGUAGE=$(echo $USERLOCALE | sed 's/_..$//')
+        echo "$SPHINX_LANGUAGES" | grep "$USERLANGUAGE " >/dev/null
+        if [ $? -eq 0 ]; then
+            echo -n $USERLANGUAGE
+        else
+            echo -n default
+        fi
+    fi
+}
 
 # ------------------------------------------------------
 #
@@ -169,7 +200,7 @@ function packagedocumentation() {
     for p in $(find . -name \*.zip | sort);
     do
             local _VERSION=$(echo $p | sed -r "s/.*-([0-9.]*|latest)-([a-z]*)\.zip\$/\1/")
-            local _LANGUAGE=$(echo $p | sed -r "s/.*-([0-9.]*|latest)-([a-z]*)\.zip\$/\2/")
+            local _LANGUAGE=$(echo $p | sed -r "s/.*-([0-9.]*|latest)-([a-zA-Z_]*)\.zip\$/\2/")
             echo -e "\t\t<languagepack version=\"$_VERSION\" language=\"$_LANGUAGE\">" >> packages.xml
             echo -e "\t\t\t<md5>$(md5sum $p | cut -d" " -f1)</md5>"         >> packages.xml
             echo -e "\t\t</languagepack>"                                   >> packages.xml
@@ -217,9 +248,10 @@ function rebuildneeded() {
 }
 
 function renderdocumentation() {
-    BASE_DIR="$1"
+    local BASE_DIR="$1"
     T3DOCDIR="$2"
-    IS_TRANSLATION=$3
+    local IS_TRANSLATION=$3
+    local SPHINXCODE=$(findsphinxlanguage $PACKAGE_LANGUAGE)
 
     echo
     echo "======================================================"
@@ -227,10 +259,10 @@ function renderdocumentation() {
     echo "======================================================"
     echo
 
-    if [ "$PACKAGE_LANGUAGE" != "default" ]; then
+    if [ "$SPHINXCODE" != "default" ]; then
         # We want localized static labels with Sphinx
         # and LaTeX
-        export LANGUAGE=$PACKAGE_LANGUAGE
+        export LANGUAGE=$SPHINXCODE
     fi
 
     # cron: add to stdout which goes via mail to Martin
@@ -249,7 +281,7 @@ function renderdocumentation() {
     fi
 
     # Replace all slashes to dashes for a temporary build directory name
-    ORIG_BUILDDIR=$BUILDDIR
+    local ORIG_BUILDDIR=$BUILDDIR
     BUILDDIR=/tmp/${BUILDDIR//[\/.]/-}
 
     # Export variables to be used by Makefile later on
@@ -287,6 +319,9 @@ function renderdocumentation() {
     # Switch rendered documentation in public_html
     lazy_mv $BUILDDIR $ORIG_BUILDDIR
     chgrp -R www-default $ORIG_BUILDDIR
+    if [ ! -r "$ORIG_BUILDDIR/../.htaccess" ]; then
+        ln -s /home/mbless/scripts/config/_htaccess $ORIG_BUILDDIR/../.htaccess
+    fi
 
     # Recreate "stable" link if needed
     STABLE_VERSION=$(find $ORIG_BUILDDIR/.. -maxdepth 1 -type d -exec basename {} \; \
@@ -311,8 +346,10 @@ function renderdocumentation() {
     BUILDDIR=$BACKUP_BUILDDIR
 }
 
+# ------------------------------------------------------
+# MAIN SCRIPT
+# ------------------------------------------------------
 if [ -r "REBUILD_REQUESTED" ]; then
-
     projectinfo2stdout
 
     if [ -n "$GITURL" ]; then
@@ -367,7 +404,7 @@ if [ -r "REBUILD_REQUESTED" ]; then
             pushd $T3DOCDIR >/dev/null
 
             # Temporarily remove localization directories from Sphinx to prevent warnings with unreferenced files and duplicate labels
-            find . -regex ".*/Localization\.[a-zA-Z_]*" -exec rm -rf {} \;
+            find . -maxdepth 1 -regex ".*/Localization\.[a-zA-Z_]*$" -exec rm -rf {} \;
 
             popd >/dev/null
         fi
@@ -388,13 +425,13 @@ if [ -r "REBUILD_REQUESTED" ]; then
     fi
 
     if [ "$PACKAGE_LANGUAGE" == "default" ]; then
-        for L in $SPHINX_LOCALES; do
-            T3DOCDIR=$BACKUP_T3DOCDIR
-            PACKAGE_LANGUAGE=$L
-            if [ -r "$T3DOCDIR/Localization.$L/Index.rst" ]; then
-                renderdocumentation $T3DOCDIR $T3DOCDIR/Localization.$L 1
+        pushd $T3DOCDIR >/dev/null
+        for PACKAGE_LANGUAGE in $(find . -maxdepth 1 -regex ".*/Localization\.[a-z][a-z]_[A-Z][A-Z]$" | sed -r 's/.*\.(.._..)/\1/'); do
+            if [ -r "$T3DOCDIR/Localization.${PACKAGE_LANGUAGE}/Index.rst" ]; then
+                renderdocumentation $T3DOCDIR $T3DOCDIR/Localization.${PACKAGE_LANGUAGE} 1
             fi
         done
+        popd >/dev/null
     fi
 
     # Remove request
