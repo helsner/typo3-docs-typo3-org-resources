@@ -272,7 +272,8 @@ function renderdocumentation() {
 
     if [ $IS_TRANSLATION -eq 1 ]; then
         local LAST_SEGMENT=$(basename $BUILDDIR)
-        BUILDDIR=$BUILDDIR/../$PACKAGE_LANGUAGE/$LAST_SEGMENT
+        local LANGUAGE_SEGMENT=$(echo ${PACKAGE_LANGUAGE//_/-} | tr '[A-Z]' '[a-z]')
+        BUILDDIR=$BUILDDIR/../$LANGUAGE_SEGMENT/$LAST_SEGMENT
 
         # Override Settings.yml (conf.py is hardcoded to ./Documentation/Settings.yml)
         if [ -r "$T3DOCDIR/Settings.yml" ]; then
