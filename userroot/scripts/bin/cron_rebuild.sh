@@ -199,7 +199,7 @@ function packagedocumentation() {
 
     for p in $(find . -name \*.zip | sort);
     do
-            local _VERSION=$(echo $p | sed -r "s/.*-([0-9.]*|latest)-([a-z]*)\.zip\$/\1/")
+            local _VERSION=$(echo $p | sed -r "s/.*-([0-9.]*|latest)-([a-zA-Z_]*)\.zip\$/\1/")
             local _LANGUAGE=$(echo $p | sed -r "s/.*-([0-9.]*|latest)-([a-zA-Z_]*)\.zip\$/\2/")
             echo -e "\t\t<languagepack version=\"$_VERSION\" language=\"$_LANGUAGE\">" >> packages.xml
             echo -e "\t\t\t<md5>$(md5sum $p | cut -d" " -f1)</md5>"         >> packages.xml
