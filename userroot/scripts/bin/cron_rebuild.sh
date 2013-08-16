@@ -162,7 +162,8 @@ function packagedocumentation() {
     else
         PACKAGEDIR=$ORIG_BUILDDIR/../../packages
     fi
-    local ARCHIVE=${PROJECT}-${VERSION}-${PACKAGE_LANGUAGE}.zip
+    local LANGUAGE_SEGMENT=$(echo ${PACKAGE_LANGUAGE//_/-} | tr '[A-Z]' '[a-z]')
+    local ARCHIVE=${PROJECT}-${VERSION}-${LANGUAGE_SEGMENT}.zip
 
     rm -rf /tmp/$PACKAGE_KEY /tmp/$ARCHIVE
     mkdir -p /tmp/$PACKAGE_KEY/$PACKAGE_LANGUAGE/html
@@ -199,8 +200,8 @@ function packagedocumentation() {
 
     for p in $(find . -name \*.zip | sort);
     do
-            local _VERSION=$(echo $p | sed -r "s/.*-([0-9.]*|latest)-([a-zA-Z_]*)\.zip\$/\1/")
-            local _LANGUAGE=$(echo $p | sed -r "s/.*-([0-9.]*|latest)-([a-zA-Z_]*)\.zip\$/\2/")
+            local _VERSION=$(echo $p | sed -r "s/.*-([0-9.]*|latest)-([a-z-]*)\.zip\$/\1/")
+            local _LANGUAGE=$(echo $p | sed -r "s/.*-([0-9.]*|latest)-([a-z-]*)\.zip\$/\2/")
             echo -e "\t\t<languagepack version=\"$_VERSION\" language=\"$_LANGUAGE\">" >> packages.xml
             echo -e "\t\t\t<md5>$(md5sum $p | cut -d" " -f1)</md5>"         >> packages.xml
             echo -e "\t\t</languagepack>"                                   >> packages.xml
