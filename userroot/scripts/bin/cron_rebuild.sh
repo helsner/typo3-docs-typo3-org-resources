@@ -202,6 +202,9 @@ function packagedocumentation() {
     do
             local _VERSION=$(echo $p | sed -r "s/.*-([0-9.]*|latest)-([a-z-]*)\.zip\$/\1/")
             local _LANGUAGE=$(echo $p | sed -r "s/.*-([0-9.]*|latest)-([a-z-]*)\.zip\$/\2/")
+            if [ "$_LANGUAGE" != "default" ]; then
+                _LANGUAGE=$(echo $_LANGUAGE | sed 's/..$/\U&/' | sed 's/-/_/')
+            fi
             echo -e "\t\t<languagepack version=\"$_VERSION\" language=\"$_LANGUAGE\">" >> packages.xml
             echo -e "\t\t\t<md5>$(md5sum $p | cut -d" " -f1)</md5>"         >> packages.xml
             echo -e "\t\t</languagepack>"                                   >> packages.xml
