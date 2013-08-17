@@ -235,6 +235,11 @@ function rebuildneeded() {
         return 0
     fi
 
+    # allow a rebuild after 24 hours even it the checksum did not change
+    if [ -r "$MAKE_DIRECTORY/build.checksum" ] && [ `stat --format=%Y "$MAKE_DIRECTORY/build.checksum"` -le $(( `date +%s` - 24*60*60)) ]; then 
+        rm "$MAKE_DIRECTORY/build.checksum"
+    fi
+    
     if [ ! -r "$MAKE_DIRECTORY/build.checksum" ]; then
         # Never built
         echo $CHECKSUM > "$MAKE_DIRECTORY/build.checksum"
