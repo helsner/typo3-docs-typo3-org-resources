@@ -1,5 +1,7 @@
 <?php
 
+/* mb, 2013-08-19, 2013-08-19 */
+
 if (0) {
     error_reporting(-1);
     error_reporting(E_ALL ^ E_NOTICE);
@@ -22,27 +24,28 @@ class VersionMatcher {
         '/typo3cms/',
     );
     var $resolveSymlink = array(
-        '/typo3cms/drafts/'     => '/TYPO3/drafts/',
-        '/typo3cms/extensions/' => '/TYPO3/extensions/',
-        '/TYPO3/'               => '/typo3cms/',
+        '/TYPO3/drafts/'     => '/typo3cms/drafts/',
+        '/TYPO3/extensions/' => '/typo3cms/extensions/',
+        '/TYPO3/'            => '/typo3cms/',
     );
-    var $cont               = true;    // continue?
-    var $url                = '';      // 'http://docs.typo3.org/typo3cms/TyposcriptReference/4.7/Setup/Page/Index.html?id=3#abc'
-    var $urlPart1           = '';      // 'http://docs.typo3.org'
-    var $urlPart2           = '';      // '/typo3cms/'
-    var $urlPart3           = '';      // '4.7/TyposcriptReference/Setup/Page/Index.html?id=3#abc'
-    var $filePathToUrlPart2 = '';      // '/TYPO3/'
+    var $cont               = true;     // continue?
+    var $url                = '';       // 'http://docs.typo3.org/typo3cms/TyposcriptReference/en-us/4.7/Setup/Page/Index.html?id=3#abc'
+    var $urlPart1           = '';       // 'http://docs.typo3.org'
+    var $urlPart2           = '';       // '/typo3cms/'
+    var $urlPart3           = '';       // 'TyposcriptReference/en-us/4.7/Setup/Page/Index.html?id=3#abc'
+    var $filePathToUrlPart2 = '';       // '/typo3cms/'  (was once '/TYPO3/')
 
-    var $baseFolder         = '';      // 'TyposcriptReference'
-    var $versionPath        = '';      // '4.7'
-    var $relativePath       = '';      // 'Setup/Page'
-    var $htmlFile           = '';      // 'Index.html'
-    var $query              = '';      //  '?id=3'
-    var $fragment           = '';      //  '#abc'
+    var $baseFolder         = '';       // 'TyposcriptReference'
+    var $localePath         = '';       // 'en-us'
+    var $versionPath        = '';       // '4.7'
+    var $relativePath       = '';       // 'Setup/Page'
+    var $htmlFile           = '';       // 'Index.html'
+    var $query              = '';       //  '?id=3'
+    var $fragment           = '';       //  '#abc'
 
-    var $parsedUrl;                    // array
+    var $parsedUrl;                     // array
 
-    var $resultVersions     = array();     // the result!
+    var $resultVersions     = array();  // the result!
     var $htmlResult         = '';
     var $htmlResultIntro    = '
 		<table>
@@ -89,6 +92,18 @@ class VersionMatcher {
         return $isValid;
     }
 
+    function isValidLocaleFolderName($segment) {
+        $isValid = false;
+        if (!$isValid) { // xx-xx)
+            $pattern = '~[a-z][a-z]-[a-z][a-z]~';
+            $result = preg_match($pattern, $segment);
+            if ($result) {
+                $isValid = true;
+            }
+        }
+        return $isValid;
+    }
+
     function parseUrl() {
         $this->parsedUrl = parse_url($this->url);
         $this->urlPart1 = '';
@@ -116,25 +131,33 @@ class VersionMatcher {
         } else {
             $this->cont = false;
         }
+        # urlPart3PathSegments: array('TyposcriptReference', 'en-us', '4.7', 'Setup', 'Page', 'Index.html');
         if ($this->cont and (count($this->urlPart3PathSegments) < 2)) {
             $this->cont = false;
         }
+        $i = 0;
         if ($this->cont) {
-            $this->baseFolder = $this->urlPart3PathSegments[0];
-            if (count($this->urlPart3PathSegments) > 2) {
-                if ($this->isValidVersionFolderName($this->urlPart3PathSegments[1])) {
-                    $this->versionPath = $this->urlPart3PathSegments[1];
-                    $i = 2;
-                } else {
-                    $this->versionPath = '';
-                    $i = 1;
-                }
+            $this->baseFolder = $this->urlPart3PathSegments[$i]; // 'TyposcriptReference'
+            $i += 1;
+        }
+        if ($this->cont) {
+            $segment = $this->urlPart3PathSegments[$i];
+            if ($this->isValidLocaleFolderName($segment)) {
+                $i += 1;
+                $this->localePath = $segment;   // 'en-us'
             }
         }
         if ($this->cont) {
-            $this->relativePath = array_slice($this->urlPart3PathSegments, $i);
-            $this->htmlFile = array_pop($this->relativePath);
-            $this->relativePath = implode('/', $this->relativePath);
+            $segment = $this->urlPart3PathSegments[$i];
+            if ($this->isValidVersionFolderName($segment)) {
+                $this->versionPath = $segment; // '4.7'
+                $i += 1;
+            }
+        }
+        if ($this->cont) {
+            $this->relativePath = array_slice($this->urlPart3PathSegments, $i); // array('Setup', 'Page','Index.html')
+            $this->htmlFile = array_pop($this->relativePath);                   // 'Index.html'
+            $this->relativePath = implode('/', $this->relativePath);            // 'Setup/Page'
         }
         //$this->dump_and_die($this);
         return;
@@ -158,6 +181,23 @@ class VersionMatcher {
         // 'baseHtmlFile'      => $baseHtmlFile,
         // 'directHtmlFile'    => $directHtmlFile,
 
+        // $this->resultVersions
+        // Array
+        // (
+        //    [1.1.0] => Array
+        //(
+        //    [absPathToHtmlFile] => /home/mbless/public_html/TYPO3/extensions/sphinx/fr-fr/1.1.0/Index.html
+        //    [query] => 
+        //    [fragment] => 
+        //    [urlPart1] => http://docs.typo3.org
+        //    [urlPart2] => /typo3cms/extensions/
+        //    [baseFolder] => sphinx
+        //    [versionFolder] => 1.1.0
+        //    [relativePath] => 
+        //    [baseHtmlFile] => Index.html
+        //    [directHtmlFile] => Index.html
+        //)
+        
         if ($this->cont and count($this->resultVersions)) {
 
             krsort($this->resultVersions);
@@ -168,20 +208,29 @@ class VersionMatcher {
                 } else {
                     $rowClass = '';
                 }
+
                 $valueBase = '-';
                 if (strlen($v['baseHtmlFile'])) {
                     $destUrl = $v['urlPart1'] . $v['urlPart2'] . $v['baseFolder'] . '/';
+                    if (strlen($v['localeSegment'])) {
+                        $destUrl .= $v['localeSegment'] . '/';
+                    }
                     if (strlen($v['versionFolder']) and $v['versionFolder'] !== 'stable') {
                         $destUrl .= $v['versionFolder'] . '/';
                     }
                     if (!(strlen($v['baseHtmlFile'] === 'Index.html' or $v['baseHtmlFile'] === 'index.html'))) {
                         $destUrl .= $v['baseHtmlFile'];
                     }
-                    $valueBase = '<a href="' . htmlspecialchars($destUrl) . '">' . htmlspecialchars($k) . '</a>';
+                    $linkText = str_replace(chr(127), '', $k);
+                    $valueBase = '<a href="' . htmlspecialchars($destUrl) . '">' . htmlspecialchars($linkText) . '</a>';
                 }
+
                 $valueDirect = '-';
                 if (strlen($v['directHtmlFile'])) {
                     $destUrl = $v['urlPart1'] . $v['urlPart2'] . $v['baseFolder'] . '/';
+                    if (strlen($v['localeSegment'])) {
+                        $destUrl .= $v['localeSegment'] . '/';
+                    }
                     if (strlen($v['versionFolder']) and $v['versionFolder'] !== 'stable') {
                         $destUrl .= $v['versionFolder'] . '/';
                     }
@@ -193,7 +242,9 @@ class VersionMatcher {
                     }
                     $destUrl .= $v['query'];
                     $destUrl .= $v['fragment'];
-                    $valueDirect = '<a href="' . htmlspecialchars($destUrl) . '">' . htmlspecialchars($k) . '</a>';
+                    // remove what we've inserted to tweak sort order
+                    $linkText = str_replace(chr(127), '', $k);
+                    $valueDirect = '<a href="' . htmlspecialchars($destUrl) . '">' . htmlspecialchars($linkText) . '</a>';
                 }
                 $result .= '<tr' . $rowClass . '>';
                 if ($valueDirect !== '-') {
@@ -239,19 +290,9 @@ class VersionMatcher {
         }
         return $result;
     }
-    function findVersions() {
-        // $this->webRootPath
-        // $this->$baseFolder,
-        // $this->$versionPath,
-        // $this->$relativePath,
-        // $this->$indexFile
-        if (!$this->cont) {
-            return;
-        }
-        $absPathToManual = $this->webRootPath . $this->filePathToUrlPart2 . $this->baseFolder;
-        $this->absPathToManual = $absPathToManual;
-        $directory  = opendir($absPathToManual);
 
+    function findVersionsForLocale($absPathToManual, $localeSegment) {
+        $directory  = opendir($absPathToManual);
         while (false !== ($filename = readdir($directory))) {
             if (1
                 and $filename !== '.'
@@ -259,7 +300,7 @@ class VersionMatcher {
                 and is_dir($absPathToManual . '/' . $filename)
                 and $this->isValidVersionFolderName($filename)
             ) {
-                $versionFolder = $filename;
+                $versionFolder = $filename; // 'latest', '4.7'
                 $baseFound = false;
                 $baseHtmlFile = '';
                 $directFound = false;
@@ -271,13 +312,18 @@ class VersionMatcher {
                     if (!$baseFound) {
                         $absPathToHtmlFile = implode('/', array($absPathToManual, $versionFolder, $htmlFile));
                         if (file_exists ($absPathToHtmlFile)) {
-                            $baseHtmlFile = $htmlFile;
+                            $baseHtmlFile = $htmlFile; // 'Index.html'
                             $baseFound = true;
                         }
                     }
                     if (!$directFound) {
-                        $absPathToHtmlFile = implode('/', array($absPathToManual, $versionFolder, $this->relativePath, $htmlFile));
+                        if (strlen($this->relativePath)) {
+                            $absPathToHtmlFile = implode('/', array($absPathToManual, $versionFolder, $this->relativePath, $htmlFile));
+                        } else {
+                            $absPathToHtmlFile = implode('/', array($absPathToManual, $versionFolder, $htmlFile));
+                        }
                         if (file_exists ($absPathToHtmlFile)) {
+                            // '/home/marble/htdocs/LinuxData200/t3doc/versionswitcher/webroot/typo3cms/TyposcriptReference/latest/Setup/Page/Index.html'
                             $directHtmlFile = $htmlFile;
                             $directFound = true;
                         }
@@ -287,23 +333,69 @@ class VersionMatcher {
                     }
                 }
                 if ($baseFound) {
-                    $this->resultVersions[$versionFolder] = array(
-                        'absPathToHtmlFile' => $absPathToHtmlFile,
-                        'query'             => $this->query,
-                        'fragment'          => $this->fragment,
-                        'urlPart1'          => $this->urlPart1,
-                        'urlPart2'          => $this->urlPart2,
-                        'baseFolder'        => $this->baseFolder,
-                        'versionFolder'     => $versionFolder,
-                        'relativePath'      => $this->relativePath,
-                        'baseHtmlFile'      => $baseHtmlFile,
-                        'directHtmlFile'    => $directHtmlFile,
+                    $key = $versionFolder;
+                    if (strlen($localeSegment)) {
+                        $key .= ' (' . $localeSegment . ')';
+                    } else {
+                        // tweak sort order
+                        $key .= chr(127);
+                    }
+                    $this->resultVersions[$key] = array(
+                        'absPathToHtmlFile' => $absPathToHtmlFile,  // '/home/marble/htdocs/LinuxData200/t3doc/versionswitcher/webroot/typo3cms/TyposcriptReference/latest/Setup/Page/Index.html'
+                        'query'             => $this->query,        // '?id=3'
+                        'fragment'          => $this->fragment,     // '#abc'
+                        'urlPart1'          => $this->urlPart1,     // 'http://docs.typo3.org'
+                        'urlPart2'          => $this->urlPart2,     // '/typo3cms/'
+                        'baseFolder'        => $this->baseFolder,   // 'TyposcriptReference'
+                        'localeSegment'     => $localeSegment,      // 'fr-fr'
+                        'versionFolder'     => $versionFolder,      // 'latest'
+                        'relativePath'      => $this->relativePath, // 'Setup/Page'
+                        'baseHtmlFile'      => $baseHtmlFile,       // 'Index.html'
+                        'directHtmlFile'    => $directHtmlFile,     // 'Index.html'
                     );
                 }
             }
         }
+        closedir($directory);
     }
 
+    function findVersions() {
+        // $this->webRootPath           '/home/mbless/public_html'
+        // $this->filePathToUrlPart2    '/typo3cms/' (once was symlink '/TYPO3/')
+        // $this->$baseFolder           'TyposcriptReference'
+        // $this->$localePath           'en-us'
+        // $this->$versionPath          '4.7'
+        // $this->$relativePath         'Setup/Page'
+        // $this->$indexFile            'Index.html'
+        if (!$this->cont) {
+            return;
+        }
+        $absPathToManual = $this->webRootPath . $this->filePathToUrlPart2 . $this->baseFolder;
+        $this->absPathToManual = $absPathToManual; // '/home/marble/htdocs/LinuxData200/t3doc/versionswitcher/webroot/typo3cms/TyposcriptReference'
+        $manualStartDirs = array();
+        $manualStartDirs[] = array($absPathToManual, '');
+        #$this->dump_and_die($absPathToManual);
+        # find locale subfolders
+        $pattern = $absPathToManual . '/[a-z][a-z]-[a-z][a-z]';
+        #$this->dump_and_die($pattern);
+        foreach (glob($pattern, GLOB_ONLYDIR ) as $absPathToLocalePath) {
+            // /home/mbless/public_html/typo3cms/extensions/sphinx/fr-fr
+            $pos = strrpos($absPathToLocalePath, '/');
+            $localeSegment = substr($absPathToLocalePath, $pos+1);
+            $manualStartDirs[] = array($absPathToLocalePath, $localeSegment);
+        }
+        # $this->dump_and_die($manualStartDirs);
+        // Array(
+        //     [0] => /home/mbless/public_html/TYPO3/extensions/sphinx
+        //     [1] => /home/mbless/public_html/TYPO3/extensions/sphinx/fr-fr
+        // )
+        foreach ($manualStartDirs as $arr) {
+            $manualStartDir = $arr[0];
+            $localeSegment  = $arr[1];
+            $this->findVersionsForLocale($manualStartDir, $localeSegment);
+        }
+        // $this->dump_and_die($this->resultVersions);
+    }
 
     function dump_and_die($arg) {
         echo '<pre>';
@@ -341,7 +433,7 @@ if (1 and 'live') {
     $url = 'Index.html';                            // path: 'Index.html', 1 segments
     $url = 'http://docs.typo3.org/typo3cms/TyposcriptReference/#';      // path: 'Index.html', 4 segments
     $url = 'http://docs.typo3.org/typo3cms/TyposcriptReference/4.7/Setup/Page/Index.html?id=3#abc';      // path: 'Index.html', 1 segments
-    $url = false;
+    // $url = false;
     $htmlResult = $vm->processTheUrl($url, 1, '/home/marble/htdocs/LinuxData200/t3doc/versionswitcher/webroot');
 }
 
