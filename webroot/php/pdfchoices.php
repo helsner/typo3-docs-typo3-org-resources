@@ -141,7 +141,7 @@ class PdfMatcher {
             $segment = $this->urlPart3PathSegments[$i];
             if ($this->isValidLocaleFolderName($segment)) {
                 $i += 1;
-                $this->localePath = $segment;
+                $this->localePath = $segment;   // 'en-us'
             }
         }
         if ($this->cont) {
@@ -169,6 +169,7 @@ class PdfMatcher {
         if ($this->cont) {
             $result = '<li><a href="' . $this->pdfUrl . '">PDF</a></li>';
         } else {
+            // highly sophisticated debugging technique :-)
             $result = '<li>' . $this->pdfUrl . '</li>';
             $result = '<li>' . $this->curlResult . '</li>';
             $result = '<li>' . $this->pdf_http_status . '</li>';
@@ -185,7 +186,7 @@ class PdfMatcher {
         $this->pdfUrl .= $this->urlPart1;     // 'http://docs.typo3.org'
         $this->pdfUrl .= $this->urlPart2;     // '/typo3cms/'
         $this->pdfUrl .= $this->baseFolder;   // 'TyposcriptReference'
-        $this->pdfUrl .= strlen($this->localePath) ? '/' . $this->localePath : '';      // 'en-us'
+        $this->pdfUrl .= strlen($this->localePath)  ? '/' . $this->localePath  : '';    // 'en-us'
         $this->pdfUrl .= strlen($this->versionPath) ? '/' . $this->versionPath : '';    // '4.7'
         $this->pdfUrl .= '/_pdf/';
 
@@ -206,10 +207,15 @@ class PdfMatcher {
         $this->curl_errno = curl_errno($ch);
         $this->pdf_http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
-        //if ($this->pdf_http_status !== 200) {
-        //    $this->cont = False;
-        //}
+        if (0) {
+            // doesn't work reliably:
+            if ($this->pdf_http_status !== 200) {
+                $this->cont = False;
+            }
+        }
         if ($this->curl_errno) {
+            // this works! Needs CURLOPT_FAILONERROR.
+            // Will the the exitcode == curl_errno to 22 on error.
             $this->cont = False;
         }
     }
