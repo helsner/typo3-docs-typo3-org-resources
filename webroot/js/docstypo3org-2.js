@@ -1,6 +1,6 @@
 /*
- * mb, 2012-12-26, 2012-12-26
- * docstypo3org.js
+ * mb, 2012-12-26, 2013-08-18
+ * docstypo3org-2.js
  * utf-8, äöü
  */
 
@@ -48,5 +48,17 @@ $(document).ready(function () {
 			);
 		}
 	);
-
+	if (1) {
+		// add PDF link
+		setTimeout(function () {
+		$.get(
+			'http://docs.typo3.org/php/pdfchoices.php?url=' + encodeURI(document.URL),
+			function(data) {
+				if (data.length) {
+					$('.hnav-related ul').html(data + $('.hnav-related ul').html());
+				}
+			}
+		);
+		}, 750);
+	}
 })
