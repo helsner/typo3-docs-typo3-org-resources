@@ -371,11 +371,13 @@ if [ -r "REBUILD_REQUESTED" ]; then
             echo "Cannot proceed, not a Git directory: $GITDIR" 2>&1
             exit 2
         fi
-        git fetch
-        git checkout $GITBRANCH
-        git pull
         # Discard any change
-        git reset --hard origin/$GITBRANCH
+        git reset
+        git checkout .
+        # Retrieve changes
+        git pull
+        # Switch to the actual branch
+        git checkout $GITBRANCH
         git status
     elif [ ! -r "$GITDIR" ]; then
         echo "No Git URL provided and non-existing directory: $GITDIR" 2>&1
@@ -428,7 +430,10 @@ if [ -r "REBUILD_REQUESTED" ]; then
             pushd $T3DOCDIR >/dev/null
 
             # Fetch back localization directories
-            git reset --hard origin/$GITBRANCH
+            git reset
+            git checkout .
+            git pull
+            git checkout $GITBRANCH
 
             popd >/dev/null
         fi
