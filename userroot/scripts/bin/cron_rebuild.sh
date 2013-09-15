@@ -411,32 +411,37 @@ if [ -r "REBUILD_REQUESTED" ]; then
         exit 5
     fi
 
-    if [ -n "$GITURL" ]; then
-        if [ -r "$GITDIR" ]; then
-            pushd $T3DOCDIR >/dev/null
+    if [ -r "$GITDIR" ]; then
+        pushd $T3DOCDIR >/dev/null
 
-            # Temporarily remove localization directories from Sphinx to prevent warnings with unreferenced files and duplicate labels
+        # Temporarily remove localization directories from Sphinx to prevent
+        # warnings with unreferenced files and duplicate labels
+        if [ -n "$GITURL" ]; then
             find . -maxdepth 1 -regex ".*/Localization\.[a-zA-Z_]*$" -exec rm -rf {} \;
-
-            popd >/dev/null
+        else
+            find . -maxdepth 1 -regex ".*/Localization\.[a-zA-Z_]*$" -exec mv {} ../. \;
         fi
+
+        popd >/dev/null
     fi
 
     BACKUP_T3DOCDIR=$T3DOCDIR
     renderdocumentation $T3DOCDIR $T3DOCDIR 0
 
-    if [ -n "$GITURL" ]; then
-        if [ -r "$GITDIR" ]; then
-            pushd $T3DOCDIR >/dev/null
+    if [ -r "$GITDIR" ]; then
+        pushd $T3DOCDIR >/dev/null
 
-            # Fetch back localization directories
+        # Fetch back localization directories
+        if [ -n "$GITURL" ]; then
             git reset
             git checkout .
             git pull
             git checkout $GITBRANCH
-
-            popd >/dev/null
+        else
+            find .. -maxdepth 1 -regex ".*/Localization\.[a-zA-Z_]*$" -exec mv {} . \;
         fi
+
+        popd >/dev/null
     fi
 
     if [ "$PACKAGE_LANGUAGE" == "default" ]; then
