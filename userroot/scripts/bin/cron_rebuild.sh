@@ -228,8 +228,8 @@ function packagedocumentation() {
 function rebuildneeded() {
     if [ -r "$T3DOCDIR/Index.rst" ]; then
         local CHECKSUM=$(find "$T3DOCDIR" -type f -exec md5sum {} \; | md5sum | awk '{ print $1 }')
-    elif [ -r "$GITDIR/README.rst" ]; then
-        local CHECKSUM=$(md5sum "$GITDIR/Documentation/README.rst" | awk '{ print $1 }')
+    elif [ -r "$T3DOCDIR/README.rst" ]; then
+        local CHECKSUM=$(md5sum "$T3DOCDIR/README.rst" | awk '{ print $1 }')
     else
         # No documentation, should not happen
         return 0
