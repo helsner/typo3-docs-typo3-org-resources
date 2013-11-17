@@ -303,10 +303,10 @@ function renderdocumentation() {
     #make -e clean
     make -e html
 
-    if [ "$PACKAGE_ZIP" == "1" ]; then
-        # Prepare PDF using LaTeX
-        compilepdf
+    # Prepare PDF using LaTeX
+    compilepdf
 
+    if [ "$PACKAGE_ZIP" == "1" ]; then
         # Package the documentation
         packagedocumentation
     fi
