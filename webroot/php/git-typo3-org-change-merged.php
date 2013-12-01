@@ -86,6 +86,7 @@ $kp['Documentation/TYPO3/Reference/TyposcriptSyntax']         ['6-0']    = '.git
 $kp['Documentation/TYPO3/Reference/TyposcriptSyntax']         ['6-1']    = '.git.make_6.1';
 $kp['Documentation/TYPO3/Reference/TyposcriptSyntax']         ['6-2']    = '.git.make_6.2';
 $kp['Documentation/TYPO3/Tutorial/Editors']                   ['master'] = '.git.make';
+$kp['Documentation/TYPO3/Tutorial/Editors']                   ['6-0']    = '.git.make_6.0';
 $kp['Documentation/TYPO3/Tutorial/Editors.nl_NL']             ['master'] = '.git.make';
 $kp['Documentation/TYPO3/Tutorial/GettingStarted']            ['master'] = '.git.make';
 $kp['Documentation/TYPO3/Tutorial/GettingStarted.nl_NL']      ['master'] = '.git.make';
