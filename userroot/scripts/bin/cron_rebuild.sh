@@ -80,9 +80,14 @@ function projectinfo2stdout() {
 function lazy_mv() {
     local FROM_DIR="$1"
     local TO_DIR="$2"
+    local PARENT_DIR="$(dirname $2)"
 
     # Move directory to its final place
-    rm -rf $TO_DIR
+    if [ -d "$PARENT_DIR" ]; then
+        rm -rf $TO_DIR
+    else
+        mkdir $PARENT_DIR
+    fi
     mv $FROM_DIR $TO_DIR
 
     # Find duplicates one level higher and replace them with hard-links
