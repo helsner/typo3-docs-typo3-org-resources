@@ -45,6 +45,7 @@ class VersionMatcher {
 
     var $parsedUrl;                     // array
 
+    var $localeKeys         = array();  // the various locales found
     var $resultVersions     = array();  // the result!
     var $htmlResult         = '';
     var $htmlResultIntro    = '
@@ -181,11 +182,7 @@ class VersionMatcher {
         // 'baseHtmlFile'      => $baseHtmlFile,
         // 'directHtmlFile'    => $directHtmlFile,
 
-        // $this->resultVersions
-        // Array
-        // (
-        //    [1.1.0] => Array
-        //(
+        // $this->resultVersions[<version>][<locale>] => Array(
         //    [absPathToHtmlFile] => /home/mbless/public_html/TYPO3/extensions/sphinx/fr-fr/1.1.0/Index.html
         //    [query] => 
         //    [fragment] => 
@@ -200,60 +197,73 @@ class VersionMatcher {
         
         if ($this->cont and count($this->resultVersions)) {
 
+            ksort($this->localeKeys);
             krsort($this->resultVersions);
 
-            foreach ($this->resultVersions as $k => $v) {
-                if (intval($rowCount % 2)) {
-                    $rowClass = ' class="row-odd"';
-                } else {
-                    $rowClass = '';
+            if (count($this->localeKeys) > 1) {
+                $result .= '<tr>';
+                foreach ($this->localeKeys as $localeKey) {
+                    $locale = $localeKey === '_' ? 'default' : $localeKey;
+                    $result .= '<th>' . htmlspecialchars($locale) . '</th>';
                 }
+                $result .= '</tr>';
+            }
 
-                $valueBase = '-';
-                if (strlen($v['baseHtmlFile'])) {
-                    $destUrl = $v['urlPart1'] . $v['urlPart2'] . $v['baseFolder'] . '/';
-                    if (strlen($v['localeSegment'])) {
-                        $destUrl .= $v['localeSegment'] . '/';
-                    }
-                    if (strlen($v['versionFolder']) and $v['versionFolder'] !== 'stable') {
-                        $destUrl .= $v['versionFolder'] . '/';
-                    }
-                    if (!(strlen($v['baseHtmlFile'] === 'Index.html' or $v['baseHtmlFile'] === 'index.html'))) {
-                        $destUrl .= $v['baseHtmlFile'];
-                    }
-                    $linkText = str_replace(chr(127), '', $k);
-                    $valueBase = '<a href="' . htmlspecialchars($destUrl) . '">' . htmlspecialchars($linkText) . '</a>';
-                }
-
-                $valueDirect = '-';
-                if (strlen($v['directHtmlFile'])) {
-                    $destUrl = $v['urlPart1'] . $v['urlPart2'] . $v['baseFolder'] . '/';
-                    if (strlen($v['localeSegment'])) {
-                        $destUrl .= $v['localeSegment'] . '/';
-                    }
-                    if (strlen($v['versionFolder']) and $v['versionFolder'] !== 'stable') {
-                        $destUrl .= $v['versionFolder'] . '/';
-                    }
-                    if (strlen($v['relativePath'])) {
-                        $destUrl .= $v['relativePath'] . '/';
-                    }
-                    if (!(strlen($v['directHtmlFile'] === 'Index.html' or $v['directHtmlFile'] === 'index.html'))) {
-                        $destUrl .= $v['directHtmlFile'];
-                    }
-                    $destUrl .= $v['query'];
-                    $destUrl .= $v['fragment'];
-                    // remove what we've inserted to tweak sort order
-                    $linkText = str_replace(chr(127), '', $k);
-                    $valueDirect = '<a href="' . htmlspecialchars($destUrl) . '">' . htmlspecialchars($linkText) . '</a>';
-                }
+            foreach ($this->resultVersions as $versionName => $localeData) {
+                $rowClass = $rowCount % 2 ? ' class="row-odd"' : '';
                 $result .= '<tr' . $rowClass . '>';
-                if ($valueDirect !== '-') {
-                    $result .= '<td class="rollover">' . $valueDirect . '</td>';
-                } elseif ($valueBase !== '-') {
-                    $result .= '<td class="rollover">' . $valueBase . '</td>';
-                } else {
-                    $result .= '<td>' . $valueBase . '</td>';
+
+                // Always loop through locales in the same order
+                foreach ($this->localeKeys as $localeKey) {
+                    $valueBase = '-';
+                    $valueDirect = '-';
+
+                    if (isset($localeData[$localeKey])) {
+                        // Current version has corresponding locale
+                        $v = $localeData[$localeKey];
+                        if (strlen($v['baseHtmlFile'])) {
+                            $destUrl = $v['urlPart1'] . $v['urlPart2'] . $v['baseFolder'] . '/';
+                            if (strlen($v['localeSegment'])) {
+                                $destUrl .= $v['localeSegment'] . '/';
+                            }
+                            if (strlen($v['versionFolder']) and $v['versionFolder'] !== 'stable') {
+                                $destUrl .= $v['versionFolder'] . '/';
+                            }
+                            if (!(strlen($v['baseHtmlFile'] === 'Index.html' or $v['baseHtmlFile'] === 'index.html'))) {
+                                $destUrl .= $v['baseHtmlFile'];
+                            }
+                            $valueBase = '<a href="' . htmlspecialchars($destUrl) . '">' . htmlspecialchars($versionName) . '</a>';
+                        }
+
+                        if (strlen($v['directHtmlFile'])) {
+                            $destUrl = $v['urlPart1'] . $v['urlPart2'] . $v['baseFolder'] . '/';
+                            if (strlen($v['localeSegment'])) {
+                                $destUrl .= $v['localeSegment'] . '/';
+                            }
+                            if (strlen($v['versionFolder']) and $v['versionFolder'] !== 'stable') {
+                                $destUrl .= $v['versionFolder'] . '/';
+                            }
+                            if (strlen($v['relativePath'])) {
+                                $destUrl .= $v['relativePath'] . '/';
+                            }
+                            if (!(strlen($v['directHtmlFile'] === 'Index.html' or $v['directHtmlFile'] === 'index.html'))) {
+                                $destUrl .= $v['directHtmlFile'];
+                            }
+                            $destUrl .= $v['query'];
+                            $destUrl .= $v['fragment'];
+                            $valueDirect = '<a href="' . htmlspecialchars($destUrl) . '">' . htmlspecialchars($versionName) . '</a>';
+                        }
+                    }
+
+                    if ($valueDirect !== '-') {
+                        $result .= '<td class="rollover">' . $valueDirect . '</td>';
+                    } elseif ($valueBase !== '-') {
+                        $result .= '<td class="rollover">' . $valueBase . '</td>';
+                    } else {
+                        $result .= '<td>' . $valueBase . '</td>';
+                    }
                 }
+
                 $result .= '</tr>';
                 $rowCount += 1;
             }
@@ -334,13 +344,9 @@ class VersionMatcher {
                 }
                 if ($baseFound) {
                     $key = $versionFolder;
-                    if (strlen($localeSegment)) {
-                        $key .= ' (' . $localeSegment . ')';
-                    } else {
-                        // tweak sort order
-                        $key .= chr(127);
-                    }
-                    $this->resultVersions[$key] = array(
+                    $localeKey = $localeSegment ?: '_';
+                    if (!in_array($localeKey, $this->localeKeys)) $this->localeKeys[] = $localeKey;
+                    $this->resultVersions[$key][$localeKey] = array(
                         'absPathToHtmlFile' => $absPathToHtmlFile,  // '/home/marble/htdocs/LinuxData200/t3doc/versionswitcher/webroot/typo3cms/TyposcriptReference/latest/Setup/Page/Index.html'
                         'query'             => $this->query,        // '?id=3'
                         'fragment'          => $this->fragment,     // '#abc'
