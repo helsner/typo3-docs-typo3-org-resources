@@ -923,3 +923,8 @@ hnav-related a:hover {
 	min-width: 100px;
 	max-width: 350px;
 }
+
+/* 2014-03-11 [BUGFIX] Numbers of OL LI don't show up for LI P in Chrome */
+.doc li p {
+	overflow: visible;
+}
