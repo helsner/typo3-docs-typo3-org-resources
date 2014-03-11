@@ -9,6 +9,16 @@ if (0) {
     ini_set('display_startup_errors', 1);
 }
 
+$doDump = 0;
+if (1) {
+    $devIp = '87.123.243.232';
+    if ($_SERVER['REMOTE_ADDR'] === $devIp) {
+        $doDump = 1;
+    }
+// http://docs.typo3.org/php/pdfchoices.php?url=http://docs.typo3.org/typo3cms/drafts/github/marble/DocumentationStarter/a/b/
+}
+
+
 class PdfMatcher {
 
     var $dd = 1;     // do debug?
@@ -19,6 +29,7 @@ class PdfMatcher {
         '/flow/',
         '/neos/drafts/',
         '/neos/',
+        '/typo3cms/drafts/github/*/',
         '/typo3cms/drafts/',
         '/typo3cms/extensions/',
         '/typo3cms/',
@@ -52,19 +63,6 @@ class PdfMatcher {
 
     function __construct() {
         // pass
-    }
-
-    function unparse_url($parsed_url) {
-        $scheme   = isset($parsed_url['scheme'  ]) ?       $parsed_url['scheme'] . '://' : '';
-        $host     = isset($parsed_url['host'    ]) ?       $parsed_url['host']     : '';
-        $port     = isset($parsed_url['port'    ]) ? ':' . $parsed_url['port']     : '';
-        $user     = isset($parsed_url['user'    ]) ?       $parsed_url['user']     : '';
-        $pass     = isset($parsed_url['pass'    ]) ? ':' . $parsed_url['pass']     : '';
-        $pass     = ($user || $pass) ? "$pass@" : '';
-        $path     = isset($parsed_url['path'    ]) ?       $parsed_url['path']     : '';
-        $query    = isset($parsed_url['query'   ]) ? '?' . $parsed_url['query']    : '';
-        $fragment = isset($parsed_url['fragment']) ? '#' . $parsed_url['fragment'] : '';
-        return "$scheme$user$pass$host$port$path$query$fragment";
     }
 
     function isValidVersionFolderName($filename) {
@@ -160,7 +158,28 @@ class PdfMatcher {
     }
 
     function startsWith($haystack, $needle) {
-        return substr($haystack, 0, strlen($needle)) === $needle;
+        if (0 && $GLOBALS['doDump']) {
+            echo $haystack . '<br>';
+            echo $needle . '<br><br>';
+        }
+        if (strpos($needle, '*') === False) {
+            $result = (substr($haystack, 0, strlen($needle)) === $needle);
+        } else {
+            $long = explode('/', $haystack);
+            $short = explode('/', $needle);
+            $result = count($long) >= count($short);
+            if ($result) {
+                $i = 0;
+                foreach($short as $part) {
+                    if (! ($part === '*' or $part === $long[$i] or $part ==='')) {
+                        $result = False;
+                        break;
+                    }
+                    $i = $i + 1;
+                }
+            }
+        }
+        return $result;
     }
 
     function generateOutput() {
