@@ -10,4 +10,31 @@ conf.py:
   project: The docs-typo3-org resources
   version: 0.1
   release: 0.1.0
+  latex_documents:
+  - - Index
+    - resources_dt3o.tex
+    - The Resources of docs.typo3.org
+    - TYPO3 Documentation Team
+    - manual
+  latex_elements:
+    papersize: a4paper
+    pointsize: 10pt
+    preamble: \usepackage{typo3}
+  intersphinx_mapping:
+    t3tsref:
+    - http://docs.typo3.org/typo3cms/TyposcriptReference/
+    - null
+    t3cmsapi:
+    - http://typo3.org/api/typo3cms/
+    - null
+  extensions:
+  - sphinx.ext.intersphinx
+  - sphinx.ext.graphviz
+  - t3sphinx.ext.t3extras
+  - t3sphinx.ext.t3tablerows
+  - t3sphinx.ext.targets
+  - sphinxcontrib.googlechart
+  - sphinxcontrib.googlemaps
+  - sphinxcontrib.slide
+  - sphinxcontrib.youtube
 ...
