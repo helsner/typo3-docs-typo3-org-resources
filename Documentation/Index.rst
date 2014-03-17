@@ -68,3 +68,10 @@ The sources of this draft are located at
 
 .. _Open Content License: http://www.opencontent.org/opl.shtml
 .. _typo3.org: http://typo3.org/
+
+
+
+.. digraph:: Test
+
+   "Test a" -> "Test b";
+
