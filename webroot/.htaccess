@@ -1,8 +1,8 @@
-# mb, 2013-01-18, 2013-01-19
+# mb, 2013-01-18, 2014-03-18
 
-Options +Indexes -MultiViews
-IndexOptions FancyIndexing NameWidth=* IgnoreCase
-ReadmeName README.html
+# Options -Indexes -MultiViews
+# IndexOptions FancyIndexing NameWidth=* IgnoreCase
+# ReadmeName README.html
 
 RewriteEngine on
 RewriteBase /
