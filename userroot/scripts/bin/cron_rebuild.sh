@@ -12,6 +12,21 @@
 # 5: No success for include file check
 # ------------------------------------------------------
 
+# Retrieve current script directory (as absolute path)
+BIN_DIRECTORY=$(dirname $(readlink "$0"))
+
+# Configure tools for BSD or GNU
+stat --version >/dev/null 2>&1
+if [ $? -eq 0 ]; then
+    # GNU
+    STAT_FORMAT="stat --format=%Y"
+    SED_EXTENDED="sed -r"
+else
+    # BSD
+    STAT_FORMAT="stat -f %m"
+    SED_EXTENDED="sed -E"
+fi
+
 # Retrieve current directory (as absolute path)
 MAKE_DIRECTORY=$(unset CDPATH && cd "$(dirname "$0")" && echo $PWD)
 pushd $MAKE_DIRECTORY >/dev/null
@@ -205,8 +220,8 @@ function packagedocumentation() {
 
     for p in $(find . -name \*.zip | sort);
     do
-            local _VERSION=$(echo $p | sed -r "s/.*-([0-9.]*|latest)-([a-z-]*)\.zip\$/\1/")
-            local _LANGUAGE=$(echo $p | sed -r "s/.*-([0-9.]*|latest)-([a-z-]*)\.zip\$/\2/")
+            local _VERSION=$(echo $p | $SED_EXTENDED "s/.*-([0-9.]*|latest)-([a-z-]*)\.zip\$/\1/")
+            local _LANGUAGE=$(echo $p | $SED_EXTENDED "s/.*-([0-9.]*|latest)-([a-z-]*)\.zip\$/\2/")
             if [ "$_LANGUAGE" != "default" ]; then
                 _LANGUAGE=$(echo $_LANGUAGE | sed 's/..$/\U&/' | sed 's/-/_/')
             fi
@@ -241,7 +256,7 @@ function rebuildneeded() {
     fi
 
     # allow a rebuild after 24 hours even it the checksum did not change
-    if [ -r "$MAKE_DIRECTORY/build.checksum" ] && [ `stat --format=%Y "$MAKE_DIRECTORY/build.checksum"` -le $(( `date +%s` - 24*60*60)) ]; then 
+    if [ -r "$MAKE_DIRECTORY/build.checksum" ] && [ `$STAT_FORMAT "$MAKE_DIRECTORY/build.checksum"` -le $(( `date +%s` - 24*60*60)) ]; then
         rm "$MAKE_DIRECTORY/build.checksum"
     fi
     
@@ -335,7 +350,7 @@ function renderdocumentation() {
     lazy_mv $BUILDDIR $ORIG_BUILDDIR
     chgrp -R www-default $ORIG_BUILDDIR
     if [ ! -r "$ORIG_BUILDDIR/../.htaccess" ]; then
-        ln -s /home/mbless/scripts/config/_htaccess $ORIG_BUILDDIR/../.htaccess
+        ln -s $BIN_DIRECTORY/../config/_htaccess $ORIG_BUILDDIR/../.htaccess
     fi
 
     # Recreate "stable" link if needed
@@ -403,16 +418,16 @@ if [ -r "REBUILD_REQUESTED" ]; then
     if [ $? -eq 0 ]; then
         echo "Documentation did not change: rebuild is not needed"
         # Remove request
-        rm -I "$MAKE_DIRECTORY/REBUILD_REQUESTED"
+        rm "$MAKE_DIRECTORY/REBUILD_REQUESTED"
         exit 0
     fi
 
     # check include files
-    /home/mbless/scripts/bin/check_include_files.py --verbose "$T3DOCDIR" > "${MAKE_DIRECTORY}/included-files-check.log.txt"
+    $BIN_DIRECTORY/check_include_files.py --verbose "$T3DOCDIR" > "${MAKE_DIRECTORY}/included-files-check.log.txt"
     if [ $? -ne 0 ]; then
         echo "Problem with include files"
         # Remove request
-        rm -I "$MAKE_DIRECTORY/REBUILD_REQUESTED"
+        rm "$MAKE_DIRECTORY/REBUILD_REQUESTED"
         exit 5
     fi
 
@@ -451,7 +466,7 @@ if [ -r "REBUILD_REQUESTED" ]; then
 
     if [ "$PACKAGE_LANGUAGE" == "default" ]; then
         pushd $T3DOCDIR >/dev/null
-        for PACKAGE_LANGUAGE in $(find . -maxdepth 1 -regex ".*/Localization\.[a-z][a-z]_[A-Z][A-Z]$" | sed -r 's/.*\.(.._..)/\1/'); do
+        for PACKAGE_LANGUAGE in $(find . -maxdepth 1 -regex ".*/Localization\.[a-z][a-z]_[A-Z][A-Z]$" | $SED_EXTENDED 's/.*\.(.._..)/\1/'); do
             if [ -r "$T3DOCDIR/Localization.${PACKAGE_LANGUAGE}/Index.rst" ]; then
                 renderdocumentation $T3DOCDIR $T3DOCDIR/Localization.${PACKAGE_LANGUAGE} 1
             fi
@@ -460,7 +475,7 @@ if [ -r "REBUILD_REQUESTED" ]; then
     fi
 
     # Remove request
-    rm -I REBUILD_REQUESTED
+    rm REBUILD_REQUESTED
 fi
 
 cp cron_rebuild.conf dirs-of-last-build.txt
