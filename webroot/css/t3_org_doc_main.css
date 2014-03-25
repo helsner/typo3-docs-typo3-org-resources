@@ -1,4 +1,4 @@
-/* mb, 2012-11-25, 2013-07-15 */
+/* mb, 2012-11-25, 2013-07-15, 2014-03-25 */
 
 /* override standard settings of typo3.org */
 
@@ -931,4 +931,20 @@ hnav-related a:hover {
 /* 2014-03-12 [BUGFIX] http://forge.typo3.org/issues/53137 */
 .doc .hnav-related-container {
 	clear: both;
+}
+/* 2014-03-25: Let's use "Adaptive laout" as default */
+.doc .alt-stylesheet-0 {
+    border: none;
+}
+.doc .alt-stylesheet-1 {
+    border: 1px dotted #bbb;
+}
+#page,
+.doc .p {
+	margin: 0 25px;
+	width: inherit;
+	min-width: 981px;
+}
+.doc .h {
+	width: 100%;
 }
