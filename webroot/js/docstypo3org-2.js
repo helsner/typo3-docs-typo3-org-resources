@@ -1,13 +1,23 @@
 /*
- * mb, 2012-12-26, 2013-08-18
+ * mb, 2012-12-26, 2013-08-18, 2014-03-25
  * docstypo3org-2.js
  * utf-8, äöü
  */
 
 $(document).ready(function () {
-	$('#naviwestpayload').append($('#flyOutToc').html());
-	$('#naviwestpayload').addClass('flyOutToc');
-	$('#naviwest').css('display', 'block');
+    var naviwest = $('#naviwest');
+	var flyOutTocHtml = $('#flyOutToc').html();
+	if (flyOutTocHtml === null) {
+		flyOutTocHtml = '<p>Navigate within this page:</p>';
+	}
+	$('#naviwestpayload')
+		.append(flyOutTocHtml)
+		.addClass('flyOutToc');
+	naviwest.css('display', 'block');
+	$('.doc #nav-aside a.cur').hover(
+		function() { naviwest.css('background-color', '#ff8700'); },
+		function() { naviwest.css('background-color', '#ffffff'); }
+	);
 	$('.hnav-related-2').prepend(''
 		+	'<div id="hnav-versions">'
 		+	'	<div id="vchoice-trigger">'
