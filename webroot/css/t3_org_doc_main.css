@@ -945,3 +945,30 @@ hnav-related a:hover {
 .doc .h {
 	width: 100%;
 }
+
+/* Better code blocks in documentation */
+.doc table.highlighttable,
+.doc table.highlighttable td {
+	border: 0;
+}
+.doc table.highlighttable td.linenos,
+.doc table.highlighttable div.linenodiv {
+	width: 40px;
+}
+.doc table.highlighttable div.linenodiv pre {
+	float: right;
+	padding-left: 8px;
+	padding-right: 0;
+	border-right: 0;
+	background: #e7e7e7;
+	width: 30px;
+}
+.doc table.highlighttable div.highlight pre {
+	border-left: 0;
+}
+.doc table.highlighttable td {
+	padding: 0;
+}
+.doc table.highlighttable td pre {
+	margin-bottom: 0;
+}
