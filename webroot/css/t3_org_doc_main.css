@@ -649,12 +649,6 @@ hnav-related a:hover {
 }
 .doc .img-scaling {
     width: 100%;
-    display: block;
-    /* mb, 2013-03-25
-     * somebody (who?) wrote: "these lines break the centered display of images (which is default)."
-     * Answer: try the option :align: center
-     * We need .img-scaling to limit images when they are too big. That's more important!
-     */
 }
 
 .doc .pre {
