@@ -939,6 +939,9 @@ hnav-related a:hover {
 	width: inherit;
 	/* min-width: 981px; */
 }
+.doc pre .p {
+	margin: 0;
+}
 .doc .h {
 	width: 100%;
 }
