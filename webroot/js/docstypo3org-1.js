@@ -48,7 +48,7 @@ $(document).ready(function () {
 		+ '				<h4><a href="http://docs.typo3.org/flow/TYPO3FlowDocumentation/">TYPO3 Flow</a></h4>'
 		+ '				<ul>'
 		+ '					<li><a href="http://docs.typo3.org/flow/TYPO3FlowDocumentation/Quickstart/">           Quickstart                     </a></li>'
-		+ '					<li><a href="http://docs.typo3.org/flow/TYPO3FlowDocumentation/TheDefinitiveGuide/">   The Definite Guide             </a></li>'
+		+ '					<li><a href="http://docs.typo3.org/flow/TYPO3FlowDocumentation/TheDefinitiveGuide/">   The Definitive Guide           </a></li>'
 		+ '					<li><a href="http://docs.typo3.org/flow/TYPO3FlowDocumentation/StyleGuide/Index.html"> TYPO3 Publications Style Guide </a></li>'
 		+ '				</ul>'
 		+ '			</div>'
