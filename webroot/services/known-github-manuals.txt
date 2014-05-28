@@ -31,6 +31,7 @@ https://github.com/stucki/Using-Git-for-maintaining-TYPO3,http://docs.typo3.org/
 https://github.com/Tuurlijk/TYPO3-Extension-ReplaceContent,http://docs.typo3.org/~mbless/github.com/Tuurlijk/TYPO3-Extension-ReplaceContent.git.make/request_rebuild.php
 https://github.com/karu/extendedshop_doc,http://docs.typo3.org/~mbless/github.com/karu/extendedshop_doc.git.make/request_rebuild.php
 https://github.com/xperseguers/TYPO3.cms.Documentation.Editeurs,http://docs.typo3.org/~mbless/github.com/xperseguers/TYPO3.cms.Documentation.Editeurs.git.make/request_rebuild.php
+https://github.com/xperseguers/TYPO3.docs.rst-primer,http://docs.typo3.org/~mbless/github.com/xperseguers/TYPO3.docs.rst-primer.git.make/request_rebuild.php
 https://github.com/typo3-themes/theme,http://docs.typo3.org/~mbless/github.com/typo3-themes/theme.git.make/request_rebuild.php
 https://github.com/lars85/TYPO3-Extensions-lp_fussballde,http://docs.typo3.org/~mbless/github.com/lars85/TYPO3-Extensions-lp_fussballde.git.make/request_rebuild.php
 https://github.com/lars85/TYPO3-Extensions-lp_iframe,http://docs.typo3.org/~mbless/github.com/lars85/TYPO3-Extensions-lp_iframe.git.make/request_rebuild.php
