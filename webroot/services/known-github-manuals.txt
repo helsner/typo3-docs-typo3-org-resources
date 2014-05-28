@@ -55,3 +55,4 @@ https://github.com/TYPO3-Documentation/TYPO3CMS-Reference-Typo3Services,http://d
 https://github.com/TYPO3-Documentation/TYPO3CMS-Guide-Extbase,http://docs.typo3.org/~mbless/github.com/TYPO3-Documentation/TYPO3/Guide/Extbase.git.make/request_rebuild.php
 https://github.com/TYPO3-Documentation/TYPO3CMS-Guide-FrontendLocalization,http://docs.typo3.org/~mbless/github.com/TYPO3-Documentation/TYPO3/Guide/FrontendLocalization.git.make/request_rebuild.php
 https://github.com/TYPO3-Documentation/TYPO3CMS-Guide-Maintenance,http://docs.typo3.org/~mbless/github.com/TYPO3-Documentation/TYPO3/Guide/Maintenance.git.make/request_rebuild.php
+https://github.com/TYPO3-Documentation/TYPO3CMS-Guide-Security,http://docs.typo3.org/~mbless/github.com/TYPO3-Documentation/TYPO3/Guide/Security.git.make/request_rebuild.php
