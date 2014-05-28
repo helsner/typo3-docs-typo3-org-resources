@@ -53,3 +53,4 @@ https://github.com/TYPO3-Documentation/TYPO3CMS-Reference-InsideTypo3,http://doc
 https://github.com/TYPO3-Documentation/TYPO3CMS-Reference-Skinning,http://docs.typo3.org/~mbless/github.com/TYPO3-Documentation/TYPO3/Reference/Skinning.git.make/request_rebuild.php
 https://github.com/TYPO3-Documentation/TYPO3CMS-Reference-Typo3Services,http://docs.typo3.org/~mbless/github.com/TYPO3-Documentation/TYPO3/Reference/Typo3Services.git.make/request_rebuild.php
 https://github.com/TYPO3-Documentation/TYPO3CMS-Guide-Extbase,http://docs.typo3.org/~mbless/github.com/TYPO3-Documentation/TYPO3/Guide/Extbase.git.make/request_rebuild.php
+https://github.com/TYPO3-Documentation/TYPO3CMS-Guide-FrontendLocalization,http://docs.typo3.org/~mbless/github.com/TYPO3-Documentation/TYPO3/Guide/FrontendLocalization.git.make/request_rebuild.php
