@@ -46,24 +46,27 @@ if ($f2) {
 	echo "Could not open file.";
 }
 
-$f3 = fopen($f3path, 'w');
+$f3 = fopen($f3path, 'a');
 if ($f3) {
 	if (1) {
+		fwrite($f3, '/* -------------------------------------------------- */' . $NL);
+	}
+	if (1) {
 		$args = print_r($_POST, TRUE);
-		echo htmlspecialchars($args);
-		fwrite($f3, $args);
+		echo '$_POST:' . htmlspecialchars($args);
+		fwrite($f3, '$_POST:' . $NL . $NL . $args);
 		fwrite($f3, $NL);
 	}
 	if (1) {
 		$args = print_r($_GET, TRUE);
-		echo htmlspecialchars($args);
-		fwrite($f3, $args);
+		echo '$_GET:' . htmlspecialchars($args);
+		fwrite($f3, '$_GET:' . $NL . $NL . $args);
 		fwrite($f3, $NL);
 	}
 	if (1) {
 		$args = print_r($github, TRUE);
-		echo htmlspecialchars($args);
-		fwrite($f3, $args);
+		echo '$payload:' . htmlspecialchars($args);
+		fwrite($f3, '$payload:' . $NL . $NL . $args);
 		fwrite($f3, $NL);
 	}
 	fclose($f3);
