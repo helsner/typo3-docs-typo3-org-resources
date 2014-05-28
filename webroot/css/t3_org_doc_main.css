@@ -194,6 +194,15 @@
 	text-decoration: normal;
 }
 
+.doc .hnav-related li.nav-edit {
+	border: 1px solid #e97e0d;
+	background-color: #FF8700;
+	padding: 5px;
+}
+.doc .hnav-related li.nav-edit a {
+	color: #fff;
+}
+
 .doc .hnav-related-2 {
 	color: #888;
 	font-size: 11px;
