@@ -59,3 +59,4 @@ https://github.com/TYPO3-Documentation/TYPO3CMS-Guide-Security,http://docs.typo3
 https://github.com/TYPO3-Documentation/TYPO3CMS-Tutorial-Templating,http://docs.typo3.org/~mbless/github.com/TYPO3-Documentation/TYPO3/Tutorial/Templating.git.make/request_rebuild.php
 https://github.com/TYPO3-Documentation/TYPO3CMS-Tutorial-Typoscript45Minutes,http://docs.typo3.org/~mbless/github.com/TYPO3-Documentation/TYPO3/Tutorial/Typoscript45Minutes.git.make/request_rebuild.php
 https://github.com/TYPO3-Documentation/TYPO3CMS-Example-ExtensionManual,http://docs.typo3.org/~mbless/github.com/TYPO3-Documentation/TYPO3/Example/ExtensionManual.git.make/request_rebuild.php
+https://github.com/TYPO3-Documentation/TYPO3CMS-Example-OfficialManual,http://docs.typo3.org/~mbless/github.com/TYPO3-Documentation/TYPO3/Example/OfficialManual.git.make/request_rebuild.php
