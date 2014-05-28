@@ -51,3 +51,4 @@ https://github.com/TYPO3-Documentation/TYPO3CMS-Reference-CodingGuidelines,http:
 https://github.com/TYPO3-Documentation/TYPO3CMS-Reference-TCA,http://docs.typo3.org/~mbless/github.com/TYPO3-Documentation/TYPO3/Reference/TCA.git.make/request_rebuild.php
 https://github.com/TYPO3-Documentation/TYPO3CMS-Reference-InsideTypo3,http://docs.typo3.org/~mbless/github.com/TYPO3-Documentation/TYPO3/Reference/InsideTypo3.git.make/request_rebuild.php
 https://github.com/TYPO3-Documentation/TYPO3CMS-Reference-Skinning,http://docs.typo3.org/~mbless/github.com/TYPO3-Documentation/TYPO3/Reference/Skinning.git.make/request_rebuild.php
+https://github.com/TYPO3-Documentation/TYPO3CMS-Reference-Typo3Services,http://docs.typo3.org/~mbless/github.com/TYPO3-Documentation/TYPO3/Reference/Typo3Services.git.make/request_rebuild.php
