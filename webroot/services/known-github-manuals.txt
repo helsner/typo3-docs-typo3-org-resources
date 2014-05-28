@@ -49,3 +49,4 @@ https://github.com/TYPO3-Documentation/TYPO3CMS-Reference-TSconfig,http://docs.t
 https://github.com/TYPO3-Documentation/TYPO3CMS-Reference-TyposcriptSyntax,http://docs.typo3.org/~mbless/github.com/TYPO3-Documentation/TYPO3/Reference/TyposcriptSyntax.git.make/request_rebuild.php
 https://github.com/TYPO3-Documentation/TYPO3CMS-Reference-CodingGuidelines,http://docs.typo3.org/~mbless/github.com/TYPO3-Documentation/TYPO3/Reference/CodingGuidelines.git.make/request_rebuild.php
 https://github.com/TYPO3-Documentation/TYPO3CMS-Reference-TCA,http://docs.typo3.org/~mbless/github.com/TYPO3-Documentation/TYPO3/Reference/TCA.git.make/request_rebuild.php
+https://github.com/TYPO3-Documentation/TYPO3CMS-Reference-InsideTypo3,http://docs.typo3.org/~mbless/github.com/TYPO3-Documentation/TYPO3/Reference/InsideTypo3.git.make/request_rebuild.php
