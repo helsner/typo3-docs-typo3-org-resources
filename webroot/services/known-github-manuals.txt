@@ -41,3 +41,4 @@ https://github.com/marble/typo3-docteam-codesprint-2014,http://docs.typo3.org/~m
 https://github.com/guweha/typo3-docteam-codesprint-2014,http://docs.typo3.org/~mbless/github.com/guweha/typo3-docteam-codesprint-2014.git.make/request_rebuild.php
 https://github.com/TYPO3-Documentation/TYPO3CMS-Reference-Typoscript,http://docs.typo3.org/~mbless/github.com/TYPO3-Documentation/TYPO3/Reference/Typoscript.git.make/request_rebuild.php
 https://github.com/TYPO3-Documentation/TYPO3CMS-Reference-FileAbstractionLayer,http://docs.typo3.org/~mbless/github.com/TYPO3-Documentation/TYPO3/Reference/FileAbstractionLayer.git.make/request_rebuild.php
+https://github.com/TYPO3-Documentation/TYPO3CMS-Guide-Installation,http://docs.typo3.org/~mbless/github.com/TYPO3-Documentation/TYPO3/Guide/Installation.git.make/request_rebuild.php
