@@ -44,3 +44,4 @@ https://github.com/TYPO3-Documentation/TYPO3CMS-Reference-FileAbstractionLayer,h
 https://github.com/TYPO3-Documentation/TYPO3CMS-Guide-Installation,http://docs.typo3.org/~mbless/github.com/TYPO3-Documentation/TYPO3/Guide/Installation.git.make/request_rebuild.php
 https://github.com/TYPO3-Documentation/TYPO3CMS-Reference-CoreApi,http://docs.typo3.org/~mbless/github.com/TYPO3-Documentation/TYPO3/Reference/CoreApi.git.make/request_rebuild.php
 https://github.com/TYPO3-Documentation/TYPO3CMS-Tutorial-Editors,http://docs.typo3.org/~mbless/github.com/TYPO3-Documentation/TYPO3/Tutorial/Editors.git.make/request_rebuild.php
+https://github.com/TYPO3-Documentation/TYPO3CMS-Tutorial-GettingStarted,http://docs.typo3.org/~mbless/github.com/TYPO3-Documentation/TYPO3/Tutorial/GettingStarted.git.make/request_rebuild.php
