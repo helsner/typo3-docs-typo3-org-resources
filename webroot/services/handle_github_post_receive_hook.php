@@ -7,43 +7,38 @@ $NL = "\n";
 $f2path = '/home/mbless/public_html/services/log-of-notifications.txt';
 $f3path = '/home/mbless/public_html/services/args-of-last-request.txt';
 
-$mapping = array(
-	'https://github.com/froemken/typo3-extbase-guide' => 'http://docs.typo3.org/~mbless/github.com/froemken/typo3-extbase-guide.git.make/request_rebuild.php',
-	'https://github.com/froemken/typo3-fluid-guide' => 'http://docs.typo3.org/~mbless/github.com/froemken/typo3-fluid-guide.git.make/request_rebuild.php',
-	'https://github.com/marble/typo3-incoming-notes' => 'http://docs.typo3.org/~mbless/github.com/marble/typo3-incoming-notes.git.make/request_rebuild.php',
-);
-
 echo $f2path;
 echo '<br>' . $NL;
 $f2 = fopen($f2path, 'a');
 if ($f2) {
-	if (1) {
-		$github = FALSE;
-		$github = @json_decode($_POST['payload'], TRUE);
-		$url = $github['repository']['url'];
-		fwrite($f2, $url . $NL);
+	$github = FALSE;
+	$github = @json_decode($_POST['payload'], TRUE);
+	$github_repository_url = $github['repository']['url'];
+	fwrite($f2, $github_repository_url . $NL);
 
-		$requrl = $mapping[$url];
-		if (!strlen($requrl)) {
-			$f1 = fopen('/home/mbless/public_html/services/known-github-manuals.txt', 'r');
-			while (!strlen($requrl) && !feof($f1)) {
-				$line = fgets($f1);
+	$f1 = fopen('/home/mbless/public_html/services/known-github-manuals.txt', 'r');
+	while (!feof($f1)) {
+		$line = fgets($f1);
+		if ($line !== FALSE) {
+			$line = trim($line);
+			// skip comment lines
+			if (strpos($line, '#') !== 0) {
 				$parts = explode(',', $line);
-				if ($url == trim($parts[0])) {
+				if ($github_repository_url === trim($parts[0])) {
 					$requrl = trim($parts[1]);
 				}
+				if (strlen($requrl)) {
+					$cmd = 'wget -q -O /dev/null ' . $requrl;
+					exec($cmd);
+					fwrite($f2, $cmd . $NL);
+				}
 			}
-			fclose($f1);
-		}
-		if (strlen($requrl)) {
-			$cmd = 'wget -q -O /dev/null ' . $requrl;
-			exec($cmd);
-			fwrite($f2, $cmd . $NL);
 		}
 	}
+	fclose($f1);
 	fclose($f2);
 } else {
-	echo "Could not open file.";
+	echo 'Could not open file ' . $f2path ;
 }
 
 $f3 = fopen($f3path, 'a');
