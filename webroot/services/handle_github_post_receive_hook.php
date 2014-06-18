@@ -41,7 +41,7 @@ if ($f2) {
 	echo 'Could not open file ' . $f2path ;
 }
 
-$f3 = fopen($f3path, 'a');
+$f3 = fopen($f3path, 'w');
 if ($f3) {
 	if (1) {
 		fwrite($f3, '/* -------------------------------------------------- */' . $NL);
