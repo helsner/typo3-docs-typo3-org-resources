@@ -26,6 +26,8 @@ if ($f2) {
 				$parts = explode(',', $line);
 				if ($github_repository_url === trim($parts[0])) {
 					$requrl = trim($parts[1]);
+				} else {
+					$requrl = '';
 				}
 				if (strlen($requrl)) {
 					$cmd = 'wget -q -O /dev/null ' . $requrl;
