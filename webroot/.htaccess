@@ -29,9 +29,6 @@ RewriteRule ^robots\.txt$   /robots-for-srv123.txt [L]
 # ###
 RewriteCond %{HTTP_HOST}  !^docs\.typo3\.org [NC]
 
-## I can't remember why I once needed this one:
-# RewriteCond %{HTTP_HOST}  !^$
-
 ## This one does the job:
 # RewriteCond %{ENV:REDIRECT_STATUS} ^$
 
@@ -44,7 +41,7 @@ RewriteRule ^(.*)         http://docs.typo3.org/$1 [L,R=301]
 # ###
 # /TYPO3/ has become /typo3cms/
 # ###
-RewriteRule  ^TYPO3/(.*)$  /typo3cms/$1  [R=301,L]
+RewriteRule  ^TYPO3/(.*)$  /typo3cms/$1  [NC,R=301,L]
 
 # ###
 # .../Extensions/ has become /extensions/
