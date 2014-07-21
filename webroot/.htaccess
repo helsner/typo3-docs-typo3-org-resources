@@ -42,6 +42,8 @@ RewriteRule ^(.*)         http://docs.typo3.org/$1 [L,R=301]
 # /TYPO3/ has become /typo3cms/
 # ###
 RewriteRule  ^TYPO3/(.*)$  /typo3cms/$1  [NC,R=301,L]
+# Also match the edge case that the URL is only "typo3"
+RewriteRule  ^TYPO3$  /typo3cms/$1  [NC,R=301,L]
 
 # ###
 # .../Extensions/ has become /extensions/
