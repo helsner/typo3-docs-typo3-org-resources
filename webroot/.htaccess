@@ -45,6 +45,10 @@ RewriteRule  ^TYPO3/(.*)$  /typo3cms/$1  [NC,R=301,L]
 # Also match the edge case that the URL is only "typo3"
 RewriteRule  ^TYPO3$  /typo3cms/$1  [NC,R=301,L]
 
+# Fix broken links after the renaming of the path to the TCA Reference
+RewriteRule  ^typo3cms/TCA-Reference/(.*)$  /typo3cms/TCAReference/$1  [NC,R=301,L]
+RewriteRule  ^typo3cms/TCA-Reference$  /typo3cms/TCAReference/  [NC,R=301,L]
+
 # ###
 # .../Extensions/ has become /extensions/
 # ###
