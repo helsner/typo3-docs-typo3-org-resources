@@ -1,6 +1,6 @@
 #! /usr/bin/python
 #! coding: utf-8
-# decode_sphinx_inventory, mb, 2013, 2014-07-24
+# decode_sphinx_inventory, mb, 2013, 2014-07-26
 # ÄÖÜäöüß
 
 # ==================================================
@@ -70,7 +70,8 @@ except ImportError:
     )
     sys.exit(1)
 
-__version__ = "0.1.0"
+__version_info__ = (0, 1, 1)
+__version__ = '.'.join(map(str, __version_info__))
 __history__ = ""
 __copyright__ = """\
 
@@ -326,9 +327,9 @@ def get_argparse_args():
 
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0], add_help=False)
     parser.add_argument('--help', '-h', action='help', default=argparse.SUPPRESS, help='show this help message and exit')
-    # parser.add_argument('--version', action='version', version='%(prog)s ' + __version__)
-    parser.add_argument('--license', help='show license', nargs=0, action=License)
-    # parser.add_argument('--history', help='show history', nargs=0, action=History)
+    parser.add_argument('--version', action='version', version=__version__, help='show version and exit')
+    parser.add_argument('--license', help='show license and exit', nargs=0, action=License)
+    # parser.add_argument('--history', help='show history and exit', nargs=0, action=History)
     parser.add_argument('--info',    help='show more information about this module', nargs=0, action=Info)
     parser.add_argument('-O', '--outfile-name', help="write utf-8 output to this file", dest='outfilename', default=None)
     parser.add_argument('--abbreviation', help="abbreviation for the Intersphinx mapping. Default: abbrev", dest='abbrev', default='abbrev')
