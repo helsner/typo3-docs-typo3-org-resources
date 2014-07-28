@@ -5,7 +5,6 @@ https://github.com/baschny/Documentation-TYPO3-Guide-Installation,http://docs.ty
 https://github.com/digicademy/catalogueraisonne,http://docs.typo3.org/~mbless/github.com/digicademy/catalogueraisonne.git.make/request_rebuild.php
 https://github.com/extcode/wt_cart_documentation,http://docs.typo3.org/~mbless/github.com/extcode/wt_cart_documentation.git.make/request_rebuild.php
 https://github.com/froemken/typo3-extbase-guide,http://docs.typo3.org/~mbless/github.com/froemken/typo3-extbase-guide.git.make/request_rebuild.php
-https://github.com/fsuter/TYPO3.CMS.Documentation.Migration,http://docs.typo3.org/~mbless/github.com/fsuter/typo3-sysext-ALL.git.make/request_rebuild.php
 https://github.com/guweha/typo3-docteam-codesprint-2014,http://docs.typo3.org/~mbless/github.com/guweha/typo3-docteam-codesprint-2014.git.make/request_rebuild.php
 https://github.com/jweiland-net/infinitescrolling,http://docs.typo3.org/~mbless/github.com/jweiland-net/infinitescrolling.git.make/request_rebuild.php
 https://github.com/karu/TYPO3-Getting-Started-Extended-Manager,http://docs.typo3.org/~mbless/github.com/karu/TYPO3-Getting-Started-Extended-Manager.git.make/request_rebuild.php
