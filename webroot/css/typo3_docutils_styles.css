@@ -4,7 +4,7 @@
 
 
 /* @font-face:
- * see preview.typo3.org
+ * see typo3.org
  */
 
 @font-face {
@@ -46,9 +46,9 @@
  * :Author: Sabine Hueber
  * :Contact: sabine@designeon.de
  * :Copyright: This stylesheet has been placed in the public domain.
- * 
+ *
  * Stylesheet for use with Docutils and the TYPO3 documentation
- * 
+ *
  */
 
 
@@ -320,7 +320,7 @@ table.docinfo td {
 
 
 
-/* found at preview.typo3.org: Arial,'Helvetica Neue',Helvetica,sans-serif */
+/* found at typo3.org: Arial,'Helvetica Neue',Helvetica,sans-serif     */
 /*                                                                     */
 /* html {                                                              */
 /* 	font: 12px/18px Arial,'Helvetica Neue',Helvetica,sans-serif;       */
@@ -335,9 +335,9 @@ table.docinfo td {
  * :Author: David Goodger (goodger@python.org)
  * :Id: $Id: html4css1.css 5951 2009-05-18 18:03:10Z milde $
  * :Copyright: This stylesheet has been placed in the public domain.
- * 
+ *
  * Default cascading style sheet for the HTML output of Docutils.
- * 
+ *
  * See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
  * customize this style sheet.
  */
@@ -733,7 +733,6 @@ div.table-row dl {
 div.table-row dt {
     background-color: #f0f0f0;
     font-weight: normal;
-    
 }
 ul.auto-toc li {
     margin-bottom: 0;
