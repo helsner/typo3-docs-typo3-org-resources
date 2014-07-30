@@ -2,6 +2,11 @@
 
 /* This stylesheet has been placed in the public domain. */
 
+/**
+ * This stylesheet is used for manuals, which have been converted from OpenOffice to reST
+ * on docs.typo3.org (and not for those, which have directly been provided in reST format).
+ */
+
 
 /* @font-face:
  * see typo3.org
@@ -157,41 +162,33 @@ p.topic-title {
 }
 
 /* links */
-
+/* colors as on typo3.org */
 a {
 	background: none repeat scroll 0 0 transparent;
 	text-decoration: none;
-	color: #006299; /*  0 a blue */
+	color: #f58006;
 }
 a:visited {
-	/* blue */
-	color: #cce0eb; /* +4 */
-	color: #99c0d6; /* +3 */
-	color: #66a1c2; /* +2 */
-	color: #3381ad; /* +1 blue */
-	color: #004973; /* -1 */
-	color: #00314c; /* -2 */
-	color: #001826; /* -3 */
-	color: #000000; /* -4 */
-	color: #006299; /*  0 a blue */
+	color: #666;
 }
 a:active {
-	color: #00314c; /* -2 */
+	color: #faa700;
 }
 a:hover ,
 a:focus {
-	color: #00314c; /* -2 */
 	text-decoration: underline;
 }
 a.external {
 	text-decoration: none;
-	border-bottom: 1px dotted #006299;
+	border-bottom: 1px dotted #f58006;
+}
+a.external:visited {
+	border-bottom-color: #666;
 }
 a.external:hover,
-a.external:focus
- {
+a.external:focus {
 	text-decoration: none;
-	border-bottom: 1px solid #00314c;
+	border-bottom-style: solid;
 }
 .internal {
 	text-decoration: none;

@@ -1,5 +1,11 @@
 /* mb, 2012-11-25, 2013-07-15, 2014-03-25 */
 
+/**
+ * This stylesheet is used for manuals, which were provided as reST files
+ * (and not for those, which were provided as an OpenOffice file
+ * and have been converted from OpenOffice to reST on docs.typo3.org).
+ */
+
 /* override standard settings of typo3.org */
 
 .pDISABLED {
