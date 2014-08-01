@@ -1,4 +1,5 @@
 Options -Indexes
 RewriteEngine On
-RewriteRule ^(([0-9]+)(\.[0-9])*|latest|packages|stable|manuals.json)(.*)$ -  [L]
+# Do not rewrite any valid version number or the provided words
+RewriteRule ^(([0-9]+)(\.[0-9]+)(\.[0-9]+)*|latest|packages|stable|manuals.json)(.*)$ -  [L]
 RewriteRule ^(.*)$ stable/$1
