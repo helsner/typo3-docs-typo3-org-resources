@@ -62,50 +62,28 @@
 
 
 /* WV pschumann begin */
-.doc #aside {
-	/*background-image: url(http://www.typo3.org/typo3conf/ext/t3org_template/css/../i/aside-shade.png);
-	background-repeat: no-repeat;
-	background-position: right 0;*/
-}
-
 .doc #aside h3 {
 	background-color: #efefef;
 	padding: 3px 8px 4px 10px;
-	background-image: url(http://typo3.org/typo3conf/ext/t3org_template/css/../i/nav-aside.png);
 	background-image: url(/t3extras/i/nav-aside.png);
 	background-position: right bottom;
 	background-repeat: no-repeat;
 	margin-bottom: 20px;
+	font-weight: bold;
 }
 
 .doc #aside h3 a {
 	font-size: 12px;
+	display: block;
+	text-decoration: none;
+	color: #000000;
+	font-weight: bold;
 }
 
-/*.doc #aside #nav-aside li {
-/*	padding-top: 0;
-/*}
-/*
-/*.doc #aside #nav-aside li a {
-/*	color: #555555;
-/*	font-weight: normal;
-/*	padding: 3px 8px 4px 30px;
-/*	background-image: url(http://typo3.org/typo3conf/ext/t3org_template/css/../i/i-arrows.png);
-/*	background-repeat: no-repeat;
-/*	background-position: -942px -431px;
-/*}
-/*
-/*.doc #aside #nav-aside li a:hover {
-/*	text-decoration: none;
-/*	background-position: -902px -471px;
-/*}
-/*
-/*.doc #aside #nav-aside .cur a {
-/*	font-weight: bold;
-/*	color: #000000;
-/*	background-position: -902px -471px;
-/*}
-/*
+.doc #aside h3 a:hover {
+	text-decoration: underline;
+}
+
 /*.doc #aside .toc {
 /*	height: 25px;
 /*}
@@ -170,6 +148,62 @@
 /*}
 /*
 */
+
+
+
+/**
+ * Styling for the left hand side menu; used in the singlehtml version.
+ * The following rules - in the result - duplicate what is set for the t3html version
+ * (which creates the default version with _several_ pages).
+ * The rules which are more or less duplicated here come from t3extras/css/main.css,
+ * there they start with "#nav-aside ...".
+ *
+ * Attention: The following rules ALSO apply for the t3html version!
+ * The rules here - although they match the same elements - are LESS SPECIFIC
+ * (because they in contrast to those for #nav-aside do not use classes),
+ * so that in the t3html version they are just overwritten by the more specific rules
+ * from t3extras/css/main.css.
+ */
+/**
+ * #nav-aside in t3html = #aside ul here
+ */
+/**
+ * Make sure this rule is only valid for the _first_ level;
+ * otherwise would add an unwanted margin-bottom to the ul of the second level of the t3html version.
+ */
+#aside>ul {
+    margin: 0 0 44px;
+}
+/* No idea what this rule should do and what it is there for; just copied it... ;-) */
+#aside li:first-child {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+#aside li {
+    background: url("../t3extras/i/nav-aside.png") no-repeat scroll right top rgba(0, 0, 0, 0);
+    padding-top: 1px;
+}
+/**
+ * Make sure the rule is only valid for a tags on the _first_ level;
+ * a second level is not there in the singlehtml version anyway,
+ * but this rule would influence the t3html version and add
+ * a wrong padding to the a tags, which _there_ are on level 2!
+ */
+#aside>ul>li>a {
+    color: #ff8700;
+    font-weight: bold;
+    padding: 3px 8px 4px 10px;
+}
+#aside a {
+    display: block;
+    text-decoration: none;
+}
+#aside a:hover, #aside a:focus {
+    background-color: #efefef;
+}
+
+
+
+
 .doc .hnav-related {
 	margin: 0 0 17px 0;
 	margin: 0 0 0 0;
@@ -441,24 +475,6 @@ div.toctree li.current {
 	background-color: black;
 }
 
-#aside h3 {
-	background-color: transparent;
-	font-weight: bold;
-	padding: 3px 8px 4px 10px;
-	padding: 2px 0px 14px 0px;
-}
-
-#aside h3 a {
-	display: block;
-	text-decoration: none;
-	color: #000000;
-	font-weight: bold;
-}
-
-#aside h3 a:hover {
-	text-decoration: underline;
-}
-
 #aside div.toc {
 	height: 18px;
 	overflow: hidden;
@@ -477,17 +493,6 @@ div.toctree li.current {
 #p-on-this-page {
 	background-color: #e8e8e8;
 }
-
-/*#aside a {
-/*	color: #555;
-/*	font-weight: normal;
-/*	text-decoration: none;
-/*}
-/*
-/*#aside a:hover {
-/*	text-decoration: underline;
-/*}
-*/
 
 .hnav-related {
 	text-align: right;
@@ -517,11 +522,6 @@ hnav-related a:hover {
 	background-image: none;
 }
 
-
-/*.doc #aside #nav-aside a {
-/*    font-weight: normal;
-/*}
-*/
 
 .doc table.docutils {
   /*  table-layout:fixed !important */
@@ -560,12 +560,6 @@ hnav-related a:hover {
 .doc div.figure {
 	margin-bottom: 17px;
 }
-
-/*.doc  #aside #nav-aside li a {
-/*	padding: 3px 10px 4px 25px;
-/*	padding: 3px 8px 4px 26px;
-/*}
-*/
 
 .doc .hnav-related-container ul {
 	margin-bottom: 10px;
