@@ -126,11 +126,15 @@ function compilepdf() {
         return
     fi
 
+    # Create LATEX file and helper files
     make -e latex
     # Fix generated Makefile for batch processing
     sed -i"" 's/pdflatex /pdflatex -interaction=nonstopmode -halt-on-error /' $BUILDDIR/latex/Makefile
     # Fix use of straight single quotes in source code
     perl -i -pe 'BEGIN{undef $/;} s/(\\makeatother.*?\\begin\{document\})/\\def\\PYGZsq{\\textquotesingle}\n\1/smg' $BUILDDIR/latex/$PROJECT.tex
+    # Fix color of links inside the TOC; at this place make them black
+    sed -i"" 's/\\tableofcontents/{\\hypersetup{linkcolor=black}\n\\tableofcontents\n}/' $BUILDDIR/latex/$PROJECT.tex
+    # Create PDF
     make -C $BUILDDIR/latex all-pdf
     EXITCODE=$?
 
