@@ -9,10 +9,28 @@ if (0) {
     ini_set('display_startup_errors', 1);
 }
 
+/**
+ * This class creates a link based on a requested URL.
+ * This link either points to a folder with a PDF file or - if the file does not exist -
+ * to a documentation page with instructions on how to set up PDF creation.
+ */
 class PdfMatcher {
 
-    var $dd = 1;     // do debug?
+    var $dd = null;     // do debug?
     var $webRootPath = '/home/mbless/public_html';
+    /**
+     * @var boolean TRUE, if the current page is a glue page, false otherwise
+     */
+    var $currentProjectIsGluePage = FALSE;
+    /**
+     * @var string URL to the folder of the PDF file; .htaccess in there will redirect to actual filename
+     */
+    var $pdfUrl = '';
+    /**
+     * @var string URL to the page with docs on how to set up rendering.
+     * Do not change unless the page is moved accordingly!
+     */
+    var $pdfDocumentationUrl = 'http://docs.typo3.org/Overview/PdfFiles.html';
     var $knownPathBeginnings = array(
         // longest paths first!
         '/flow/drafts/',
@@ -23,6 +41,11 @@ class PdfMatcher {
         '/typo3cms/extensions/',
         '/typo3cms/',
     );
+    /**
+     * @var array List of symlinks to resolve
+     * @todo: .htaccess already takes care that all requests to "TYPO3/" get rewritten to typo3cms/ directly.
+     * This variable and its usages below should be superfluous.
+     */
     var $resolveSymlink = array(
         '/TYPO3/drafts/'        => '/typo3cms/drafts/',
         '/TYPO3/extensions/'    => '/typo3cms/extensions/',
@@ -45,26 +68,13 @@ class PdfMatcher {
 
     var $parsedUrl;                    // array
 
-    var $resultPdf          = array();     // the result!
+    /** @var boolean Information, whether the PDF file exists or not */
+    var $pdfExists          = true;
+    /** @var string The resulting HTML code of the link */
     var $htmlResult         = '';
-    var $htmlResultIntro    = '';
-    var $htmlResultTrailer  = '';
 
     function __construct() {
         // pass
-    }
-
-    function unparse_url($parsed_url) {
-        $scheme   = isset($parsed_url['scheme'  ]) ?       $parsed_url['scheme'] . '://' : '';
-        $host     = isset($parsed_url['host'    ]) ?       $parsed_url['host']     : '';
-        $port     = isset($parsed_url['port'    ]) ? ':' . $parsed_url['port']     : '';
-        $user     = isset($parsed_url['user'    ]) ?       $parsed_url['user']     : '';
-        $pass     = isset($parsed_url['pass'    ]) ? ':' . $parsed_url['pass']     : '';
-        $pass     = ($user || $pass) ? "$pass@" : '';
-        $path     = isset($parsed_url['path'    ]) ?       $parsed_url['path']     : '';
-        $query    = isset($parsed_url['query'   ]) ? '?' . $parsed_url['query']    : '';
-        $fragment = isset($parsed_url['fragment']) ? '#' . $parsed_url['fragment'] : '';
-        return "$scheme$user$pass$host$port$path$query$fragment";
     }
 
     function isValidVersionFolderName($filename) {
@@ -128,6 +138,14 @@ class PdfMatcher {
         } else {
             $this->cont = false;
         }
+
+        /* Check, if we are on a glue page. On these pages, count($this->urlPart3PathSegments) is 0 or 1. */
+        if (count($this->urlPart3PathSegments) < 2) {
+            $this->currentProjectIsGluePage = TRUE;
+            $this->pdfExists = FALSE;
+            $this->cont = FALSE;
+        }
+
         # urlPart3PathSegments: array('TyposcriptReference', 'en-us', '4.7', 'Setup', 'Page', 'Index.html');
         if ($this->cont and (count($this->urlPart3PathSegments) < 2)) {
             $this->cont = false;
@@ -163,11 +181,23 @@ class PdfMatcher {
         return substr($haystack, 0, strlen($needle)) === $needle;
     }
 
+    /**
+     * Creates the HTML output, which should be inserted into the page.
+     *
+     * @return $result string HTML code of the link
+     */
     function generateOutput() {
         $result = '';
-        if ($this->cont) {
-            $result = '<li><a href="' . $this->pdfUrl . '">PDF</a></li>';
-        } else {
+        // Only show link, if this is a normal documentation project. Do not show it on the glue pages.
+        if (!$this->currentProjectIsGluePage) {
+            if ($this->pdfExists) {
+                $linkUrl = $this->pdfUrl;
+            } else {
+                $linkUrl = $this->pdfDocumentationUrl;
+            }
+            $result = '<li><a href="' . $linkUrl . '">PDF</a></li>';
+        }
+        if ($this->dd) {
             // highly sophisticated debugging technique :-)
             $result = '<li>' . $this->pdfUrl . '</li>';
             $result = '<li>' . $this->curlResult . '</li>';
@@ -206,19 +236,23 @@ class PdfMatcher {
         $this->curl_errno = curl_errno($ch);
         $this->pdf_http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
-        if (0) {
-            // doesn't work reliably:
-            if ($this->pdf_http_status !== 200) {
-                $this->cont = False;
-            }
-        }
+
         if ($this->curl_errno) {
-            // this works! Needs CURLOPT_FAILONERROR.
-            // Will the the exitcode == curl_errno to 22 on error.
-            $this->cont = False;
+            // Needs CURLOPT_FAILONERROR.
+            // On error, most likely ends up with 22 as the exitcode == curl_errno.
+            $this->pdfExists = False;
         }
     }
 
+    /**
+     * Main logic of the class.
+     *
+     * Generates the link to the PDF file in HTML format.
+     * @param $url string The complete URL as it was requested by the website visitor
+     * @param $doDebug mixed NULL to keep debug mode deactivated, anything else to activate it
+     * @param $webRootPath mixed Internal server path to the main folder, which contains the different rendered projects
+     * @return string The HTML code with the link
+     */
     function processTheUrl($url, $doDebug=null, $webRootPath=null) {
         $this->url = $url;
         if (!is_null($webRootPath)) {
