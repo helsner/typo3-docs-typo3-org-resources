@@ -146,13 +146,15 @@ function compilepdf() {
     fi
 
     if [ $EXITCODE -ne 0 ]; then
-        # Store log into pdflatex.txt, may be useful to investigate
-        cat $BUILDDIR/latex/*.log >> $MAKE_DIRECTORY/pdflatex.txt
+        # Store log into pdf.log, may be useful to investigate
+        cat $BUILDDIR/latex/*.log >> $BUILDDIR/pdf.log
         echo "Could not compile as PDF, skipping."
     elif [ ! -f "$PDFFILE" ]; then
         EXITCODE=1
         echo "Could not find output PDF, skipping."
     else
+        # Store log even though no fatal errors occured
+        cat $BUILDDIR/latex/*.log >> $BUILDDIR/pdf.log
         # Move PDF to a directory "_pdf" (instead of "latex")
         mkdir $BUILDDIR/_pdf
         mv $PDFFILE $BUILDDIR/_pdf/$TARGETPDF
@@ -343,7 +345,9 @@ function renderdocumentation() {
     make -e singlehtml
     # make -e dirhtml
 
-    ln -s $MAKE_DIRECTORY $BUILDDIR/_make
+    # Provide a _make directory in public_html to access
+    # rendering configuration files
+    #ln -s $MAKE_DIRECTORY $BUILDDIR/_make
 
     # Make simple README documentation accessible
     pushd $BUILDDIR >/dev/null
