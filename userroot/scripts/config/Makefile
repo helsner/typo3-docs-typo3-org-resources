@@ -1,6 +1,6 @@
 # You can set these variables from the command line.
 SPHINXOPTS    = -c . -a -E -w warnings.txt
-SPHINXBUILD   = sphinx-build
+SPHINXBUILD   = /usr/local/bin/sphinx-build
 PAPER         =
 # Following variables are set from the command line
 BUILDDIR      = /dev/null
