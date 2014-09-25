@@ -8,3 +8,4 @@ Disallow: /TYPO3/drafts/
 Disallow: /typo3cms/drafts/
 Disallow: /~mbless/
 Disallow: /services/
+Disallow: /getthedocs/files/
