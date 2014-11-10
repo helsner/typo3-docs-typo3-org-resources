@@ -403,6 +403,7 @@ if [ -r "REBUILD_REQUESTED" ]; then
         git reset
         git checkout .
         # Retrieve changes
+        git fetch
         git pull
         # Switch to the actual branch
         git checkout $GITBRANCH
