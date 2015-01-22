@@ -90,6 +90,8 @@ $kp['Documentation/TYPO3/Tutorial/Templating']                ['master'] = '.git
 $kp['Documentation/TYPO3/Tutorial/Typoscript45Minutes']       ['master'] = '.git.make';
 $kp['TYPO3v4/Extensions/news']                                ['master'] = '.git.make';
 
+$kp['Packages/TYPO3.CMS']       ['TYPO3_4-5'] = 'http://docs.typo3.org/~mbless/git.typo3.org/TYPO3CMS/Extensions/TYPO3.CMS.ALL-SYSEXT.master.make_4.5/request_rebuild.php';
+$kp['Packages/TYPO3.CMS']       ['TYPO3_4-7'] = 'http://docs.typo3.org/~mbless/git.typo3.org/TYPO3CMS/Extensions/TYPO3.CMS.ALL-SYSEXT.master.make_4.7/request_rebuild.php';
 $kp['Packages/TYPO3.CMS']       ['TYPO3_6-2'] = 'http://docs.typo3.org/~mbless/git.typo3.org/TYPO3CMS/Extensions/TYPO3.CMS.ALL-SYSEXT.master.make_6.2/request_rebuild.php';
 $kp['Packages/TYPO3.CMS']       ['master']    = 'http://docs.typo3.org/~mbless/git.typo3.org/TYPO3CMS/Extensions/TYPO3.CMS.ALL-SYSEXT.master.make/request_rebuild.php';
 
