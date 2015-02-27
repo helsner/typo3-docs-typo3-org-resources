@@ -99,6 +99,10 @@ $kp['Packages/TYPO3.Flow']      ['master']    = 'http://docs.typo3.org/~mbless/g
 $kp['Packages/TYPO3.Flow']      ['FLOW3-1.0'] = 'http://docs.typo3.org/~mbless/git.typo3.org/Packages/TYPO3.Flow.git.make_1.0/request_rebuild.php';
 $kp['Packages/TYPO3.Flow']      ['FLOW3-1.1'] = 'http://docs.typo3.org/~mbless/git.typo3.org/Packages/TYPO3.Flow.git.make_1.1/request_rebuild.php';
 $kp['Packages/TYPO3.Flow']      ['2.0']       = 'http://docs.typo3.org/~mbless/git.typo3.org/Packages/TYPO3.Flow.git.make_2.0/request_rebuild.php';
+$kp['Packages/TYPO3.Flow']      ['2.1']       = 'http://docs.typo3.org/~mbless/git.typo3.org/Packages/TYPO3.Flow.git.make_2.1/request_rebuild.php';
+$kp['Packages/TYPO3.Flow']      ['2.2']       = 'http://docs.typo3.org/~mbless/git.typo3.org/Packages/TYPO3.Flow.git.make_2.2/request_rebuild.php';
+$kp['Packages/TYPO3.Flow']      ['2.3']       = 'http://docs.typo3.org/~mbless/git.typo3.org/Packages/TYPO3.Flow.git.make_2.3/request_rebuild.php';
+$kp['Packages/TYPO3.Flow']      ['3.0']       = 'http://docs.typo3.org/~mbless/git.typo3.org/Packages/TYPO3.Flow.git.make_3.0/request_rebuild.php';
 
 $kp['Packages/TYPO3.Neos']      ['master']    = 'http://docs.typo3.org/~mbless/git.typo3.org/Packages/TYPO3.Neos.git.make/request_rebuild.php';
 
