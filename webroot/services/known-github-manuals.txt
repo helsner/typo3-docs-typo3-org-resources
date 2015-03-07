@@ -39,6 +39,7 @@ https://github.com/typo3-themes/theme,http://docs.typo3.org/~mbless/github.com/t
 https://github.com/typo3-themes/themes,http://docs.typo3.org/~mbless/github.com/typo3-themes/themes.git.make/request_rebuild.php
 https://github.com/xperseguers/TYPO3.cms.Documentation.Editeurs,http://docs.typo3.org/~mbless/github.com/xperseguers/TYPO3.cms.Documentation.Editeurs.git.make/request_rebuild.php
 https://github.com/xperseguers/TYPO3.docs.rst-primer,http://docs.typo3.org/~mbless/github.com/xperseguers/TYPO3.docs.rst-primer.git.make/request_rebuild.php
+https://github.com/georgringer/news-documentation,http://docs.typo3.org/~mbless/github.com/georgringer/news-documentation.git.make/request_rebuild.php
 #
 # https://github.com/TYPO3-Documentation/
 #
