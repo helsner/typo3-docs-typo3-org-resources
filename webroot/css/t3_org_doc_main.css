@@ -1,4 +1,4 @@
-/* mb, 2012-11-25, 2013-07-15, 2014-03-25 */
+/* mb, 2012-11-25, 2013-07-15, 2014-03-25, 2015-03-11 */
 
 /**
  * This stylesheet is used for manuals, which were provided as reST files
@@ -435,8 +435,11 @@
 
 .doc .sidebar {
 	float: right;
-	width: 250px;
-	padding-left: 10px;
+	width: 240px;
+	padding: 10px;
+	margin: 10px 0 10px 10px;
+	border: 1px solid #c8c8c8;
+	background-color: white;
 }
 
 .doc .rubric {
