@@ -371,7 +371,7 @@ function renderdocumentation() {
     if [ -z "$STABLE_VERSION" ] && [ "$VERSION" == "latest" ]; then
         STABLE_VERSION=latest
     fi
-    if [ -n "$STABLE_VERSION" ]; then
+    if [ ! -z "$STABLE_VERSION" ]; then
         if [ ! -r "$ORIG_BUILDDIR/../stable" ] || [ -h "$ORIG_BUILDDIR/../stable" ]; then
             pushd $ORIG_BUILDDIR/.. >/dev/null
             echo "Recreating stable symbolic link in $PWD"
