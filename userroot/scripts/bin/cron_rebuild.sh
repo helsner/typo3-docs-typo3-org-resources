@@ -364,7 +364,7 @@ function renderdocumentation() {
 
     # Recreate "stable" link if needed
     STABLE_VERSION=""
-    if [ $TER_EXTENSION -eq 1 ]; then
+    if [ "$TER_EXTENSION" = "1" ]; then
         STABLE_VERSION=$(find $ORIG_BUILDDIR/.. -maxdepth 1 -type d -exec basename {} \; \
             | grep -E "^[0-9]+\." | sort -rV | head -n1)
         if [ ! -r "$ORIG_BUILDDIR/../$STABLE_VERSION/objects.inv" ]; then
