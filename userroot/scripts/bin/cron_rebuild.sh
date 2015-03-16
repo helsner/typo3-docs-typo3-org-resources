@@ -36,6 +36,7 @@ if [ ! -r "cron_rebuild.conf" ]; then
     exit 1
 fi
 
+TER_EXTENSION=0
 . cron_rebuild.conf
 
 # The list of supported languages by Sphinx is available
@@ -362,14 +363,17 @@ function renderdocumentation() {
     fi
 
     # Recreate "stable" link if needed
-    STABLE_VERSION=$(find $ORIG_BUILDDIR/.. -maxdepth 1 -type d -exec basename {} \; \
-        | grep -E "^[0-9]+\." | sort -rV | head -n1)
-    if [ ! -r "$ORIG_BUILDDIR/../$STABLE_VERSION/objects.inv" ]; then
-        # Highest version is not a Sphinx project => bad output thus skip!
-        STABLE_VERSION=""
-    fi
-    if [ -z "$STABLE_VERSION" ] && [ "$VERSION" == "latest" ]; then
-        STABLE_VERSION=latest
+    STABLE_VERSION=""
+    if [ $TER_EXTENSION -eq 1 ]; then
+        STABLE_VERSION=$(find $ORIG_BUILDDIR/.. -maxdepth 1 -type d -exec basename {} \; \
+            | grep -E "^[0-9]+\." | sort -rV | head -n1)
+        if [ ! -r "$ORIG_BUILDDIR/../$STABLE_VERSION/objects.inv" ]; then
+            # Highest version is not a Sphinx project => bad output thus skip!
+            STABLE_VERSION=""
+        fi
+        if [ -z "$STABLE_VERSION" ] && [ "$VERSION" == "latest" ]; then
+            STABLE_VERSION=latest
+        fi
     fi
     if [ ! -z "$STABLE_VERSION" ]; then
         if [ ! -r "$ORIG_BUILDDIR/../stable" ] || [ -h "$ORIG_BUILDDIR/../stable" ]; then
