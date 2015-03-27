@@ -1,5 +1,5 @@
 /*
- * mb, 2012-12-26, 2013-07-01
+ * mb, 2012-12-26, 2013-07-01, 2015-03-27
  * docstypo3org-1.js
  * utf-8, äöü
  *
@@ -64,6 +64,8 @@ $(document).ready(function () {
 		+ '					<li><a href="http://docs.typo3.org/neos/TYPO3NeosDocumentation/DeveloperGuide/">   Developer Guide   </a></li>'
 		+ '			</div>'
 		+ '		</div>'
+		+ '	</li>'
+		+ '	<li><a href="http://docs.typo3.org/surf/TYPO3SurfDocumentation/">TYPO3 Surf</a>'
 		+ '	</li>'
 		+ '</ul>'
 	;
