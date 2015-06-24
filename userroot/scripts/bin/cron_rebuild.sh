@@ -406,11 +406,11 @@ if [ -r "REBUILD_REQUESTED" ]; then
         # Discard any change
         git reset
         git checkout .
-        # Retrieve changes
-        git fetch
-        git pull
         # Switch to the actual branch
         git checkout $GITBRANCH
+        # Retrieve changes
+        git pull
+        # Reveal status (cron sends a mail)
         git status
     elif [ ! -r "$GITDIR" ]; then
         echo "No Git URL provided and non-existing directory: $GITDIR" 2>&1
@@ -468,8 +468,9 @@ if [ -r "REBUILD_REQUESTED" ]; then
         if [ -n "$GITURL" ]; then
             git reset
             git checkout .
-            git pull
             git checkout $GITBRANCH
+            git pull
+            git status
         else
             find .. -maxdepth 1 -regex ".*/Localization\.[a-zA-Z_]*$" -exec mv {} . \;
         fi
