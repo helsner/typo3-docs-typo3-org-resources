@@ -623,25 +623,25 @@ hnav-related a:hover {
 	/* display: block; */
 }
 .flyOutToc a {
-    background: url("http://docs.typo3.org/t3extras/i/i-arrows.png") no-repeat scroll -942px -431px transparent;
+    background: url("https://docs.typo3.org/t3extras/i/i-arrows.png") no-repeat scroll -942px -431px transparent;
     /* display: block; */
     padding: 3px 8px 4px 30px;
 }
 .flyOutToc ul a { 
 	padding-left: 30px;
-	background: url("http://docs.typo3.org/t3extras/i/i-arrows.png") no-repeat scroll -942px -431px transparent;
+	background: url("https://docs.typo3.org/t3extras/i/i-arrows.png") no-repeat scroll -942px -431px transparent;
 }
 .flyOutToc ul ul a { 
 	padding-left: 45px;
-	background: url("http://docs.typo3.org/t3extras/i/i-arrows.png") no-repeat scroll -925px -431px transparent;
+	background: url("https://docs.typo3.org/t3extras/i/i-arrows.png") no-repeat scroll -925px -431px transparent;
 }
 .flyOutToc ul ul ul a { 
 	padding-left: 60px;
-	background: url("http://docs.typo3.org/t3extras/i/i-arrows.png") no-repeat scroll -910px -431px transparent;
+	background: url("https://docs.typo3.org/t3extras/i/i-arrows.png") no-repeat scroll -910px -431px transparent;
 }
 .flyOutToc ul ul ul ul a { 
 	padding-left: 75px;
-	background: url("http://docs.typo3.org/t3extras/i/i-arrows.png") no-repeat scroll -889px -431px transparent;
+	background: url("https://docs.typo3.org/t3extras/i/i-arrows.png") no-repeat scroll -889px -431px transparent;
 }
 .doc p,
 .doc div.figure
@@ -713,10 +713,10 @@ hnav-related a:hover {
 	top: 130px; /* just below the orange top menu. More space! */
 	left: 0px;
 	background-color: #888;
-	background: url("http://docs.typo3.org/i/toc_grey.png") no-repeat scroll 2px 266px transparent;
-	background: url("http://docs.typo3.org/i/toc_orange.png") no-repeat scroll 2px 266px transparent;
-	background: url("http://docs.typo3.org/i/toc_grey_border.png") no-repeat scroll 2px 266px transparent;
-	background: url("http://docs.typo3.org/i/arrow-r-888888-17x17.png") no-repeat scroll 3px 266px white;
+	background: url("https://docs.typo3.org/i/toc_grey.png") no-repeat scroll 2px 266px transparent;
+	background: url("https://docs.typo3.org/i/toc_orange.png") no-repeat scroll 2px 266px transparent;
+	background: url("https://docs.typo3.org/i/toc_grey_border.png") no-repeat scroll 2px 266px transparent;
+	background: url("https://docs.typo3.org/i/arrow-r-888888-17x17.png") no-repeat scroll 3px 266px white;
 	border: 1px solid #444;
 	border: 1px solid #AAA;
 	border-left: 1px none #e0e0e0;
@@ -773,7 +773,7 @@ hnav-related a:hover {
 	background-color: #efefef;
 }
 #naviwestpayload li {
-    background: url("http://docs.typo3.org/t3extras/i/nav-aside.png") no-repeat scroll right top transparent;
+    background: url("https://docs.typo3.org/t3extras/i/nav-aside.png") no-repeat scroll right top transparent;
     padding-top: 1px;
 }
 
@@ -801,7 +801,7 @@ hnav-related a:hover {
 }
 
 .doc .toc-backref:hover {
-    background: url("http://docs.typo3.org/t3extras/i/i-arrows.png") no-repeat scroll 0 -391px transparent;
+    background: url("https://docs.typo3.org/t3extras/i/i-arrows.png") no-repeat scroll 0 -391px transparent;
 }
 /*
    html.gecko
