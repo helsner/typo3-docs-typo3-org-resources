@@ -18,24 +18,14 @@ RewriteCond %{HTTP_HOST}    !^docs\.typo3\.org [NC]
 RewriteRule ^robots\.txt$   /robots-for-srv123.txt [L]
 
 # ###
-# Task (A): Explicitly redirect everything to domain docs.typo3.org
+# Explicitly redirect everything to domain docs.typo3.org
 #
-# But: Do not do the redirect if we already have an (internal) redirect
-#      done due to the above rule for robots.txt
-#
-# Better:
-# But: Do not redirect if we are showing then contents of
+# But: Do not redirect if we are showing the contents of
 #      robots-for-srv123.txt
 # ###
 RewriteCond %{HTTP_HOST}  !^docs\.typo3\.org [NC]
-
-## This one does the job:
-# RewriteCond %{ENV:REDIRECT_STATUS} ^$
-
-## But this one is better and more precise:
 RewriteCond %{REQUEST_URI} !^/robots-for-srv123.txt [NC]
-
-RewriteRule ^(.*)         http://docs.typo3.org/$1 [L,R=301]
+RewriteRule ^(.*)         https://docs.typo3.org/$1 [L,R=301]
 
 
 # ###
@@ -55,12 +45,26 @@ RewriteRule  ^typo3cms/TCA-Reference$  /typo3cms/TCAReference/  [NC,R=301,L]
 
 ### 
 # http://forge.typo3.org/issues/44868 mb, 2013-01-28
-# RewriteCond %{REQUEST_URI} ^/typo3cms/Extensions # does not help!
 # the following line handles the case "/typo3cms/Extensions.html"
 RewriteCond %{REQUEST_FILENAME} !-f
 #
 ###
 RewriteRule  ^typo3cms/Extensions(.*)$ /typo3cms/extensions$1 [R=301,L]
+
+# Rewrite for folder neos/
+RewriteCond %{REQUEST_URI}  /neos/$  [OR]
+RewriteCond %{REQUEST_URI}  /neos/Index.html$ 
+RewriteRule ^(.*)$          https://docs.typo3.org/neos/TYPO3NeosDocumentation/ [L,R=301]
+
+# Rewrite for folder flow/
+RewriteCond %{REQUEST_URI}  /flow/$  [OR]
+RewriteCond %{REQUEST_URI}  /flow/Index.html$ 
+RewriteRule ^(.*)$          https://docs.typo3.org/flow/TYPO3FlowDocumentation/ [L,R=301]
+
+# Rewrite for folder surf/
+RewriteCond %{REQUEST_URI}  /surf/$  [OR]
+RewriteCond %{REQUEST_URI}  /surf/Index.html$ 
+RewriteRule ^(.*)$          https://docs.typo3.org/surf/TYPO3SurfDocumentation/ [L,R=301]
 
 CheckSpelling On
 CheckCaseOnly On
