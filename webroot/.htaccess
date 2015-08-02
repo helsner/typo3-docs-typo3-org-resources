@@ -66,5 +66,33 @@ RewriteCond %{REQUEST_URI}  /surf/$  [OR]
 RewriteCond %{REQUEST_URI}  /surf/Index.html$ 
 RewriteRule ^(.*)$          https://docs.typo3.org/surf/TYPO3SurfDocumentation/ [L,R=301]
 
+#
+# Redirect links to the Flow manual to the new location
+# Take all branches into account (version numbers and "latest" and "stable")
+# Also adjust file namings: They changed it from Index.html to index.html.
+# The "Index.html" part in the old URLs was optional (so it should be followed by a "?" in the expression below),
+# but I didn't get the RedirectMatch to work with (.*)(/Index\.html)?$.
+# The segment "Index.html" then gets matched by the ".*" and not by the following "/Index.html".
+#
+# With version number or "latest":
+RedirectMatch ^/flow/TYPO3FlowDocumentation/(latest/|[0-9]\.[0-9]/)(.*)/Index\.html$ http://flowframework.readthedocs.org/en/$1$2/index.html
+RedirectMatch ^/flow/TYPO3FlowDocumentation/(latest/|[0-9]\.[0-9]/)(.*)$ http://flowframework.readthedocs.org/en/$1$2
+# If no version or "stable" is in URL (both were the same file), redirect to their "stable" version.
+# The most links have _no_ version in them, so the next two rules are the ones to usually kick in:
+RedirectMatch ^/flow/TYPO3FlowDocumentation/(stable/)?(.*)/Index\.html$ http://flowframework.readthedocs.org/en/stable/$2/index.html
+RedirectMatch ^/flow/TYPO3FlowDocumentation/(stable/)?(.*)$ http://flowframework.readthedocs.org/en/stable/$2
+
+#
+# Redirect links to the Neos manual to the new location
+#
+# With version number or "latest":
+RedirectMatch ^/neos/TYPO3NeosDocumentation/(latest/|[0-9]\.[0-9]/)(.*)/Index\.html$ http://neos.readthedocs.org/en/$1$2/index.html
+RedirectMatch ^/neos/TYPO3NeosDocumentation/(latest/|[0-9]\.[0-9]/)(.*)$ http://neos.readthedocs.org/en/$1$2
+# If no version or "stable" is in URL (both were the same file), redirect to their version 1.2 (which is what was "stable" on docs.typo3.org).
+# The most links have _no_ version in them, so the next two rules are the ones to usually kick in:
+RedirectMatch ^/neos/TYPO3NeosDocumentation/(stable/)?(.*)/Index\.html$ http://neos.readthedocs.org/en/1.2/$2/index.html
+RedirectMatch ^/neos/TYPO3NeosDocumentation/(stable/)?(.*)$ http://neos.readthedocs.org/en/1.2/$2
+
+
 CheckSpelling On
 CheckCaseOnly On
