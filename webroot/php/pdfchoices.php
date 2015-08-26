@@ -2,13 +2,6 @@
 
 /* mb, 2013-8-18, 2013-08-19 */
 
-if (0) {
-    error_reporting(-1);
-    error_reporting(E_ALL ^ E_NOTICE);
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-}
-
 /**
  * This class creates a link based on a requested URL.
  * This link either points to a folder with a PDF file or - if the file does not exist -
@@ -16,7 +9,6 @@ if (0) {
  */
 class PdfMatcher {
 
-    var $dd = null;     // do debug?
     var $webRootPath = '/home/mbless/public_html';
     /**
      * @var boolean TRUE, if the current page is a glue page, false otherwise
@@ -33,23 +25,10 @@ class PdfMatcher {
     var $pdfDocumentationUrl = 'http://docs.typo3.org/Overview/PdfFiles.html';
     var $knownPathBeginnings = array(
         // longest paths first!
-        '/flow/drafts/',
-        '/flow/',
-        '/neos/drafts/',
-        '/neos/',
+        '/typo3cms/drafts/github/*/',
         '/typo3cms/drafts/',
         '/typo3cms/extensions/',
         '/typo3cms/',
-    );
-    /**
-     * @var array List of symlinks to resolve
-     * @todo: .htaccess already takes care that all requests to "TYPO3/" get rewritten to typo3cms/ directly.
-     * This variable and its usages below should be superfluous.
-     */
-    var $resolveSymlink = array(
-        '/TYPO3/drafts/'        => '/typo3cms/drafts/',
-        '/TYPO3/extensions/'    => '/typo3cms/extensions/',
-        '/TYPO3/'               => '/typo3cms/',
     );
     var $cont               = true;    // continue?
     var $url                = '';      // 'http://docs.typo3.org/typo3cms/TyposcriptReference/en-us/4.7/Setup/Page/Index.html?id=3#abc'
@@ -128,11 +107,7 @@ class PdfMatcher {
             }
         }
         if ($found) {
-            if (strlen($this->resolveSymlink[$this->urlPart2])) {
-                $this->filePathToUrlPart2 = $this->resolveSymlink[$this->urlPart2];
-            } else {
-                $this->filePathToUrlPart2 = $this->urlPart2;
-            }
+            $this->filePathToUrlPart2 = $this->urlPart2;
             $this->urlPart3 = substr($this->parsedUrl['path'], strlen($this->urlPart2));
             $this->urlPart3PathSegments = explode('/', $this->urlPart3);
         } else {
@@ -197,16 +172,9 @@ class PdfMatcher {
             }
             $result = '<li><a href="' . $linkUrl . '">PDF</a></li>';
         }
-        if ($this->dd) {
-            // highly sophisticated debugging technique :-)
-            $result = '<li>' . $this->pdfUrl . '</li>';
-            $result = '<li>' . $this->curlResult . '</li>';
-            $result = '<li>' . $this->pdf_http_status . '</li>';
-            $result = '<li>' . $this->curl_errno . '</li>';
-            $result = '';
-        }
         return $result;
     }
+
     function findPdf() {
         if (!$this->cont) {
             return;
@@ -249,17 +217,13 @@ class PdfMatcher {
      *
      * Generates the link to the PDF file in HTML format.
      * @param $url string The complete URL as it was requested by the website visitor
-     * @param $doDebug mixed NULL to keep debug mode deactivated, anything else to activate it
      * @param $webRootPath mixed Internal server path to the main folder, which contains the different rendered projects
      * @return string The HTML code with the link
      */
-    function processTheUrl($url, $doDebug=null, $webRootPath=null) {
+    function processTheUrl($url, $webRootPath=NULL) {
         $this->url = $url;
         if (!is_null($webRootPath)) {
             $this->webRootPath = $webRootPath;
-        }
-        if (!is_null($doDebug)) {
-            $this->dd = $doDebug;
         }
         $this->parseUrl();
         $this->findPdf();
@@ -269,22 +233,9 @@ class PdfMatcher {
 }
 
 $pm = new PdfMatcher();
-if (1 and 'live') {
-    $url = $_GET['url'];
-    $htmlResult = $pm->processTheUrl($url);
-} else {
-    $url = $_GET['url'];
-    $url = false;                                   // path: ''
-    $url = 'http://docs.typo3.org';                 // path: ''
-    $url = 'http://docs.typo3.org/';                // path: '/'
-    $url = 'http://docs.typo3.org//';               // path: '//', 3 segments
-    $url = 'http://docs.typo3.org/Index.html';      // path: '/Index.html', 2 segments
-    $url = 'Index.html';                            // path: 'Index.html', 1 segments
-    $url = 'http://docs.typo3.org/typo3cms/TyposcriptReference/#';      // path: 'Index.html', 4 segments
-    $url = 'http://docs.typo3.org/typo3cms/TyposcriptReference/4.7/Setup/Page/Index.html?id=3#abc';      // path: 'Index.html', 1 segments
-    # $url = false;
-    $htmlResult = $pm->processTheUrl($url, 1, '/home/marble/htdocs/LinuxData200/t3doc/versionswitcher/webroot');
-}
+
+$url = $_GET['url'];
+$htmlResult = $pm->processTheUrl($url);
 
 echo $htmlResult;
 
