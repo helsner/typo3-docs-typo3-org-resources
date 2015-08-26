@@ -2,31 +2,14 @@
 
 /* mb, 2013-08-19, 2013-08-19 */
 
-if (0) {
-    error_reporting(-1);
-    error_reporting(E_ALL ^ E_NOTICE);
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-}
-
 class VersionMatcher {
 
-    var $dd = 1;     // do debug?
     var $webRootPath = '/home/mbless/public_html';
     var $knownPathBeginnings = array(
         // longest paths first!
-        '/flow/drafts/',
-        '/flow/',
-        '/neos/drafts/',
-        '/neos/',
         '/typo3cms/drafts/',
         '/typo3cms/extensions/',
         '/typo3cms/',
-    );
-    var $resolveSymlink = array(
-        '/TYPO3/drafts/'     => '/typo3cms/drafts/',
-        '/TYPO3/extensions/' => '/typo3cms/extensions/',
-        '/TYPO3/'            => '/typo3cms/',
     );
     var $cont               = true;     // continue?
     var $url                = '';       // 'http://docs.typo3.org/typo3cms/TyposcriptReference/en-us/4.7/Setup/Page/Index.html?id=3#abc'
@@ -60,19 +43,6 @@ class VersionMatcher {
 
     function __construct() {
         // pass
-    }
-
-    function unparse_url($parsed_url) {
-        $scheme   = isset($parsed_url['scheme'  ]) ?       $parsed_url['scheme'] . '://' : '';
-        $host     = isset($parsed_url['host'    ]) ?       $parsed_url['host']     : '';
-        $port     = isset($parsed_url['port'    ]) ? ':' . $parsed_url['port']     : '';
-        $user     = isset($parsed_url['user'    ]) ?       $parsed_url['user']     : '';
-        $pass     = isset($parsed_url['pass'    ]) ? ':' . $parsed_url['pass']     : '';
-        $pass     = ($user || $pass) ? "$pass@" : '';
-        $path     = isset($parsed_url['path'    ]) ?       $parsed_url['path']     : '';
-        $query    = isset($parsed_url['query'   ]) ? '?' . $parsed_url['query']    : '';
-        $fragment = isset($parsed_url['fragment']) ? '#' . $parsed_url['fragment'] : '';
-        return "$scheme$user$pass$host$port$path$query$fragment";
     }
 
     function isValidVersionFolderName($filename) {
@@ -122,11 +92,7 @@ class VersionMatcher {
             }
         }
         if ($found) {
-            if (strlen($this->resolveSymlink[$this->urlPart2])) {
-                $this->filePathToUrlPart2 = $this->resolveSymlink[$this->urlPart2];
-            } else {
-                $this->filePathToUrlPart2 = $this->urlPart2;
-            }
+            $this->filePathToUrlPart2 = $this->urlPart2;
             $this->urlPart3 = substr($this->parsedUrl['path'], strlen($this->urlPart2));
             $this->urlPart3PathSegments = explode('/', $this->urlPart3);
         } else {
@@ -160,7 +126,6 @@ class VersionMatcher {
             $this->htmlFile = array_pop($this->relativePath);                   // 'Index.html'
             $this->relativePath = implode('/', $this->relativePath);            // 'Setup/Page'
         }
-        //$this->dump_and_die($this);
         return;
     }
 
@@ -170,7 +135,7 @@ class VersionMatcher {
 
     function generateOutput() {
         $NL = "\n";
-        $result = $this->htmlResultIntro;
+        $result = '';
         $rowCount = 0;
 
         // 'absPathToHtmlFile' => $absPathToHtmlFile,
@@ -196,6 +161,8 @@ class VersionMatcher {
         //)
         
         if ($this->cont and count($this->resultVersions)) {
+
+            $result = $this->htmlResultIntro;
 
             ksort($this->localeKeys);
             krsort($this->resultVersions);
@@ -267,37 +234,9 @@ class VersionMatcher {
                 $result .= '</tr>';
                 $rowCount += 1;
             }
-        } else {
-            $result .= '<tr><td>-</td></tr>';
-            if (0) {
-                $result .= '<tr>td><pre>'
-                    . htmlspecialchars(print_r($this, 1))
-                    . '</pre></td></tr>';
-            }
+            $result .= $this->htmlResultTrailer;
         }
-        $result .= $this->htmlResultTrailer;
-        if (0 and $this->dd) { // test
-            $result = '
-            <table>
-                <tr>
-                    <th>Go to START of version</th>
-                    <th>Go to SAME PAGE of version</th>
-                </tr>
-                <tr>
-                    <td><a href="http://docs.typo3.org/">latest</a></td>
-                    <td><a href="http://docs.typo3.org/">latest</a></td>
-                </tr>
-                <tr>
-                    <td><a href="http://docs.typo3.org/">stable</a></td>
-                    <td><a href="http://docs.typo3.org/">stable</a></td>
-                </tr>
-                <tr class="row-odd">
-                    <td><a href="http://docs.typo3.org/">1.01</a></td>
-                    <td><a href="http://docs.typo3.org/">1.01</a></td>
-                </tr>
-            </table>
-        ';
-        }
+
         return $result;
     }
 
@@ -367,7 +306,7 @@ class VersionMatcher {
 
     function findVersions() {
         // $this->webRootPath           '/home/mbless/public_html'
-        // $this->filePathToUrlPart2    '/typo3cms/' (once was symlink '/TYPO3/')
+        // $this->filePathToUrlPart2    '/typo3cms/'
         // $this->$baseFolder           'TyposcriptReference'
         // $this->$localePath           'en-us'
         // $this->$versionPath          '4.7'
@@ -380,17 +319,14 @@ class VersionMatcher {
         $this->absPathToManual = $absPathToManual; // '/home/marble/htdocs/LinuxData200/t3doc/versionswitcher/webroot/typo3cms/TyposcriptReference'
         $manualStartDirs = array();
         $manualStartDirs[] = array($absPathToManual, '');
-        #$this->dump_and_die($absPathToManual);
         # find locale subfolders
         $pattern = $absPathToManual . '/[a-z][a-z]-[a-z][a-z]';
-        #$this->dump_and_die($pattern);
         foreach (glob($pattern, GLOB_ONLYDIR ) as $absPathToLocalePath) {
             // /home/mbless/public_html/typo3cms/extensions/sphinx/fr-fr
             $pos = strrpos($absPathToLocalePath, '/');
             $localeSegment = substr($absPathToLocalePath, $pos+1);
             $manualStartDirs[] = array($absPathToLocalePath, $localeSegment);
         }
-        # $this->dump_and_die($manualStartDirs);
         // Array(
         //     [0] => /home/mbless/public_html/TYPO3/extensions/sphinx
         //     [1] => /home/mbless/public_html/TYPO3/extensions/sphinx/fr-fr
@@ -400,23 +336,12 @@ class VersionMatcher {
             $localeSegment  = $arr[1];
             $this->findVersionsForLocale($manualStartDir, $localeSegment);
         }
-        // $this->dump_and_die($this->resultVersions);
     }
 
-    function dump_and_die($arg) {
-        echo '<pre>';
-        echo htmlspecialchars(print_r($arg, 1));
-        echo '<pre>';
-        die();
-    }
-
-    function processTheUrl($url, $doDebug=null, $webRootPath=null) {
+    function processTheUrl($url, $webRootPath=null) {
         $this->url = $url;
         if (!is_null($webRootPath)) {
             $this->webRootPath = $webRootPath;
-        }
-        if (!is_null($doDebug)) {
-            $this->dd = $doDebug;
         }
         $this->parseUrl();
         $this->findVersions();
@@ -426,22 +351,9 @@ class VersionMatcher {
 }
 
 $vm = new VersionMatcher();
-if (1 and 'live') {
-    $url = $_GET['url'];
-    $htmlResult = $vm->processTheUrl($url);
-} else {
-    $url = $_GET['url'];
-    $url = false;                                   // path: ''
-    $url = 'http://docs.typo3.org';                 // path: ''
-    $url = 'http://docs.typo3.org/';                // path: '/'
-    $url = 'http://docs.typo3.org//';               // path: '//', 3 segments
-    $url = 'http://docs.typo3.org/Index.html';      // path: '/Index.html', 2 segments
-    $url = 'Index.html';                            // path: 'Index.html', 1 segments
-    $url = 'http://docs.typo3.org/typo3cms/TyposcriptReference/#';      // path: 'Index.html', 4 segments
-    $url = 'http://docs.typo3.org/typo3cms/TyposcriptReference/4.7/Setup/Page/Index.html?id=3#abc';      // path: 'Index.html', 1 segments
-    // $url = false;
-    $htmlResult = $vm->processTheUrl($url, 1, '/home/marble/htdocs/LinuxData200/t3doc/versionswitcher/webroot');
-}
+
+$url = $_GET['url'];
+$htmlResult = $vm->processTheUrl($url);
 
 echo $htmlResult;
 
