@@ -7,8 +7,8 @@
 //	/ Load jQuery if not the case
 //	ar jQueryIsLoaded = typeof jQuery != "undefined";
 //	f (!jQueryIsLoaded) {
-//		LoadScript("http://code.jquery.com/jquery.js");
-//		LoadScript("http://docs.typo3.org/js/jquery.condense.js");
+//		LoadScript("https://code.jquery.com/jquery.js");
+//		LoadScript("https://docs.typo3.org/js/jquery.condense.js");
 //	
 //	
 //	/ Add listener

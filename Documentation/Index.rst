@@ -66,7 +66,7 @@ The sources of this draft are located at
    FinalPages/*
 
 
-.. _Open Content License: http://www.opencontent.org/opl.shtml
+.. _Open Content License: http://www.opencontent.org/openpub/
 .. _typo3.org: http://typo3.org/
 
 

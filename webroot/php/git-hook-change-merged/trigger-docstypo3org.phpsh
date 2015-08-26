@@ -73,12 +73,12 @@ $NL = "\n";
 $identifierOfThisScript = 'tell-docs-typo3-org';
 
 $destinationUrl = 'http://ubu239.mb.local/LinuxData200/git-typo3-org-change-merged.php';
-$destinationUrl = 'http://docs.typo3.org/php/git-typo3-org-change-merged.php';
+$destinationUrl = 'https://docs.typo3.org/php/git-typo3-org-change-merged.php';
 
 if (0) {
     // here we would use the GET method for Fabien's service
     $query = http_build_query($data);
-    $url = "http://docs.typo3.org/render/index.php/render?$query";
+    $url = "https://docs.typo3.org/render/index.php/render?$query";
     $http = curl_init($url);
     $content = curl_exec($http);
     $http_status = curl_getinfo($http, CURLINFO_HTTP_CODE);

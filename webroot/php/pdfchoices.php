@@ -22,7 +22,7 @@ class PdfMatcher {
      * @var string URL to the page with docs on how to set up rendering.
      * Do not change unless the page is moved accordingly!
      */
-    var $pdfDocumentationUrl = 'http://docs.typo3.org/Overview/PdfFiles.html';
+    var $pdfDocumentationUrl = 'https://docs.typo3.org/Overview/PdfFiles.html';
     var $knownPathBeginnings = array(
         // longest paths first!
         '/typo3cms/drafts/github/*/',
@@ -31,11 +31,10 @@ class PdfMatcher {
         '/typo3cms/',
     );
     var $cont               = true;    // continue?
-    var $url                = '';      // 'http://docs.typo3.org/typo3cms/TyposcriptReference/en-us/4.7/Setup/Page/Index.html?id=3#abc'
-    var $urlPart1           = '';      // 'http://docs.typo3.org'
+    var $url                = '';      // 'https://docs.typo3.org/typo3cms/TyposcriptReference/en-us/4.7/Setup/Page/Index.html?id=3#abc'
+    var $urlPart1           = '';      // 'https://docs.typo3.org'
     var $urlPart2           = '';      // '/typo3cms/'
     var $urlPart3           = '';      // 'TyposcriptReference/4.7/Setup/Page/Index.html?id=3#abc'
-    var $filePathToUrlPart2 = '';      // '/typo3cms/'     had been before: '/TYPO3/'
 
     var $baseFolder         = '';      // 'TyposcriptReference'
     var $localePath         = '';      // 'en-us'
@@ -94,7 +93,7 @@ class PdfMatcher {
         $this->query     = isset($this->parsedUrl['query'   ]) ? '?' . $this->parsedUrl['query'   ]         : '';
         $this->fragment  = isset($this->parsedUrl['fragment']) ? '#' . $this->parsedUrl['fragment']         : '';
 
-        // urlpart1: 'http://docs.typo3.org'
+        // urlpart1: 'https://docs.typo3.org'
         // urlpart2: '/typo3cms/'
         // urlpart3: 'TyposcriptReference/4.7/Setup/Page/Index.html'
 
@@ -107,7 +106,6 @@ class PdfMatcher {
             }
         }
         if ($found) {
-            $this->filePathToUrlPart2 = $this->urlPart2;
             $this->urlPart3 = substr($this->parsedUrl['path'], strlen($this->urlPart2));
             $this->urlPart3PathSegments = explode('/', $this->urlPart3);
         } else {
@@ -180,7 +178,7 @@ class PdfMatcher {
             return;
         }
         $this->pdfUrl = '';
-        $this->pdfUrl .= $this->urlPart1;     // 'http://docs.typo3.org'
+        $this->pdfUrl .= $this->urlPart1;     // 'https://docs.typo3.org'
         $this->pdfUrl .= $this->urlPart2;     // '/typo3cms/'
         $this->pdfUrl .= $this->baseFolder;   // 'TyposcriptReference'
         $this->pdfUrl .= strlen($this->localePath)  ? '/' . $this->localePath  : '';    // 'en-us'

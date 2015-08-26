@@ -12,8 +12,8 @@ class VersionMatcher {
         '/typo3cms/',
     );
     var $cont               = true;     // continue?
-    var $url                = '';       // 'http://docs.typo3.org/typo3cms/TyposcriptReference/en-us/4.7/Setup/Page/Index.html?id=3#abc'
-    var $urlPart1           = '';       // 'http://docs.typo3.org'
+    var $url                = '';       // 'https://docs.typo3.org/typo3cms/TyposcriptReference/en-us/4.7/Setup/Page/Index.html?id=3#abc'
+    var $urlPart1           = '';       // 'https://docs.typo3.org'
     var $urlPart2           = '';       // '/typo3cms/'
     var $urlPart3           = '';       // 'TyposcriptReference/en-us/4.7/Setup/Page/Index.html?id=3#abc'
     var $filePathToUrlPart2 = '';       // '/typo3cms/'  (was once '/TYPO3/')
@@ -151,7 +151,7 @@ class VersionMatcher {
         //    [absPathToHtmlFile] => /home/mbless/public_html/TYPO3/extensions/sphinx/fr-fr/1.1.0/Index.html
         //    [query] => 
         //    [fragment] => 
-        //    [urlPart1] => http://docs.typo3.org
+        //    [urlPart1] => https://docs.typo3.org
         //    [urlPart2] => /typo3cms/extensions/
         //    [baseFolder] => sphinx
         //    [versionFolder] => 1.1.0
@@ -289,7 +289,7 @@ class VersionMatcher {
                         'absPathToHtmlFile' => $absPathToHtmlFile,  // '/home/marble/htdocs/LinuxData200/t3doc/versionswitcher/webroot/typo3cms/TyposcriptReference/latest/Setup/Page/Index.html'
                         'query'             => $this->query,        // '?id=3'
                         'fragment'          => $this->fragment,     // '#abc'
-                        'urlPart1'          => $this->urlPart1,     // 'http://docs.typo3.org'
+                        'urlPart1'          => $this->urlPart1,     // 'https://docs.typo3.org'
                         'urlPart2'          => $this->urlPart2,     // '/typo3cms/'
                         'baseFolder'        => $this->baseFolder,   // 'TyposcriptReference'
                         'localeSegment'     => $localeSegment,      // 'fr-fr'

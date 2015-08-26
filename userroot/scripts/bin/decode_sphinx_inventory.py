@@ -39,11 +39,11 @@ Optional parameters:
       Use 'None' to show no abbreviation at all.
 
 Examples:
-   python decode_sphinx_inventory.py http://docs.typo3.org/typo3cms/TyposcriptReference/
-   python decode_sphinx_inventory.py http://docs.typo3.org/typo3cms/TyposcriptReference/ -O result.html
-   python decode_sphinx_inventory.py http://docs.typo3.org/typo3cms/TyposcriptReference/ -O result.html --abbreviation=tsref
-   python decode_sphinx_inventory.py http://docs.typo3.org/typo3cms/TyposcriptReference/ -O result.csv  -f csv
-   python decode_sphinx_inventory.py http://docs.typo3.org/typo3cms/TyposcriptReference/ -O result.json  -f json
+   python decode_sphinx_inventory.py https://docs.typo3.org/typo3cms/TyposcriptReference/
+   python decode_sphinx_inventory.py https://docs.typo3.org/typo3cms/TyposcriptReference/ -O result.html
+   python decode_sphinx_inventory.py https://docs.typo3.org/typo3cms/TyposcriptReference/ -O result.html --abbreviation=tsref
+   python decode_sphinx_inventory.py https://docs.typo3.org/typo3cms/TyposcriptReference/ -O result.csv  -f csv
+   python decode_sphinx_inventory.py https://docs.typo3.org/typo3cms/TyposcriptReference/ -O result.json  -f json
 
 """
 
@@ -97,27 +97,25 @@ WITH THE USE OR PERFORMANCE OF THIS SOFTWARE!
 
 # map known projects to preferred abbreviation
 uri2abbrev = {
-    'http://docs.typo3.org/typo3cms/CodingGuidelinesReference' : 't3cgl',
-    'http://docs.typo3.org/typo3cms/CoreApiReference' : 't3api',
-    'http://docs.typo3.org/typo3cms/EditorsTutorial' : 't3editors',
-    'http://docs.typo3.org/typo3cms/ExtbaseFluidBook' : 't3extbasebook',
-    'http://docs.typo3.org/typo3cms/ExtbaseGuide' : 't3extbase',
-    'http://docs.typo3.org/typo3cms/FileAbstractionLayerReference' : 't3fal',
-    'http://docs.typo3.org/typo3cms/FrontendLocalizationGuide' : 't3l10n',
-    'http://docs.typo3.org/typo3cms/GettingStartedTutorial' : 't3start',
-    'http://docs.typo3.org/typo3cms/IndexedSearchReference' : 't3isr',
-    'http://docs.typo3.org/typo3cms/InsideTypo3Reference' : 't3inside',
-    'http://docs.typo3.org/typo3cms/InstallationGuide' : 't3install',
-    'http://docs.typo3.org/typo3cms/MaintenanceGuide' : 't3maintenance',
-    'http://docs.typo3.org/typo3cms/SecurityGuide' : 't3security',
-    'http://docs.typo3.org/typo3cms/SkinningReference' : 't3skinning',
-    'http://docs.typo3.org/typo3cms/TCAReference' : 't3tca',
-    'http://docs.typo3.org/typo3cms/TemplatingTutorial' : 't3templating',
-    'http://docs.typo3.org/typo3cms/TSconfigReference' : 't3tsconfig',
-    'http://docs.typo3.org/typo3cms/Typo3ServicesReference' : 't3services',
-    'http://docs.typo3.org/typo3cms/TyposcriptIn45MinutesTutorial' : 't3ts45',
-    'http://docs.typo3.org/typo3cms/TyposcriptReference' : 't3tsref',
-    'http://docs.typo3.org/typo3cms/TyposcriptSyntaxReference' : 't3tssyntax',
+    'https://docs.typo3.org/typo3cms/CodingGuidelinesReference' : 't3cgl',
+    'https://docs.typo3.org/typo3cms/CoreApiReference' : 't3api',
+    'https://docs.typo3.org/typo3cms/EditorsTutorial' : 't3editors',
+    'https://docs.typo3.org/typo3cms/ExtbaseFluidBook' : 't3extbasebook',
+    'https://docs.typo3.org/typo3cms/ExtbaseGuide' : 't3extbase',
+    'https://docs.typo3.org/typo3cms/FileAbstractionLayerReference' : 't3fal',
+    'https://docs.typo3.org/typo3cms/FrontendLocalizationGuide' : 't3l10n',
+    'https://docs.typo3.org/typo3cms/GettingStartedTutorial' : 't3start',
+    'https://docs.typo3.org/typo3cms/InsideTypo3Reference' : 't3inside',
+    'https://docs.typo3.org/typo3cms/InstallationGuide' : 't3install',
+    'https://docs.typo3.org/typo3cms/SecurityGuide' : 't3security',
+    'https://docs.typo3.org/typo3cms/SkinningReference' : 't3skinning',
+    'https://docs.typo3.org/typo3cms/TCAReference' : 't3tca',
+    'https://docs.typo3.org/typo3cms/TemplatingTutorial' : 't3templating',
+    'https://docs.typo3.org/typo3cms/TSconfigReference' : 't3tsconfig',
+    'https://docs.typo3.org/typo3cms/Typo3ServicesReference' : 't3services',
+    'https://docs.typo3.org/typo3cms/TyposcriptIn45MinutesTutorial' : 't3ts45',
+    'https://docs.typo3.org/typo3cms/TyposcriptReference' : 't3tsref',
+    'https://docs.typo3.org/typo3cms/TyposcriptSyntaxReference' : 't3tssyntax',
 
     # what abbreviations should we use instead of 'api' in the following cases?
     'http://typo3.org/api/typo3cms'             : 'api', # current stable

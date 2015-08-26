@@ -43,7 +43,6 @@ $kp['Documentation/TYPO3/Example/OfficialManual']             ['master'] = '.git
 $kp['Documentation/TYPO3/Guide/Extbase']                      ['master'] = '.git.make';
 $kp['Documentation/TYPO3/Guide/FrontendLocalization']         ['master'] = '.git.make';
 $kp['Documentation/TYPO3/Guide/Installation']                 ['master'] = '.git.make';
-$kp['Documentation/TYPO3/Guide/Maintenance']                  ['master'] = '.git.make';
 $kp['Documentation/TYPO3/Guide/Security']                     ['master'] = '.git.make';
 $kp['Documentation/TYPO3/Reference/CodingGuidelines']         ['master'] = '.git.make';
 $kp['Documentation/TYPO3/Reference/CodingGuidelines']         ['4-5']    = '.git.make_4.5';
@@ -88,33 +87,22 @@ $kp['Documentation/TYPO3/Tutorial/Editors']                   ['6-0']    = '.git
 $kp['Documentation/TYPO3/Tutorial/GettingStarted']            ['master'] = '.git.make';
 $kp['Documentation/TYPO3/Tutorial/Templating']                ['master'] = '.git.make';
 $kp['Documentation/TYPO3/Tutorial/Typoscript45Minutes']       ['master'] = '.git.make';
-$kp['TYPO3v4/Extensions/news']                                ['master'] = '.git.make';
+$kp['TYPO3CMS/Extensions/news']                               ['master'] = '.git.make';
 
-$kp['Packages/TYPO3.CMS']       ['TYPO3_4-5'] = 'http://docs.typo3.org/~mbless/git.typo3.org/TYPO3CMS/Extensions/TYPO3.CMS.ALL-SYSEXT.make_4.5/request_rebuild.php';
-$kp['Packages/TYPO3.CMS']       ['TYPO3_4-7'] = 'http://docs.typo3.org/~mbless/git.typo3.org/TYPO3CMS/Extensions/TYPO3.CMS.ALL-SYSEXT.make_4.7/request_rebuild.php';
-$kp['Packages/TYPO3.CMS']       ['TYPO3_6-2'] = 'http://docs.typo3.org/~mbless/git.typo3.org/TYPO3CMS/Extensions/TYPO3.CMS.ALL-SYSEXT.make_6.2/request_rebuild.php';
-$kp['Packages/TYPO3.CMS']       ['master']    = 'http://docs.typo3.org/~mbless/git.typo3.org/TYPO3CMS/Extensions/TYPO3.CMS.ALL-SYSEXT.make_latest/request_rebuild.php';
-
-$kp['Packages/TYPO3.Flow']      ['master']    = 'http://docs.typo3.org/~mbless/git.typo3.org/Packages/TYPO3.Flow.git.make/request_rebuild.php';
-$kp['Packages/TYPO3.Flow']      ['FLOW3-1.0'] = 'http://docs.typo3.org/~mbless/git.typo3.org/Packages/TYPO3.Flow.git.make_1.0/request_rebuild.php';
-$kp['Packages/TYPO3.Flow']      ['FLOW3-1.1'] = 'http://docs.typo3.org/~mbless/git.typo3.org/Packages/TYPO3.Flow.git.make_1.1/request_rebuild.php';
-$kp['Packages/TYPO3.Flow']      ['2.0']       = 'http://docs.typo3.org/~mbless/git.typo3.org/Packages/TYPO3.Flow.git.make_2.0/request_rebuild.php';
-$kp['Packages/TYPO3.Flow']      ['2.1']       = 'http://docs.typo3.org/~mbless/git.typo3.org/Packages/TYPO3.Flow.git.make_2.1/request_rebuild.php';
-$kp['Packages/TYPO3.Flow']      ['2.2']       = 'http://docs.typo3.org/~mbless/git.typo3.org/Packages/TYPO3.Flow.git.make_2.2/request_rebuild.php';
-$kp['Packages/TYPO3.Flow']      ['2.3']       = 'http://docs.typo3.org/~mbless/git.typo3.org/Packages/TYPO3.Flow.git.make_2.3/request_rebuild.php';
-$kp['Packages/TYPO3.Flow']      ['3.0']       = 'http://docs.typo3.org/~mbless/git.typo3.org/Packages/TYPO3.Flow.git.make_3.0/request_rebuild.php';
-
-$kp['Packages/TYPO3.Neos']      ['master']    = 'http://docs.typo3.org/~mbless/git.typo3.org/Packages/TYPO3.Neos.git.make/request_rebuild.php';
+$kp['Packages/TYPO3.CMS']       ['TYPO3_4-5'] = 'https://docs.typo3.org/~mbless/git.typo3.org/TYPO3CMS/Extensions/TYPO3.CMS.ALL-SYSEXT.make_4.5/request_rebuild.php';
+$kp['Packages/TYPO3.CMS']       ['TYPO3_4-7'] = 'https://docs.typo3.org/~mbless/git.typo3.org/TYPO3CMS/Extensions/TYPO3.CMS.ALL-SYSEXT.make_4.7/request_rebuild.php';
+$kp['Packages/TYPO3.CMS']       ['TYPO3_6-2'] = 'https://docs.typo3.org/~mbless/git.typo3.org/TYPO3CMS/Extensions/TYPO3.CMS.ALL-SYSEXT.make_6.2/request_rebuild.php';
+$kp['Packages/TYPO3.CMS']       ['master']    = 'https://docs.typo3.org/~mbless/git.typo3.org/TYPO3CMS/Extensions/TYPO3.CMS.ALL-SYSEXT.make_latest/request_rebuild.php';
 
 $requestUrl = '';
 if ($data and ($data['repositoryUrl'] == 'git://git.typo3.org/')) {
     $project = $data['project'];
     $branch = $data['branch'];
     $suffix = $kp[$project][$branch];
-    if (substr($suffix, 0, 7) === 'http://') {
+    if (substr($suffix, 0, 8) === 'https://') {
         $requestUrl = $suffix;
     } elseif (strlen($suffix)) {
-        $requestUrl .= 'http://docs.typo3.org/~mbless/git.typo3.org/';   // Documentation/TYPO3/Reference/
+        $requestUrl .= 'https://docs.typo3.org/~mbless/git.typo3.org/';   // Documentation/TYPO3/Reference/
         $requestUrl .= $project . $suffix;
         $requestUrl .= '/request_rebuild.php';
     }

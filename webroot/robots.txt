@@ -2,9 +2,6 @@ User-agent: *
 Disallow: /*.pdf
 Disallow: /*.txt
 Disallow: /*.rst
-Disallow: /flow/drafts/
-Disallow: /neos/drafts/
-Disallow: /TYPO3/drafts/
 Disallow: /typo3cms/drafts/
 Disallow: /~mbless/
 Disallow: /services/

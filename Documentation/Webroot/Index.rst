@@ -13,28 +13,22 @@ Webroot
 Files
 =====
 
-.htaccess
----------
-
-`.htaccess <http://docs.typo3.org/htaccess.lnk.txt>`_
-
-
 favicon.ico
 -----------
 
-`favicon.ico <http://docs.typo3.org/favicon.ico>`_
+`favicon.ico <https://docs.typo3.org/favicon.ico>`_
 
 
 robots.txt
 ----------
 
-`robots.txt <http://docs.typo3.org/robots.txt>`_
+`robots.txt <https://docs.typo3.org/robots.txt>`_
 
 
 robots-for-srv123.txt
 ---------------------
 
-`robots-for-srv123.txt <http://docs.typo3.org/robots-for-srv123.txt>`_
+`robots-for-srv123.txt <https://docs.typo3.org/robots-for-srv123.txt>`_
 
 
 .. toctree::
