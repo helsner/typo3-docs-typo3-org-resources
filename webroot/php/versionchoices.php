@@ -4,48 +4,48 @@
 
 class VersionMatcher {
 
-    var $webRootPath = '/home/mbless/public_html';
-    var $knownPathBeginnings = array(
+    protected $webRootPath = '/home/mbless/public_html';
+    protected $knownPathBeginnings = array(
         // longest paths first!
         '/typo3cms/drafts/',
         '/typo3cms/extensions/',
         '/typo3cms/',
     );
-    var $cont               = true;     // continue?
-    var $url                = '';       // 'https://docs.typo3.org/typo3cms/TyposcriptReference/en-us/4.7/Setup/Page/Index.html?id=3#abc'
-    var $urlPart1           = '';       // 'https://docs.typo3.org'
-    var $urlPart2           = '';       // '/typo3cms/'
-    var $urlPart3           = '';       // 'TyposcriptReference/en-us/4.7/Setup/Page/Index.html?id=3#abc'
-    var $filePathToUrlPart2 = '';       // '/typo3cms/'  (was once '/TYPO3/')
+    protected $cont               = true;     // continue?
+    protected $url                = '';       // 'https://docs.typo3.org/typo3cms/TyposcriptReference/en-us/4.7/Setup/Page/Index.html?id=3#abc'
+    protected $urlPart1           = '';       // 'https://docs.typo3.org'
+    protected $urlPart2           = '';       // '/typo3cms/'
+    protected $urlPart3           = '';       // 'TyposcriptReference/en-us/4.7/Setup/Page/Index.html?id=3#abc'
+    protected $filePathToUrlPart2 = '';       // '/typo3cms/'  (was once '/TYPO3/')
 
-    var $baseFolder         = '';       // 'TyposcriptReference'
-    var $localePath         = '';       // 'en-us'
-    var $versionPath        = '';       // '4.7'
-    var $relativePath       = '';       // 'Setup/Page'
-    var $htmlFile           = '';       // 'Index.html'
-    var $query              = '';       //  '?id=3'
-    var $fragment           = '';       //  '#abc'
+    protected $baseFolder         = '';       // 'TyposcriptReference'
+    protected $localePath         = '';       // 'en-us'
+    protected $versionPath        = '';       // '4.7'
+    protected $relativePath       = '';       // 'Setup/Page'
+    protected $htmlFile           = '';       // 'Index.html'
+    protected $query              = '';       //  '?id=3'
+    protected $fragment           = '';       //  '#abc'
 
-    var $parsedUrl;                     // array
+    protected $parsedUrl;                     // array
 
-    var $localeKeys         = array();  // the various locales found
-    var $resultVersions     = array();  // the result!
-    var $htmlResult         = '';
-    var $htmlResultIntro    = '
+    protected $localeKeys         = array();  // the various locales found
+    protected $resultVersions     = array();  // the result!
+    protected $htmlResult         = '';
+    protected $htmlResultIntro    = '
 		<table>
 			<tr>
 				<th>Go to version</th>
 			</tr>
 	';
-    var $htmlResultTrailer  = '
+    protected $htmlResultTrailer  = '
 		</table>
 	';
 
-    function __construct() {
+    public function __construct() {
         // pass
     }
 
-    function isValidVersionFolderName($filename) {
+    protected function isValidVersionFolderName($filename) {
         $isValid = false;
         if (!$isValid) { // named versions
             if (in_array( $filename, array('latest', 'stable'))) {
@@ -63,7 +63,7 @@ class VersionMatcher {
         return $isValid;
     }
 
-    function isValidLocaleFolderName($segment) {
+    protected function isValidLocaleFolderName($segment) {
         $isValid = false;
         if (!$isValid) { // xx-xx)
             $pattern = '~[a-z][a-z]-[a-z][a-z]~';
@@ -75,7 +75,7 @@ class VersionMatcher {
         return $isValid;
     }
 
-    function parseUrl() {
+    protected function parseUrl() {
         $this->parsedUrl = parse_url($this->url);
         $this->urlPart1 = '';
         $this->urlPart1 .= isset($this->parsedUrl['scheme'  ]) ?       $this->parsedUrl['scheme'  ] . '://' : '';
@@ -129,11 +129,11 @@ class VersionMatcher {
         return;
     }
 
-    function startsWith($haystack, $needle) {
+    protected function startsWith($haystack, $needle) {
         return substr($haystack, 0, strlen($needle)) === $needle;
     }
 
-    function generateOutput() {
+    protected function generateOutput() {
         $NL = "\n";
         $result = '';
         $rowCount = 0;
@@ -240,7 +240,7 @@ class VersionMatcher {
         return $result;
     }
 
-    function findVersionsForLocale($absPathToManual, $localeSegment) {
+    protected function findVersionsForLocale($absPathToManual, $localeSegment) {
         $directory  = opendir($absPathToManual);
         while (false !== ($filename = readdir($directory))) {
             if (1
@@ -304,7 +304,7 @@ class VersionMatcher {
         closedir($directory);
     }
 
-    function findVersions() {
+    protected function findVersions() {
         // $this->webRootPath           '/home/mbless/public_html'
         // $this->filePathToUrlPart2    '/typo3cms/'
         // $this->$baseFolder           'TyposcriptReference'
@@ -338,7 +338,7 @@ class VersionMatcher {
         }
     }
 
-    function processTheUrl($url, $webRootPath=null) {
+    public function processTheUrl($url, $webRootPath=null) {
         $this->url = $url;
         if (!is_null($webRootPath)) {
             $this->webRootPath = $webRootPath;

@@ -9,53 +9,53 @@
  */
 class PdfMatcher {
 
-    var $webRootPath = '/home/mbless/public_html';
+    protected $webRootPath = '/home/mbless/public_html';
     /**
      * @var boolean TRUE, if the current page is a glue page, false otherwise
      */
-    var $currentProjectIsGluePage = FALSE;
+    protected $currentProjectIsGluePage = FALSE;
     /**
      * @var string URL to the folder of the PDF file; .htaccess in there will redirect to actual filename
      */
-    var $pdfUrl = '';
+    protected $pdfUrl = '';
     /**
      * @var string URL to the page with docs on how to set up rendering.
      * Do not change unless the page is moved accordingly!
      */
-    var $pdfDocumentationUrl = 'https://docs.typo3.org/Overview/PdfFiles.html';
-    var $knownPathBeginnings = array(
+    protected $pdfDocumentationUrl = 'https://docs.typo3.org/Overview/PdfFiles.html';
+    protected $knownPathBeginnings = array(
         // longest paths first!
         '/typo3cms/drafts/github/*/',
         '/typo3cms/drafts/',
         '/typo3cms/extensions/',
         '/typo3cms/',
     );
-    var $cont               = true;    // continue?
-    var $url                = '';      // 'https://docs.typo3.org/typo3cms/TyposcriptReference/en-us/4.7/Setup/Page/Index.html?id=3#abc'
-    var $urlPart1           = '';      // 'https://docs.typo3.org'
-    var $urlPart2           = '';      // '/typo3cms/'
-    var $urlPart3           = '';      // 'TyposcriptReference/4.7/Setup/Page/Index.html?id=3#abc'
+    protected $cont               = true;    // continue?
+    protected $url                = '';      // 'https://docs.typo3.org/typo3cms/TyposcriptReference/en-us/4.7/Setup/Page/Index.html?id=3#abc'
+    protected $urlPart1           = '';      // 'https://docs.typo3.org'
+    protected $urlPart2           = '';      // '/typo3cms/'
+    protected $urlPart3           = '';      // 'TyposcriptReference/4.7/Setup/Page/Index.html?id=3#abc'
 
-    var $baseFolder         = '';      // 'TyposcriptReference'
-    var $localePath         = '';      // 'en-us'
-    var $versionPath        = '';      // '4.7'
-    var $relativePath       = '';      // 'Setup/Page'
-    var $htmlFile           = '';      // 'Index.html'
-    var $query              = '';      //  '?id=3'
-    var $fragment           = '';      //  '#abc'
+    protected $baseFolder         = '';      // 'TyposcriptReference'
+    protected $localePath         = '';      // 'en-us'
+    protected $versionPath        = '';      // '4.7'
+    protected $relativePath       = '';      // 'Setup/Page'
+    protected $htmlFile           = '';      // 'Index.html'
+    protected $query              = '';      //  '?id=3'
+    protected $fragment           = '';      //  '#abc'
 
-    var $parsedUrl;                    // array
+    protected $parsedUrl;                    // array
 
     /** @var boolean Information, whether the PDF file exists or not */
-    var $pdfExists          = true;
+    protected $pdfExists          = true;
     /** @var string The resulting HTML code of the link */
-    var $htmlResult         = '';
+    protected $htmlResult         = '';
 
-    function __construct() {
+    public function __construct() {
         // pass
     }
 
-    function isValidVersionFolderName($filename) {
+    protected function isValidVersionFolderName($filename) {
         $isValid = false;
         if (!$isValid) { // named versions
             if (in_array( $filename, array('latest', 'stable'))) {
@@ -73,7 +73,7 @@ class PdfMatcher {
         return $isValid;
     }
 
-    function isValidLocaleFolderName($segment) {
+    protected function isValidLocaleFolderName($segment) {
         $isValid = false;
         if (!$isValid) { // xx-xx)
             $pattern = '~[a-z][a-z]-[a-z][a-z]~';
@@ -85,7 +85,7 @@ class PdfMatcher {
         return $isValid;
     }
 
-    function parseUrl() {
+    protected function parseUrl() {
         $this->parsedUrl = parse_url($this->url);
         $this->urlPart1 = '';
         $this->urlPart1 .= isset($this->parsedUrl['scheme'  ]) ?       $this->parsedUrl['scheme'  ] . '://' : '';
@@ -150,7 +150,7 @@ class PdfMatcher {
         return;
     }
 
-    function startsWith($haystack, $needle) {
+    protected function startsWith($haystack, $needle) {
         return substr($haystack, 0, strlen($needle)) === $needle;
     }
 
@@ -159,7 +159,7 @@ class PdfMatcher {
      *
      * @return $result string HTML code of the link
      */
-    function generateOutput() {
+    protected function generateOutput() {
         $result = '';
         // Only show link, if this is a normal documentation project. Do not show it on the glue pages.
         if (!$this->currentProjectIsGluePage) {
@@ -173,7 +173,7 @@ class PdfMatcher {
         return $result;
     }
 
-    function findPdf() {
+    protected function findPdf() {
         if (!$this->cont) {
             return;
         }
@@ -218,7 +218,7 @@ class PdfMatcher {
      * @param $webRootPath mixed Internal server path to the main folder, which contains the different rendered projects
      * @return string The HTML code with the link
      */
-    function processTheUrl($url, $webRootPath=NULL) {
+    public function processTheUrl($url, $webRootPath=NULL) {
         $this->url = $url;
         if (!is_null($webRootPath)) {
             $this->webRootPath = $webRootPath;
