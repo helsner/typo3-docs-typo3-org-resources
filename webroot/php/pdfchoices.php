@@ -30,21 +30,20 @@ class PdfMatcher {
         '/typo3cms/extensions/',
         '/typo3cms/',
     );
-    protected $cont               = true;    // continue?
-    protected $url                = '';      // 'https://docs.typo3.org/typo3cms/TyposcriptReference/en-us/4.7/Setup/Page/Index.html?id=3#abc'
-    protected $urlPart1           = '';      // 'https://docs.typo3.org'
-    protected $urlPart2           = '';      // '/typo3cms/'
-    protected $urlPart3           = '';      // 'TyposcriptReference/4.7/Setup/Page/Index.html?id=3#abc'
+    protected $cont               = true;                           // continue?
+    protected $url                = '';                             // 'https://docs.typo3.org/typo3cms/TyposcriptReference/en-us/4.7/Setup/Page/Index.html?id=3#abc'
+    protected $urlPart1           = 'https://docs.typo3.org';       // 'https://docs.typo3.org'
+    protected $urlPart2           = '';                             // '/typo3cms/'
+    protected $urlPart3           = '';                             // 'TyposcriptReference/4.7/Setup/Page/Index.html?id=3#abc'
 
-    protected $baseFolder         = '';      // 'TyposcriptReference'
-    protected $localePath         = '';      // 'en-us'
-    protected $versionPath        = '';      // '4.7'
-    protected $relativePath       = '';      // 'Setup/Page'
-    protected $htmlFile           = '';      // 'Index.html'
-    protected $query              = '';      //  '?id=3'
-    protected $fragment           = '';      //  '#abc'
+    protected $baseFolder         = '';                             // 'TyposcriptReference'
+    protected $localePath         = '';                             // 'en-us'
+    protected $versionPath        = '';                             // '4.7'
+    protected $relativePath       = '';                             // 'Setup/Page'
+    protected $htmlFile           = '';                             // 'Index.html'
 
-    protected $parsedUrl;                    // array
+    /** @var array The URL, which the visitor is on, split up into its segments */
+    protected $parsedUrl          = array();
 
     /** @var boolean Information, whether the PDF file exists or not */
     protected $pdfExists          = true;
@@ -85,13 +84,43 @@ class PdfMatcher {
         return $isValid;
     }
 
+    /**
+     * Before doing anything with the user-provided URL at all, validate that it really is what we expect it should be.
+     * It maybe is not a URL at all.
+     * It might point to a different server anywhere in the web, so that we would then run our request against that server.
+     * Also could it contain malicious segments, e.g. for path traversal.
+     *
+     * @param $url string The complete string as it was provided by the user
+     * @return void
+     */
+    protected function validateUrl($url) {
+        /** @var boolean Whether the provided URL is valid or not */
+        $isValidUrl = FALSE;
+
+        /**
+         * Check, if what we have is a valid URL
+         * Pattern for checking validity of URLs, written by Diego Perini
+         * See https://gist.github.com/dperini/729294
+         * This expression has best results at https://mathiasbynens.be/demo/url-regex
+         */
+        $validUrlPattern = '%^(?:(?:https?|ftp)://)(?:\S+(?::\S*)?@|\d{1,3}(?:\.\d{1,3}){3}|(?:(?:[a-z\d\x{00a1}-\x{ffff}]+-?)*[a-z\d\x{00a1}-\x{ffff}]+)(?:\.(?:[a-z\d\x{00a1}-\x{ffff}]+-?)*[a-z\d\x{00a1}-\x{ffff}]+)*(?:\.[a-z\x{00a1}-\x{ffff}]{2,6}))(?::\d+)?(?:[^\s]*)?$%iu';
+        if(preg_match($validUrlPattern, $url)) {
+            $isValidUrl = TRUE;
+        }
+
+        // Make sure that the host portion of the URL points to our own server and not somewhere else.
+        // Without such a check it is possible to run the following cURL request on arbitrary servers.
+        if(!$this->startsWith($url, $this->urlPart1)) {
+            $isValidUrl = FALSE;
+        }
+
+        if($isValidUrl === FALSE) {
+            die();
+        }
+    }
+
     protected function parseUrl() {
         $this->parsedUrl = parse_url($this->url);
-        $this->urlPart1 = '';
-        $this->urlPart1 .= isset($this->parsedUrl['scheme'  ]) ?       $this->parsedUrl['scheme'  ] . '://' : '';
-        $this->urlPart1 .= isset($this->parsedUrl['host'    ]) ?       $this->parsedUrl['host'    ]         : '';
-        $this->query     = isset($this->parsedUrl['query'   ]) ? '?' . $this->parsedUrl['query'   ]         : '';
-        $this->fragment  = isset($this->parsedUrl['fragment']) ? '#' . $this->parsedUrl['fragment']         : '';
 
         // urlpart1: 'https://docs.typo3.org'
         // urlpart2: '/typo3cms/'
@@ -150,6 +179,11 @@ class PdfMatcher {
         return;
     }
 
+    /**
+     * Returns if the provided string starts with the specified characters/string.
+     *
+     * @return mixed The extracted part of the string if it does, FALSE if it does not
+     */
     protected function startsWith($haystack, $needle) {
         return substr($haystack, 0, strlen($needle)) === $needle;
     }
@@ -219,6 +253,7 @@ class PdfMatcher {
      * @return string The HTML code with the link
      */
     public function processTheUrl($url, $webRootPath=NULL) {
+        $this->validateUrl($url);
         $this->url = $url;
         if (!is_null($webRootPath)) {
             $this->webRootPath = $webRootPath;
