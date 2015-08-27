@@ -11,25 +11,25 @@ class VersionMatcher {
         '/typo3cms/extensions/',
         '/typo3cms/',
     );
-    protected $cont               = true;     // continue?
-    protected $url                = '';       // 'https://docs.typo3.org/typo3cms/TyposcriptReference/en-us/4.7/Setup/Page/Index.html?id=3#abc'
-    protected $urlPart1           = '';       // 'https://docs.typo3.org'
-    protected $urlPart2           = '';       // '/typo3cms/'
-    protected $urlPart3           = '';       // 'TyposcriptReference/en-us/4.7/Setup/Page/Index.html?id=3#abc'
-    protected $filePathToUrlPart2 = '';       // '/typo3cms/'  (was once '/TYPO3/')
+    protected $cont               = true;                           // continue?
+    protected $url                = '';                             // 'https://docs.typo3.org/typo3cms/TyposcriptReference/en-us/4.7/Setup/Page/Index.html?id=3#abc'
+    protected $urlPart1           = 'https://docs.typo3.org';       // 'https://docs.typo3.org'
+    protected $urlPart2           = '';                             // '/typo3cms/'
+    protected $urlPart3           = '';                             // 'TyposcriptReference/en-us/4.7/Setup/Page/Index.html?id=3#abc'
+    protected $filePathToUrlPart2 = '';                             // '/typo3cms/'
 
-    protected $baseFolder         = '';       // 'TyposcriptReference'
-    protected $localePath         = '';       // 'en-us'
-    protected $versionPath        = '';       // '4.7'
-    protected $relativePath       = '';       // 'Setup/Page'
-    protected $htmlFile           = '';       // 'Index.html'
-    protected $query              = '';       //  '?id=3'
-    protected $fragment           = '';       //  '#abc'
+    protected $baseFolder         = '';                             // 'TyposcriptReference'
+    protected $localePath         = '';                             // 'en-us'
+    protected $versionPath        = '';                             // '4.7'
+    protected $relativePath       = '';                             // 'Setup/Page'
+    protected $htmlFile           = '';                             // 'Index.html'
+    protected $fragment           = '';                             //  '#abc'
 
-    protected $parsedUrl;                     // array
+    /** @var array The URL, which the visitor is on, split up into its segments */
+    protected $parsedUrl          = array();
 
-    protected $localeKeys         = array();  // the various locales found
-    protected $resultVersions     = array();  // the result!
+    protected $localeKeys         = array();                        // the various locales found
+    protected $resultVersions     = array();                        // the result!
     protected $htmlResult         = '';
     protected $htmlResultIntro    = '
 		<table>
@@ -75,12 +75,43 @@ class VersionMatcher {
         return $isValid;
     }
 
+    /**
+     * Before doing anything with the user-provided URL at all, validate that it really is what we expect it should be.
+     * It maybe is not a URL at all.
+     * It might point to a different server anywhere in the web, so that we would then run our request against that server.
+     * Also could it contain malicious segments, e.g. for path traversal.
+     *
+     * @param $url string The complete string as it was provided by the user
+     * @return void
+     */
+    protected function validateUrl($url) {
+        /** @var boolean Whether the provided URL is valid or not */
+        $isValidUrl = FALSE;
+
+        /**
+         * Check, if what we have is a valid URL
+         * Pattern for checking validity of URLs, written by Diego Perini
+         * See https://gist.github.com/dperini/729294
+         * This expression has best results at https://mathiasbynens.be/demo/url-regex
+         */
+        $validUrlPattern = '%^(?:(?:https?|ftp)://)(?:\S+(?::\S*)?@|\d{1,3}(?:\.\d{1,3}){3}|(?:(?:[a-z\d\x{00a1}-\x{ffff}]+-?)*[a-z\d\x{00a1}-\x{ffff}]+)(?:\.(?:[a-z\d\x{00a1}-\x{ffff}]+-?)*[a-z\d\x{00a1}-\x{ffff}]+)*(?:\.[a-z\x{00a1}-\x{ffff}]{2,6}))(?::\d+)?(?:[^\s]*)?$%iu';
+        if(preg_match($validUrlPattern, $url)) {
+            $isValidUrl = TRUE;
+        }
+
+        // Make sure that the host portion of the URL points to our own server and not somewhere else.
+        // Without such a check it is possible to run the following cURL request on arbitrary servers.
+        if(!$this->startsWith($url, $this->urlPart1)) {
+            $isValidUrl = FALSE;
+        }
+
+        if($isValidUrl === FALSE) {
+            die();
+        }
+    }
+
     protected function parseUrl() {
         $this->parsedUrl = parse_url($this->url);
-        $this->urlPart1 = '';
-        $this->urlPart1 .= isset($this->parsedUrl['scheme'  ]) ?       $this->parsedUrl['scheme'  ] . '://' : '';
-        $this->urlPart1 .= isset($this->parsedUrl['host'    ]) ?       $this->parsedUrl['host'    ]         : '';
-        $this->query     = isset($this->parsedUrl['query'   ]) ? '?' . $this->parsedUrl['query'   ]         : '';
         $this->fragment  = isset($this->parsedUrl['fragment']) ? '#' . $this->parsedUrl['fragment']         : '';
 
         // Step 1: find urlPart2 and urlPart3
@@ -129,6 +160,11 @@ class VersionMatcher {
         return;
     }
 
+    /**
+     * Returns if the provided string starts with the specified characters/string.
+     *
+     * @return mixed The extracted part of the string if it does, FALSE if it does not
+     */
     protected function startsWith($haystack, $needle) {
         return substr($haystack, 0, strlen($needle)) === $needle;
     }
@@ -149,7 +185,6 @@ class VersionMatcher {
 
         // $this->resultVersions[<version>][<locale>] => Array(
         //    [absPathToHtmlFile] => /home/mbless/public_html/TYPO3/extensions/sphinx/fr-fr/1.1.0/Index.html
-        //    [query] => 
         //    [fragment] => 
         //    [urlPart1] => https://docs.typo3.org
         //    [urlPart2] => /typo3cms/extensions/
@@ -216,7 +251,6 @@ class VersionMatcher {
                             if (!(strlen($v['directHtmlFile'] === 'Index.html' or $v['directHtmlFile'] === 'index.html'))) {
                                 $destUrl .= $v['directHtmlFile'];
                             }
-                            $destUrl .= $v['query'];
                             $destUrl .= $v['fragment'];
                             $valueDirect = '<a href="' . htmlspecialchars($destUrl) . '">' . htmlspecialchars($versionName) . '</a>';
                         }
@@ -287,7 +321,6 @@ class VersionMatcher {
                     if (!in_array($localeKey, $this->localeKeys)) $this->localeKeys[] = $localeKey;
                     $this->resultVersions[$key][$localeKey] = array(
                         'absPathToHtmlFile' => $absPathToHtmlFile,  // '/home/marble/htdocs/LinuxData200/t3doc/versionswitcher/webroot/typo3cms/TyposcriptReference/latest/Setup/Page/Index.html'
-                        'query'             => $this->query,        // '?id=3'
                         'fragment'          => $this->fragment,     // '#abc'
                         'urlPart1'          => $this->urlPart1,     // 'https://docs.typo3.org'
                         'urlPart2'          => $this->urlPart2,     // '/typo3cms/'
@@ -338,7 +371,16 @@ class VersionMatcher {
         }
     }
 
-    public function processTheUrl($url, $webRootPath=null) {
+    /**
+     * Main logic of the class.
+     *
+     * Generates the link to the different versions in HTML format.
+     * @param $url string The complete URL as it was requested by the website visitor
+     * @param $webRootPath mixed Internal server path to the main folder, which contains the different rendered projects
+     * @return string The HTML code with the versions
+     */
+    public function processTheUrl($url, $webRootPath=NULL) {
+        $this->validateUrl($url);
         $this->url = $url;
         if (!is_null($webRootPath)) {
             $this->webRootPath = $webRootPath;
