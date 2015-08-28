@@ -15,7 +15,7 @@ class PdfMatcher {
      */
     protected $currentProjectIsGluePage = FALSE;
     /**
-     * @var string URL to the folder of the PDF file; .htaccess in there will redirect to actual filename
+     * @var string URL to the PDF file
      */
     protected $pdfUrl = '';
     /**
@@ -46,7 +46,7 @@ class PdfMatcher {
     protected $parsedUrl          = array();
 
     /** @var boolean Information, whether the PDF file exists or not */
-    protected $pdfExists          = true;
+    protected $pdfExists          = TRUE;
     /** @var string The resulting HTML code of the link */
     protected $htmlResult         = '';
 
@@ -207,40 +207,47 @@ class PdfMatcher {
         return $result;
     }
 
+    /**
+     * Check, if the PDF file exists.
+     *
+     * If the PDF file exists, store the URL to that file in $this->pdfUrl,
+     * otherwise set $this->pdfExists to FALSE.
+     *
+     * @return void
+     */
     protected function findPdf() {
         if (!$this->cont) {
             return;
         }
-        $this->pdfUrl = '';
-        $this->pdfUrl .= $this->urlPart1;     // 'https://docs.typo3.org'
-        $this->pdfUrl .= $this->urlPart2;     // '/typo3cms/'
-        $this->pdfUrl .= $this->baseFolder;   // 'TyposcriptReference'
-        $this->pdfUrl .= strlen($this->localePath)  ? '/' . $this->localePath  : '';    // 'en-us'
-        $this->pdfUrl .= strlen($this->versionPath) ? '/' . $this->versionPath : '';    // '4.7'
-        $this->pdfUrl .= '/_pdf/';
-
-        /* Let's check for the existence of a PDF file. We're reading HEAD of the URL and thereby follow redirects.
-         * At the shell:
-         *      $cmd = 'curl --location --silent --output /dev/null/ --fail --head ' . $pdfUrl
-         *      # Exitcode 0: success
-         *      # Exitcode 22: No pdf found
+        /**
+         * Do an _internal_ check for the according file, based on $this->webRootPath.
+         * Opposed to an external check, this prevents useless and expensive HTTP requests; after all we are in the same filesystem currently...
          */
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $this->pdfUrl);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-        curl_setopt($ch, CURLOPT_HEADER, true);
-        curl_setopt($ch, CURLOPT_NOBODY, true);
-        curl_setopt($ch, CURLOPT_FAILONERROR, true);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $this->curlResult = curl_exec($ch);
-        $this->curl_errno = curl_errno($ch);
-        $this->pdf_http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        curl_close($ch);
+        /** @var string Absolute path of the folder, in which the PDF file will be located, if it exists */
+        $pdfAbsoluteFolderPath = '';
+        $pdfAbsoluteFolderPath .= $this->webRootPath;  // '/home/mbless/public_html'
+        $pdfAbsoluteFolderPath .= $this->urlPart2;     // '/typo3cms/'
+        $pdfAbsoluteFolderPath .= $this->baseFolder;   // 'TyposcriptReference'
+        $pdfAbsoluteFolderPath .= strlen($this->localePath)  ? '/' . $this->localePath  : '';    // 'en-us'
+        // Explicitly add "stable" here; if called externally, a redirect in .htaccess would do that, but not for the internal check we are doing here
+        $pdfAbsoluteFolderPath .= strlen($this->versionPath) ? '/' . $this->versionPath : '/stable';    // '4.7'
+        $pdfAbsoluteFolderPath .= '/_pdf/';
 
-        if ($this->curl_errno) {
-            // Needs CURLOPT_FAILONERROR.
-            // On error, most likely ends up with 22 as the exitcode == curl_errno.
-            $this->pdfExists = False;
+        // Check, if there is a .pdf file in that folder.
+        /** @var mixed Array with the absolute path of the PDF file or an empty array if no matching file was found or FALSE in case of error */
+        $matchedFiles = glob($pdfAbsoluteFolderPath . '*.pdf');
+
+        // Assuming there maximally is exactly one PDF file in that folder, the relevant path is in $matchedFiles[0] now, if a PDF file exists.
+        if(is_array($matchedFiles) && isset($matchedFiles[0])) {
+            /** @var string Filename of the PDF file */
+            $pdfFileName = basename($matchedFiles[0]);
+            // Build the external URL by replacing the internal path with the domain name.
+            $this->pdfUrl = '';
+            $this->pdfUrl .= str_replace($this->webRootPath, $this->urlPart1, $pdfAbsoluteFolderPath);
+            // Link to the file itself instead of only to the folder. Saves one .htaccess redirect on each hit.
+            $this->pdfUrl .= $pdfFileName;
+        } else {
+            $this->pdfExists = FALSE;
         }
     }
 
