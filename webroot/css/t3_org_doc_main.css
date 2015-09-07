@@ -1,4 +1,4 @@
-/* mb, 2012-11-25, 2013-07-15, 2014-03-25, 2015-03-11 */
+/* mb, 2012-11-25, 2013-07-15, 2014-03-25, 2015-09-07 */
 
 /**
  * This stylesheet is used for manuals, which were provided as reST files
@@ -7,6 +7,10 @@
  */
 
 /* override standard settings of typo3.org */
+
+html {
+  font: 16px/24px Arial,"Helvetica Neue",Helvetica,sans-serif;
+}
 
 .pDISABLED {
     width: inherit;
