@@ -204,6 +204,8 @@ class VersionMatcher
                 // master document of other version
                 $baseFound = false;
                 $baseHtmlFile = '';
+                $singleHtmlFound = false;
+                $singleHtmlFile = '';
 
                 // exactly the same file in subdirs of other version?
                 $directFound = false;
@@ -218,6 +220,13 @@ class VersionMatcher
                         if (file_exists($absPathToHtmlFile)) {
                             $baseHtmlFile = $htmlFile; // 'Index.html'
                             $baseFound = true;
+                        }
+                    }
+                    if (!$singleHtmlFound) {
+                        $absPathToSingleHtmlFile = implode('/', array($absPathToManual, $versionFolder, 'singlehtml', $htmlFile));
+                        if (file_exists($absPathToSingleHtmlFile)) {
+                            $singleHtmlFile = $htmlFile; // 'Index.html'
+                            $singleHtmlFound = true;
                         }
                     }
                     if (!$directFound) {
@@ -247,6 +256,8 @@ class VersionMatcher
                     $this->resultVersions[$key][$localeKey] = array(
                         'absPathToHtmlFile' => $absPathToHtmlFile,
                         // '/home/mbless/public_html/typo3cms/TyposcriptReference/latest/Setup/Page/Index.html'
+                        'absPathToSingleHtmlFile' => $absPathToSingleHtmlFile,
+                        // '/home/mbless/public_html/typo3cms/TyposcriptReference/latest/singlehtml/Index.html' || ''
                         'fragment' => $this->fragment,
                         // '#abc'
                         'urlPart1' => $this->urlPart1,
@@ -262,6 +273,8 @@ class VersionMatcher
                         'relativePath' => $this->relativePath,
                         // 'Setup/Page'
                         'baseHtmlFile' => $baseHtmlFile,
+                        // 'Index.html'
+                        'singleHtmlFile' => $singleHtmlFile,
                         // 'Index.html'
                         'directHtmlFile' => $directHtmlFile,
                         // 'Index.html'
@@ -458,6 +471,7 @@ class VersionMatcher
                     // Always loop through locales in the same order
                     foreach ($this->localeKeys as $localeKey) {
                         $valueBase = '-';
+                        $valueSingleHtml = '-';
                         $valueDirect = '-';
 
                         if (isset($localeData[$localeKey])) {
@@ -475,6 +489,22 @@ class VersionMatcher
                                     $destUrl .= $v['baseHtmlFile'];
                                 }
                                 $linkText = $localeKey === '_' ? $versionName : $versionName . ' ' . $localeKey;
+                                $valueBase = '<a href="' . htmlspecialchars($destUrl) . '">' . htmlspecialchars($linkText) . '</a>';
+                            }
+
+                            if (strlen($v['absPathToSingleHtmlFile'])) {
+                                $destUrl = $v['urlPart1'] . $v['urlPart2'] . $v['baseFolder'] . '/';
+                                if (strlen($v['localeSegment'])) {
+                                    $destUrl .= $v['localeSegment'] . '/';
+                                }
+                                if (strlen($v['versionFolder']) and $v['versionFolder'] !== 'stable') {
+                                    $destUrl .= $v['versionFolder'] . '/';
+                                }
+                                $destUrl .= 'singlehtml/';
+                                if (!(strlen($v['singleHtmlFile'] === 'Index.html' or $v['singleHtmlFile'] === 'index.html'))) {
+                                    $destUrl .= $v['singleHtmlFile'];
+                                }
+                                $linkText = 'Singlehtml';
                                 $valueBase = '<a href="' . htmlspecialchars($destUrl) . '">' . htmlspecialchars($linkText) . '</a>';
                             }
 
