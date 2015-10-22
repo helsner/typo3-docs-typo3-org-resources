@@ -504,7 +504,8 @@ class VersionMatcher
                                 if (!(strlen($v['singleHtmlFile'] === 'Index.html' or $v['singleHtmlFile'] === 'index.html'))) {
                                     $destUrl .= $v['singleHtmlFile'];
                                 }
-                                $linkText = 'Singlehtml';
+                                $linkText = $localeKey === '_' ? $versionName : $versionName . ' ' . $localeKey;
+                                $linkText .= ' (1 file)';
                                 $valueSingleHtml = '<a href="' . htmlspecialchars($destUrl) . '">' . htmlspecialchars($linkText) . '</a>';
                             }
 
@@ -531,13 +532,13 @@ class VersionMatcher
                         if ($valueDirect !== '-') {
                             $result .= '<dd>' . $valueDirect;
                             if ($valueSingleHtml !== '-') {
-                                $result .= ' | ' . $valueSingleHtml;
+                                $result .= $valueSingleHtml;
                             }
                             $result .= '</dd>' . $NL;
                         } elseif ($valueBase !== '-') {
                             $result .= '<dd>' . $valueBase;
                             if ($valueSingleHtml !== '-') {
-                                $result .= ' | ' . $valueSingleHtml;
+                                $result .= $valueSingleHtml;
                             }
                             $result .= '</dd>' . $NL;
                         } elseif (0) {
