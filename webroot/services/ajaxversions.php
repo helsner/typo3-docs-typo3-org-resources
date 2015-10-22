@@ -18,7 +18,7 @@ class VersionMatcher
     protected $urlPart1 = 'https://docs.typo3.org'; // 'https://docs.typo3.org'
     protected $urlPart2 = '';                       // '/typo3cms/'
     protected $urlPart3 = '';                       // 'TyposcriptReference/en-us/4.7/Setup/Page/Index.html?id=3#abc'
-    protected $filePathToUrlPart2 = '';                       // '/typo3cms/'
+    protected $filePathToUrlPart2 = '';             // '/typo3cms/'
 
     protected $baseFolder = '';                     // 'TyposcriptReference'
     protected $localePath = '';                     // 'en-us'
@@ -136,6 +136,7 @@ class VersionMatcher
             $this->cont = false;
         }
         # urlPart3PathSegments: array('TyposcriptReference', 'en-us', '4.7', 'Setup', 'Page', 'Index.html');
+        # urlPart3PathSegments: array('TyposcriptReference', 'en-us', '4.7', 'singlehtml', 'Index.html');
         if ($this->cont and (count($this->urlPart3PathSegments) < 2)) {
             $this->cont = false;
         }
@@ -158,6 +159,13 @@ class VersionMatcher
             if ($this->isValidVersionFolderName($segment)) {
                 // '4.7'
                 $this->versionPath = $segment;
+                $i += 1;
+            }
+        }
+        if ($this->cont) {
+            $segment = $this->urlPart3PathSegments[$i];
+            if ($segment === 'singlehtml') {
+                // 'singlehtml' - skip!
                 $i += 1;
             }
         }
