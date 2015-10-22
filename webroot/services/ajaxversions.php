@@ -505,7 +505,7 @@ class VersionMatcher
                                     $destUrl .= $v['singleHtmlFile'];
                                 }
                                 $linkText = 'Singlehtml';
-                                $valueBase = '<a href="' . htmlspecialchars($destUrl) . '">' . htmlspecialchars($linkText) . '</a>';
+                                $valueSingleHtml = '<a href="' . htmlspecialchars($destUrl) . '">' . htmlspecialchars($linkText) . '</a>';
                             }
 
                             if (strlen($v['directHtmlFile'])) {
@@ -529,9 +529,17 @@ class VersionMatcher
                         }
 
                         if ($valueDirect !== '-') {
-                            $result .= '<dd>' . $valueDirect . '</dd>' . $NL;
+                            $result .= '<dd>' . $valueDirect;
+                            if ($valueSingleHtml !== '-') {
+                                $result .= ' | ' . $valueSingleHtml;
+                            }
+                            $result .= '</dd>' . $NL;
                         } elseif ($valueBase !== '-') {
-                            $result .= '<dd>' . $valueBase . '</dd>' . $NL;
+                            $result .= '<dd>' . $valueBase;
+                            if ($valueSingleHtml !== '-') {
+                                $result .= ' | ' . $valueSingleHtml;
+                            }
+                            $result .= '</dd>' . $NL;
                         } elseif (0) {
                             $result .= '<td class="nolink">' . $valueBase . '</td>' . $NL;
                         }
