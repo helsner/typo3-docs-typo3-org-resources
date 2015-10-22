@@ -505,7 +505,7 @@ class VersionMatcher
                                     $destUrl .= $v['singleHtmlFile'];
                                 }
                                 $linkText = $localeKey === '_' ? $versionName : $versionName . ' ' . $localeKey;
-                                $linkText .= ' (1 file)';
+                                $linkText .= ' (in one file)';
                                 $valueSingleHtml = '<a href="' . htmlspecialchars($destUrl) . '">' . htmlspecialchars($linkText) . '</a>';
                             }
 
