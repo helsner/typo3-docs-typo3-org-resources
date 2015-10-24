@@ -215,7 +215,10 @@ if US.has_key('extensions'):
 
 if US.has_key('extlinks'):
     for k, v in US['extlinks'].items():
-        extlinks['k'] = v
+        # untested!
+        # we expect:
+        #     forge = https://forge.typo3.org/issues/%s | forge:
+        extlinks['k'] = (v.split('|')[0].strip(), v.split('|')[1].strip())
 
 if US.has_key('intersphinx_mapping'):
     for k, v in US['intersphinx_mapping'].items():
