@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# mb, 2015-10-01, 2015-10-21
+# mb, 2015-10-01, 2015-10-24
 
 # Generic conf.py for ALL projects.
 # Project specific settings should be in:
@@ -22,16 +22,29 @@ import t3SphinxThemeRtd
 # the dictionary of variables of this module 'conf.py'
 G = globals()
 
+class WithSection:
+
+    def __init__(self, fp, sectionname):
+        self.fp = fp
+        self.sectionname = sectionname
+        self.prepend = True
+
+    def readline(self):
+        if self.prepend:
+            self.prepend = False
+            return '[' + self.sectionname + ']\n'
+        else:
+            return self.fp.readline()
+
 # get from 'buildsettings.sh'
-f1name = 'buildsettings.sh'
-contents = codecs.open(f1name, 'r', 'utf-8').read()
+
 # ConfigParser needs a section. Let's invent one.
 section = 'build'
-contents = '[' + section + ']\n'  + contents
-f1 = StringIO(contents)
 config = ConfigParser.RawConfigParser()
-config.readfp(f1)
-f1.close()
+f1name = 'buildsettings.sh'
+with codecs.open(f1name, 'r', 'utf-8') as f1:
+    config.readfp(WithSection(f1, section))
+
 # Required:
 MASTERDOC = config.get(section, 'MASTERDOC')
 BUILDDIR = config.get(section, 'BUILDDIR')
