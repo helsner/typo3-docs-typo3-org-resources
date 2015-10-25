@@ -127,10 +127,15 @@ function compilepdf() {
     local PDFFILE
     local TARGETPDF
 
-    grep -A3 latex_elements $MAKE_DIRECTORY/10+20+30_conf_py.yml | egrep "^    preamble: \\\\usepackage{typo3}" >/dev/null
-    if [ $? -ne 0 ]; then
-        echo "PDF rendering is not configured, skipping."
-        return
+    if ((0)); then true;
+        # do we need this kind of check here?
+        # with the new 2015-10 buildchain PDF rendering is alway configured
+        # if not explicitely unset by someone
+        grep -A3 latex_elements $MAKE_DIRECTORY/10+20+30_conf_py.yml | egrep "^    preamble: \\\\usepackage{typo3}" >/dev/null
+        if [ $? -ne 0 ]; then
+            echo "PDF rendering is not configured, skipping."
+            return
+        fi
     fi
 
     # Create LATEX file and helper files
@@ -144,12 +149,13 @@ function compilepdf() {
     EXITCODE=$?
 
     PDFFILE=$BUILDDIR/latex/$PROJECT.pdf
+    echo "PDFFILE:", $PDFFILE
     if [ "$PACKAGE_LANGUAGE" == "default" ]; then
         TARGETPDF=manual.$PROJECT-$VERSION.pdf
     else
         TARGETPDF=manual.$PROJECT-$VERSION.${PACKAGE_LANGUAGE}.pdf
     fi
-
+    echo "TARGETPDF:", $TARGETPDF
     if [ $EXITCODE -ne 0 ]; then
         # Store log into pdf.log, may be useful to investigate
         cat $BUILDDIR/latex/*.log >> $BUILDDIR/pdf.log
