@@ -127,10 +127,15 @@ function compilepdf() {
     local PDFFILE
     local TARGETPDF
 
-    grep -A3 latex_elements $MAKE_DIRECTORY/10+20+30_conf_py.yml | egrep "^    preamble: \\\\usepackage{typo3}" >/dev/null
-    if [ $? -ne 0 ]; then
-        echo "PDF rendering is not configured, skipping."
-        return
+    if ((0)); then true;
+        # do we need this kind of check here?
+        # with the new 2015-10 buildchain PDF rendering is alway configured
+        # if not explicitely unset by someone
+        grep -A3 latex_elements $MAKE_DIRECTORY/10+20+30_conf_py.yml | egrep "^    preamble: \\\\usepackage{typo3}" >/dev/null
+        if [ $? -ne 0 ]; then
+            echo "PDF rendering is not configured, skipping."
+            return
+        fi
     fi
 
     # Create LATEX file and helper files
@@ -143,13 +148,25 @@ function compilepdf() {
     make -C $BUILDDIR/latex all-pdf
     EXITCODE=$?
 
-    PDFFILE=$BUILDDIR/latex/$PROJECT.pdf
+
+
+    # we have to overcome this problem:
+    #
+    # Output written on t3shortname.pdf (384 pages, 1394901 bytes).
+    # Transcript written on t3shortname.log.
+    # # # make: Leaving directory `/tmp/-home-mbless-public_html-typo3cms-TyposcriptReference-latest/latex'
+    # PDFFILE:, /tmp/-home-mbless-public_html-typo3cms-TyposcriptReference-latest/latex/t3tsref.pdf
+    # TARGETPDF:, manual.t3tsref-latest.pdf
+    # Could not find output PDF, skipping.
+
+
+    # output name is always 'PROJECT'!
+    PDFFILE=$BUILDDIR/latex/PROJECT.pdf
     if [ "$PACKAGE_LANGUAGE" == "default" ]; then
         TARGETPDF=manual.$PROJECT-$VERSION.pdf
     else
         TARGETPDF=manual.$PROJECT-$VERSION.${PACKAGE_LANGUAGE}.pdf
     fi
-
     if [ $EXITCODE -ne 0 ]; then
         # Store log into pdf.log, may be useful to investigate
         cat $BUILDDIR/latex/*.log >> $BUILDDIR/pdf.log

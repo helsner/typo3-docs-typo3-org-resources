@@ -227,7 +227,7 @@ if US.has_key('intersphinx_mapping'):
 LD = US.get('latex_documents', {})
 latex_documents = [(
     LD.get('source_start_file') if LD.get('source_start_file') else  master_doc,
-    LD.get('target_name')       if LD.get('target_name')       else  t3shortname + '.tex',
+    LD.get('target_name')       if 0                           else  'PROJECT' + '.tex',
     LD.get('title')             if LD.get('title')             else  project,
     LD.get('author')            if LD.get('author')            else  t3author,
     LD.get('documentclass')     if 0                           else 'manual'
@@ -239,8 +239,7 @@ latex_elements = {
     'papersize': LE.get('papersize') if 0 else 'a4paper',
     'pointsize': LE.get('pointsize') if 0 else '10pt',
     'preamble' : LE.get('preamble' ) if 0 else '\\usepackage{typo3}',
-    # 'figure_align'? better don't touch!
-    # 'figure_align': LE.get('figure_align') and 'htbp',
+    # for more see: http://sphinx-doc.org/config.html#confval-latex_elements
 }
 del LE
 
