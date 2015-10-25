@@ -148,7 +148,20 @@ function compilepdf() {
     make -C $BUILDDIR/latex all-pdf
     EXITCODE=$?
 
-    PDFFILE=$BUILDDIR/latex/$PROJECT.pdf
+
+
+    # we have to overcome this problem:
+    #
+    # Output written on t3shortname.pdf (384 pages, 1394901 bytes).
+    # Transcript written on t3shortname.log.
+    # # # make: Leaving directory `/tmp/-home-mbless-public_html-typo3cms-TyposcriptReference-latest/latex'
+    # PDFFILE:, /tmp/-home-mbless-public_html-typo3cms-TyposcriptReference-latest/latex/t3tsref.pdf
+    # TARGETPDF:, manual.t3tsref-latest.pdf
+    # Could not find output PDF, skipping.
+
+
+    # output name is always 'PROJECT'!
+    PDFFILE=$BUILDDIR/latex/PROJECT.pdf
     echo "PDFFILE:", $PDFFILE
     if [ "$PACKAGE_LANGUAGE" == "default" ]; then
         TARGETPDF=manual.$PROJECT-$VERSION.pdf
