@@ -5,9 +5,9 @@
 # Generic conf.py for ALL projects.
 # Project specific settings should be in:
 # - Documentation/Settings.cfg (maintained by user)
-# - makedir/Defaults.sh        (maintained by admin)
-# - makedir/buildsettings.sh   (maintained by admin)
-# - makedir/Overrides.cfg      (maintained by admin)
+# - MAKEDIR/Defaults.sh        (maintained by admin)
+# - MAKEDIR/buildsettings.sh   (maintained by admin)
+# - MAKEDIR/Overrides.cfg      (maintained by admin)
 
 from cStringIO import StringIO
 import codecs
@@ -75,7 +75,7 @@ settingsabspath = projectabspath + '/' + 'Settings.cfg'
 
 # Better stop with exitcode=1 if there is no 'Settings.cfg' file.
 if not os.path.exists(settingsabspath):
-    sys.stderr('Settings.cfg not found')
+    sys.stderr.write('Settings.cfg not found\n')
     sys.exit(1)
 
 # user settings
@@ -91,7 +91,7 @@ if os.path.exists(settingsabspath):
         for o in config.options(s):
             US[s][o] = config.get(s,o)
 
-# If makedir/Defaults.cfg exists:
+# If MAKEDIR/Defaults.cfg exists:
 # Get defaults for settings that ARE NOT in Settings.cfg
 defaultsabspath = os.path.normpath(os.path.join(confpyabspath, '..', 'Defaults.cfg'))
 if os.path.exists(defaultsabspath):
@@ -103,7 +103,7 @@ if os.path.exists(defaultsabspath):
             if not US[s].has_key(o):
                 US[s][o] = config.get(s,o)
 
-# If makedir/Overrides.cfg exists:
+# If MAKEDIR/Overrides.cfg exists:
 # Set all settings thereby overriding existing ones.
 # So the admin has the last word
 overridesabspath = os.path.normpath(os.path.join(confpyabspath, '..', 'Overrides.cfg'))
