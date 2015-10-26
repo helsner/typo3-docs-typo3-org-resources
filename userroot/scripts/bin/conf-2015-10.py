@@ -2,6 +2,9 @@
 
 # mb, 2015-10-01, 2015-10-26
 
+# This file lives at https://github.com/marble/typo3-docs-typo3-org-resources/blob/master/userroot/scripts/bin/conf-2015-10.py
+# Check for a new version!
+
 # Generic conf.py for ALL projects.
 # Project specific settings should be in:
 # - Documentation/Settings.cfg (maintained by user)
