@@ -440,6 +440,12 @@ if [ -r "REBUILD_REQUESTED" ]; then
         exit 3
     fi
 
+    # PROJECT/README.rst   -> Documentation/Index.rst
+    # PROJECT/Settings.cfg -> Documentation/Settings.cfg
+    if [ ! -r "$T3DOCDIR/Documentation/Index.rst" ] && [ -r "$T3DOCDIR/README.rst" ]; then true
+        mv $T3DOCDIR/README.rst $T3DOCDIR/Index.rst
+    fi
+
     # Check for valid documentation
     if [ ! -r "$T3DOCDIR/Index.rst" ] && [ ! -r "$T3DOCDIR/README.rst" ]; then
         if [ -r "./README.rst" ]; then

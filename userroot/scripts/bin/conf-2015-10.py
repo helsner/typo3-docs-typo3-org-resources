@@ -74,6 +74,16 @@ if os.path.isabs(MASTERDOC):
 else:
     masterdocabspath = os.path.normpath(os.path.join(confpyabspath, '..', MASTERDOC))
 
+if os.path.exists(masterdocabspath + '.rst'):
+    pass
+elif os.path.exists(masterdocabspath[:-len('README')] + 'Index.rst'):
+    MASTERDOC = MASTERDOC[:-len('README')] + 'Index'
+    masterdocabspath = masterdocabspath[:-len('README')] + 'Index'
+
+if not os.path.exists(masterdocabspath + '.rst'):
+    sys.stdout.write('Can\'t find MASTERDOC ' + masterdocabspath + '.rst\n')
+    sys.exit(1)
+
 if not os.path.isabs(LOGDIR):
     logdirabspath = os.path.abspath(LOGDIR)
 logdirabspath = os.path.normpath(logdirabspath)
