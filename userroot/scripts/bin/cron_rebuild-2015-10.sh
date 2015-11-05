@@ -451,8 +451,9 @@ if [ -r "REBUILD_REQUESTED" ]; then
     fi
 
     if [ ! -e "${T3DOCDIR}/Settings.cfg" ]; then
-        echo "Cannot proceed, cannot find ${T3DOCDIR}/Settings.cfg" 2>&1
-        exit 6
+        echo "Missing: Cannot find ${T3DOCDIR}/Settings.cfg" 2>&1
+        # exit 6
+        echo "         Will continue nevertheless." 2>&1
     else
         echo "Ok, found ${T3DOCDIR}/Settings.cfg " 2>&1
     fi
