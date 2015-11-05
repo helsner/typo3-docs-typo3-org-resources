@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# mb, 2015-10-01, 2015-11-02
+# mb, 2015-10-01, 2015-11-05
 
 # This file lives at https://github.com/marble/typo3-docs-typo3-org-resources/blob/master/userroot/scripts/bin/conf-2015-10.py
 # Check for a new version!
@@ -25,6 +25,8 @@ from pygments.lexers.web import PhpLexer
 lexers['php'] = PhpLexer(startinline=True)
 lexers['php-annotations'] = PhpLexer(startinline=True)
 
+# a dictionary to take notes while we do this processing
+notes = {}
 
 # PART 1: preparations
 
@@ -81,18 +83,26 @@ projectabspath = os.path.normpath(os.path.join(masterdocabspath, '..'))
 
 # the absolute path to Documentation/Settings.cfg
 settingsabspath = projectabspath + '/' + 'Settings.cfg'
+notes['Settings.cfg exists'] = os.path.exists(settingsabspath)
 
-# Better stop with exitcode=1 if there is no 'Settings.cfg' file.
-if not os.path.exists(settingsabspath):
-    sys.stderr.write('Settings.cfg not found\n')
-    sys.exit(1)
+defaultsabspath = os.path.normpath(os.path.join(confpyabspath, '..', 'Defaults.cfg'))
+notes['Defaults.cfg exists'] = os.path.exists(defaultsabspath)
+
+overridesabspath = os.path.normpath(os.path.join(confpyabspath, '..', 'Overrides.cfg'))
+notes['Overrides.cfg exists'] = os.path.exists(overridesabspath)
+
+if 0:
+    # Better stop with exitcode=1 if there is no 'Settings.cfg' file
+    if not os.path.exists(settingsabspath):
+        sys.stdout.write('Settings.cfg not found\n')
+        sys.exit(1)
 
 # user settings
 US = {}
 
 # Documentation/Settings.cfg
 # read user settings and keep them in normal dictionary US
-if os.path.exists(settingsabspath):
+if notes['Settings.cfg exists']:
     config = ConfigParser.RawConfigParser()
     config.readfp(codecs.open(settingsabspath, 'r', 'utf-8'))
     for s in config.sections():
@@ -102,8 +112,7 @@ if os.path.exists(settingsabspath):
 
 # If MAKEDIR/Defaults.cfg exists:
 # Get defaults for settings that ARE NOT in Settings.cfg
-defaultsabspath = os.path.normpath(os.path.join(confpyabspath, '..', 'Defaults.cfg'))
-if os.path.exists(defaultsabspath):
+if notes['Defaults.cfg exists']:
     config = ConfigParser.RawConfigParser()
     config.readfp(codecs.open(defaultsabspath, 'r', 'utf-8'))
     for s in config.sections():
@@ -169,6 +178,11 @@ html_theme_options['project_discussions']  = ''  # 'http://lists.typo3.org/cgi-b
 html_theme_options['project_home']         = ''  # some url
 html_theme_options['project_issues']       = ''  # 'https://github.com/TYPO3-Documentation/TYPO3CMS-Reference-Typoscript/issues'
 html_theme_options['project_repository']   = ''  # 'https://github.com/TYPO3-Documentation/TYPO3CMS-Reference-Typoscript.git'
+
+if 0 and 'enable this as soon as t3SphinxTheme knows the settings':
+    html_theme_options['project_has_settings_cfg' ] = True if notes['Settings.cfg exists' ] else False
+    html_theme_options['project_has_defaults_cfg' ] = True if notes['Defaults.cfg exists' ] else False
+    html_theme_options['project_has_overrides_cfg'] = True if notes['Overrides.cfg exists'] else False
 
 html_use_opensearch = '' # like: 'https://docs.typo3.org/typo3cms/TyposcriptReference/0.0'  no trailing slash!
 
@@ -354,8 +368,7 @@ elif type(html_theme_options['use_opensearch']) in [type(''), type(u'')]:
 # settings from Overrides.cfg
 OVERRIDES = {}
 
-overridesabspath = os.path.normpath(os.path.join(confpyabspath, '..', 'Overrides.cfg'))
-if os.path.exists(overridesabspath):
+if notes['Overrides.cfg exists']:
     config = ConfigParser.RawConfigParser()
     config.readfp(codecs.open(overridesabspath, 'r', 'utf-8'))
     for s in config.sections():
@@ -373,7 +386,7 @@ updateModuleGlobals(G, OVERRIDES)
 
 for k in ['f1', 'f1name', 'o', 'contents',
     'extensions_to_be_loaded', 'section', 'legal_extensions',
-    'config', 'US', 'item', 's', 'v', 'e']:
+    'config', 'US', 'item', 's', 'v', 'e', 'notes']:
     if G.has_key(k):
         del G[k]
 del k
