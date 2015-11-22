@@ -1,5 +1,5 @@
 // manually maintained list of system extensions
-// mb, starting 2015-01-22
+// mb, 2015-01-22, 2015-11-22
 
 // merge list 'systemExtensionList' into list 'extensionList'
 
@@ -9,6 +9,7 @@ var systemExtensionList = [
 	{"key":"dbal","latest":"latest","versions":["1.0.0","6.2","latest","latest"]},
 	{"key":"documentation","latest":"latest","versions":["6.2","latest","latest"]},
 	{"key":"felogin","latest":"latest","versions":["4.7","6.2","latest","latest"]},
+	{"key":"fluid_styled_content","latest":"latest","versions":["latest","latest"]},
 	{"key":"form","latest":"latest","versions":["4.7","6.2","latest","latest"]},
 	{"key":"indexed_search","latest":"latest","versions":["6.2","latest","latest"]},
 	{"key":"linkvalidator","latest":"latest","versions":["6.2","latest","latest"]},
