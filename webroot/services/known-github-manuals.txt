@@ -43,6 +43,7 @@ https://github.com/georgringer/news-documentation,https://docs.typo3.org/~mbless
 #
 # https://github.com/TYPO3-Documentation/
 #
+https://github.com/TYPO3-Documentation/t3SphinxThemeRtdDemoDocs,https://docs.typo3.org/~mbless/github.com/TYPO3-Documentation/t3SphinxThemeRtdDemoDocs.git.make/request_rebuild.php
 https://github.com/TYPO3-Documentation/TYPO3CMS-Book-ExtbaseFluid,https://docs.typo3.org/~mbless/github.com/TYPO3-Documentation/TYPO3/Book/ExtbaseFluid.git.make/request_rebuild.php
 https://github.com/TYPO3-Documentation/TYPO3CMS-Book-ExtbaseFluid,https://docs.typo3.org/~mbless/github.com/TYPO3-Documentation/TYPO3/Book/ExtbaseFluid.git.make_4.7/request_rebuild.php
 https://github.com/TYPO3-Documentation/TYPO3CMS-Example-ExtensionManual,https://docs.typo3.org/~mbless/github.com/TYPO3-Documentation/TYPO3/Example/ExtensionManual.git.make/request_rebuild.php
@@ -99,4 +100,3 @@ https://github.com/TYPO3-Documentation/TYPO3CMS-Tutorial-Typoscript45Minutes,htt
 https://github.com/TYPO3-Documentation/TYPO3CMS-Tutorial-Typoscript45Minutes,https://docs.typo3.org/~mbless/github.com/TYPO3-Documentation/TYPO3/Tutorial/Typoscript45Minutes.git.make_6.1/request_rebuild.php
 https://github.com/TYPO3-Documentation/TYPO3CMS-Tutorial-Typoscript45Minutes,https://docs.typo3.org/~mbless/github.com/TYPO3-Documentation/TYPO3/Tutorial/Typoscript45Minutes.git.make_6.2/request_rebuild.php
 https://github.com/wmdbsystems/TYPO3.Tutorial.ContributionWorkflow,https://docs.typo3.org/~mbless/github.com/wmdbsystems/TYPO3.Tutorial.ContributionWorkflow.git.make/request_rebuild.php
-
