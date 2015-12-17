@@ -1,6 +1,6 @@
 #! /usr/bin/python
 #! coding: utf-8
-# decode_sphinx_inventory, mb, 2013, 2014-07-26
+# decode_sphinx_inventory, mb, 2013, 2014-07-26, 2015-12-17
 # ÄÖÜäöüß
 
 # ==================================================
@@ -28,6 +28,7 @@ Optional parameters:
       'html' (default): A nicely formatted html document is created.
       'csv': Comma separated values with \t als separator.
       'json': Json encoded data.
+      'ref': Format of Sphinx ':ref:' textrole
 
    -O, --outfilename
       The file is created or overwritten and contains the output.
@@ -70,12 +71,12 @@ except ImportError:
     )
     sys.exit(1)
 
-__version_info__ = (0, 1, 1)
+__version_info__ = (0, 2, 0)
 __version__ = '.'.join(map(str, __version_info__))
 __history__ = ""
 __copyright__ = """\
 
-Copyright (c), 2014, Martin Bless  <martin@mbless.de>
+Copyright (c) since 2014, Martin Bless  <martin@mbless.de>
 
 All Rights Reserved.
 
@@ -97,39 +98,40 @@ WITH THE USE OR PERFORMANCE OF THIS SOFTWARE!
 
 # map known projects to preferred abbreviation
 uri2abbrev = {
-    'https://docs.typo3.org/typo3cms/CodingGuidelinesReference' : 't3cgl',
-    'https://docs.typo3.org/typo3cms/CoreApiReference' : 't3api',
-    'https://docs.typo3.org/typo3cms/EditorsTutorial' : 't3editors',
-    'https://docs.typo3.org/typo3cms/ExtbaseFluidBook' : 't3extbasebook',
-    'https://docs.typo3.org/typo3cms/ExtbaseGuide' : 't3extbase',
-    'https://docs.typo3.org/typo3cms/FileAbstractionLayerReference' : 't3fal',
-    'https://docs.typo3.org/typo3cms/FrontendLocalizationGuide' : 't3l10n',
-    'https://docs.typo3.org/typo3cms/GettingStartedTutorial' : 't3start',
-    'https://docs.typo3.org/typo3cms/InsideTypo3Reference' : 't3inside',
-    'https://docs.typo3.org/typo3cms/InstallationGuide' : 't3install',
-    'https://docs.typo3.org/typo3cms/SecurityGuide' : 't3security',
-    'https://docs.typo3.org/typo3cms/SkinningReference' : 't3skinning',
-    'https://docs.typo3.org/typo3cms/TCAReference' : 't3tca',
-    'https://docs.typo3.org/typo3cms/TemplatingTutorial' : 't3templating',
-    'https://docs.typo3.org/typo3cms/TSconfigReference' : 't3tsconfig',
-    'https://docs.typo3.org/typo3cms/Typo3ServicesReference' : 't3services',
-    'https://docs.typo3.org/typo3cms/TyposcriptIn45MinutesTutorial' : 't3ts45',
-    'https://docs.typo3.org/typo3cms/TyposcriptReference' : 't3tsref',
-    'https://docs.typo3.org/typo3cms/TyposcriptSyntaxReference' : 't3tssyntax',
+    '://docs.typo3.org/typo3cms/CodingGuidelinesReference' : 't3cgl',
+    '://docs.typo3.org/typo3cms/CoreApiReference' : 't3coreapi',
+    '://docs.typo3.org/typo3cms/EditorsTutorial' : 't3editors',
+    '://docs.typo3.org/typo3cms/ExtbaseFluidBook' : 't3extbasebook',
+    '://docs.typo3.org/typo3cms/ExtbaseGuide' : 't3extbase',
+    '://docs.typo3.org/typo3cms/FileAbstractionLayerReference' : 't3fal',
+    '://docs.typo3.org/typo3cms/FrontendLocalizationGuide' : 't3l10n',
+    '://docs.typo3.org/typo3cms/GettingStartedTutorial' : 't3start',
+    '://docs.typo3.org/typo3cms/InsideTypo3Reference' : 't3inside',
+    '://docs.typo3.org/typo3cms/InstallationGuide' : 't3install',
+    '://docs.typo3.org/typo3cms/SecurityGuide' : 't3security',
+    '://docs.typo3.org/typo3cms/SkinningReference' : 't3skinning',
+    '://docs.typo3.org/typo3cms/TCAReference' : 't3tca',
+    '://docs.typo3.org/typo3cms/TemplatingTutorial' : 't3templating',
+    '://docs.typo3.org/typo3cms/TSconfigReference' : 't3tsconfig',
+    '://docs.typo3.org/typo3cms/Typo3ServicesReference' : 't3services',
+    '://docs.typo3.org/typo3cms/TyposcriptIn45MinutesTutorial' : 't3ts45',
+    '://docs.typo3.org/typo3cms/TyposcriptReference' : 't3tsref',
+    '://docs.typo3.org/typo3cms/TyposcriptSyntaxReference' : 't3tssyntax',
 
     # what abbreviations should we use instead of 'api' in the following cases?
-    'http://typo3.org/api/typo3cms'             : 'api', # current stable
-    'http://api.typo3.org/typo3cms/master/html' : 'api', # master
-    'http://api.typo3.org/typo3cms/62/html'     : 'api62',
-    'http://api.typo3.org/typo3cms/61/html'     : 'api61',
-    'http://api.typo3.org/typo3cms/60/html'     : 'api60',
-    'http://api.typo3.org/typo3cms/47/html'     : 'api47',
-    'http://api.typo3.org/typo3cms/45/html'     : 'api45',
+    '://typo3.org/api/typo3cms'             : 't3api', # current stable
+    '://api.typo3.org/typo3cms/master/html' : 't3api', # master
+    '://api.typo3.org/typo3cms/67/html'     : 't3api76',
+    '://api.typo3.org/typo3cms/62/html'     : 't3api62',
+    '://api.typo3.org/typo3cms/61/html'     : 't3api61',
+    '://api.typo3.org/typo3cms/60/html'     : 't3api60',
+    '://api.typo3.org/typo3cms/47/html'     : 't3api47',
+    '://api.typo3.org/typo3cms/45/html'     : 't3api45',
 
     # may exist in future as well
-    'typo3.org/api/flow'               : 'api',
-    'http://api.typo3.org/flow/11'     : 'api',
-    'http://api.typo3.org/flow/master' : 'api',
+    '://typo3.org/api/flow'        : 'api',
+    '://api.typo3.org/flow/11'     : 'api',
+    '://api.typo3.org/flow/master' : 'api',
 }
 
 # if module argparse is not available
@@ -216,10 +218,17 @@ class Main:
     def __init__(self, args):
         self.args = args
         self.uri = self.args.uri.strip('/') + '/'
-        if self.args.abbrev:
-            self.abbrev = self.args.abbrev
+        if self.uri.startswith('https:'):
+            k = self.uri[5:]
+        elif self.uri.startswith('http:'):
+            k = self.uri[4:]
         else:
-            self.abbrev = uri2abbrev.get(self.args.uri.rstrip('/'), 'abbrev')
+            k = self.uri
+        self.abbrev = self.args.abbrev
+        if self.abbrev == 'None':
+            self.abbrev = ''
+        elif self.abbrev == 'abbrev':
+            self.abbrev = uri2abbrev.get(k.rstrip('/'), 'abbrev')
         self.inventory_uri = self.uri + 'objects.inv'
         self.lenuri = len(self.uri)
         self.inventory = {}
@@ -254,10 +263,10 @@ class Main:
         kwds['pages'] = self.pages
         kwds['items'] = self.inventory_items
         kwds['uri'] = self.uri
-        if self.abbrev == 'None':
-            kwds['abbrev'] = ''
-        else:
+        if self.abbrev:
             kwds['abbrev'] = self.abbrev + ':'
+        else:
+            kwds['abbrev'] = ''
         kwds['pagetitle'] = 'Link targets'
         kwds['maxTargets'] = self.maxTargets
         self.renderResult = Template(htmlTemplate).render(**kwds)
@@ -275,6 +284,21 @@ class Main:
             for k in sorted(self.inventory_items):
                 v = self.inventory_items[k]
                 f2.write(u'%s\t%s\t%s\n' % (k.replace('\t','\\t'), v[3].replace('\t','\\t'), v[2].replace('\t','\\t')))
+            f2.close()
+
+    def renderRef(self):
+        if self.abbrev:
+            abbrev = self.abbrev + ':'
+        else:
+            abbrev = ''
+        if self.args.outfilename:
+            f2 = codecs.open(self.args.outfilename, 'w', 'utf-8')
+            for k in sorted(self.inventory_items):
+                v = self.inventory_items[k]
+                p = v[3].lower().find(k)
+                if p > -1:
+                    k = v[3][p:p+len(k)]
+                f2.write(u':ref:`%s%s`\n' % (abbrev, k.replace('\\','\\\\'),))
             f2.close()
 
     def work(self):
@@ -297,6 +321,10 @@ class Main:
                 f2 = codecs.open(f2path, 'w', 'utf-8')
                 f2.write(self.renderResult)
                 f2.close()
+
+            if self.args.format == 'ref':
+                self.renderRef()
+
         else:
             print(len(self.inventory_items), 'targets found. Specify outfile for details.')
 
@@ -331,7 +359,7 @@ def get_argparse_args():
     parser.add_argument('--info',    help='show more information about this module', nargs=0, action=Info)
     parser.add_argument('-O', '--outfile-name', help="write utf-8 output to this file", dest='outfilename', default=None)
     parser.add_argument('--abbreviation', help="abbreviation for the Intersphinx mapping. Default: abbrev", dest='abbrev', default='abbrev')
-    parser.add_argument('-f', '--format', help="format of the produced output. Always utf-8. Default: html)", dest='format', choices=['html', 'json', 'csv'], default='html')
+    parser.add_argument('-f', '--format', help="format of the produced output. Always utf-8. Default: html)", dest='format', choices=['html', 'json', 'csv', 'ref'], default='html')
     # parser.add_argument('--logdir', help="Existing directory where logs will be written. Defaults to tempdir/t3pdb/logs which will be created.", dest='logdir', default=None)
     parser.add_argument('uri', help='path to \'objects.inv\' of a Sphinx documentation project.')
     return parser.parse_args()
