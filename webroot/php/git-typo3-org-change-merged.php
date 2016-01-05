@@ -39,7 +39,6 @@ $kp = array();
 $kp['Documentation/DocsTypo3Org']['master'] = 'Documentation/DocsTypo3Org.git.make';
 $kp['Documentation/TYPO3/Book/ExtbaseFluid']                  ['master'] = '.git.make';
 $kp['Documentation/TYPO3/Example/ExtensionManual']            ['master'] = '.git.make';
-$kp['Documentation/TYPO3/Example/OfficialManual']             ['master'] = '.git.make';
 $kp['Documentation/TYPO3/Guide/Extbase']                      ['master'] = '.git.make';
 $kp['Documentation/TYPO3/Guide/FrontendLocalization']         ['master'] = '.git.make';
 $kp['Documentation/TYPO3/Guide/Installation']                 ['master'] = '.git.make';

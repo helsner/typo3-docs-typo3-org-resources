@@ -39,6 +39,9 @@ RewriteRule  ^TYPO3$  /typo3cms/$1  [NC,R=301,L]
 RewriteRule  ^typo3cms/TCA-Reference/(.*)$  /typo3cms/TCAReference/$1  [NC,R=301,L]
 RewriteRule  ^typo3cms/TCA-Reference$  /typo3cms/TCAReference/  [NC,R=301,L]
 
+# Fix broken links after removing the obsolete Official Manual Template
+RewriteRule  ^typo3cms/OfficialManualExample  /typo3cms/ExtensionManualExample/  [NC,R=301,L]
+
 # ###
 # .../Extensions/ has become /extensions/
 # ###
