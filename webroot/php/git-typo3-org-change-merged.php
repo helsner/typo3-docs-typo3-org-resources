@@ -91,6 +91,7 @@ $kp['TYPO3CMS/Extensions/news']                               ['master'] = '.git
 $kp['Packages/TYPO3.CMS']       ['TYPO3_4-5'] = 'https://docs.typo3.org/~mbless/git.typo3.org/TYPO3CMS/Extensions/TYPO3.CMS.ALL-SYSEXT.make_4.5/request_rebuild.php';
 $kp['Packages/TYPO3.CMS']       ['TYPO3_4-7'] = 'https://docs.typo3.org/~mbless/git.typo3.org/TYPO3CMS/Extensions/TYPO3.CMS.ALL-SYSEXT.make_4.7/request_rebuild.php';
 $kp['Packages/TYPO3.CMS']       ['TYPO3_6-2'] = 'https://docs.typo3.org/~mbless/git.typo3.org/TYPO3CMS/Extensions/TYPO3.CMS.ALL-SYSEXT.make_6.2/request_rebuild.php';
+$kp['Packages/TYPO3.CMS']       ['TYPO3_7-6'] = 'https://docs.typo3.org/~mbless/git.typo3.org/TYPO3CMS/Extensions/TYPO3.CMS.ALL-SYSEXT.make_7.6/request_rebuild.php';
 $kp['Packages/TYPO3.CMS']       ['master']    = 'https://docs.typo3.org/~mbless/git.typo3.org/TYPO3CMS/Extensions/TYPO3.CMS.ALL-SYSEXT.make_latest/request_rebuild.php';
 
 $requestUrl = '';
