@@ -1,4 +1,6 @@
 
+.. include:: Includes.txt
+
 .. _Start:
 
 ===========================
@@ -9,6 +11,16 @@ This single file *Index.rst* is your masterdocument.
 That is where your documentation starts.
 
 Simply start writing reStructuredText.
+
+
+:Author:    My Name <my.name@example.local>
+:License:   MIT license
+:Rendered:  |today|
+:Description:
+      This is just an example description.
+      This is just an example description.
+      This is just an example description.
+
 
 Linux, Mac
 ==========
