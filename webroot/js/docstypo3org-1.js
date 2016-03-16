@@ -42,8 +42,6 @@ $(document).ready(function () {
 		+ '			</div>'
 		+ '		</div>'
 		+ '	</li>'
-		+ '	<li><a href="https://docs.typo3.org/surf/TYPO3SurfDocumentation/">TYPO3 Surf</a>'
-		+ '	</li>'
 		+ '</ul>'
 	;
 	// Insert the main navigation

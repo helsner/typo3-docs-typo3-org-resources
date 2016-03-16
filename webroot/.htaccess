@@ -64,11 +64,6 @@ RewriteCond %{REQUEST_URI}  /flow/$  [OR]
 RewriteCond %{REQUEST_URI}  /flow/Index.html$ 
 RewriteRule ^(.*)$          https://docs.typo3.org/flow/TYPO3FlowDocumentation/ [L,R=301]
 
-# Rewrite for folder surf/
-RewriteCond %{REQUEST_URI}  /surf/$  [OR]
-RewriteCond %{REQUEST_URI}  /surf/Index.html$ 
-RewriteRule ^(.*)$          https://docs.typo3.org/surf/TYPO3SurfDocumentation/ [L,R=301]
-
 #
 # Redirect links to the Flow manual to the new location
 # Take all branches into account (version numbers and "latest" and "stable")
@@ -95,6 +90,9 @@ RedirectMatch ^/neos/TYPO3NeosDocumentation/(latest/|[0-9]\.[0-9]/)(.*)$ http://
 # The most links have _no_ version in them, so the next two rules are the ones to usually kick in:
 RedirectMatch ^/neos/TYPO3NeosDocumentation/(stable/)?(.*)/Index\.html$ http://neos.readthedocs.org/en/1.2/$2/index.html
 RedirectMatch ^/neos/TYPO3NeosDocumentation/(stable/)?(.*)$ http://neos.readthedocs.org/en/1.2/$2
+
+# Rewrite links to the Surf manual to the new location
+RewriteRule ^surf/(.*)$          https://github.com/TYPO3/Surf [L,R=301]
 
 
 CheckSpelling On
