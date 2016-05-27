@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 
-# mb, 2015-10-01, 2015-11-24
+# mb, 2015-10-01, 2016-05-27
 
 # This file lives at https://github.com/marble/typo3-docs-typo3-org-resources/blob/master/userroot/scripts/bin/conf-2015-10.py
 # Check for a new version!
+
+# 2016-05-27 turn off smartypants
 
 # Generic conf.py for ALL projects.
 # Project specific settings should be in:
@@ -201,6 +203,7 @@ if 0 and 'enable this as soon as t3SphinxTheme knows the settings':
 html_use_opensearch = '' # like: 'https://docs.typo3.org/typo3cms/TyposcriptReference/0.0'  no trailing slash!
 
 highlight_language = 'php'
+html_use_smartypants = False
 language = None
 master_doc = 'Index'
 pygments_style = 'sphinx'
