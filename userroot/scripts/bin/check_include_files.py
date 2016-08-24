@@ -1,4 +1,4 @@
-#! /usr/bin/python
+#! /usr/bin/env python
 # coding: ascii
 
 """\
@@ -32,7 +32,7 @@ Exitcodes::
 
 """
 
-__version__ = '0.2.0'
+__version__ = '0.2.1'
 __history__ = ""
 __copyright__ = """\
 
