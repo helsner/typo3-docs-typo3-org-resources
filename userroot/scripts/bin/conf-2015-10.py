@@ -242,7 +242,7 @@ def updateModuleGlobals(GLOBALS, US):
             # untested!
             # we expect:
             #     forge = https://forge.typo3.org/issues/%s | forge:
-            GLOBALS['extlinks']['k'] = (v.split('|')[0].strip(), v.split('|')[1].strip())
+            GLOBALS['extlinks'][k] = (v.split('|')[0].strip(), v.split('|')[1].strip())
 
     if US.has_key('intersphinx_mapping'):
         for k, v in US['intersphinx_mapping'].items():
