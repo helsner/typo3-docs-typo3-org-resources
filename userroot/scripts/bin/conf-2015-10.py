@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# mb, 2015-10-01, 2016-05-27
+# mb, 2015-10-01, 2016-08-30
 
 # This file lives at https://github.com/marble/typo3-docs-typo3-org-resources/blob/master/userroot/scripts/bin/conf-2015-10.py
 # Check for a new version!
@@ -90,7 +90,9 @@ if not os.path.exists(masterdocabspath + '.rst'):
     sys.stdout.write('Can\'t find MASTERDOC ' + masterdocabspath + '.rst\n')
     sys.exit(1)
 
-if not os.path.isabs(LOGDIR):
+if os.path.isabs(LOGDIR):
+    logdirabspath = LOGDIR
+else:
     logdirabspath = os.path.abspath(LOGDIR)
 logdirabspath = os.path.normpath(logdirabspath)
 
