@@ -57,7 +57,7 @@ var ExtensionSearch = {
 					this.resultsContainer.empty().append('<div>No matching extensions</div>');
 				} else {
 					var fullList = '<table class="docutils">';
-					fullList += '<thead><tr><th>Extension</th><th>Older versions</th></tr></thead>'
+					fullList += '<thead><tr><th>Extension</th><th>Versions</th></tr></thead>'
 					fullList += resultsList;
 					fullList += '</table>';
 					this.listContainer.append(fullList);
