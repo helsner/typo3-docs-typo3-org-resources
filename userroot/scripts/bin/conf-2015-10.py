@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 
-# mb, 2015-10-01, 2016-08-30
+# mb, 2015-10-01, 2016-09-04
 
 # This file lives at https://github.com/marble/typo3-docs-typo3-org-resources/blob/master/userroot/scripts/bin/conf-2015-10.py
 # Check for a new version!
 
+# 2016-09-04 update extlinks Forge and Review
 # 2016-05-27 turn off smartypants
 
 # Generic conf.py for ALL projects.
@@ -216,8 +217,8 @@ todo_include_todos = False
 extensions = extensions_to_be_loaded[:]
 
 extlinks = {}
-extlinks['forge' ] = ('https://forge.typo3.org/issues/%s', 'forge: ')
-extlinks['review'] = ('https://review.typo3.org/%s', 'review: ')
+extlinks['forge' ] = ('https://forge.typo3.org/issues/%s', 'Forge #')
+extlinks['review'] = ('https://review.typo3.org/%s', 'Review #')
 
 intersphinx_mapping = {}
 
