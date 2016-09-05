@@ -218,6 +218,7 @@ extensions = extensions_to_be_loaded[:]
 
 extlinks = {}
 extlinks['forge' ] = ('https://forge.typo3.org/issues/%s', 'Forge #')
+extlinks['issue' ] = ('https://forge.typo3.org/issues/%s', 'Issue #')
 extlinks['review'] = ('https://review.typo3.org/%s', 'Review #')
 
 intersphinx_mapping = {}
