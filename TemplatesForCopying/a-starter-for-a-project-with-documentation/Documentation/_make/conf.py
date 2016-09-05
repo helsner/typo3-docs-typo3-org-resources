@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 
-# mb, 2015-10-01, 2016-05-27
+# mb, 2015-10-01, 2016-09-04
 
 # This file lives at https://github.com/marble/typo3-docs-typo3-org-resources/blob/master/userroot/scripts/bin/conf-2015-10.py
 # Check for a new version!
 
+# 2016-09-04 update extlinks Forge and Review
 # 2016-05-27 turn off smartypants
 
 # Generic conf.py for ALL projects.
@@ -90,7 +91,9 @@ if not os.path.exists(masterdocabspath + '.rst'):
     sys.stdout.write('Can\'t find MASTERDOC ' + masterdocabspath + '.rst\n')
     sys.exit(1)
 
-if not os.path.isabs(LOGDIR):
+if os.path.isabs(LOGDIR):
+    logdirabspath = LOGDIR
+else:
     logdirabspath = os.path.abspath(LOGDIR)
 logdirabspath = os.path.normpath(logdirabspath)
 
@@ -214,8 +217,9 @@ todo_include_todos = False
 extensions = extensions_to_be_loaded[:]
 
 extlinks = {}
-extlinks['forge' ] = ('https://forge.typo3.org/issues/%s', 'forge: ')
-extlinks['review'] = ('https://review.typo3.org/%s', 'review: ')
+extlinks['forge' ] = ('https://forge.typo3.org/issues/%s', 'Forge #')
+extlinks['issue' ] = ('https://forge.typo3.org/issues/%s', 'Issue #')
+extlinks['review'] = ('https://review.typo3.org/%s', 'Review #')
 
 intersphinx_mapping = {}
 
@@ -242,7 +246,7 @@ def updateModuleGlobals(GLOBALS, US):
             # untested!
             # we expect:
             #     forge = https://forge.typo3.org/issues/%s | forge:
-            GLOBALS['extlinks']['k'] = (v.split('|')[0].strip(), v.split('|')[1].strip())
+            GLOBALS['extlinks'][k] = (v.split('|')[0].strip(), v.split('|')[1].strip())
 
     if US.has_key('intersphinx_mapping'):
         for k, v in US['intersphinx_mapping'].items():
