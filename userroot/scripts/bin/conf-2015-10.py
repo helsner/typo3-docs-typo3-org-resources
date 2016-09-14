@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 
-# mb, 2015-10-01, 2016-09-04
+# mb, 2015-10-01, 2016-09 14
 
 # This file lives at https://github.com/marble/typo3-docs-typo3-org-resources/blob/master/userroot/scripts/bin/conf-2015-10.py
 # Check for a new version!
 
+# 2016-09-14 load t3SphinxThemeRtd (>= 3.6.3) as Sphinx extension
 # 2016-09-04 update extlinks Forge and Review
 # 2016-05-27 turn off smartypants
 
@@ -149,6 +150,7 @@ extensions_to_be_loaded = [
     'sphinxcontrib.t3fieldlisttable',
     'sphinxcontrib.t3tablerows',
     'sphinxcontrib.t3targets',
+    't3SphinxThemeRtd',
 ]
 
 # Legal extensions will be loaded if requested in Settings.cfg
