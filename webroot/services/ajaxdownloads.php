@@ -1,6 +1,6 @@
 <?php
 
-/* mb, 2013-8-18, 2015-09-25 */
+/* mb, 2013-8-18, 2015-09-25, 2016-10-30 */
 
 /**
  * This class creates a link based on a requested URL.
@@ -27,6 +27,7 @@ class PdfMatcher
     protected $knownPathBeginnings = array(
         // longest paths first!
         '/typo3cms/drafts/github/*/',
+        '/typo3cms/drafts/github/T3DocumentationStarter/',
         '/typo3cms/drafts/',
         '/typo3cms/extensions/',
         '/typo3cms/',
@@ -140,6 +141,7 @@ class PdfMatcher
                 break;
             }
         }
+
         if ($found) {
             $this->urlPart3 = substr($this->parsedUrl['path'], strlen($this->urlPart2));
             $this->urlPart3PathSegments = explode('/', $this->urlPart3);
