@@ -180,10 +180,13 @@ https://github.com/TYPO3-Documentation/TYPO3CMS-Tutorial-Typoscript45Minutes,htt
 https://github.com/TYPO3-Documentation/TYPO3CMS-Tutorial-Typoscript45Minutes,https://docs.typo3.org/~mbless/github.com/TYPO3-Documentation/TYPO3/Tutorial/Typoscript45Minutes.git.make_6.1/request_rebuild.php
 https://github.com/TYPO3-Documentation/TYPO3CMS-Tutorial-Typoscript45Minutes,https://docs.typo3.org/~mbless/github.com/TYPO3-Documentation/TYPO3/Tutorial/Typoscript45Minutes.git.make_6.2/request_rebuild.php
 https://github.com/TYPO3-Documentation/Vagrant-Ansible-T3Documentation-Server,https://docs.typo3.org/~mbless/github.com/TYPO3-Documentation/VagrantAnsibleT3DocumentationServer.make/request_rebuild.php
+https://github.com/TYPO3-Documentation/TYPO3CMS-Code-Examples,https://docs.typo3.org/~mbless/github.com/TYPO3-Documentation/TYPO3CMS-Code-Examples.make/request_rebuild.php
 https://github.com/TYPO3Incubator/TYPO3.Guide.Infrastructure,https://docs.typo3.org/~mbless/github.com/TYPO3Incubator/TYPO3.Guide.Infrastructure.git.make/request_rebuild.php
 https://github.com/wmdbsystems/TYPO3.Tutorial.ContributionWorkflow,https://docs.typo3.org/~mbless/github.com/wmdbsystems/TYPO3.Tutorial.ContributionWorkflow.git.make/request_rebuild.php
 https://github.com/wmdbsystems/TYPO3.Guide.rsting-with-phpstorm,https://docs.typo3.org/~mbless/github.com/wmdbsystems/TYPO3.Guide.rsting-with-phpstorm.git.make/request_rebuild.php
 https://github.com/wmdbsystems/TYPO3.Guide.Composer,https://docs.typo3.org/~mbless/github.com/wmdbsystems/TYPO3.Guide.Composer.git.make/request_rebuild.php
 https://github.com/lolli42/TYPO3CMS-Reference-CoreApi,https://docs.typo3.org/~mbless/github.com/lolli42/CoreApi.git.make/request_rebuild.php
 https://github.com/TYPO3-Documentation/TYPO3CMS-Guide-RenderTypo3Documentation,https://docs.typo3.org/~mbless/github.com/TYPO3-Documentation/TYPO3/Guide/RenderTypo3Documentation.git.make/request_rebuild.php
+https://github.com/mindshape-GmbH/mindshape_seo,https://docs.typo3.org/~mbless/github.com/mindshape-GmbH/mindshape_seo.git.make/request_rebuild.php
+
 
