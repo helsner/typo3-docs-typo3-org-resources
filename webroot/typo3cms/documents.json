@@ -1,0 +1,154 @@
+[
+  {
+    "title": "Developing TYPO3 CMS Extensions with Extbase and Fluid",
+    "type": "Book",
+    "shortcut": "t3extbasebook",
+    "key": "typo3cms.books.t3extbasebook",
+    "url": "https://docs.typo3.org/typo3cms/ExtbaseFluidBook/",
+    "git": "https://github.com/TYPO3-Documentation/TYPO3CMS-Book-ExtbaseFluid.git"
+  },
+  {
+    "title": "Official TYPO3 Extbase and Fluid Guide",
+    "type": "Guide",
+    "shortcut": "t3extbase",
+    "key": "typo3cms.guides.t3extbase",
+    "url": "https://docs.typo3.org/typo3cms/ExtbaseGuide/",
+    "git": "https://github.com/TYPO3-Documentation/TYPO3CMS-Guide-Extbase.git"
+  },
+  {
+    "title": "Frontend Localization Guide",
+    "type": "Guide",
+    "shortcut": "t3l10n",
+    "key": "typo3cms.guides.t3l10n",
+    "url": "https://docs.typo3.org/typo3cms/FrontendLocalizationGuide/",
+    "git": "https://github.com/TYPO3-Documentation/TYPO3CMS-Guide-FrontendLocalization.git"
+  },
+  {
+    "title": "Installation and Upgrade Guide",
+    "type": "Guide",
+    "shortcut": "t3install",
+    "key": "typo3cms.guides.t3install",
+    "url": "https://docs.typo3.org/typo3cms/InstallationGuide/",
+    "git": "https://github.com/TYPO3-Documentation/TYPO3CMS-Guide-Installation.git"
+  },
+  {
+    "title": "Security Guide",
+    "type": "Guide",
+    "shortcut": "t3security",
+    "key": "typo3cms.guides.t3security",
+    "url": "https://docs.typo3.org/typo3cms/SecurityGuide/",
+    "git": "https://github.com/TYPO3-Documentation/TYPO3CMS-Guide-Security.git"
+  },
+  {
+    "title": "Coding Guidelines",
+    "type": "Reference",
+    "shortcut": "t3cgl",
+    "key": "typo3cms.references.t3cgl",
+    "url": "https://docs.typo3.org/typo3cms/CodingGuidelinesReference/",
+    "git": "https://github.com/TYPO3-Documentation/TYPO3CMS-Reference-CodingGuidelines.git"
+  },
+  {
+    "title": "Core API Reference",
+    "type": "Reference",
+    "shortcut": "t3api",
+    "key": "typo3cms.references.t3api",
+    "url": "https://docs.typo3.org/typo3cms/CoreApiReference/",
+    "git": "https://github.com/TYPO3-Documentation/TYPO3CMS-Reference-CoreApi.git"
+  },
+  {
+    "title": "File Abstraction Layer",
+    "type": "Reference",
+    "shortcut": "t3fal",
+    "key": "typo3cms.references.t3fal",
+    "url": "https://docs.typo3.org/typo3cms/FileAbstractionLayerReference/",
+    "git": "https://github.com/TYPO3-Documentation/TYPO3CMS-Reference-FileAbstractionLayer.git"
+  },
+  {
+    "title": "Inside TYPO3",
+    "type": "Reference",
+    "shortcut": "t3inside",
+    "key": "typo3cms.references.t3inside",
+    "url": "https://docs.typo3.org/typo3cms/InsideTypo3Reference/",
+    "git": "https://github.com/TYPO3-Documentation/TYPO3CMS-Reference-InsideTypo3.git"
+  },
+  {
+    "title": "Skinning",
+    "type": "Reference",
+    "shortcut": "t3skinning",
+    "key": "typo3cms.references.t3skinning",
+    "url": "https://docs.typo3.org/typo3cms/SkinningReference/",
+    "git": "https://github.com/TYPO3-Documentation/TYPO3CMS-Reference-Skinning.git"
+  },
+  {
+    "title": "TCA Reference",
+    "type": "Reference",
+    "shortcut": "t3tca",
+    "key": "typo3cms.references.t3tca",
+    "url": "https://docs.typo3.org/typo3cms/TCAReference/",
+    "git": "https://github.com/TYPO3-Documentation/TYPO3CMS-Reference-TCA.git"
+  },
+  {
+    "title": "TSconfig Reference",
+    "type": "Reference",
+    "shortcut": "t3tsconfig",
+    "key": "typo3cms.references.t3tsconfig",
+    "url": "https://docs.typo3.org/typo3cms/TSconfigReference/",
+    "git": "https://github.com/TYPO3-Documentation/TYPO3CMS-Reference-TSconfig.git"
+  },
+  {
+    "title": "TypoScript Reference",
+    "type": "Reference",
+    "shortcut": "t3tsref",
+    "key": "typo3cms.references.t3tsref",
+    "url": "https://docs.typo3.org/typo3cms/TyposcriptReference/",
+    "git": "https://github.com/TYPO3-Documentation/TYPO3CMS-Reference-Typoscript.git"
+  },
+  {
+    "title": "TypoScript Syntax",
+    "type": "Reference",
+    "shortcut": "t3tssyntax",
+    "key": "typo3cms.references.t3tssyntax",
+    "url": "https://docs.typo3.org/typo3cms/TyposcriptSyntaxReference/",
+    "git": "https://github.com/TYPO3-Documentation/TYPO3CMS-Reference-TyposcriptSyntax.git"
+  },
+  {
+    "title": "TYPO3 Services",
+    "type": "Reference",
+    "shortcut": "t3services",
+    "key": "typo3cms.references.t3service",
+    "url": "https://docs.typo3.org/typo3cms/Typo3ServicesReference/",
+    "git": "https://github.com/TYPO3-Documentation/TYPO3CMS-Reference-Typo3Services.git"
+  },
+  {
+    "title": "Editors Tutorial",
+    "type": "Tutorial",
+    "shortcut": "t3editors",
+    "key": "typo3cms.tutorials.t3editors",
+    "url": "https://docs.typo3.org/typo3cms/EditorsTutorial/",
+    "git": "https://github.com/TYPO3-Documentation/TYPO3CMS-Tutorial-Editors.git"
+  },
+  {
+    "title": "Getting Started",
+    "type": "Tutorial",
+    "shortcut": "t3start",
+    "key": "typo3cms.tutorials.t3start",
+    "url": "https://docs.typo3.org/typo3cms/GettingStartedTutorial/",
+    "git": "https://github.com/TYPO3-Documentation/TYPO3CMS-Tutorial-GettingStarted.git"
+  },
+  {
+    "title": "Templating Tutorial",
+    "type": "Tutorial",
+    "shortcut": "t3templating",
+    "key": "typo3cms.tutorials.t3templating",
+    "url": "https://docs.typo3.org/typo3cms/TemplatingTutorial/",
+    "git": "https://github.com/TYPO3-Documentation/TYPO3CMS-Tutorial-Templating.git"
+  },
+  {
+    "title": "TypoScript in 45 Minutes",
+    "type": "Tutorial",
+    "shortcut": "t3ts45",
+    "key": "typo3cms.tutorials.t3ts45",
+    "url": "http://docs.typo3.org/typo3cms/TyposcriptIn45MinutesTutorial/",
+    "git": "https://github.com/TYPO3-Documentation/TYPO3CMS-Tutorial-Typoscript45Minutes.git"
+  }
+]
