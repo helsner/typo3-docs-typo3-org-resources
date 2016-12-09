@@ -2,6 +2,8 @@
 #
 # coding: utf-8
 
+# mb, 2016-12-09, 2016-12-09
+
 from __future__ import print_function
 
 import codecs
@@ -28,19 +30,6 @@ import time
 live_run = 1
 talk = 0
 
-
-# Github_url // branch // desired folder name (if not the same as repo name)
-csvline = 'https://github.com/TYPO3-Documentation/TYPO3CMS-Code-Examples, master  , CodeExamples'
-csvline = 'https://github.com/dwenzel/t3events                          , develop , '
-csvline = 'https://github.com/dwenzel/t3events_reservation              , develop , '
-csvline = 'https://github.com/dwenzel/t3events_course                   , master  , '
-csvline = 'https://github.com/featdd/dpn_glossary                       , master  , '
-csvline = 'https://github.com/featdd/minifier                           , master  , '
-
-
-
-
-
 oldmask = os.umask (002)
 www_data = grp.getgrnam('www-data')
 if withOrderedDict:
@@ -49,6 +38,17 @@ if withOrderedDict:
 else:
     P = params_dict = {}
     buildsettings = {}
+
+
+# global params
+
+P['CRON_REBUILD_INCLUDED_FILE'] = '/home/mbless/HTDOCS/git.typo3.org/Documentation/cron_rebuild_included.sh'
+P['KNOWN_GITHUB_MANUALS'] = '/home/mbless/public_html/services/known-github-manuals.txt'
+P['LOCAL_PATH_GITHUB_REPOS'] = '/home/mbless/HTDOCS/github.com'
+P['LOCAL_PATH_REPOS'] = '/home/mbless/HTDOCS'
+P['PUBLISH_BASE_default'] = 'typo3cms/drafts'
+P['PUBLISH_FOLDER_VERSION'] = 'latest'
+P['WEBROOT_FOLDER'] = '/home/mbless/public_html'
 
 
 def logstamp(unixtime=None, fmt='%Y-%m-%d %H:%M'):
@@ -114,6 +114,15 @@ def addLineToFile(f1path, newline, cmpstr=None, mode='remove'):
     return changed
 
 
+#            a                                                              b           c                d                             e
+# csvline    GITURL                                                         GITBRANCH   PUBLISH_FOLDER   PUBLISH_PATH                , PUBLISH_BASE'
+# csvline = 'https://github.com/TYPO3-Documentation/TYPO3CMS-Code-Examples, master    ,                , github/TYPO3-Documentation/ , /typo3cms/drafts/'
+# csvline = 'https://github.com/dwenzel/t3events                          , develop   ,                , github/dwenzel/             , /typo3cms/drafts/'
+# csvline = 'https://github.com/dwenzel/t3events_reservation              , develop   ,                , github/dwenzel/             , /typo3cms/drafts/'
+# csvline = 'https://github.com/dwenzel/t3events_course                   , master    ,                , github/dwenzel/             , /typo3cms/drafts/'
+# csvline = 'https://code.tritum.de/TYPO3.CMS/Form_Documentation          , master    ,                , code.tritum.de/TYPO3.CMS/   , /typo3cms/drafts/'
+
+csvline = 'https://code.tritum.de/TYPO3.CMS/Form_Documentation'
 
 
 
@@ -122,29 +131,76 @@ def addLineToFile(f1path, newline, cmpstr=None, mode='remove'):
 if 0 and 'as example':
     # giturl: no .git at the end!
     P['GITURL']         = 'https://github.com/TYPO3-Documentation/TYPO3CMS-Code-Examples'
-    P['GITHUB_BRANCH']  = 'master'
+    P['GITBRANCH']      = 'master'
     P['PUBLISH_FOLDER'] = 'CoreCodeExamples'
+    P['PUBLISH_PATH']   = 'github/TYPO3-Documentation'
+    P['PUBLISH_BASE']   = 'typo3cms/drafts'
 
-a, b, c = csvline.split(',')
+splitted = csvline.split(',')
+while len(splitted) < 5:
+    splitted.append('')
+a, b, c, d, e = splitted
 
-P['GITURL'] = a.strip()
-P['GITHUB_BRANCH'] = b.strip()
-P['PUBLISH_FOLDER'] = c.strip()
+
+# GITURL
+a = a.strip()
+url_protocol = ''
+url_domain = ''
+isGithubCom = False
+PUBLISH_PATH_candidate, PUBLISH_FOLDER_candidate = os.path.split(a)
+for proto in ['https', 'http']:
+    if PUBLISH_PATH_candidate.startswith(proto + '://'):
+        url_protocol = proto
+        PUBLISH_PATH_candidate = PUBLISH_PATH_candidate[len(proto)+3:]
+splitted = PUBLISH_PATH_candidate.split('/')
+if len(splitted):
+    url_domain = splitted[0]
+    url_repo = '/'.join(splitted[1:] + [PUBLISH_FOLDER_candidate])
+url_repo = url_repo.rstrip('.git')
+isGithubCom = url_domain.lower() == 'github.com'
+if isGithubCom:
+    PUBLISH_PATH_candidate[0] = 'github'
+isGithubCom = url_domain.lower() == 'github.com'
+
+P['PUBLISH_FOLDER_candidate'] = PUBLISH_FOLDER_candidate
+P['PUBLISH_PATH_candidate'] = PUBLISH_PATH_candidate
+P['url_repo'] = url_repo
+P['url_domain'] = url_domain
+P['url_protocol'] = url_protocol
+
+
+P['GITURL'] = a
+
+# GITBRANCH
+b = b.strip()
+b = b if b else 'master'
+P['GITBRANCH'] = b
+
+# PUBLISH_FOLDER
+c = c.strip()
+c = c if c else PUBLISH_FOLDER_candidate
+P['PUBLISH_FOLDER'] = c
+
+# PUBLISH_PATH
+d = d.strip()
+d = d if d else PUBLISH_PATH_candidate
+P['PUBLISH_PATH'] = d
+
+# PUBLISH_BASE
+e = e.strip()
+e = e if e else P['PUBLISH_BASE_default']
+P['PUBLISH_BASE'] = e
+
+
 
 # derived
 
 P['GITHUB_REPO'] = os.path.split(P['GITURL'])[1]
-P['GITHUB_USER'] = os.path.split(os.path.split(P['GITURL'])[0])[1]
 
-
-# global params
-
-P['LOCAL_PATH_GITHUB_REPOS'] = '/home/mbless/HTDOCS/github.com'
-P['PUBLISH_FOLDER_VERSION'] = 'latest'
-P['URL_PATH_START'] = '/typo3cms/drafts/github'
-P['WEBROOT_FOLDER'] = '/home/mbless/public_html'
-P['KNOWN_GITHUB_MANUALS'] = '/home/mbless/public_html/services/known-github-manuals.txt'
-P['CRON_REBUILD_INCLUDED_FILE'] = '/home/mbless/HTDOCS/git.typo3.org/Documentation/cron_rebuild_included.sh'
+if isGithubCom:
+    P['GITHUB_USER'] = os.path.split(os.path.split(P['GITURL'])[0])[1]
+else:
+    P['GITHUB_USER'] = None
 
 
 # templates
@@ -155,12 +211,13 @@ P['HTACCESS_TEMPLATE'] = '/home/mbless/scripts/config/_htaccess-2016-08.txt'
 P['REQUEST_REBUILD_TEMPLATE'] = '/home/mbless/scripts/bin/request_rebuild.php'
 
 
-# interpolate
-if not P['PUBLISH_FOLDER']:
-    P['PUBLISH_FOLDER'] = P['GITHUB_REPO']
-
-P['builddir'] = '%(WEBROOT_FOLDER)s/%(URL_PATH_START)s/%(GITHUB_USER)s/%(PUBLISH_FOLDER)s/%(PUBLISH_FOLDER_VERSION)s' % P
+P['builddir'] = '%(WEBROOT_FOLDER)s/%(PUBLISH_BASE)s/%(PUBLISH_PATH)s/%(PUBLISH_FOLDER)s/%(PUBLISH_FOLDER_VERSION)s' % P
 P['gitdir'] = '%(LOCAL_PATH_GITHUB_REPOS)s/%(GITHUB_USER)s/%(GITHUB_REPO)s.git' % P
+if isGithubCom:
+    P['gitdir'] = '%(LOCAL_PATH_GITHUB_REPOS)s/%(PUBLISH_PATH_candidate)s/%(GITHUB_REPO)s.git' % P
+else:
+    P['gitdir'] = '%(LOCAL_PATH_REPOS)s/%(PUBLISH_PATH_candidate)s/%(GITHUB_REPO)s.git' % P
+
 P['makedir'] = P['gitdir'] + '.make'
 P['builddir_parent'] = os.path.split(P['builddir'])[0]
 
@@ -180,7 +237,7 @@ if live_run:
     # prepare the makedir
     if not os.path.exists(P['makedir']):
         os.makedirs(P['makedir'])
-	os.symlink(P['CONF_PY_TEMPLATE'],         P['makedir'] + '/conf.py')
+        os.symlink(P['CONF_PY_TEMPLATE'],         P['makedir'] + '/conf.py')
         os.symlink(P['CRON_REBUILD_TEMPLATE'],    P['makedir'] + '/cron_rebuild.sh')
         os.symlink(P['REQUEST_REBUILD_TEMPLATE'], P['makedir'] + '/request_rebuild.php')
 
@@ -189,11 +246,11 @@ if live_run:
 buildsettings['MASTERDOC'] = P['gitdir'] + '/Documentation/Index'
 buildsettings['LOGDIR'] = '.'
 buildsettings['PROJECT'] = P['PUBLISH_FOLDER']
-buildsettings['VERSION'] = P['GITHUB_BRANCH']
+buildsettings['VERSION'] = P['GITBRANCH']
 buildsettings['BUILDDIR'] = P['builddir']
 buildsettings['GITURL'] = P['GITURL']
 buildsettings['GITDIR'] = P['gitdir']
-buildsettings['GITBRANCH'] = P['GITHUB_BRANCH']
+buildsettings['GITBRANCH'] = P['GITBRANCH']
 
 buildsettings['T3DOCDIR'] = P['gitdir'] + '/Documentation'
 buildsettings['PACKAGE_ZIP'] = '0'
@@ -251,7 +308,7 @@ if talk:
 
 if live_run:
     f2path = os.path.join(P['makedir'], 'buildsettings.sh')
-    if not os.path.exists(f2path):	
+    if not os.path.exists(f2path):
         with codecs.open(f2path, 'w', 'utf-8') as f2:
             f2.write(buildsettings_text)
 
@@ -273,16 +330,14 @@ if talk:
     print('cmpstr..............:', cmpstr)
 
 if live_run:
-    f2path = P['KNOWN_GITHUB_MANUALS']
-    changed = addLineToFile(f2path, lineToAdd, cmpstr=cmpstr, mode='remove')
-    gid = grp.getgrnam("www-default").gr_gid
-    os.chown(f2path, -1, gid)
-    os.chmod(f2path, 0664)
-	
+    if isGithubCom:
+        addLineToFile(P['KNOWN_GITHUB_MANUALS'], lineToAdd, cmpstr=cmpstr, mode='remove')
+
 
 # include in cronjob
 # /home/mbless/HTDOCS/git.typo3.org/Documentation/cron_rebuild_included.sh
-lineToAdd = '/home/mbless/HTDOCS/github.com/%s/%s/cron_rebuild.sh\n' % (github_user, makedir_name)
+# lineToAdd = '/home/mbless/HTDOCS/github.com/%s/%s/cron_rebuild.sh\n' % (github_user, makedir_name)
+lineToAdd = '%(makedir)s/cron_rebuild.sh\n' % P
 
 if talk:
     print()
@@ -290,7 +345,7 @@ if talk:
     print('lineToAdd.................:', lineToAdd)
 
 if live_run:
-    f2path = P['CRON_REBUILD_INCLUDED_FILE']	
+    f2path = P['CRON_REBUILD_INCLUDED_FILE']
     changed = addLineToFile(f2path, lineToAdd, cmpstr=lineToAdd, mode='replace')
     if changed:
         gid = grp.getgrnam("www-default").gr_gid
@@ -300,7 +355,7 @@ if live_run:
 
 print('Done:')
 print('  GITURL        :', P['GITURL'])
-print('  GITHUB_BRANCH :', P['GITHUB_BRANCH'])
+print('  GITBRANCH     :', P['GITBRANCH'])
 print('  PUBLISH_FOLDER:', P['PUBLISH_FOLDER'])
 print()
 
