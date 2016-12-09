@@ -27,8 +27,8 @@ import sys
 import tempfile
 import time
 
-live_run = 1
-talk = 0
+live_run = 0
+talk = 1
 
 oldmask = os.umask (002)
 www_data = grp.getgrnam('www-data')
@@ -123,6 +123,7 @@ def addLineToFile(f1path, newline, cmpstr=None, mode='remove'):
 # csvline = 'https://code.tritum.de/TYPO3.CMS/Form_Documentation          , master    ,                , code.tritum.de/TYPO3.CMS/   , /typo3cms/drafts/'
 
 csvline = 'https://code.tritum.de/TYPO3.CMS/Form_Documentation'
+csvline = 'https://github.com/dwenzel/t3events_course'
 
 
 
@@ -159,8 +160,7 @@ if len(splitted):
 url_repo = url_repo.rstrip('.git')
 isGithubCom = url_domain.lower() == 'github.com'
 if isGithubCom:
-    PUBLISH_PATH_candidate[0] = 'github'
-isGithubCom = url_domain.lower() == 'github.com'
+    PUBLISH_PATH_candidate = PUBLISH_PATH_candidate.replace('github.com', 'github', 1)
 
 P['PUBLISH_FOLDER_candidate'] = PUBLISH_FOLDER_candidate
 P['PUBLISH_PATH_candidate'] = PUBLISH_PATH_candidate
@@ -358,4 +358,3 @@ print('  GITURL        :', P['GITURL'])
 print('  GITBRANCH     :', P['GITBRANCH'])
 print('  PUBLISH_FOLDER:', P['PUBLISH_FOLDER'])
 print()
-
