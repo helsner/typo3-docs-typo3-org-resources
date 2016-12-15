@@ -22,6 +22,7 @@ Required parameter:
       http://python.org/ The file 'objects.inv' is expected to
       exist there.
 
+
 Optional parameters:
    -f, --format
       Output is utf-8 encoded.
@@ -39,22 +40,42 @@ Optional parameters:
       or the typically used name for common TYPO3 projects.
       Use 'None' to show no abbreviation at all.
 
+    inventory_uri
+      Path to a file 'objects.inv'. It default is expected to
+      exist in uri.
+    
 Examples:
    python decode_sphinx_inventory.py https://docs.typo3.org/typo3cms/TyposcriptReference/
    python decode_sphinx_inventory.py https://docs.typo3.org/typo3cms/TyposcriptReference/ -O result.html
    python decode_sphinx_inventory.py https://docs.typo3.org/typo3cms/TyposcriptReference/ -O result.html --abbreviation=tsref
    python decode_sphinx_inventory.py https://docs.typo3.org/typo3cms/TyposcriptReference/ -O result.csv  -f csv
    python decode_sphinx_inventory.py https://docs.typo3.org/typo3cms/TyposcriptReference/ -O result.json  -f json
+   python decode_sphinx_inventory.py https://docs.djangoproject.com/en/dev/ https://docs.djangoproject.com/en/dev/_objects/ -O result.html  --abbrevation=django
 
 """
 
 from __future__ import print_function
-from sphinx.ext.intersphinx import read_inventory_v2
-from posixpath import join
+
 import codecs
-import urllib
-import sys
 import json
+import sys
+import urllib
+
+from posixpath import join
+
+try:
+    from sphinx.ext.intersphinx import read_inventory_v2
+except ImportError:
+    print(
+        'This module uses Sphinx modules. See https://sphinx.readthedocs.io/\n'
+        'To install Sphinx do something like:\n'
+        '      $ pip install sphinx\n'
+        '  or  $ easy_install sphinx\n'
+        '\n'
+        'Run with "sudo" if required.'
+    )
+    sys.exit(1)
+
 try:
     from mako.template import Template
 except ImportError:
@@ -98,43 +119,45 @@ WITH THE USE OR PERFORMANCE OF THIS SOFTWARE!
 
 # map known projects to preferred abbreviation
 uri2abbrev = {
-    '://docs.typo3.org/typo3cms/CodingGuidelinesReference' : 't3cgl',
-    '://docs.typo3.org/typo3cms/CoreApiReference' : 't3coreapi',
-    '://docs.typo3.org/typo3cms/EditorsTutorial' : 't3editors',
-    '://docs.typo3.org/typo3cms/ExtbaseFluidBook' : 't3extbasebook',
-    '://docs.typo3.org/typo3cms/ExtbaseGuide' : 't3extbase',
-    '://docs.typo3.org/typo3cms/FileAbstractionLayerReference' : 't3fal',
-    '://docs.typo3.org/typo3cms/FrontendLocalizationGuide' : 't3l10n',
-    '://docs.typo3.org/typo3cms/GettingStartedTutorial' : 't3start',
-    '://docs.typo3.org/typo3cms/InsideTypo3Reference' : 't3inside',
-    '://docs.typo3.org/typo3cms/InstallationGuide' : 't3install',
-    '://docs.typo3.org/typo3cms/SecurityGuide' : 't3security',
-    '://docs.typo3.org/typo3cms/SkinningReference' : 't3skinning',
-    '://docs.typo3.org/typo3cms/TCAReference' : 't3tca',
-    '://docs.typo3.org/typo3cms/TemplatingTutorial' : 't3templating',
-    '://docs.typo3.org/typo3cms/TSconfigReference' : 't3tsconfig',
-    '://docs.typo3.org/typo3cms/Typo3ServicesReference' : 't3services',
-    '://docs.typo3.org/typo3cms/TyposcriptIn45MinutesTutorial' : 't3ts45',
-    '://docs.typo3.org/typo3cms/TyposcriptReference' : 't3tsref',
-    '://docs.typo3.org/typo3cms/TyposcriptSyntaxReference' : 't3tssyntax',
+    '://docs.typo3.org/typo3cms/CodingGuidelinesReference': 't3cgl',
+    '://docs.typo3.org/typo3cms/CoreApiReference': 't3coreapi',
+    '://docs.typo3.org/typo3cms/EditorsTutorial': 't3editors',
+    '://docs.typo3.org/typo3cms/ExtbaseFluidBook': 't3extbasebook',
+    '://docs.typo3.org/typo3cms/ExtbaseGuide': 't3extbase',
+    '://docs.typo3.org/typo3cms/FileAbstractionLayerReference': 't3fal',
+    '://docs.typo3.org/typo3cms/FrontendLocalizationGuide': 't3l10n',
+    '://docs.typo3.org/typo3cms/GettingStartedTutorial': 't3start',
+    '://docs.typo3.org/typo3cms/InsideTypo3Reference': 't3inside',
+    '://docs.typo3.org/typo3cms/InstallationGuide': 't3install',
+    '://docs.typo3.org/typo3cms/SecurityGuide': 't3security',
+    '://docs.typo3.org/typo3cms/SkinningReference': 't3skinning',
+    '://docs.typo3.org/typo3cms/TCAReference': 't3tca',
+    '://docs.typo3.org/typo3cms/TemplatingTutorial': 't3templating',
+    '://docs.typo3.org/typo3cms/TSconfigReference': 't3tsconfig',
+    '://docs.typo3.org/typo3cms/Typo3ServicesReference': 't3services',
+    '://docs.typo3.org/typo3cms/TyposcriptIn45MinutesTutorial': 't3ts45',
+    '://docs.typo3.org/typo3cms/TyposcriptReference': 't3tsref',
+    '://docs.typo3.org/typo3cms/TyposcriptSyntaxReference': 't3tssyntax',
 
     # what abbreviations should we use instead of 'api' in the following cases?
-    '://typo3.org/api/typo3cms'             : 't3api', # current stable
-    '://api.typo3.org/typo3cms/master/html' : 't3api', # master
-    '://api.typo3.org/typo3cms/67/html'     : 't3api76',
-    '://api.typo3.org/typo3cms/62/html'     : 't3api62',
-    '://api.typo3.org/typo3cms/61/html'     : 't3api61',
-    '://api.typo3.org/typo3cms/60/html'     : 't3api60',
-    '://api.typo3.org/typo3cms/47/html'     : 't3api47',
-    '://api.typo3.org/typo3cms/45/html'     : 't3api45',
+    '://typo3.org/api/typo3cms': 't3api',  # current stable
+    '://api.typo3.org/typo3cms/master/html': 't3api',  # master
+    '://api.typo3.org/typo3cms/67/html': 't3api76',
+    '://api.typo3.org/typo3cms/62/html': 't3api62',
+    '://api.typo3.org/typo3cms/61/html': 't3api61',
+    '://api.typo3.org/typo3cms/60/html': 't3api60',
+    '://api.typo3.org/typo3cms/47/html': 't3api47',
+    '://api.typo3.org/typo3cms/45/html': 't3api45',
 
     # may exist in future as well
-    '://typo3.org/api/flow'        : 'api',
-    '://api.typo3.org/flow/11'     : 'api',
-    '://api.typo3.org/flow/master' : 'api',
+    '://typo3.org/api/flow': 'api',
+    '://api.typo3.org/flow/11': 'api',
+    '://api.typo3.org/flow/master': 'api',
 }
 
 # if module argparse is not available
+
+
 class Namespace(object):
     """Simple object for storing attributes."""
 
@@ -229,7 +252,9 @@ class Main:
             self.abbrev = ''
         elif self.abbrev == 'abbrev':
             self.abbrev = uri2abbrev.get(k.rstrip('/'), 'abbrev')
-        self.inventory_uri = self.uri + 'objects.inv'
+        self.inventory_uri = self.args.inventory_uri
+        if not self.args.inventory_uri:
+            self.inventory_uri = self.uri + 'objects.inv'
         self.lenuri = len(self.uri)
         self.inventory = {}
         self.inventory_items = {}
@@ -239,7 +264,7 @@ class Main:
 
     def getInventory(self):
         f = urllib.urlopen(self.inventory_uri)
-        f.readline() # burn a line
+        f.readline()  # burn a line
         self.inventory = read_inventory_v2(f, self.uri, join)
         f.close()
         self.inventory_items = self.inventory.get('std:label', {})
@@ -283,7 +308,8 @@ class Main:
             f2.write('label\tlinktext\turl\n')
             for k in sorted(self.inventory_items):
                 v = self.inventory_items[k]
-                f2.write(u'%s\t%s\t%s\n' % (k.replace('\t','\\t'), v[3].replace('\t','\\t'), v[2].replace('\t','\\t')))
+                f2.write(u'%s\t%s\t%s\n' % (k.replace('\t', '\\t'), v[
+                         3].replace('\t', '\\t'), v[2].replace('\t', '\\t')))
             f2.close()
 
     def renderRef(self):
@@ -297,8 +323,8 @@ class Main:
                 v = self.inventory_items[k]
                 p = v[3].lower().find(k)
                 if p > -1:
-                    k = v[3][p:p+len(k)]
-                f2.write(u':ref:`%s%s`\n' % (abbrev, k.replace('\\','\\\\'),))
+                    k = v[3][p:p + len(k)]
+                f2.write(u':ref:`%s%s`\n' % (abbrev, k.replace('\\', '\\\\'),))
             f2.close()
 
     def work(self):
@@ -332,6 +358,7 @@ class Main:
         msg = ''
         return retCode, msg
 
+
 def get_argparse_args():
     """Get commandline args using module 'argparse'. Python >= 2.7 required."""
 
@@ -352,20 +379,26 @@ def get_argparse_args():
             parser.exit()
 
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0], add_help=False)
-    parser.add_argument('--help', '-h', action='help', default=argparse.SUPPRESS, help='show this help message and exit')
-    parser.add_argument('--version', action='version', version=__version__, help='show version and exit')
+    parser.add_argument('--help', '-h', action='help', default=argparse.SUPPRESS,
+                        help='show this help message and exit')
+    parser.add_argument('--version', action='version',
+                        version=__version__, help='show version and exit')
     parser.add_argument('--license', help='show license and exit', nargs=0, action=License)
     # parser.add_argument('--history', help='show history and exit', nargs=0, action=History)
-    parser.add_argument('--info',    help='show more information about this module', nargs=0, action=Info)
-    parser.add_argument('-O', '--outfile-name', help="write utf-8 output to this file", dest='outfilename', default=None)
+    parser.add_argument('--info', help='show more information about this module',
+                        nargs=0, action=Info)
+    parser.add_argument('-O', '--outfile-name',
+                        help="write utf-8 output to this file", dest='outfilename', default=None)
     parser.add_argument('--abbreviation', help="abbreviation for the Intersphinx mapping. Default: abbrev", dest='abbrev', default='abbrev')
-    parser.add_argument('-f', '--format', help="format of the produced output. Always utf-8. Default: html)", dest='format', choices=['html', 'json', 'csv', 'ref'], default='html')
+    parser.add_argument('-f', '--format', help="format of the produced output. Always utf-8. Default: html)",
+                        dest='format', choices=['html', 'json', 'csv', 'ref'], default='html')
     # parser.add_argument('--logdir', help="Existing directory where logs will be written. Defaults to tempdir/t3pdb/logs which will be created.", dest='logdir', default=None)
-    parser.add_argument('uri', help='path to \'objects.inv\' of a Sphinx documentation project.')
+    parser.add_argument('uri', help='path to a Sphinx documentation project.')
+    parser.add_argument('inventory_uri', help='path to \'objects.inv\' of a Sphinx documentation project.', default=None)
     return parser.parse_args()
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
 
     argparse_available = False
     try:
@@ -393,7 +426,7 @@ if __name__=="__main__":
                    "   '%(prog)s'\n"
                    "   needs module 'argparse' (Python >= 2.7) to handle commandline\n"
                    "   parameters. It seems that 'argparse' is not available. Provide\n"
-                   "   module 'argparse' or hardcode parameters in the code instead.\n" % {'prog': sys.argv[0]} )
+                   "   module 'argparse' or hardcode parameters in the code instead.\n" % {'prog': sys.argv[0]})
             print(msg)
             sys.exit(2)
 
@@ -402,4 +435,3 @@ if __name__=="__main__":
 
     if retCode:
         print(msg, '(exitcode: %s)' % retCode)
-
