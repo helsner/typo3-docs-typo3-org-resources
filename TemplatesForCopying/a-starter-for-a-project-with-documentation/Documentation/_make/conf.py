@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 
-# mb, 2015-10-01, 2016-09 14
+# mb, 2015-10-01, 2016-09-14, 2017-03-01
 
 # This file lives at https://github.com/marble/typo3-docs-typo3-org-resources/blob/master/userroot/scripts/bin/conf-2015-10.py
 # Check for a new version!
 
+# 2017-03-01 set master_doc according to masterdocabspath, allow *.md for masterdoc
 # 2016-09-14 load t3SphinxThemeRtd (>= 3.6.3) as Sphinx extension
 # 2016-09-04 update extlinks Forge and Review
 # 2016-05-27 turn off smartypants
@@ -82,14 +83,18 @@ if os.path.isabs(MASTERDOC):
 else:
     masterdocabspath = os.path.normpath(os.path.join(confpyabspath, '..', MASTERDOC))
 
+e = False
 if os.path.exists(masterdocabspath + '.rst'):
-    pass
-elif os.path.exists(masterdocabspath[:-len('README')] + 'Index.rst'):
-    MASTERDOC = MASTERDOC[:-len('README')] + 'Index'
-    masterdocabspath = masterdocabspath[:-len('README')] + 'Index'
-
-if not os.path.exists(masterdocabspath + '.rst'):
-    sys.stdout.write('Can\'t find MASTERDOC ' + masterdocabspath + '.rst\n')
+    e = True
+elif os.path.exists(masterdocabspath + '.md'):
+    e = True
+else:
+    s = os.path.split(masterdocabspath)[0] + '/Index'
+    if os.path.exists(s + '.rst') or os.path.exists(s + '.md'):
+        e = True
+        masterdocabspath = s
+if not e:
+    sys.stdout.write('Can\'t find MASTERDOC ' + masterdocabspath + '(.md|.rst)\n')
     sys.exit(1)
 
 if os.path.isabs(LOGDIR):
@@ -210,7 +215,7 @@ html_use_opensearch = '' # like: 'https://docs.typo3.org/typo3cms/TyposcriptRefe
 highlight_language = 'php'
 html_use_smartypants = False
 language = None
-master_doc = 'Index'
+master_doc = os.path.splitext(os.path.split(masterdocabspath)[1])[0]
 pygments_style = 'sphinx'
 source_suffix = ['.rst', '.md']
 todo_include_todos = False
