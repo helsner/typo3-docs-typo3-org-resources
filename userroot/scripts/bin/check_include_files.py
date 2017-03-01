@@ -32,8 +32,10 @@ Exitcodes::
 
 """
 
-__version__ = '0.2.1'
-__history__ = ""
+__version__ = '0.2.2'
+__history__ = """\
+2017-03-01 bugfix (define 'parents')
+"""
 __copyright__ = """\
 
 Copyright (c), 2013-2099, Martin Bless  <martin@mbless.de>
@@ -187,6 +189,7 @@ def processRstFile(filepath, parents=None, recurse=1):
 
 def main(startdir):
     ok = True
+    parents = None
     for path, dirs, files in os.walk(startdir):
         dirs.sort()
         files.sort()
