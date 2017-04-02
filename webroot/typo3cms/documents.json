@@ -40,7 +40,7 @@
     "git": "https://github.com/TYPO3-Documentation/TYPO3CMS-Guide-Security.git"
   },
   {
-    "title": "Coding Guidelines",
+    "title": "TYPO3 CMS Coding Guidelines",
     "type": "Reference",
     "shortcut": "t3cgl",
     "key": "typo3cms.references.t3cgl",
@@ -48,7 +48,7 @@
     "git": "https://github.com/TYPO3-Documentation/TYPO3CMS-Reference-CodingGuidelines.git"
   },
   {
-    "title": "Core API Reference",
+    "title": "TYPO3 Core APIs",
     "type": "Reference",
     "shortcut": "t3api",
     "key": "typo3cms.references.t3api",
@@ -112,7 +112,7 @@
     "git": "https://github.com/TYPO3-Documentation/TYPO3CMS-Reference-TyposcriptSyntax.git"
   },
   {
-    "title": "TYPO3 Services",
+    "title": "TYPO3 CMS Services",
     "type": "Reference",
     "shortcut": "t3services",
     "key": "typo3cms.references.t3service",
@@ -120,7 +120,7 @@
     "git": "https://github.com/TYPO3-Documentation/TYPO3CMS-Reference-Typo3Services.git"
   },
   {
-    "title": "Editors Tutorial",
+    "title": "TYPO3 Tutorial for Editors",
     "type": "Tutorial",
     "shortcut": "t3editors",
     "key": "typo3cms.tutorials.t3editors",
@@ -128,7 +128,7 @@
     "git": "https://github.com/TYPO3-Documentation/TYPO3CMS-Tutorial-Editors.git"
   },
   {
-    "title": "Getting Started",
+    "title": "Getting Started Tutorial",
     "type": "Tutorial",
     "shortcut": "t3start",
     "key": "typo3cms.tutorials.t3start",
@@ -136,7 +136,7 @@
     "git": "https://github.com/TYPO3-Documentation/TYPO3CMS-Tutorial-GettingStarted.git"
   },
   {
-    "title": "Templating Tutorial",
+    "title": "Templating Tutorial: Basics",
     "type": "Tutorial",
     "shortcut": "t3templating",
     "key": "typo3cms.tutorials.t3templating",
@@ -148,7 +148,7 @@
     "type": "Tutorial",
     "shortcut": "t3ts45",
     "key": "typo3cms.tutorials.t3ts45",
-    "url": "http://docs.typo3.org/typo3cms/TyposcriptIn45MinutesTutorial/",
+    "url": "https://docs.typo3.org/typo3cms/TyposcriptIn45MinutesTutorial/",
     "git": "https://github.com/TYPO3-Documentation/TYPO3CMS-Tutorial-Typoscript45Minutes.git"
   }
 ]
