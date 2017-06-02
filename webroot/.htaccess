@@ -45,6 +45,4 @@ RewriteRule  ^typo3cms/Extensions(.*)$ /typo3cms/extensions$1 [R=301,L]
 # CheckCaseOnly On
 
 
-# mb, 2017-06-02
-RedirectMatch 301 ^typo3cms/extensions/core/8-dev/(.*) https://docs.typo3.org/typo3cms/extensions/core/8.7/$1
-
+# mb, 2017-06-02: see /typo3cms/extensions/core/8-dev/.htaccess
