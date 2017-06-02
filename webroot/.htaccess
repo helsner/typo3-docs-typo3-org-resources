@@ -1,4 +1,4 @@
-# mb, 2013-01-18, 2014-03-18
+# mb, 2013-01-18, 2014-03-18, 2017-06-02
 
 # Options -Indexes -MultiViews
 # IndexOptions FancyIndexing NameWidth=* IgnoreCase
@@ -29,71 +29,22 @@ RewriteRule ^(.*)         https://docs.typo3.org/$1 [L,R=301]
 
 
 # ###
-# /TYPO3/ has become /typo3cms/
-# ###
-RewriteRule  ^TYPO3/(.*)$  /typo3cms/$1  [NC,R=301,L]
-# Also match the edge case that the URL is only "typo3"
-RewriteRule  ^TYPO3$  /typo3cms/$1  [NC,R=301,L]
-
-# Fix broken links after the renaming of the path to the TCA Reference
-RewriteRule  ^typo3cms/TCA-Reference/(.*)$  /typo3cms/TCAReference/$1  [NC,R=301,L]
-RewriteRule  ^typo3cms/TCA-Reference$  /typo3cms/TCAReference/  [NC,R=301,L]
-
-# Fix broken links after removing the obsolete Official Manual Template
-RewriteRule  ^typo3cms/OfficialManualExample  /typo3cms/ExtensionManualExample/  [NC,R=301,L]
-
-# ###
 # .../Extensions/ has become /extensions/
 # ###
 
-### 
-# http://forge.typo3.org/issues/44868 mb, 2013-01-28
+###
+# https://forge.typo3.org/issues/44868 mb, 2013-01-28
 # the following line handles the case "/typo3cms/Extensions.html"
 RewriteCond %{REQUEST_FILENAME} !-f
 #
 ###
 RewriteRule  ^typo3cms/Extensions(.*)$ /typo3cms/extensions$1 [R=301,L]
 
-# Rewrite for folder neos/
-RewriteCond %{REQUEST_URI}  /neos/$  [OR]
-RewriteCond %{REQUEST_URI}  /neos/Index.html$ 
-RewriteRule ^(.*)$          https://docs.typo3.org/neos/TYPO3NeosDocumentation/ [L,R=301]
-
-# Rewrite for folder flow/
-RewriteCond %{REQUEST_URI}  /flow/$  [OR]
-RewriteCond %{REQUEST_URI}  /flow/Index.html$ 
-RewriteRule ^(.*)$          https://docs.typo3.org/flow/TYPO3FlowDocumentation/ [L,R=301]
-
-#
-# Redirect links to the Flow manual to the new location
-# Take all branches into account (version numbers and "latest" and "stable")
-# Also adjust file namings: They changed it from Index.html to index.html.
-# The "Index.html" part in the old URLs was optional (so it should be followed by a "?" in the expression below),
-# but I didn't get the RedirectMatch to work with (.*)(/Index\.html)?$.
-# The segment "Index.html" then gets matched by the ".*" and not by the following "/Index.html".
-#
-# With version number or "latest":
-RedirectMatch ^/flow/TYPO3FlowDocumentation/(latest/|[0-9]\.[0-9]/)(.*)/Index\.html$ http://flowframework.readthedocs.org/en/$1$2/index.html
-RedirectMatch ^/flow/TYPO3FlowDocumentation/(latest/|[0-9]\.[0-9]/)(.*)$ http://flowframework.readthedocs.org/en/$1$2
-# If no version or "stable" is in URL (both were the same file), redirect to their "stable" version.
-# The most links have _no_ version in them, so the next two rules are the ones to usually kick in:
-RedirectMatch ^/flow/TYPO3FlowDocumentation/(stable/)?(.*)/Index\.html$ http://flowframework.readthedocs.org/en/stable/$2/index.html
-RedirectMatch ^/flow/TYPO3FlowDocumentation/(stable/)?(.*)$ http://flowframework.readthedocs.org/en/stable/$2
-
-#
-# Redirect links to the Neos manual to the new location
-#
-# With version number or "latest":
-RedirectMatch ^/neos/TYPO3NeosDocumentation/(latest/|[0-9]\.[0-9]/)(.*)/Index\.html$ http://neos.readthedocs.org/en/$1$2/index.html
-RedirectMatch ^/neos/TYPO3NeosDocumentation/(latest/|[0-9]\.[0-9]/)(.*)$ http://neos.readthedocs.org/en/$1$2
-# If no version or "stable" is in URL (both were the same file), redirect to their version 1.2 (which is what was "stable" on docs.typo3.org).
-# The most links have _no_ version in them, so the next two rules are the ones to usually kick in:
-RedirectMatch ^/neos/TYPO3NeosDocumentation/(stable/)?(.*)/Index\.html$ http://neos.readthedocs.org/en/1.2/$2/index.html
-RedirectMatch ^/neos/TYPO3NeosDocumentation/(stable/)?(.*)$ http://neos.readthedocs.org/en/1.2/$2
-
-# Rewrite links to the Surf manual to the new location
-RewriteRule ^surf/(.*)$          https://github.com/TYPO3/Surf [L,R=301]
+# mb, 2017-06-02: Why did we do this? (mod_speling)
+# CheckSpelling On
+# CheckCaseOnly On
 
 
-CheckSpelling On
-CheckCaseOnly On
+# mb, 2017-06-02
+RedirectMatch 301 ^typo3cms/extensions/core/8-dev/(.*) https://docs.typo3.org/typo3cms/extensions/core/8.7/$1
+
